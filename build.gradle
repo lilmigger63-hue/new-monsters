@@ -1,9 +1,10 @@
 plugins {
-	id 'net.fabricmc.fabric-loom-remap' version "${loom_version}"
+	id 'fabric-loom' version "${loom_version}"
 	id 'maven-publish'
 }
 
 repositories {
+    maven { url = "https://api.modrinth.com/maven"; content { includeGroup "maven.modrinth" } }
 	// Add repositories to retrieve artifacts from in here.
 	// You should only use this when depending on other mods because
 	// Loom adds the essential maven repositories to download Minecraft and libraries from automatically.
@@ -23,6 +24,7 @@ loom {
 }
 
 dependencies {
+    modImplementation "maven.modrinth:geckolib:7qjQQSWv"
 	// To change the versions see the gradle.properties file
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
 	mappings loom.officialMojangMappings()
@@ -81,10 +83,31 @@ publishing {
 	}
 }
 
-// Dependency-free behavioral tests also run during check.
-tasks.register('combatTest', JavaExec) {
-    dependsOn testClasses
-    classpath = sourceSets.test.runtimeClasspath
-    mainClass = 'com.mythicrealms.creatures.entity.combat.AttackTimelineTest'
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.11.4'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher:1.11.4'
 }
-tasks.named('check') { dependsOn 'combatTest' }
+tasks.named('test') { useJUnitPlatform() }
+tasks.register('combatTest') { dependsOn 'test' }
+
+sourceSets {
+    gametest {
+        compileClasspath += sourceSets.main.output + sourceSets.main.compileClasspath
+        runtimeClasspath += sourceSets.main.output + sourceSets.main.runtimeClasspath
+    }
+}
+loom {
+    mods {
+        mythic_realms_creatures_test { sourceSet sourceSets.gametest }
+    }
+    runs {
+        gametest {
+            server()
+            name 'Creature GameTests'
+            source sourceSets.gametest
+            vmArg '-Dfabric-api.gametest'
+            vmArg "-Dfabric-api.gametest.report-file=${layout.buildDirectory.get()}/gametest-results.xml"
+            runDir 'build/gametest'
+        }
+    }
+}

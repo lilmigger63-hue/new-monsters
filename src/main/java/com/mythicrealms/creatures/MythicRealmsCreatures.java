@@ -10,6 +10,8 @@ public final class MythicRealmsCreatures implements ModInitializer {
 
     @Override
     public void onInitialize() {
-        LOGGER.info("Mythic Realms: Creatures development foundation initialized");
+        com.mythicrealms.creatures.config.CreatureConfig.load();
+        com.mythicrealms.creatures.registry.ModEntities.initialize();
+        LOGGER.info("Mythic Realms: Creatures alpha initialized: 5 creature species");
     }
 }

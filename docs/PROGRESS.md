@@ -1,26 +1,43 @@
 # Persistent progress — 2026-10-17
 
-## Verified
-- Working branch: work, initially empty. No unrelated source files existed.
-- Fabric official 1.21.10 template commit: 375edb9b242a5c790c0abbb2248614cf7488f21d.
-- Full JDK 21.0.8+9 and Gradle 9.7.1 installed under /workspace/toolchains with published SHA-256 verification.
-- AttackTimeline compiled using full JDK 21; 11 behavioral checks passed.
-- Gradle starts, but build fails resolving Fabric Loom before compilation.
+## Current milestone
 
-## Incomplete
-- Phase 1 build not verified. Required Fabric metadata blocked by HTTP 403; Java direct wrapper download also lacked direct DNS resolution. Curl via platform proxy downloaded Gradle successfully.
-- Phases 2–7 remain incomplete; only the isolated combat timeline exists.
-- Creatures implemented: 0/20. No distributable mod JAR. No game/server/client tests run.
-- GeckoLib 5 exact 1.21.10 API and Better Combat versions unresolved. No fabricated dependency coordinates or placeholder creatures/assets added.
+Early five-creature alpha, Minecraft 1.21.10 / Fabric / Java 21. Not the complete 20-creature mod.
+
+## Implemented
+
+- Working Gradle build, source and distributable JARs. Stable Loom 1.14.10 resolves on Java 21; the initial template's newer Loom snapshot required Java 25 and was replaced.
+- Fabric Loader 0.19.5, Fabric API 0.138.4+1.21.10, GeckoLib 5.3-alpha-3 (verified published Modrinth version 7qjQQSWv).
+- Shared server attack timeline, AI pursuit/cooldowns, ranged retreat, animation triggers and bounded-lifetime projectiles.
+- Five distinct entities: Goblin Scout (flanking), Goblin Shaman (poison projectile and ally healing), Orc Warrior (heavy swings and directional shield), Minotaur (charge/sweep), Stone Troll (boulder/smash).
+- Per-species block geometry, pixel atlas, animations, spawn eggs, English names, loot tables and natural biome spawning.
+- Validated JSON configuration for difficulty and per-species spawn settings; data-pack biome tags.
+- Client render registration isolated from common/server code.
+
+## Evidence
+
+- `python3 scripts/cloud-gradle.py build`: passed, including JUnit combat test (14 assertions).
+- `python3 scripts/cloud-gradle.py runGametest`: passed, 5 custom tests plus Minecraft's built-in test. Covers all five species' server registration, health, eggs and loaded loot; scout windup/impact; shaman projectile damage.
+- `python3 scripts/test-assets.py`: passed for five distinct nonempty models, linked animation bones/states, PNG dimensions, eggs and loot resources.
+- GameTests load the dedicated server and world, apply biome modifications, and shut down automatically. An external Minecraft-services public-key request failed due to direct DNS; local GameTests still completed successfully. This does not verify online player authentication.
+
+## Incomplete / unverified
+
+- Client code compiled, but visual model/animation quality has not been observed in a graphical game client.
+- Real-player multiplayer, optional Better Combat, Terralith and Tectonic are not tested.
+- 15 creatures remain: Ancient Treant, Forest Dryad, Griffin, Dire Wolf, Wild Wyvern, Cave Basilisk, Crystal Spider, Shadow Wraith, Grave Knight, Flame Imp, Frost Elemental, Moon Stag, Slime Maiden, Harpy, Demon Sorceress.
+- Mount/taming/flight, structures, progression items, expanded configuration, custom audio and editable Blockbench projects remain planned.
+- First-group gameplay needs deeper tests of shield direction, charge/sweep, boulder/smash, shaman healing, natural spawning density and reload persistence.
 
 ## Next execution
-1. After saved network settings apply, fetch Fabric metadata and exact GeckoLib/Better Combat versions. Inspect GeckoLib 5 source/API for that artifact.
-2. Replace template Loom snapshot with a verified published compatible release, resolve dependencies, and run build.
-3. Continue the original mandatory phases in IMPLEMENTATION_PLAN.md. Do not restart or count the combat unit test as game validation.
 
-Ruling: execute inline and maintain the existing checkout, following the user's explicit start-now and working-branch instructions.
+1. Review the current alpha visually in Minecraft 1.21.10 and expand first-group behavioral GameTests.
+2. Continue core systems and Groups B–D from REQUIREMENTS.md without restarting the project or counting names/assets as complete creatures.
+3. Implement mounts, structures, progression and the complete compatibility test matrix.
 
-## Reusable environment configuration
-- Saved install_script: checksum-verified JDK/Gradle tool setup and standalone combat test (executed successfully).
-- Saved start_skill: tool activation, existing-checkout guidance, verification commands and explicit unresolved blockers.
-- Saved additive network domains; review/save and publish are still required.
+Use the current isolated checkout. Original user authorization: implement inline, maintain progress, commit meaningful groups. Do not claim all 20 creatures are done.
+
+## Review and reusable setup
+- Independent review found Minotaur/Troll retaliation excluded non-player targets. Two GameTests failed before the fix and passed after including valid primary targets in area attacks.
+- Model death animation now supplies the death roll without a second renderer roll.
+- Updated install_script and start_skill saved to the cloud configuration draft. Review/save and publish the environment to retain these updates for later tasks.

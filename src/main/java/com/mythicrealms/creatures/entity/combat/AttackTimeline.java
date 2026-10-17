@@ -15,6 +15,8 @@ public final class AttackTimeline {
         this.recoveryTicks = recoveryTicks;
     }
 
+    public boolean isWindingUp() { return windup > 0; }
+
     public boolean tryStart() {
         if (windup != 0 || recovery != 0) return false;
         windup = windupTicks;

@@ -1,0 +1,12 @@
+{
+  "entity.mythic_realms_creatures.goblin_scout": "Goblin Scout",
+  "item.mythic_realms_creatures.goblin_scout_spawn_egg": "Goblin Scout Spawn Egg",
+  "entity.mythic_realms_creatures.goblin_shaman": "Goblin Shaman",
+  "item.mythic_realms_creatures.goblin_shaman_spawn_egg": "Goblin Shaman Spawn Egg",
+  "entity.mythic_realms_creatures.orc_warrior": "Orc Warrior",
+  "item.mythic_realms_creatures.orc_warrior_spawn_egg": "Orc Warrior Spawn Egg",
+  "entity.mythic_realms_creatures.minotaur": "Minotaur",
+  "item.mythic_realms_creatures.minotaur_spawn_egg": "Minotaur Spawn Egg",
+  "entity.mythic_realms_creatures.stone_troll": "Stone Troll",
+  "item.mythic_realms_creatures.stone_troll_spawn_egg": "Stone Troll Spawn Egg"
+}

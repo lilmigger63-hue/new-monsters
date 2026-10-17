@@ -23,4 +23,4 @@ export PATH="$JAVA_HOME/bin:$PATH"
 export GRADLE_USER_HOME=/workspace/.gradle-cache
 cd /workspace/mobs-
 ./scripts/test-combat.sh
-# This prepares the tools only. Full mod dependency resolution remains blocked.
+# This prepares retained tools. Use scripts/cloud-gradle.py build to build the mod.

@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "id": "mythic_realms_creatures_test",
+  "version": "1.0.0",
+  "name": "Mythic Realms Server Tests",
+  "environment": "server",
+  "entrypoints": {
+    "fabric-gametest": ["com.mythicrealms.creatures.CreatureGameTests"]
+  },
+  "depends": {"mythic_realms_creatures": "*", "fabric-gametest-api-v1": "*"}
+}
