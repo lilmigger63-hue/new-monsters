@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "id": "mythic_realms_creatures",
+  "version": "${version}",
+  "name": "Mythic Realms: Creatures",
+  "description": "Fantasy creatures for Minecraft. Development foundation; creature content is not yet implemented.",
+  "license": "CC0-1.0",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.mythicrealms.creatures.MythicRealmsCreatures"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=0.19.5",
+    "minecraft": "1.21.10",
+    "java": ">=21",
+    "fabric-api": "*"
+  }
+}
