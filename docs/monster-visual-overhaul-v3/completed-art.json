@@ -98,13 +98,23 @@
     }
   },
   "anubis": {
-    "commit": "Visual overhaul: Anubis reference accuracy",
+    "commit": "87c3599",
     "files": {
       "src/main/resources/assets/mythic_realms_creatures/geckolib/models/entity/anubis.geo.json": "4588020998267b0e4e3803eb9b7971c8357cdf705b07dd6095e63254d9b95060",
       "src/main/resources/assets/mythic_realms_creatures/geckolib/animations/entity/anubis.animation.json": "fde568a6d1d5099f7f0d8ee61294aa01f3c64813200761f378599fa7522a0425",
       "src/main/resources/assets/mythic_realms_creatures/textures/entity/anubis.png": "fa7e757906422d3c87182b6bfbf9b0ea135fa73b8e3792fea7cba1dc0e79e322",
       "tools/blockbench/anubis.bbmodel": "3c79e0ca2b0ad87f45afe6ade8454fdf9e272de2c1e6d5a1d9eb692c0cb2e315",
       "src/main/resources/assets/mythic_realms_creatures/textures/entity/anubis_glowmask.png": "11939f206341227f70b6c7717e2c3e73cf48cde437d09f402887d0b37a3bdbab"
+    }
+  },
+  "kobold": {
+    "commit": "Visual overhaul: Kobold reference accuracy",
+    "files": {
+      "src/main/resources/assets/mythic_realms_creatures/geckolib/models/entity/kobold.geo.json": "c57079ce7cd7153014c167452467263bd93462f5a9e5aac34f815c38f6197fd8",
+      "src/main/resources/assets/mythic_realms_creatures/geckolib/animations/entity/kobold.animation.json": "170dcb5a938b64818711d0a57ce6dc434a9d6b2ae5e9176ef4b812df99fb0c05",
+      "src/main/resources/assets/mythic_realms_creatures/textures/entity/kobold.png": "8d93560f798c97eb65e30cd73f01701d9627867464a8f3b1d46011f7731f17e9",
+      "tools/blockbench/kobold.bbmodel": "6b9372a8fefc4867d0502951bfc0e16e529baa026b55ec5a46fddacf2d6ac2af",
+      "src/main/resources/assets/mythic_realms_creatures/textures/entity/kobold_glowmask.png": "2ee48ae110d5a6b86c242383356345dbd00e6b44668ee22fe3cea2ace4327dd9"
     }
   }
 }
