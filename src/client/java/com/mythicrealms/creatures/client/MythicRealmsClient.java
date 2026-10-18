@@ -79,7 +79,7 @@ public final class MythicRealmsClient implements ClientModInitializer {
             super(context, new CreatureModel<T>(type)); this.shadowRadius = shadow;
             String id=BuiltInRegistries.ENTITY_TYPE.getKey(type).getPath();
             translucent=id.equals("shadow_wraith") || id.equals("slime_maiden");
-            if (java.util.Set.of("goblin_shaman","ancient_treant","forest_dryad","wild_wyvern","cave_basilisk","crystal_spider","shadow_wraith","grave_knight","flame_imp",
+            if (java.util.Set.of("stone_troll","goblin_shaman","ancient_treant","forest_dryad","wild_wyvern","cave_basilisk","crystal_spider","shadow_wraith","grave_knight","flame_imp",
                     "frost_elemental","moon_stag","slime_maiden","harpy","demon_sorceress").contains(id))
                 withRenderLayer(new AutoGlowingGeoLayer<>(this));
         }

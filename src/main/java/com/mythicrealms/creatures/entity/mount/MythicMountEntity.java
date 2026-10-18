@@ -58,7 +58,11 @@ public abstract class MythicMountEntity extends TamableAnimal implements Creatur
         || kind()==CreatureKind.WILD_WYVERN && stack.is(com.mythicrealms.creatures.registry.ModItems.WYVERN_HARNESS);}
     public boolean canBeTamed(){return true;}
     public boolean isFlying(){return entityData.get(FLYING);}
-    public void setFlying(boolean flying){entityData.set(FLYING,canFly() && flying);setNoGravity(canFly() && flying);}
+    public void setFlying(boolean flying){
+        boolean next=canFly() && flying,changed=isFlying()!=next;
+        entityData.set(FLYING,next);setNoGravity(next);
+        if(changed && level() instanceof ServerLevel)triggerAnim("action",next?"takeoff":"landing");
+    }
     public boolean isSaddled(){return entityData.get(SADDLED);}
     public void setSaddled(boolean saddled){entityData.set(SADDLED,saddled);}
     public boolean isRareVariant(){return entityData.get(RARE);}
@@ -122,8 +126,11 @@ public abstract class MythicMountEntity extends TamableAnimal implements Creatur
             if(target!=null && canAttack(target) && getSensing().hasLineOfSight(target))performAttack(level,target);
         }
         if(isVehicle()){getNavigation().stop();setTarget(null);}
-        if(canFly() && isTame() && !isOrderedToSit() && !isVehicle() && getOwner()!=null && distanceToSqr(getOwner())>36)setFlying(true);
-        if(canFly() && onGround() && !isVehicle() && getNavigation().isDone())setFlying(false);
+        boolean nextFlight=isFlying();
+        if(canFly() && isTame() && !isOrderedToSit() && !isVehicle() && getOwner()!=null && distanceToSqr(getOwner())>36)nextFlight=true;
+        if(canFly() && onGround() && !isVehicle() && getNavigation().isDone())nextFlight=false;
+        // Resolve once: grounded following must not restart both transition clips each tick.
+        if(nextFlight!=isFlying())setFlying(nextFlight);
     }
     @Override public boolean isFood(ItemStack stack){return isHealingFood(stack);}
     private void consume(ItemStack stack,Player player){if(!player.getAbilities().instabuild)stack.shrink(1);}

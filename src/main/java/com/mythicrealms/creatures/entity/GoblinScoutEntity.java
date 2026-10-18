@@ -18,5 +18,17 @@ public final class GoblinScoutEntity extends MythicHostileEntity {
         }
         return true;
     }
+    @Override protected void customServerAiStep(ServerLevel level) {
+        super.customServerAiStep(level);
+        var target=getTarget();
+        if(tickCount%40!=0 || target==null || !target.isAlive() || !canAttack(target))return;
+        int recruited=0;
+        for(var ally:level.getEntitiesOfClass(GoblinScoutEntity.class,getBoundingBox().inflate(8))) {
+            if(ally==this || ally.getTarget()!=null || !ally.canAttack(target)
+                || ally.distanceToSqr(target)>28*28 || !ally.getSensing().hasLineOfSight(target))continue;
+            ally.setTarget(target);
+            if(++recruited==4)break;
+        }
+    }
     @Override public void performAttack(ServerLevel level, LivingEntity target) { melee(level, target, 2.1, 1); }
 }

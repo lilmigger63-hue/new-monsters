@@ -182,3 +182,8 @@ for name in PALETTES:
     language[f'item.{NS}.{name}_spawn_egg']=title+' Spawn Egg'
 save(ASSET/'lang/en_us.json',language)
 print('Generated five distinct models, atlases, animation sets, eggs, biome tags and loot tables')
+
+if __name__=='__main__':
+    from generate_overhaul_group_a import main as export_overhaul
+    export_overhaul()
+    import integrate_content

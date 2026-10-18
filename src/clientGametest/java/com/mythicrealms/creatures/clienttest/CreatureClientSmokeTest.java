@@ -11,6 +11,7 @@ import net.minecraft.world.entity.Entity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import software.bernie.geckolib.animatable.GeoEntity;
+import software.bernie.geckolib.animation.RawAnimation;
 import software.bernie.geckolib.cache.GeckoLibResources;
 import software.bernie.geckolib.renderer.GeoEntityRenderer;
 
@@ -86,6 +87,18 @@ public final class CreatureClientSmokeTest implements FabricClientGameTest {
                 context.waitTicks(10);
                 world.getClientWorld().waitForChunksRender();
                 context.takeScreenshot("creature-" + kind.id + "-idle");
+                for (String view : new String[]{"side", "back", "distant"}) {
+                    double d = view.equals("distant") ? Math.max(12, kind.height * 4) : distance;
+                    double cameraX = x + (view.equals("side") ? d : 0);
+                    double cameraZ = z + (view.equals("side") ? 0 : view.equals("back") ? -d : d);
+                    int yaw = view.equals("side") ? 90 : view.equals("back") ? 0 : 180;
+                    server.runCommand("tp @a " + cameraX + " " + cameraFeetY + " " + cameraZ + " " + yaw + " 0");
+                    context.waitTicks(4);
+                    world.getClientWorld().waitForChunksRender();
+                    context.takeScreenshot("creature-" + kind.id + "-" + view);
+                }
+                server.runCommand("tp @a " + x + " " + cameraFeetY + " " + (z + distance) + " 180 0");
+                context.waitTicks(4);
                 server.runOnServer(mcServer -> {
                     for (Entity entity : mcServer.overworld().getAllEntities()) {
                         if (BuiltInRegistries.ENTITY_TYPE.getKey(entity.getType()).equals(ModEntities.id(kind.id)))
@@ -94,8 +107,45 @@ public final class CreatureClientSmokeTest implements FabricClientGameTest {
                 });
                 context.waitTicks(8);
                 context.takeScreenshot("creature-" + kind.id + "-attack");
-                LOG.info("CLIENT_SMOKE_ENTITY_PASS {} geometry, animation bake, texture, renderer, entity sync, idle/attack frames", kind.id);
+                for (String clip : new String[]{"walk", "run", "heavy", "cast", "hurt", "death"}) {
+                    context.runOnClient(client -> {
+                        for (Entity entity : client.level.entitiesForRendering()) {
+                            if (!BuiltInRegistries.ENTITY_TYPE.getKey(entity.getType()).equals(ModEntities.id(kind.id))) continue;
+                            GeoEntity geo = (GeoEntity)entity;
+                            var action = geo.getAnimatableInstanceCache().getManagerForId(entity.getId()).getAnimationControllers().get("action");
+                            action.triggerableAnim("visual_probe", clip.equals("walk") || clip.equals("run") ? RawAnimation.begin().thenLoop(clip) : RawAnimation.begin().thenPlayAndHold(clip));
+                            action.tryTriggerAnimation("visual_probe");
+                        }
+                    });
+                    if (clip.equals("cast")) server.runOnServer(mcServer -> {
+                        for (Entity entity : mcServer.overworld().getAllEntities())
+                            if (BuiltInRegistries.ENTITY_TYPE.getKey(entity.getType()).equals(ModEntities.id(kind.id)))
+                                com.mythicrealms.creatures.magic.SpellEffects.telegraph(mcServer.overworld(),
+                                    (net.minecraft.world.entity.Mob)entity,kind,(net.minecraft.world.entity.LivingEntity)entity);
+                    });
+                    context.waitTicks(clip.equals("cast") ? Math.max(8, kind.windup) : clip.equals("death") ? 22 : 8);
+                    context.takeScreenshot("creature-" + kind.id + "-probe-" + clip);
+                    context.runOnClient(client -> {
+                        for (Entity entity : client.level.entitiesForRendering())
+                            if (BuiltInRegistries.ENTITY_TYPE.getKey(entity.getType()).equals(ModEntities.id(kind.id)))
+                                ((GeoEntity)entity).stopTriggeredAnim("action", "visual_probe");
+                    });
+                }
+                LOG.info("CLIENT_SMOKE_ENTITY_PASS {} geometry, animation bake, texture, renderer, entity sync, four views, server attack, six animation probes", kind.id);
             }
+            // Real authoritative death alongside held playback probes: retain vanilla corpse lifetime.
+            server.runCommand("summon mythic_realms_creatures:grave_knight 40 -60 48 {NoAI:1b,Tags:[overhaul_death_probe]}");
+            server.runCommand("tp @a 40.5 -60.45 52 180 0");
+            context.waitTicks(10);
+            server.runCommand("kill @e[tag=overhaul_death_probe]");
+            context.waitTicks(18);
+            context.takeScreenshot("grave-knight-real-server-death");
+            context.waitTicks(8);
+            require(server.computeOnServer(mcServer -> {
+                for (Entity entity : mcServer.overworld().getAllEntities())
+                    if (entity.getTags().contains("overhaul_death_probe")) return false;
+                return true;
+            }),"Death animation must preserve vanilla corpse removal");
             server.runCommand("gamemode creative @a");
             var start = server.computeOnServer(mcServer -> {
                 var rider = mcServer.getPlayerList().getPlayers().getFirst();

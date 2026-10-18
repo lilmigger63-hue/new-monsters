@@ -1,8 +1,10 @@
 # Mythic Realms: Creatures
 
-**Version 1.0.0 · Fabric · Minecraft Java Edition 1.21.10 · Java 21**
+**Development candidate 1.1.0-rc.1 · Fabric · Minecraft Java Edition 1.21.10 · Java 21**
 
-[Download the mod JAR](releases/1.0.0/mythic-realms-creatures-1.0.0.jar?raw=true) · [Download with required dependencies](releases/1.0.0/mythic-realms-creatures-1.0.0-with-dependencies.zip?raw=true) · [Editable source](releases/1.0.0/mythic-realms-creatures-1.0.0-source.zip?raw=true)
+The `feat/creature-overhaul` branch contains the original 20-creature art overhaul, native editable Blockbench sources, and revised combat presentation. See [overhaul progress and validation](docs/creature-overhaul/PROGRESS.md). Publication is pending; the links below refer to the existing stable 1.0.0 release.
+
+[Download the stable mod JAR](releases/1.0.0/mythic-realms-creatures-1.0.0.jar?raw=true) · [Download with required dependencies](releases/1.0.0/mythic-realms-creatures-1.0.0-with-dependencies.zip?raw=true) · [Editable source](releases/1.0.0/mythic-realms-creatures-1.0.0-source.zip?raw=true)
 
 Twenty fantasy creatures, four rideable species, four exploration structures, and a compact survival progression with 26 items and 14 recipes. Creatures use distinct block models, textures, GeckoLib animations, server-controlled attacks, biome spawning, spawn eggs, and loot tables. Better Combat adds optional player weapon animations.
 
@@ -15,7 +17,7 @@ Install these mods on both clients and the dedicated server:
 | Minecraft Java Edition | **1.21.10 exactly** |
 | Java | **21** |
 | Fabric Loader | **0.19.5 or newer** |
-| Mythic Realms: Creatures | `mythic-realms-creatures-1.0.0.jar` |
+| Mythic Realms: Creatures | `mythic-realms-creatures-1.1.0-rc.1.jar` (candidate) or stable `1.0.0` |
 | Fabric API | **0.138.4+1.21.10** |
 | GeckoLib, Fabric | **5.3-alpha-3 for Minecraft 1.21.10** |
 

@@ -20,7 +20,7 @@ public final class DemonSorceressEntity extends MythicHostileEntity {
             if(!level.hasChunkAt(BlockPos.containing(x,getY(),z)))continue;
             if(target.distanceToSqr(x,getY(),z)<16)continue;
             if(randomTeleport(x,getY()+2,z,true)){
-                teleportCooldown=100;SpellEffects.particles(level,ParticleTypes.PORTAL,getX(),getY()+1,getZ(),16,.6);return true;
+                triggerAnim("action","teleport");teleportCooldown=100;SpellEffects.particles(level,ParticleTypes.PORTAL,getX(),getY()+1,getZ(),16,.6);return true;
             }
         }
         teleportCooldown=30;return false;

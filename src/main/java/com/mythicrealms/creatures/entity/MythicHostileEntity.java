@@ -7,6 +7,7 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
+import net.minecraft.network.syncher.*;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.ai.goal.target.*;
 import net.minecraft.world.entity.player.Player;
@@ -28,6 +29,18 @@ public abstract class MythicHostileEntity extends Monster implements GeoEntity {
     private final AnimatableInstanceCache animationCache = GeckoLibUtil.createInstanceCache(this);
     public final AttackTimeline attack;
     private LivingEntity committedTarget;
+    private static final EntityDataAccessor<Byte> VISUAL_POSE=SynchedEntityData.defineId(MythicHostileEntity.class,EntityDataSerializers.BYTE);
+    @Override protected void defineSynchedData(SynchedEntityData.Builder data){super.defineSynchedData(data);data.define(VISUAL_POSE,(byte)0);}
+    public byte visualPose(){return entityData.get(VISUAL_POSE);}
+    private void updateVisualPose(){
+        byte pose=0;
+        if(!attack.isWindingUp() && isAlive()){
+            if(kind()==CreatureKind.MINOTAUR && busy())pose=2;
+            else if(getTarget()!=null && (kind()==CreatureKind.GRAVE_KNIGHT || kind()==CreatureKind.ORC_WARRIOR) && distanceToSqr(getTarget())<20)pose=1;
+            else if(kind()==CreatureKind.GOBLIN_SCOUT && getTarget()!=null && tickCount%60<14 && distanceToSqr(getTarget())>=9 && distanceToSqr(getTarget())<=49)pose=3;
+        }
+        entityData.set(VISUAL_POSE,pose);
+    }
 
     protected MythicHostileEntity(EntityType<? extends MythicHostileEntity> type, Level level) {
         super(type, level);
@@ -45,6 +58,7 @@ public abstract class MythicHostileEntity extends Monster implements GeoEntity {
         committedTarget = target;
         getNavigation().stop();
         triggerAnim("action", attackAnimation());
+        if(level() instanceof ServerLevel server)com.mythicrealms.creatures.magic.SpellEffects.telegraph(server,this,kind(),target);
         playSound(switch(kind()) {
             case STONE_TROLL, FROST_ELEMENTAL -> SoundEvents.STONE_BREAK;
             case GOBLIN_SHAMAN, SHADOW_WRAITH, DEMON_SORCERESS -> SoundEvents.EVOKER_PREPARE_ATTACK;
@@ -66,6 +80,7 @@ public abstract class MythicHostileEntity extends Monster implements GeoEntity {
     }
     @Override protected void customServerAiStep(ServerLevel level) {
         super.customServerAiStep(level);
+        updateVisualPose();
         if(tickCount%12==0) {
             net.minecraft.core.particles.ParticleOptions particle=switch(kind()) {
                 case GOBLIN_SHAMAN -> net.minecraft.core.particles.ParticleTypes.HAPPY_VILLAGER;
@@ -117,13 +132,28 @@ public abstract class MythicHostileEntity extends Monster implements GeoEntity {
     @Override protected SoundEvent getHurtSound(DamageSource source) { return SoundEvents.RAVAGER_HURT; }
     @Override protected SoundEvent getDeathSound() { return SoundEvents.RAVAGER_DEATH; }
     @Override public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
-        controllers.add(new AnimationController<MythicHostileEntity>("locomotion", 5, test ->
-            test.setAndContinue(test.animatable().isDeadOrDying() ? DEATH : test.animatable() instanceof AerialHostileEntity && !test.animatable().onGround() ? (test.isMoving()?FLY:HOVER) : test.isMoving() ? (test.animatable().isSprinting()?RawAnimation.begin().thenLoop("run"):WALK) : IDLE)));
+        controllers.add(new AnimationController<MythicHostileEntity>("locomotion",5,test -> {
+            var mob=test.animatable();
+            if(mob.isDeadOrDying())return test.setAndContinue(DEATH);
+            String state=mob instanceof AerialHostileEntity && !mob.onGround()?(test.isMoving()?"fly":"hover"):
+                test.isMoving()?(mob.getDeltaMovement().horizontalDistanceSqr()>.01?"run":"walk"):
+                mob.kind()==CreatureKind.DEMON_SORCERESS?"levitate":"idle";
+            return test.setAndContinue(MythicCreature.loop(state));
+        }));
+        controllers.add(new AnimationController<MythicHostileEntity>("posture",4,test -> {
+            byte pose=test.animatable().visualPose();
+            return pose==0 || test.animatable().isDeadOrDying()?PlayState.STOP:
+                test.setAndContinue(MythicCreature.loop(pose==1?"guard":pose==2?"charge":"sneak"));
+        }));
         var action=new AnimationController<MythicHostileEntity>("action", 2, test -> PlayState.STOP)
             .triggerableAnim("attack", RawAnimation.begin().thenPlay("attack"))
             .triggerableAnim("cast", RawAnimation.begin().thenPlay("cast"))
             .triggerableAnim("hurt", RawAnimation.begin().thenPlay("hurt"));
-        if(kind()==CreatureKind.GRAVE_KNIGHT)action.triggerableAnim("heavy",RawAnimation.begin().thenPlay("heavy"));
+        if(kind()==CreatureKind.GRAVE_KNIGHT)action.triggerableAnim("attack_two",RawAnimation.begin().thenPlay("attack_two"));
+        if(kind()==CreatureKind.GRAVE_KNIGHT || kind()==CreatureKind.STONE_TROLL)action.triggerableAnim("heavy",RawAnimation.begin().thenPlay("heavy"));
+        if(kind()==CreatureKind.STONE_TROLL)action.triggerableAnim("throw",RawAnimation.begin().thenPlay("throw"));
+        if(kind()==CreatureKind.HARPY)action.triggerableAnim("swoop",RawAnimation.begin().thenPlay("swoop"));
+        if(kind()==CreatureKind.DEMON_SORCERESS)action.triggerableAnim("teleport",RawAnimation.begin().thenPlay("teleport"));
         controllers.add(action);
     }
     @Override public AnimatableInstanceCache getAnimatableInstanceCache() { return animationCache; }

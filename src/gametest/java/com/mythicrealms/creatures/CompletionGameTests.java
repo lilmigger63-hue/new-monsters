@@ -119,4 +119,69 @@ public final class CompletionGameTests {
         });
     }
 
+    @GameTest public void knightTelegraphsThreeDifferentComboStrikes(GameTestHelper h) throws Exception {
+        floor(h);var knight=h.spawn(ModEntities.GRAVE_KNIGHT,2,2,2);knight.setNoAi(true);
+        var target=h.spawn(EntityType.IRON_GOLEM,3,2,2);target.setNoAi(true);
+        var animation=GraveKnightEntity.class.getDeclaredMethod("attackAnimation");animation.setAccessible(true);
+        check(h,"attack".equals(animation.invoke(knight)),"first strike starts combo");
+        knight.performAttack(h.getLevel(),target);
+        check(h,"attack_two".equals(animation.invoke(knight)),"second strike has its own readable sword pose");
+        target.invulnerableTime=0;knight.performAttack(h.getLevel(),target);
+        check(h,"heavy".equals(animation.invoke(knight)),"third strike telegraphs finisher");
+        target.invulnerableTime=0;knight.performAttack(h.getLevel(),target);
+        check(h,"attack".equals(animation.invoke(knight)),"combo resets after finisher");h.succeed();
+    }
+    @GameTest(maxTicks=60) public void scoutsShareOnlyVisibleTargetsWithNearbyScouts(GameTestHelper h){
+        floor(h);var scout=h.spawn(ModEntities.GOBLIN_SCOUT,1,2,2);
+        var ally=h.spawn(ModEntities.GOBLIN_SCOUT,2,2,3);
+        var target=h.spawn(EntityType.IRON_GOLEM,6,2,2);target.setNoAi(true);scout.setTarget(target);
+        h.runAfterDelay(45,()->{check(h,ally.getTarget()==target,"nearby scout cooperates against visible threat");h.succeed();});
+    }
+    @GameTest(maxTicks=40) public void trollThrowsBoulderBeyondActualSmashReach(GameTestHelper h){
+        floor(h);var troll=h.spawn(ModEntities.STONE_TROLL,1,2,2);troll.setNoAi(true);
+        var target=h.spawn(EntityType.IRON_GOLEM,5,2,2);target.setNoAi(true);
+        target.setPos(troll.getX()+4.8,troll.getY(),troll.getZ());
+        troll.performAttack(h.getLevel(),target);
+        h.runAfterDelay(18,()->{check(h,target.getHealth()<target.getMaxHealth(),"target beyond smash region receives boulder");h.succeed();});
+    }
+
+    @GameTest(maxTicks=180) public void slimeProjectilesReliablyHitStationaryTargets(GameTestHelper h){
+        floor(h);var slime=h.spawn(ModEntities.SLIME_MAIDEN,1,2,2);slime.setNoAi(true);slime.setNoGravity(true);
+        var target=h.spawn(EntityType.IRON_GOLEM,6,2,2);target.setNoAi(true);target.setNoGravity(true);
+        for(int i=0;i<8;i++){
+            int delay=i*20;
+            h.runAfterDelay(delay,()->{target.setPos(slime.getX()+5,slime.getY(),slime.getZ());target.setDeltaMovement(net.minecraft.world.phys.Vec3.ZERO);target.setHealth(target.getMaxHealth());target.invulnerableTime=0;slime.performAttack(h.getLevel(),target);});
+            h.runAfterDelay(delay+12,()->check(h,target.getHealth()<target.getMaxHealth(),"each aimed bubble hits the stationary target"));
+        }
+        h.runAfterDelay(160,h::succeed);
+    }
+
+
+
+    @GameTest(maxTicks=10) public void growingProjectileMarginCannotSwallowTargetCollision(GameTestHelper h){
+        floor(h);var caster=h.spawn(ModEntities.CRYSTAL_SPIDER,1,2,2);caster.setNoAi(true);
+        var target=h.spawn(EntityType.IRON_GOLEM,4,2,2);target.setNoAi(true);
+        var bolt=new CreatureProjectile(ModEntities.CRYSTAL_BOLT,h.getLevel());bolt.setOwner(caster);
+        bolt.setPos(target.getBoundingBox().minX-.12,target.getY()+1,target.getZ());
+        bolt.setDeltaMovement(.8,0,0);bolt.tickCount=5;h.getLevel().addFreshEntity(bolt);
+        h.runAfterDelay(2,()->{check(h,target.getHealth()<target.getMaxHealth(),"newly expanded margin still resolves target impact");check(h,bolt.isRemoved(),"impact discards projectile");h.succeed();});
+    }
+
+    @GameTest(maxTicks=10) public void projectileOverlapFallbackRespectsWalls(GameTestHelper h){
+        floor(h);var caster=h.spawn(ModEntities.CRYSTAL_SPIDER,1,2,2);caster.setNoAi(true);
+        var target=h.spawn(EntityType.IRON_GOLEM,4,2,2);target.setNoAi(true);
+        for(int y=2;y<=4;y++)h.setBlock(3,y,2,Blocks.STONE);
+        var wall=h.absolutePos(new net.minecraft.core.BlockPos(3,2,2));
+        // Keep the golem outside the wall; only the expanded projectile margin overlaps it.
+        target.setPos(wall.getX()+1.75,wall.getY(),wall.getZ()+.5);
+        target.setDeltaMovement(net.minecraft.world.phys.Vec3.ZERO);
+        var bolt=new CreatureProjectile(ModEntities.CRYSTAL_BOLT,h.getLevel());bolt.setOwner(caster);
+        bolt.setPos(target.getBoundingBox().minX-.12,target.getY()+1,target.getZ());
+        bolt.setDeltaMovement(.8,0,0);bolt.tickCount=5;
+        var sight=h.getLevel().clip(new net.minecraft.world.level.ClipContext(bolt.position(),target.getBoundingBox().getCenter(),net.minecraft.world.level.ClipContext.Block.COLLIDER,net.minecraft.world.level.ClipContext.Fluid.NONE,bolt));
+        check(h,sight.getType()==net.minecraft.world.phys.HitResult.Type.BLOCK,"wall actually obstructs test trajectory");
+        h.getLevel().addFreshEntity(bolt);
+        h.runAfterDelay(2,()->{check(h,target.getHealth()==target.getMaxHealth(),"solid wall blocks overlap impact");check(h,bolt.isRemoved(),"wall absorbs projectile");h.succeed();});
+    }
+
 }

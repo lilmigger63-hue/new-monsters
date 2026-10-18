@@ -34,7 +34,8 @@ public abstract class ForestGuardianEntity extends PathfinderMob implements Crea
     @Override public AttackTimeline combatTimeline() { return attack; }
     @Override public boolean beginAttack(LivingEntity target) {
         if (!canAttack(target) || !attack.tryStart())return false;
-        pending=target;triggerAnim("action","attack");playSound(SoundEvents.EVOKER_PREPARE_ATTACK,.5f,.7f);return true;
+        pending=target;triggerAnim("action","cast");
+        if(level() instanceof ServerLevel server)com.mythicrealms.creatures.magic.SpellEffects.telegraph(server,this,kind(),target);playSound(SoundEvents.EVOKER_PREPARE_ATTACK,.5f,.7f);return true;
     }
     @Override public void interruptAttack() { attack.cancel();pending=null; }
     @Override protected void customServerAiStep(ServerLevel level) {

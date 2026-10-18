@@ -688,3 +688,7 @@ def main():
 
 if __name__=="__main__":
     main()
+    from generate_overhaul_group_c import main as export_c
+    from generate_overhaul_group_d import main as export_d
+    export_c();export_d()
+    import integrate_content

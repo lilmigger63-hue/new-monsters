@@ -10,7 +10,7 @@ public final class GraveKnightEntity extends MythicHostileEntity {
     private int combo;
     public GraveKnightEntity(EntityType<? extends GraveKnightEntity> type,Level level){super(type,level);}
     @Override public CreatureKind kind(){return CreatureKind.GRAVE_KNIGHT;}
-    @Override protected String attackAnimation(){return (combo+1)%3==0?"heavy":"attack";}
+    @Override protected String attackAnimation(){return switch(combo%3){case 1 -> "attack_two";case 2 -> "heavy";default -> "attack";};}
     @Override public void performAttack(ServerLevel level,LivingEntity target){
         boolean heavy=++combo%3==0;
         melee(level,target,2.8,heavy?1.5:1);

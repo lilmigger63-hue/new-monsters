@@ -28,7 +28,9 @@ public final class CreatureProjectile extends ThrowableItemProjectile {
         CreatureProjectile bolt = new CreatureProjectile(type, caster.level());
         bolt.setOwner(caster);
         bolt.setPos(caster.getX(), caster.getEyeY() - .15, caster.getZ());
-        Vec3 delta = target.getEyePosition().subtract(bolt.position());
+        // Bubbles launched near torso height need a lower aim point to avoid arcing over heads.
+        Vec3 aim=type==ModEntities.SLIME_BUBBLE?target.position().add(0,target.getBbHeight()*.5,0):target.getEyePosition();
+        Vec3 delta = aim.subtract(bolt.position());
         bolt.shoot(delta.x, delta.y + delta.horizontalDistance() * .1, delta.z, speed, 2);
         caster.level().addFreshEntity(bolt);
     }
@@ -71,10 +73,27 @@ public final class CreatureProjectile extends ThrowableItemProjectile {
                 getType()==ModEntities.TROLL_BOULDER?ParticleTypes.CLOUD:getType()==ModEntities.FIRE_BOLT?ParticleTypes.FLAME:
                 getType()==ModEntities.ICE_SPIKE?ParticleTypes.SNOWFLAKE:getType()==ModEntities.DARK_BOLT?ParticleTypes.WITCH:ParticleTypes.HAPPY_VILLAGER,
                 getX(),getY(),getZ(),5,.15);
+            com.mythicrealms.creatures.magic.SpellEffects.ring(level,
+                getType()==ModEntities.ICE_SPIKE?ParticleTypes.SNOWFLAKE:getType()==ModEntities.DARK_BOLT?ParticleTypes.WITCH:
+                getType()==ModEntities.CRYSTAL_BOLT?ParticleTypes.END_ROD:ParticleTypes.CLOUD,getX(),getY()+.1,getZ(),.55,10);
             discard();
         }
     }
     @Override public void tick() {
+        // Vanilla's growing margin can move the ray start inside the target box;
+        // its segment clip then misses the entry face. Resolve only that short age window.
+        if(level() instanceof ServerLevel && tickCount>=3 && tickCount<=8){
+            float margin=net.minecraft.world.entity.projectile.ProjectileUtil.computeMargin(this);
+            for(Entity entity:level().getEntities(this,getBoundingBox().inflate(margin),this::canHitEntity)){
+                if(!entity.getBoundingBox().inflate(margin).contains(position()))continue;
+                var sight=level().clip(new net.minecraft.world.level.ClipContext(position(),entity.getBoundingBox().getCenter(),
+                    net.minecraft.world.level.ClipContext.Block.COLLIDER,net.minecraft.world.level.ClipContext.Fluid.NONE,this));
+                if(sight.getType()!=HitResult.Type.MISS)continue;
+                hitTargetOrDeflectSelf(new EntityHitResult(entity,position()));
+                break;
+            }
+            if(isRemoved())return;
+        }
         super.tick();
         if (!level().isClientSide() && tickCount > 100) discard();
         if(level() instanceof ServerLevel level && tickCount%6==0 && getType()!=ModEntities.TROLL_BOULDER) {

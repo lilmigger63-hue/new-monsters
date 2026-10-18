@@ -225,3 +225,8 @@ language.update({
  'message.mythic_realms_creatures.saddle_required':'Equip a saddle before riding.'})
 save(langpath,language)
 print('Generated five distinct Group B models, textures, animations, eggs, loot and biome tags')
+
+if __name__=='__main__':
+    from generate_overhaul_group_b import main as export_overhaul
+    export_overhaul()
+    import integrate_content

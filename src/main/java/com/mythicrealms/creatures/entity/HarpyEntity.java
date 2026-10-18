@@ -8,6 +8,7 @@ import net.minecraft.world.level.Level;
 public final class HarpyEntity extends AerialHostileEntity {
     public HarpyEntity(EntityType<? extends HarpyEntity> type,Level level){super(type,level);}
     @Override public CreatureKind kind(){return CreatureKind.HARPY;}
+    @Override protected String attackAnimation(){return getTarget()!=null && distanceToSqr(getTarget())<9?"swoop":"cast";}
     @Override public boolean ranged(){return true;}
     @Override public boolean reposition(LivingEntity target){
         if(tickCount%100<28 && distanceToSqr(target)>7){
