@@ -156,7 +156,7 @@
     }
   },
   "werecat": {
-    "commit": "Visual overhaul: Werecat reference accuracy",
+    "commit": "9137bb1",
     "files": {
       "src/main/resources/assets/mythic_realms_creatures/geckolib/models/entity/werecat.geo.json": "c0728401ecfbe96e4b394d7f071f60a7d66aeaed13d9595245529c5fff30fa0c",
       "src/main/resources/assets/mythic_realms_creatures/geckolib/animations/entity/werecat.animation.json": "5fef0af398e71757d57e237ad7fc95b2606518d37fa2e2f08aa42111ad111b87",

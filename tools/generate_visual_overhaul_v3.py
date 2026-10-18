@@ -465,19 +465,6 @@ def vampire():
         X('head',[2.4+side*.95-.85,28.75,-1.3],[1.7,.85,2.1],7,[0,0,-side*18])
     X('head',[-2.4,26.6,-3.45],[2.7,1.3,.8],8,[0,0,-13])
     X('head',[.25,27.1,-3.4],[2.2,1.1,.7],5,[0,0,12])
-    for side,n in [(-1,'right'),(1,'left')]:
-        ear='ear_'+n;m.by_name[ear]['cubes']=[]
-        for x,y,w,h,mat in [(2.4,28.4,2.6,2,9),(2.8,30.1,1.9,2,9),(3.15,31.6,.9,1.2,12)]:
-            X(ear,[side*x-w/2,y,-.6],[w,h,1.6],mat,[0,0,-side*12])
-        X(ear,[side*2.4-.7,28.9,-.85],[1.4,1.5,.4],1,[0,0,-side*12])
-        tunic='tunic_'+n;m.by_name[tunic]['cubes']=[]
-        X(tunic,[side*1.45-1.6,9.4,-2.1],[3.2,3.3,4.2],10,[0,0,-side*6])
-        X(tunic,[side*1.45-1.65,12.3,-2.15],[3.3,1.1,4.3],2)
-    for c in m.by_name['body']['cubes']:
-        if material_of(c)==3:repaint_cube(c,10)
-    m.by_name['body']['cubes']=[c for c in m.by_name['body']['cubes'] if not(material_of(c)==7 and c.get('rotation')==[0,0,45])]
-    X('chest',[-3.2,20.9,-2.1],[6.4,.7,4.2],10)
-    X('head',[-3,28.6,-2.7],[1.8,.55,1.2],7)
     return m,palette,roles,(.7,1.85)
 
 def valkyrie():

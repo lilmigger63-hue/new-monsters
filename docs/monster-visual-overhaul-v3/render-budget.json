@@ -1,0 +1,200 @@
+{
+  "ancient_treant": {
+    "bones": 17,
+    "cubes": 95,
+    "mapped_emissive_faces": 12,
+    "emissive_pass": true
+  },
+  "anubis": {
+    "bones": 29,
+    "cubes": 154,
+    "mapped_emissive_faces": 12,
+    "emissive_pass": true
+  },
+  "cave_basilisk": {
+    "bones": 16,
+    "cubes": 82,
+    "mapped_emissive_faces": 12,
+    "emissive_pass": true
+  },
+  "centaur": {
+    "bones": 30,
+    "cubes": 131,
+    "mapped_emissive_faces": 0,
+    "emissive_pass": false
+  },
+  "crystal_spider": {
+    "bones": 29,
+    "cubes": 48,
+    "mapped_emissive_faces": 72,
+    "emissive_pass": true
+  },
+  "cyclops": {
+    "bones": 30,
+    "cubes": 151,
+    "mapped_emissive_faces": 6,
+    "emissive_pass": true
+  },
+  "demon_sorceress": {
+    "bones": 42,
+    "cubes": 111,
+    "mapped_emissive_faces": 222,
+    "emissive_pass": true
+  },
+  "dhampir": {
+    "bones": 29,
+    "cubes": 163,
+    "mapped_emissive_faces": 12,
+    "emissive_pass": true
+  },
+  "dire_wolf": {
+    "bones": 20,
+    "cubes": 95,
+    "mapped_emissive_faces": 0,
+    "emissive_pass": false
+  },
+  "ender_dragon_girl": {
+    "bones": 35,
+    "cubes": 131,
+    "mapped_emissive_faces": 12,
+    "emissive_pass": true
+  },
+  "flame_imp": {
+    "bones": 15,
+    "cubes": 39,
+    "mapped_emissive_faces": 24,
+    "emissive_pass": true
+  },
+  "forest_dryad": {
+    "bones": 29,
+    "cubes": 124,
+    "mapped_emissive_faces": 12,
+    "emissive_pass": true
+  },
+  "fox_spirit_girl": {
+    "bones": 46,
+    "cubes": 150,
+    "mapped_emissive_faces": 12,
+    "emissive_pass": true
+  },
+  "frost_elemental": {
+    "bones": 36,
+    "cubes": 66,
+    "mapped_emissive_faces": 18,
+    "emissive_pass": true
+  },
+  "goblin_scout": {
+    "bones": 20,
+    "cubes": 95,
+    "mapped_emissive_faces": 0,
+    "emissive_pass": false
+  },
+  "goblin_shaman": {
+    "bones": 24,
+    "cubes": 102,
+    "mapped_emissive_faces": 42,
+    "emissive_pass": true
+  },
+  "grave_knight": {
+    "bones": 22,
+    "cubes": 100,
+    "mapped_emissive_faces": 18,
+    "emissive_pass": true
+  },
+  "griffin": {
+    "bones": 22,
+    "cubes": 129,
+    "mapped_emissive_faces": 0,
+    "emissive_pass": false
+  },
+  "harpy": {
+    "bones": 30,
+    "cubes": 162,
+    "mapped_emissive_faces": 12,
+    "emissive_pass": true
+  },
+  "holstaurus": {
+    "bones": 21,
+    "cubes": 116,
+    "mapped_emissive_faces": 0,
+    "emissive_pass": false
+  },
+  "kobold": {
+    "bones": 31,
+    "cubes": 168,
+    "mapped_emissive_faces": 0,
+    "emissive_pass": false
+  },
+  "minotaur": {
+    "bones": 22,
+    "cubes": 115,
+    "mapped_emissive_faces": 0,
+    "emissive_pass": false
+  },
+  "moon_stag": {
+    "bones": 21,
+    "cubes": 107,
+    "mapped_emissive_faces": 120,
+    "emissive_pass": true
+  },
+  "orc_warrior": {
+    "bones": 19,
+    "cubes": 102,
+    "mapped_emissive_faces": 0,
+    "emissive_pass": false
+  },
+  "sahuagin": {
+    "bones": 25,
+    "cubes": 125,
+    "mapped_emissive_faces": 0,
+    "emissive_pass": false
+  },
+  "shadow_wraith": {
+    "bones": 27,
+    "cubes": 57,
+    "mapped_emissive_faces": 108,
+    "emissive_pass": true
+  },
+  "slime_maiden": {
+    "bones": 33,
+    "cubes": 80,
+    "mapped_emissive_faces": 0,
+    "emissive_pass": false
+  },
+  "stone_troll": {
+    "bones": 17,
+    "cubes": 96,
+    "mapped_emissive_faces": 12,
+    "emissive_pass": true
+  },
+  "succubus": {
+    "bones": 37,
+    "cubes": 136,
+    "mapped_emissive_faces": 12,
+    "emissive_pass": true
+  },
+  "valkyrie": {
+    "bones": 32,
+    "cubes": 177,
+    "mapped_emissive_faces": 12,
+    "emissive_pass": true
+  },
+  "vampire": {
+    "bones": 28,
+    "cubes": 138,
+    "mapped_emissive_faces": 12,
+    "emissive_pass": true
+  },
+  "werecat": {
+    "bones": 24,
+    "cubes": 127,
+    "mapped_emissive_faces": 0,
+    "emissive_pass": false
+  },
+  "wild_wyvern": {
+    "bones": 18,
+    "cubes": 127,
+    "mapped_emissive_faces": 0,
+    "emissive_pass": false
+  }
+}

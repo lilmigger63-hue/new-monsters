@@ -1,0 +1,218 @@
+[
+  {
+    "species": "harpy",
+    "license": "CC0-1.0",
+    "origin": "Original project artwork; adapted project baseline rig and newly authored species geometry/texture details",
+    "source": "tools/generate_visual_overhaul_v3.py",
+    "files": {
+      "src/main/resources/assets/mythic_realms_creatures/geckolib/models/entity/harpy.geo.json": "6fb28163121a243b0d3ef3556913390c5b8d35948dac75d8bb391398818d523d",
+      "src/main/resources/assets/mythic_realms_creatures/geckolib/animations/entity/harpy.animation.json": "f7d5505b8495f5d292e2d862f1a1dba1ec481bb397f67c8dddfb8c5965c6544e",
+      "src/main/resources/assets/mythic_realms_creatures/textures/entity/harpy.png": "112394ac931c0f6e8ef030359613f0992960607c9af3ebbb03753b745307b802",
+      "src/main/resources/assets/mythic_realms_creatures/textures/entity/harpy_glowmask.png": "97992e69e106b24cc8f453642f4626fe28c5d384effaa568974f778b57ff0480",
+      "tools/blockbench/harpy.bbmodel": "48211b6c65c366d503a71c473b100990e015f7f303d3b8bd498c358566007ba1"
+    }
+  },
+  {
+    "species": "forest_dryad",
+    "license": "CC0-1.0",
+    "origin": "Original project artwork; adapted project baseline rig and newly authored species geometry/texture details",
+    "source": "tools/generate_visual_overhaul_v3.py",
+    "files": {
+      "src/main/resources/assets/mythic_realms_creatures/geckolib/models/entity/forest_dryad.geo.json": "5a428387d99fc04ac74efbea51d960eb774f3d054f697e940a8dc89104cb17b9",
+      "src/main/resources/assets/mythic_realms_creatures/geckolib/animations/entity/forest_dryad.animation.json": "c99c1d697382d183f2e222878f0edc79bd8dc7cc76307a7c11a7d9d307a1bdf6",
+      "src/main/resources/assets/mythic_realms_creatures/textures/entity/forest_dryad.png": "84db35f6b97952fd3039786f6a6408d868e0ae67cf8d579627dce35642efda86",
+      "src/main/resources/assets/mythic_realms_creatures/textures/entity/forest_dryad_glowmask.png": "64b573b0499510e0ce684c27d69938f39e00fd20257bdebcfef75b7eacd7d2f8",
+      "tools/blockbench/forest_dryad.bbmodel": "1cc1e716e204e163b2f40f97da4f071c5f30c64ce2a6af5462f71231077bb1d3"
+    }
+  },
+  {
+    "species": "slime_maiden",
+    "license": "CC0-1.0",
+    "origin": "Original project artwork; adapted project baseline rig and newly authored species geometry/texture details",
+    "source": "tools/generate_visual_overhaul_v3.py",
+    "files": {
+      "src/main/resources/assets/mythic_realms_creatures/geckolib/models/entity/slime_maiden.geo.json": "737810210d1df045d32ac315a189cf0d600b11d706339d1c0b483dfe2d579901",
+      "src/main/resources/assets/mythic_realms_creatures/geckolib/animations/entity/slime_maiden.animation.json": "b4d1fd0aa640ee801abbb824374b4201712b273573012ed1b1ba3641d32324a9",
+      "src/main/resources/assets/mythic_realms_creatures/textures/entity/slime_maiden.png": "28a5d67ace97ec0418e5b8703bed341f4bd9326a6b7dcea85a502136d15d0572",
+      "src/main/resources/assets/mythic_realms_creatures/textures/entity/slime_maiden_glowmask.png": "e76f61cd70e642529eaf523e5526b0449c8d4f74b744a80f099105f0b425a1e5",
+      "tools/blockbench/slime_maiden.bbmodel": "776c045b90e3aba2f2319f3c1cd79989ce513243225df0fc736b100172a802a3"
+    }
+  },
+  {
+    "species": "minotaur",
+    "license": "CC0-1.0",
+    "origin": "Original project artwork; adapted project baseline rig and newly authored species geometry/texture details",
+    "source": "tools/generate_visual_overhaul_v3.py",
+    "files": {
+      "src/main/resources/assets/mythic_realms_creatures/geckolib/models/entity/minotaur.geo.json": "4e7df0137ea825ad83e1f39b835831361c3f1529509d04b6bbe42936748cddfe",
+      "src/main/resources/assets/mythic_realms_creatures/geckolib/animations/entity/minotaur.animation.json": "ac56a3b475581f02fcfcb7055f3b6f47c45f15a66950d42cae6938565f73d9f0",
+      "src/main/resources/assets/mythic_realms_creatures/textures/entity/minotaur.png": "84938d5791a4e12b0f3e49ff2f2c51e1f55133421cd95908da0a220f0ac17b3a",
+      "tools/blockbench/minotaur.bbmodel": "ab81d32debc34c251740c991e213de4c36d735c364a6254b0e8ff4fa7fa7de31"
+    }
+  },
+  {
+    "species": "vampire",
+    "license": "CC0-1.0",
+    "origin": "Original project artwork; adapted project baseline rig and newly authored species geometry/texture details",
+    "source": "tools/generate_visual_overhaul_v3.py",
+    "files": {
+      "src/main/resources/assets/mythic_realms_creatures/geckolib/models/entity/vampire.geo.json": "5ca76be88d22061bb4ff3d225405ceb6aa5f5e2ea061470fb38f9aa8b40fd71c",
+      "src/main/resources/assets/mythic_realms_creatures/geckolib/animations/entity/vampire.animation.json": "8aaad1aa3dd3ccbd48b1b7fac499eab1cc8c538c7cf74910797eb456ca5ac41d",
+      "src/main/resources/assets/mythic_realms_creatures/textures/entity/vampire.png": "3e75781b558c1bd7e06293f56e73b99db93932a24efe5f8839afa8cb40811e7f",
+      "src/main/resources/assets/mythic_realms_creatures/textures/entity/vampire_glowmask.png": "c0aa61bb2054675952ceb993260ae07e3566066b2681e155fbafcf0e3d52a634",
+      "tools/blockbench/vampire.bbmodel": "e23bb86039d8c3d3f36302637f6788325368680b3dcb8fe3d054e18f931490d8"
+    }
+  },
+  {
+    "species": "valkyrie",
+    "license": "CC0-1.0",
+    "origin": "Original project artwork; adapted project baseline rig and newly authored species geometry/texture details",
+    "source": "tools/generate_visual_overhaul_v3.py",
+    "files": {
+      "src/main/resources/assets/mythic_realms_creatures/geckolib/models/entity/valkyrie.geo.json": "ec63b2efa3b8cbf783c78d1cca1bbf9ae68d9a4ae4585e9488cee42f93c89e5d",
+      "src/main/resources/assets/mythic_realms_creatures/geckolib/animations/entity/valkyrie.animation.json": "51e1bed60410d460bfd2c28c2f7e4edeb29b03d145c72da22750439f5292093d",
+      "src/main/resources/assets/mythic_realms_creatures/textures/entity/valkyrie.png": "1ff3b8e70e1627f78e1889cfb969869986dd298d12a7c065591e13bc8144ab05",
+      "src/main/resources/assets/mythic_realms_creatures/textures/entity/valkyrie_glowmask.png": "f6bb4b34670e0da1966b0e29cb3004e84c25fc2a2ab4b72177132b1bf1dde47e",
+      "tools/blockbench/valkyrie.bbmodel": "5bbdc6676f0b88ad887c8e8ea0d85f3e3d90909626146f9776e46ecb569854cb"
+    }
+  },
+  {
+    "species": "succubus",
+    "license": "CC0-1.0",
+    "origin": "Original project artwork; adapted project baseline rig and newly authored species geometry/texture details",
+    "source": "tools/generate_visual_overhaul_v3.py",
+    "files": {
+      "src/main/resources/assets/mythic_realms_creatures/geckolib/models/entity/succubus.geo.json": "e489e2eb11ad97c19de99ffd8e808fa0b03b0b5c7fa8ae1c955b6d41191c1df2",
+      "src/main/resources/assets/mythic_realms_creatures/geckolib/animations/entity/succubus.animation.json": "4f83a0b41ce860df0ba7d29a0441e7b7afd39986527a38831183140d125d12dd",
+      "src/main/resources/assets/mythic_realms_creatures/textures/entity/succubus.png": "e9f87c3f72d1d4e493ba15a201f3fe8b34b3ccdba953190bbc33e19b6f7b1c8e",
+      "src/main/resources/assets/mythic_realms_creatures/textures/entity/succubus_glowmask.png": "550370841395b3d765a37a8ad027c8e289fbecb9007eb97671ec351c964016c8",
+      "tools/blockbench/succubus.bbmodel": "d1c956aedaa43f86955854fdad23b31257151836a4ec1d8f46c66b6f27759445"
+    }
+  },
+  {
+    "species": "ender_dragon_girl",
+    "license": "CC0-1.0",
+    "origin": "Original project artwork; adapted project baseline rig and newly authored species geometry/texture details",
+    "source": "tools/generate_visual_overhaul_v3.py",
+    "files": {
+      "src/main/resources/assets/mythic_realms_creatures/geckolib/models/entity/ender_dragon_girl.geo.json": "475d39af434c418d5147d2d1425af7692e59aa99ecafcf67158a3839236bbd14",
+      "src/main/resources/assets/mythic_realms_creatures/geckolib/animations/entity/ender_dragon_girl.animation.json": "2a2cfc0fe1f89148bbba606f13c52b5086045785f0662bc7eb58f6cad72432f5",
+      "src/main/resources/assets/mythic_realms_creatures/textures/entity/ender_dragon_girl.png": "26439dc2ee498bba683eff3920f39798c443000b7081f69558f884b179d17a49",
+      "src/main/resources/assets/mythic_realms_creatures/textures/entity/ender_dragon_girl_glowmask.png": "085791fdf9c977e5c70f8728ebaa60d9d5f4b166de8b09ff6e82379586b40f6d",
+      "tools/blockbench/ender_dragon_girl.bbmodel": "d1b5826da1b6bd903c151333d597d5e39c4f18cd1ded05c08e4f9df963a3d33a"
+    }
+  },
+  {
+    "species": "centaur",
+    "license": "CC0-1.0",
+    "origin": "Original project artwork; adapted project baseline rig and newly authored species geometry/texture details",
+    "source": "tools/generate_visual_overhaul_v3.py",
+    "files": {
+      "src/main/resources/assets/mythic_realms_creatures/geckolib/models/entity/centaur.geo.json": "8e1da103116a1a8425dd6317887c42dc2ca49d915c4de70fe317ddc0cfe33f88",
+      "src/main/resources/assets/mythic_realms_creatures/geckolib/animations/entity/centaur.animation.json": "a603637d84f84d202c74ebd0b947e87e068180bbb584f933762fbd312818eb29",
+      "src/main/resources/assets/mythic_realms_creatures/textures/entity/centaur.png": "8f7a4dbc260bfd8660d6813f027c43b20ee4a0d0764a096b69e902fac9c981ea",
+      "tools/blockbench/centaur.bbmodel": "aa8294ba6690c62d00cf940c2a4deab6bfc6e993ab06965eac2cb8410a7592fd"
+    }
+  },
+  {
+    "species": "fox_spirit_girl",
+    "license": "CC0-1.0",
+    "origin": "Original project artwork; adapted project baseline rig and newly authored species geometry/texture details",
+    "source": "tools/generate_visual_overhaul_v3.py",
+    "files": {
+      "src/main/resources/assets/mythic_realms_creatures/geckolib/models/entity/fox_spirit_girl.geo.json": "237258903907162a1987422f3bf125c5a5828c0a522e8de276522061329fc292",
+      "src/main/resources/assets/mythic_realms_creatures/geckolib/animations/entity/fox_spirit_girl.animation.json": "470bf7e8105defa07be62b47399812feb69c0b35863030dc53922ac66c3f5814",
+      "src/main/resources/assets/mythic_realms_creatures/textures/entity/fox_spirit_girl.png": "4cabdf20b2c7fe41abadd405dc1643d9e2dbbff547b946233c2ef7f92212e1ba",
+      "tools/blockbench/fox_spirit_girl.bbmodel": "a1898305374a348bb36a4adf9a213bbdcc0057a14faa61a4cb964ffd11d81e48",
+      "src/main/resources/assets/mythic_realms_creatures/textures/entity/fox_spirit_girl_glowmask.png": "5242ddfc8ffaca006840e9895fd76bdb72ff318402fc6008e2d6b9a09e5c0ae5"
+    }
+  },
+  {
+    "species": "anubis",
+    "license": "CC0-1.0",
+    "origin": "Original project artwork; adapted project baseline rig and newly authored species geometry/texture details",
+    "source": "tools/generate_visual_overhaul_v3.py",
+    "files": {
+      "src/main/resources/assets/mythic_realms_creatures/geckolib/models/entity/anubis.geo.json": "4588020998267b0e4e3803eb9b7971c8357cdf705b07dd6095e63254d9b95060",
+      "src/main/resources/assets/mythic_realms_creatures/geckolib/animations/entity/anubis.animation.json": "fde568a6d1d5099f7f0d8ee61294aa01f3c64813200761f378599fa7522a0425",
+      "src/main/resources/assets/mythic_realms_creatures/textures/entity/anubis.png": "fa7e757906422d3c87182b6bfbf9b0ea135fa73b8e3792fea7cba1dc0e79e322",
+      "tools/blockbench/anubis.bbmodel": "3c79e0ca2b0ad87f45afe6ade8454fdf9e272de2c1e6d5a1d9eb692c0cb2e315",
+      "src/main/resources/assets/mythic_realms_creatures/textures/entity/anubis_glowmask.png": "11939f206341227f70b6c7717e2c3e73cf48cde437d09f402887d0b37a3bdbab"
+    }
+  },
+  {
+    "species": "kobold",
+    "license": "CC0-1.0",
+    "origin": "Original project artwork; adapted project baseline rig and newly authored species geometry/texture details",
+    "source": "tools/generate_visual_overhaul_v3.py",
+    "files": {
+      "src/main/resources/assets/mythic_realms_creatures/geckolib/models/entity/kobold.geo.json": "c57079ce7cd7153014c167452467263bd93462f5a9e5aac34f815c38f6197fd8",
+      "src/main/resources/assets/mythic_realms_creatures/geckolib/animations/entity/kobold.animation.json": "170dcb5a938b64818711d0a57ce6dc434a9d6b2ae5e9176ef4b812df99fb0c05",
+      "src/main/resources/assets/mythic_realms_creatures/textures/entity/kobold.png": "8d93560f798c97eb65e30cd73f01701d9627867464a8f3b1d46011f7731f17e9",
+      "tools/blockbench/kobold.bbmodel": "6b9372a8fefc4867d0502951bfc0e16e529baa026b55ec5a46fddacf2d6ac2af",
+      "src/main/resources/assets/mythic_realms_creatures/textures/entity/kobold_glowmask.png": "2ee48ae110d5a6b86c242383356345dbd00e6b44668ee22fe3cea2ace4327dd9"
+    }
+  },
+  {
+    "species": "cyclops",
+    "license": "CC0-1.0",
+    "origin": "Original project artwork; adapted project baseline rig and newly authored species geometry/texture details",
+    "source": "tools/generate_visual_overhaul_v3.py",
+    "files": {
+      "src/main/resources/assets/mythic_realms_creatures/geckolib/models/entity/cyclops.geo.json": "f7861d0677cd8eed26ea28801f0407d55ef7d41e2562c0f2ba40b4250e32f03b",
+      "src/main/resources/assets/mythic_realms_creatures/geckolib/animations/entity/cyclops.animation.json": "522025abfec09e1515ba250129c7bba5a6985398b0e15910d55f3a74b66754e8",
+      "src/main/resources/assets/mythic_realms_creatures/textures/entity/cyclops.png": "75eb9dfaf9b7268fc3c74d89d109bb266e90f7c4617684da4f27c8b17e5fdd12",
+      "tools/blockbench/cyclops.bbmodel": "56f3ab53005a943a7c0b2ecf71730f52258660aa040ec3baf28ecd4bbe1e2778",
+      "src/main/resources/assets/mythic_realms_creatures/textures/entity/cyclops_glowmask.png": "5ec116af3486076fd39662293a4a60906b2d3cf492a52302f75fcd4d4a7fe365"
+    }
+  },
+  {
+    "species": "dhampir",
+    "license": "CC0-1.0",
+    "origin": "Original project artwork; adapted project baseline rig and newly authored species geometry/texture details",
+    "source": "tools/generate_visual_overhaul_v3.py",
+    "files": {
+      "src/main/resources/assets/mythic_realms_creatures/geckolib/models/entity/dhampir.geo.json": "ea8bb7ad736cb38674bd91a20bbcf2e6fad4021ae87cd28d5fe94382e5de232a",
+      "src/main/resources/assets/mythic_realms_creatures/geckolib/animations/entity/dhampir.animation.json": "cfbb676fdb7770b0b1950ae036710b18c7b5d3863cc4786836169ece23de1f7f",
+      "src/main/resources/assets/mythic_realms_creatures/textures/entity/dhampir.png": "d71d7f40c195c56bc5f235e8a7ff61aedef69613a15c31fc83bf797e83277aec",
+      "tools/blockbench/dhampir.bbmodel": "22bd7cf6da4a624d30f67faae9c8fec65a45afcfc9c55f5046b3d5204b016e2c",
+      "src/main/resources/assets/mythic_realms_creatures/textures/entity/dhampir_glowmask.png": "5a739ce1611492cd89125aba0429bb67fb5eed7a6ab544317928f294196e7f25"
+    }
+  },
+  {
+    "species": "sahuagin",
+    "license": "CC0-1.0",
+    "origin": "Original project artwork; adapted project baseline rig and newly authored species geometry/texture details",
+    "source": "tools/generate_visual_overhaul_v3.py",
+    "files": {
+      "src/main/resources/assets/mythic_realms_creatures/geckolib/models/entity/sahuagin.geo.json": "772d9f3ed577ed96102c85a849d3c95a76d424feefcf158e91d1d29189998cfa",
+      "src/main/resources/assets/mythic_realms_creatures/geckolib/animations/entity/sahuagin.animation.json": "688ccc26a1e3557f62c320f2cf6fb362ea0d3956d9d084e11d6d5f4908956403",
+      "src/main/resources/assets/mythic_realms_creatures/textures/entity/sahuagin.png": "a185bf1049791092972f0cfbe0ea62bf6a63e7a7654ae7a3b3083be0b5680ee2",
+      "tools/blockbench/sahuagin.bbmodel": "faffc9e54005b4d8934c059174f084d962600f4cecc45c9e52c2f2a14d5c54a1"
+    }
+  },
+  {
+    "species": "holstaurus",
+    "license": "CC0-1.0",
+    "origin": "Original project artwork; adapted project baseline rig and newly authored species geometry/texture details",
+    "source": "tools/generate_visual_overhaul_v3.py",
+    "files": {
+      "src/main/resources/assets/mythic_realms_creatures/geckolib/models/entity/holstaurus.geo.json": "22f84fb8fa3356902fc98d072733560c0f9c0252c9b30d0c5a0724baa4735166",
+      "src/main/resources/assets/mythic_realms_creatures/geckolib/animations/entity/holstaurus.animation.json": "47e57c50d6938c0e843f29ec0c2b68b69baa7229de32e7fe73a1f5688f34e377",
+      "src/main/resources/assets/mythic_realms_creatures/textures/entity/holstaurus.png": "7d2a98c063274688b819d9c3beaf112ae2b8b4b5ed70575d5a7ac2ca86b5e31f",
+      "tools/blockbench/holstaurus.bbmodel": "67e5dea78b2bd7ffbcc4ea043491eee5a27adf1158aae9506eb657a2d4336c14"
+    }
+  },
+  {
+    "species": "werecat",
+    "license": "CC0-1.0",
+    "origin": "Original project artwork; adapted project baseline rig and newly authored species geometry/texture details",
+    "source": "tools/generate_visual_overhaul_v3.py",
+    "files": {
+      "src/main/resources/assets/mythic_realms_creatures/geckolib/models/entity/werecat.geo.json": "c0728401ecfbe96e4b394d7f071f60a7d66aeaed13d9595245529c5fff30fa0c",
+      "src/main/resources/assets/mythic_realms_creatures/geckolib/animations/entity/werecat.animation.json": "5fef0af398e71757d57e237ad7fc95b2606518d37fa2e2f08aa42111ad111b87",
+      "src/main/resources/assets/mythic_realms_creatures/textures/entity/werecat.png": "8900466c0915a4fe0dd63ffc46c7bef5ca10ea3d6935a4cd259f249822f0a807",
+      "tools/blockbench/werecat.bbmodel": "9e309a3ff654739ef2fc7730e2b6a93f5921f551f2f75ba67bb2b471f8aef9e5"
+    }
+  }
+]

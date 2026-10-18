@@ -1,10 +1,10 @@
 # Mythic Realms: Creatures
 
-**Development candidate 1.2.0-rc.1 · Fabric · Minecraft Java Edition 1.21.10 · Java 21**
+**Development candidate 1.3.0-rc.1 · Fabric · Minecraft Java Edition 1.21.10 · Java 21**
 
-Candidate 1.2.0-rc.1 adds 13 original monster-girl species and refreshes Harpy, Minotaur, Slime Maiden and Forest Dryad. All 20 original entities remain available through eggs and commands. Only Forest Dryad and Slime Maiden retain natural spawning among the original species; all 13 new species have their own habitat rules. Shared rendering/animation/particle caches reduce repeated work without simplifying artwork. See the [expansion inventory and validation](docs/monster-girl-expansion/README.md).
+Candidate 1.3.0-rc.1 completes the sequential visual overhaul of 17 creatures, with original species-specific geometry, textures and individually inspected in-game animations. Gameplay and spawning rules are preserved. Three unused emissive render passes are removed. See the [visual validation report](docs/monster-visual-overhaul-v3/README.md).
 
-[Download candidate JAR](releases/1.2.0-rc.1/mythic-realms-creatures-1.2.0-rc.1.jar?raw=true) · [Candidate with required dependencies](releases/1.2.0-rc.1/mythic-realms-creatures-1.2.0-rc.1-with-dependencies.zip?raw=true) · [Candidate source](releases/1.2.0-rc.1/mythic-realms-creatures-1.2.0-rc.1-source.zip?raw=true)
+[Download candidate JAR](releases/1.3.0-rc.1/mythic-realms-creatures-1.3.0-rc.1.jar?raw=true) · [Candidate with required dependencies](releases/1.3.0-rc.1/mythic-realms-creatures-1.3.0-rc.1-with-dependencies.zip?raw=true) · [Candidate source](releases/1.3.0-rc.1/mythic-realms-creatures-1.3.0-rc.1-source.zip?raw=true)
 
 [Download the stable mod JAR](releases/1.0.0/mythic-realms-creatures-1.0.0.jar?raw=true) · [Download with required dependencies](releases/1.0.0/mythic-realms-creatures-1.0.0-with-dependencies.zip?raw=true) · [Editable source](releases/1.0.0/mythic-realms-creatures-1.0.0-source.zip?raw=true)
 
@@ -19,7 +19,7 @@ Install these mods on both clients and the dedicated server:
 | Minecraft Java Edition | **1.21.10 exactly** |
 | Java | **21** |
 | Fabric Loader | **0.19.5 or newer** |
-| Mythic Realms: Creatures | `mythic-realms-creatures-1.2.0-rc.1.jar` (candidate) or stable `1.0.0` |
+| Mythic Realms: Creatures | `mythic-realms-creatures-1.3.0-rc.1.jar` (candidate) or stable `1.0.0` |
 | Fabric API | **0.138.4+1.21.10** |
 | GeckoLib, Fabric | **5.3-alpha-3 for Minecraft 1.21.10** |
 

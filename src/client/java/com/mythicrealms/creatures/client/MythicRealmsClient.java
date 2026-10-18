@@ -20,6 +20,10 @@ import software.bernie.geckolib.renderer.GeoEntityRenderer;
 import software.bernie.geckolib.renderer.base.GeoRenderState;
 
 public final class MythicRealmsClient implements ClientModInitializer {
+    // Only species whose mapped UV faces contribute emissive pixels need a second mesh pass.
+    private static final java.util.Set<String> EMISSIVE_SPECIES = java.util.Set.of(
+        "stone_troll", "goblin_shaman", "ancient_treant", "forest_dryad", "cave_basilisk", "crystal_spider", "shadow_wraith", "grave_knight", "flame_imp", "frost_elemental", "moon_stag", "harpy", "demon_sorceress", "ender_dragon_girl", "vampire", "valkyrie", "fox_spirit_girl", "anubis", "cyclops", "dhampir", "succubus");
+
     @Override public void onInitializeClient() {
         register(ModEntities.GOBLIN_SCOUT, .35f);
         register(ModEntities.GOBLIN_SHAMAN, .35f);
@@ -99,10 +103,7 @@ public final class MythicRealmsClient implements ClientModInitializer {
             super(context, new CreatureModel<T>(type)); this.shadowRadius = shadow;
             String id=BuiltInRegistries.ENTITY_TYPE.getKey(type).getPath();
             translucent=id.equals("shadow_wraith") || id.equals("slime_maiden");
-            if (java.util.Set.of("stone_troll","goblin_shaman","ancient_treant","forest_dryad","wild_wyvern","cave_basilisk","crystal_spider","shadow_wraith","grave_knight","flame_imp",
-                    "frost_elemental","moon_stag","slime_maiden","harpy","demon_sorceress",
-                    "ender_dragon_girl","vampire","valkyrie","fox_spirit_girl",
-                    "anubis","kobold","cyclops","dhampir","succubus").contains(id))
+            if (EMISSIVE_SPECIES.contains(id))
                 withRenderLayer(new AutoGlowingGeoLayer<>(this));
         }
         @Override public RenderType getRenderType(R state,ResourceLocation texture) {
