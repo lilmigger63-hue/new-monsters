@@ -138,12 +138,21 @@
     }
   },
   "sahuagin": {
-    "commit": "Visual overhaul: Sahuagin reference accuracy",
+    "commit": "7ce7d79",
     "files": {
       "src/main/resources/assets/mythic_realms_creatures/geckolib/models/entity/sahuagin.geo.json": "772d9f3ed577ed96102c85a849d3c95a76d424feefcf158e91d1d29189998cfa",
       "src/main/resources/assets/mythic_realms_creatures/geckolib/animations/entity/sahuagin.animation.json": "688ccc26a1e3557f62c320f2cf6fb362ea0d3956d9d084e11d6d5f4908956403",
       "src/main/resources/assets/mythic_realms_creatures/textures/entity/sahuagin.png": "a185bf1049791092972f0cfbe0ea62bf6a63e7a7654ae7a3b3083be0b5680ee2",
       "tools/blockbench/sahuagin.bbmodel": "faffc9e54005b4d8934c059174f084d962600f4cecc45c9e52c2f2a14d5c54a1"
+    }
+  },
+  "holstaurus": {
+    "commit": "Visual overhaul: Holstaurus reference accuracy",
+    "files": {
+      "src/main/resources/assets/mythic_realms_creatures/geckolib/models/entity/holstaurus.geo.json": "22f84fb8fa3356902fc98d072733560c0f9c0252c9b30d0c5a0724baa4735166",
+      "src/main/resources/assets/mythic_realms_creatures/geckolib/animations/entity/holstaurus.animation.json": "47e57c50d6938c0e843f29ec0c2b68b69baa7229de32e7fe73a1f5688f34e377",
+      "src/main/resources/assets/mythic_realms_creatures/textures/entity/holstaurus.png": "7d2a98c063274688b819d9c3beaf112ae2b8b4b5ed70575d5a7ac2ca86b5e31f",
+      "tools/blockbench/holstaurus.bbmodel": "67e5dea78b2bd7ffbcc4ea043491eee5a27adf1158aae9506eb657a2d4336c14"
     }
   }
 }
