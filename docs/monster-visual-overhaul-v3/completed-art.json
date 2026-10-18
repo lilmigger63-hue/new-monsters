@@ -147,12 +147,21 @@
     }
   },
   "holstaurus": {
-    "commit": "Visual overhaul: Holstaurus reference accuracy",
+    "commit": "8aeb01f",
     "files": {
       "src/main/resources/assets/mythic_realms_creatures/geckolib/models/entity/holstaurus.geo.json": "22f84fb8fa3356902fc98d072733560c0f9c0252c9b30d0c5a0724baa4735166",
       "src/main/resources/assets/mythic_realms_creatures/geckolib/animations/entity/holstaurus.animation.json": "47e57c50d6938c0e843f29ec0c2b68b69baa7229de32e7fe73a1f5688f34e377",
       "src/main/resources/assets/mythic_realms_creatures/textures/entity/holstaurus.png": "7d2a98c063274688b819d9c3beaf112ae2b8b4b5ed70575d5a7ac2ca86b5e31f",
       "tools/blockbench/holstaurus.bbmodel": "67e5dea78b2bd7ffbcc4ea043491eee5a27adf1158aae9506eb657a2d4336c14"
+    }
+  },
+  "werecat": {
+    "commit": "Visual overhaul: Werecat reference accuracy",
+    "files": {
+      "src/main/resources/assets/mythic_realms_creatures/geckolib/models/entity/werecat.geo.json": "c0728401ecfbe96e4b394d7f071f60a7d66aeaed13d9595245529c5fff30fa0c",
+      "src/main/resources/assets/mythic_realms_creatures/geckolib/animations/entity/werecat.animation.json": "5fef0af398e71757d57e237ad7fc95b2606518d37fa2e2f08aa42111ad111b87",
+      "src/main/resources/assets/mythic_realms_creatures/textures/entity/werecat.png": "8900466c0915a4fe0dd63ffc46c7bef5ca10ea3d6935a4cd259f249822f0a807",
+      "tools/blockbench/werecat.bbmodel": "9e309a3ff654739ef2fc7730e2b6a93f5921f551f2f75ba67bb2b471f8aef9e5"
     }
   }
 }

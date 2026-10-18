@@ -1044,7 +1044,50 @@ def holstaurus():
     for j in range(3):X('head',[-3.1+j*2,24.6+j%2*.4,-2.9],[2.2,2.2-j%2*.4,.9],9,[0,0,(j-1)*11])
     return m,palette,roles,(.8,1.9)
 
-BUILDERS={'harpy':harpy,'forest_dryad':dryad,'slime_maiden':slime,'minotaur':minotaur,'vampire':vampire,'valkyrie':valkyrie,'succubus':succubus,'ender_dragon_girl':ender_dragon_girl,'centaur':centaur,'fox_spirit_girl':fox_spirit_girl,'anubis':anubis,'kobold':kobold,'cyclops':cyclops,'dhampir':dhampir,'sahuagin':sahuagin,'holstaurus':holstaurus}
+def werecat():
+    m=old_model('werecat');X=m.box
+    for b in m.bones:
+        n=b['name']
+        if n=='head' or n.startswith(('hair_','ear_')):
+            def p(v):return [v[0]*1.3,22+(v[1]-22)*1.08,v[2]*1.2]
+            b['pivot']=p(b['pivot'])
+            for c in b.get('cubes',[]):
+                c['origin']=p(c['origin']);c['size']=[c['size'][0]*1.3,c['size'][1]*1.08,c['size'][2]*1.2]
+                if 'pivot' in c:c['pivot']=p(c['pivot'])
+        if n.startswith('fore_'):
+            for c in b.get('cubes',[]):
+                if material_of(c)==14:repaint_cube(c,13)
+    # No wings: retain triangular cat ears, connected two-joint tail and clawed hands.
+    m.by_name['body']['cubes']=[]
+    X('body',[-2.7,11.5,-1.8],[5.4,3.2,3.7],13)
+    X('body',[-1.9,14.6,-1.6],[3.8,3.7,3.2],8)
+    X('body',[-2.5,14,-2],[5,.8,4],13)
+    X('chest',[-1.2,17.1,-2.65],[2.4,3,.65],14)
+    for side,n in [(-1,'right'),(1,'left')]:
+        X('body',[side*2.1-.75,10.2,-2.1],[1.5,3.6,4.2],3,[0,0,-side*10])
+        X('arm_'+n,[side*3.2-1.45,17.9,-1.55],[2.9,1.2,3.2],14,[0,0,-side*13])
+        X('fore_'+n,[side*3.2-1.4,10.8,-1.45],[2.8,4.5,3.1],13)
+        X('fore_'+n,[side*3.2-1.55,13.9,-1.6],[3.1,1.1,3.4],3)
+        X('hand_'+n,[side*3.2-1.05,9.9,-1.2],[2.1,1.8,2.5],13)
+        X('leg_'+n+'_lower',[side*1.45-1.2,1.5,-1.3],[2.4,4.8,2.8],13)
+        X('leg_'+n+'_lower',[side*1.45-.85,5,-1.65],[1.7,1.6,.7],14,[0,0,side*8])
+        X('leg_'+n+'_foot',[side*1.45-1.4,.1,-2.6],[2.8,1.6,4],14)
+        X('leg_'+n+'_foot',[side*1.45-1.45,.1,-2.7],[2.9,.55,4.2],1)
+    palette=['7c8590','303746','a5acb6','6a788e','c14e58','2c313a','deded7','9c818a','d7c9bc','a1a7b2','3e4655','a6b3c5','c7cdd1','303c54','8793a6','ece8df']
+    roles=['fur','cloth','fur','metal','eyes','skin','bone','cloth','skin','hair','leather','cloth','metal','cloth','metal','skin']
+    for b in m.bones:
+        if b['name'].startswith('hair_'):
+            for c in b.get('cubes',[]):
+                low=c['origin'][1];top=low+c['size'][1];c['origin'][1]=max(low,19.8);c['size'][1]=max(.3,top-c['origin'][1])
+    X('head',[-1.2,26.7,1],[2.4,1.4,2.1],9,[-12,0,-15])
+    X('head',[-.5,27.7,1.5],[1.3,1,1.3],9,[-22,0,-15])
+    for j in range(3):X('head',[-3.1+j*2,24.5+j%2*.5,-3],[2.2,2.1-j%2*.4,.8],9,[0,0,(j-1)*10])
+    for side,n in [(-1,'right'),(1,'left')]:
+        X('fore_'+n,[side*2.8-.4,11.2,-1.65],[.8,2.4,.3],4)
+        for y in (2.4,4):X('leg_'+n+'_lower',[side*1.45-1.25,y,-1.4],[2.5,.55,.45],14)
+    return m,palette,roles,(.7,1.8)
+
+BUILDERS={'harpy':harpy,'forest_dryad':dryad,'slime_maiden':slime,'minotaur':minotaur,'vampire':vampire,'valkyrie':valkyrie,'succubus':succubus,'ender_dragon_girl':ender_dragon_girl,'centaur':centaur,'fox_spirit_girl':fox_spirit_girl,'anubis':anubis,'kobold':kobold,'cyclops':cyclops,'dhampir':dhampir,'sahuagin':sahuagin,'holstaurus':holstaurus,'werecat':werecat}
 
 BASE_ATLAS=pipeline.material_atlas
 
@@ -1065,6 +1108,10 @@ def reference_atlas(palette,roles,translucent=False,species=None):
             draw.rectangle((x,y,x+31,y+31),fill=gel(0))
             for box,delta in [((0,0,31,2),12),((4,4,10,8),21),((11,5,15,10),13),((3,15,9,23),-9),((14,18,25,25),7),((22,27,31,31),-13)]:
                 draw.rectangle(tuple(v+(x if i%2==0 else y) for i,v in enumerate(box)),fill=gel(delta))
+    if species=='werecat':
+        k=9;x=k%4*32;y=k//4*32;rgb=tuple(int(palette[k][i:i+2],16) for i in (0,2,4))
+        for box,delta in [((3,4,12,12),-18),((16,6,27,16),12),((5,20,15,28),-10)]:
+            draw.rectangle(tuple(v+(x if i%2==0 else y) for i,v in enumerate(box)),fill=tuple(max(0,min(255,c+delta)) for c in rgb)+(255,))
     if species=='holstaurus':
         rgb=tuple(int(palette[0][i:i+2],16) for i in (0,2,4));draw.rectangle((0,0,31,31),fill=rgb+(255,))
         draw.polygon([(4,5),(10,5),(10,9),(13,9),(13,15),(6,15),(6,12),(3,12)],fill=(126,133,145,255))
@@ -1146,6 +1193,6 @@ def main():
     if args.species in ('forest_dryad','succubus','ender_dragon_girl','fox_spirit_girl','cyclops'):
         from visual_v3_geometry import support_death
         support_death(model,animations)
-    write_creature(model,palette,roles,animations,*size,glow=() if args.species in ('minotaur','centaur','sahuagin','holstaurus') else (7,) if args.species in ('cyclops','dhampir') else (13,) if args.species=='kobold' else (7,) if args.species=='anubis' else (13,) if args.species=='vampire' else (11,) if args.species=='slime_maiden' else (4,),translucent=args.species=='slime_maiden')
+    write_creature(model,palette,roles,animations,*size,glow=() if args.species in ('minotaur','centaur','sahuagin','holstaurus','werecat') else (7,) if args.species in ('cyclops','dhampir') else (13,) if args.species=='kobold' else (7,) if args.species=='anubis' else (13,) if args.species=='vampire' else (11,) if args.species=='slime_maiden' else (4,),translucent=args.species=='slime_maiden')
 
 if __name__=='__main__':main()

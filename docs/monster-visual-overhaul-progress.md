@@ -1,6 +1,6 @@
 # Sequential monster visual overhaul V3
 
-Baseline: `50dfab973a053e6c6761f45771e72c898f3963d4`. Completed in order: **harpy, forest_dryad, slime_maiden, minotaur, vampire, valkyrie, succubus, ender_dragon_girl, centaur, fox_spirit_girl, anubis, kobold, cyclops, dhampir, sahuagin, holstaurus**. Last completed: **Holstaurus**. Continue the next requested creature only after committing this stage.
+Baseline: `50dfab973a053e6c6761f45771e72c898f3963d4`. Completed in order: **harpy, forest_dryad, slime_maiden, minotaur, vampire, valkyrie, succubus, ender_dragon_girl, centaur, fox_spirit_girl, anubis, kobold, cyclops, dhampir, sahuagin, holstaurus, werecat**. Last completed: **Werecat**. Continue the next requested creature only after committing this stage.
 
 Reference labels below follow the requested order, not physical attachment filenames: inline images have no supplied filenames. Cyclops uses the earlier conversation image (blue armor, one eye, polearm); that image was not repeated in the latest message. Fox reference is Nine Tails; Ashen Wing Girl is Werecat (confirmed wingless), preserving IDs `fox_spirit_girl` and `werecat`.
 
@@ -22,7 +22,7 @@ Reference labels below follow the requested order, not physical attachment filen
 | 14 | dhampir | conversation image 14 (no local filename) | Complete | 163 cubes/29 bones | Original V3 atlas | Nine clips unchanged | 2 passes inspected | Client/build +22 asset tests pass | Visual overhaul: Dhampir reference accuracy | Original hidden-back/lighting and still-frame limits |
 | 15 | sahuagin | conversation image 15 (no local filename) | Complete | 125 cubes/25 bones | Original V3 atlas | Ten clips unchanged | 3 passes inspected | Client/build +22 asset tests pass | Visual overhaul: Sahuagin reference accuracy | Original hidden-back/lighting and still-frame limits |
 | 16 | holstaurus | conversation image 16 (no local filename) | Complete | 116 cubes/21 bones | Original V3 atlas | Nine clips unchanged | 3 passes inspected | Client/build +22 asset tests pass | Visual overhaul: Holstaurus reference accuracy | Original hidden-back/lighting and still-frame limits |
-| 17 | werecat | conversation image 17 (no local filename) | Not started | pending | pending | pending | pending | pending | — | pending |
+| 17 | werecat | conversation image 17 (no local filename) | Complete | 127 cubes/24 bones | Original V3 atlas | Eight clips unchanged; no wings | 2 passes inspected | Client/build +22 asset tests pass | Visual overhaul: Werecat reference accuracy | Original hidden-back/lighting and still-frame limits |
 
 Next step: commit this validated stage, then inspect the next creature in the requested order. No later creature has been edited.
 
