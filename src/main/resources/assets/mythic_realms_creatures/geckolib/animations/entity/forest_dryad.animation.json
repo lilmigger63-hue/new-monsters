@@ -33,6 +33,20 @@
             0
           ]
         },
+        "hair_left": {
+          "rotation": [
+            "math.sin(query.anim_time * 85) * 4",
+            0,
+            0
+          ]
+        },
+        "hair_right": {
+          "rotation": [
+            "math.sin(query.anim_time * 85) * 4",
+            0,
+            0
+          ]
+        },
         "vine_-1_0": {
           "rotation": [
             "math.sin(query.anim_time * 85) * 4",
@@ -136,6 +150,104 @@
             0,
             0
           ]
+        },
+        "crown_left": {
+          "rotation": [
+            "math.sin(query.anim_time * 360 - 35) * 6",
+            0,
+            0
+          ]
+        },
+        "crown_right": {
+          "rotation": [
+            "math.sin(query.anim_time * 360 - 35) * 6",
+            0,
+            0
+          ]
+        },
+        "hair_left": {
+          "rotation": [
+            "math.sin(query.anim_time * 360 - 35) * 6",
+            0,
+            0
+          ]
+        },
+        "hair_right": {
+          "rotation": [
+            "math.sin(query.anim_time * 360 - 35) * 6",
+            0,
+            0
+          ]
+        },
+        "vine_-1_0": {
+          "rotation": [
+            "math.sin(query.anim_time * 360 - 35) * 6",
+            0,
+            0
+          ]
+        },
+        "vine_-1_1": {
+          "rotation": [
+            "math.sin(query.anim_time * 360 - 35) * 6",
+            0,
+            0
+          ]
+        },
+        "vine_-1_2": {
+          "rotation": [
+            "math.sin(query.anim_time * 360 - 35) * 6",
+            0,
+            0
+          ]
+        },
+        "vine_-1_3": {
+          "rotation": [
+            "math.sin(query.anim_time * 360 - 35) * 6",
+            0,
+            0
+          ]
+        },
+        "vine_1_0": {
+          "rotation": [
+            "math.sin(query.anim_time * 360 - 35) * 6",
+            0,
+            0
+          ]
+        },
+        "vine_1_1": {
+          "rotation": [
+            "math.sin(query.anim_time * 360 - 35) * 6",
+            0,
+            0
+          ]
+        },
+        "vine_1_2": {
+          "rotation": [
+            "math.sin(query.anim_time * 360 - 35) * 6",
+            0,
+            0
+          ]
+        },
+        "vine_1_3": {
+          "rotation": [
+            "math.sin(query.anim_time * 360 - 35) * 6",
+            0,
+            0
+          ]
+        },
+        "vine_front_-1": {
+          "rotation": [
+            "math.sin(query.anim_time * 360 - 35) * 6",
+            0,
+            0
+          ]
+        },
+        "vine_front_1": {
+          "rotation": [
+            "math.sin(query.anim_time * 360 - 35) * 6",
+            0,
+            0
+          ]
         }
       }
     },
@@ -181,6 +293,104 @@
         "leg_right": {
           "rotation": [
             "math.sin(query.anim_time * 450 + -20) * -42",
+            0,
+            0
+          ]
+        },
+        "crown_left": {
+          "rotation": [
+            "math.sin(query.anim_time * 450 - 45) * 9",
+            0,
+            0
+          ]
+        },
+        "crown_right": {
+          "rotation": [
+            "math.sin(query.anim_time * 450 - 45) * 9",
+            0,
+            0
+          ]
+        },
+        "hair_left": {
+          "rotation": [
+            "math.sin(query.anim_time * 450 - 45) * 9",
+            0,
+            0
+          ]
+        },
+        "hair_right": {
+          "rotation": [
+            "math.sin(query.anim_time * 450 - 45) * 9",
+            0,
+            0
+          ]
+        },
+        "vine_-1_0": {
+          "rotation": [
+            "math.sin(query.anim_time * 450 - 45) * 9",
+            0,
+            0
+          ]
+        },
+        "vine_-1_1": {
+          "rotation": [
+            "math.sin(query.anim_time * 450 - 45) * 9",
+            0,
+            0
+          ]
+        },
+        "vine_-1_2": {
+          "rotation": [
+            "math.sin(query.anim_time * 450 - 45) * 9",
+            0,
+            0
+          ]
+        },
+        "vine_-1_3": {
+          "rotation": [
+            "math.sin(query.anim_time * 450 - 45) * 9",
+            0,
+            0
+          ]
+        },
+        "vine_1_0": {
+          "rotation": [
+            "math.sin(query.anim_time * 450 - 45) * 9",
+            0,
+            0
+          ]
+        },
+        "vine_1_1": {
+          "rotation": [
+            "math.sin(query.anim_time * 450 - 45) * 9",
+            0,
+            0
+          ]
+        },
+        "vine_1_2": {
+          "rotation": [
+            "math.sin(query.anim_time * 450 - 45) * 9",
+            0,
+            0
+          ]
+        },
+        "vine_1_3": {
+          "rotation": [
+            "math.sin(query.anim_time * 450 - 45) * 9",
+            0,
+            0
+          ]
+        },
+        "vine_front_-1": {
+          "rotation": [
+            "math.sin(query.anim_time * 450 - 45) * 9",
+            0,
+            0
+          ]
+        },
+        "vine_front_1": {
+          "rotation": [
+            "math.sin(query.anim_time * 450 - 45) * 9",
             0,
             0
           ]

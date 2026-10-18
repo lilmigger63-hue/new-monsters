@@ -146,6 +146,79 @@ def beasts(name):
     return m
 
 
+
+def refine(m):
+    """Small original anatomical/material refinements, retaining the authored rig."""
+    n=m.name
+    if n=='forest_dryad':
+        # Frame the existing adult face with leaf hair rather than a bare square.
+        face=m.by_name['head']['cubes'][0]
+        face['origin']=[-2.8,23,-2.8];face['size']=[5.6,5.8,4.8]
+        box(m,'head',[-2.35,22.7,-2.5],[4.7,1.4,3.9],5)
+        box(m,'head',[-.32,24,-3.16],[.64,1,.48],5)
+        box(m,'head',[-.65,23.6,-2.91],[1.3,.18,.18],7)
+        for side in [-1,1]:
+            # Ivory sclera, dark pupils, upper lashes and pin highlights.
+            x=side*1.6
+            box(m,'head',[x-.58,24.85,-3.16],[1.16,.9,.2],13)
+            box(m,'head',[x-.3,24.95,-3.3],[.6,.65,.17],3)
+            box(m,'head',[x-.12,25,-3.43],[.24,.5,.15],1)
+            box(m,'head',[x-.23,25.3,-3.51],[.18,.2,.1],4)
+            box(m,'head',[x-.65,25.65,-3.28],[1.3,.16,.22],1,[0,0,side*5])
+            hair='hair_'+('left' if side>0 else 'right')
+            bone(m,hair,'head',[side*2.5,28,0])
+            for j in range(3):
+                box(m,hair,[side*(2.5+j*.18)-.5,21.4+j*.6,-1+j*1.3],[1.05,6.5-j*.5,1.3],6,[0,0,side*(5+j*3)])
+            box(m,'head',[side*1.45-1.25,27,-3],[2.5,1.45,1.1],6,[0,0,side*11])
+            # Overlapping leaf bodice and waist sash retain woodland costume.
+            box(m,'body',[side*1.1-1.1,19,-2.05],[2.2,2.9,.65],3,[0,0,-side*10])
+            box(m,'body',[side*1.2-.8,16.4,-1.8],[1.6,2.5,.5],6,[0,0,side*12])
+        box(m,'body',[-2.2,14.6,-1.85],[4.4,.65,3.8],7)
+    elif n=='ancient_treant':
+        for side in [-1,1]:
+            sx=side*9
+            box(m,'arm_'+('left' if side>0 else 'right'),[sx-2.9,46,-2.5],[5.8,5,5],0,[0,0,side*8])
+            box(m,'fore_'+('left' if side>0 else 'right'),[sx-2.3,34,-2.3],[4.6,4.2,4.6],1)
+            box(m,'leg_'+('left' if side>0 else 'right'),[side*4.5-2.4,10,-2.7],[4.8,4.6,5.4],0)
+            # Root knuckles and knot lips visually bridge bark facets.
+            box(m,'body',[side*3-1.5,39,-5.25],[3,4,.9],0,[0,0,side*14])
+            box(m,'head',[side*3-1.4,58,-5.8],[2.8,.7,.8],0,[0,0,side*9])
+    else:
+        wolf=n=='dire_wolf';wyv=n=='wild_wyvern';y=13 if wolf else 17 if wyv else 16
+        for front in ([False] if wyv else [True,False]):
+            for side in [-1,1]:
+                limb=('arm_' if front else 'leg_')+('left' if side>0 else 'right')
+                x=side*(3.2 if wolf else 4.5);z=-5 if front else 9
+                # Rounded shoulder/haunch overlap, hock and metacarpal bridge.
+                box(m,limb,[x-1.8,y-4,z-1.4],[3.6,3.8,4.2],10 if wolf else 6 if front else 0,[0,0,side*8])
+                box(m,limb+'_lower',[x-1.25,y-8,z+(-1.2 if front else .8)],[2.5,2.6,2.8],1 if wolf or wyv else 13)
+                box(m,limb+'_paw',[x-1.05,1.5,z-1.5],[2.1,1.6,2.8],11 if wolf else 13 if front or wyv else 0)
+                for j in range(3):
+                    box(m,limb+'_paw',[x-1.35+j,0.6,z-3.15],[.82,1.4,1.8],11 if wolf else 13 if front or wyv else 0)
+        if wolf:
+            for side in [-1,1]:
+                box(m,'head',[side*2.4-1.05,15,-14],[2.1,2.5,3.8],10,[0,side*8,side*10])
+                box(m,'head',[side*2.8-.3,18.15,-15.65],[.6,.5,.35],5)
+            box(m,'head',[-2,14,-20.7],[4,1.5,1.3],5)
+        elif wyv:
+            for side in [-1,1]:
+                wing='wing_'+('left' if side>0 else 'right')
+                box(m,wing,[side*14-1.4,y+3.8,-4],[2.8,2.6,4],0)
+                # Narrow trailing ribs emphasize stretched membrane panels.
+                for j in range(5):
+                    x=side*(8+j*3)-(0 if side>0 else .35)
+                    box(m,wing if j<2 else wing+'_tip',[x,y+3.15,4],[.35,.45,5.5-j*.45],0,[0,-side*j*4,0])
+        else:
+            # Eagle hooked beak and layered lesser coverts over flight feathers.
+            box(m,'head',[-1.8,15.4,-20.5],[3.6,2,2],13,[12,0,0])
+            for side in [-1,1]:
+                wing='wing_'+('left' if side>0 else 'right')
+                for j in range(5):
+                    x=side*(7+j*2.2)-(0 if side>0 else 2.4)
+                    box(m,wing if j<4 else wing+'_tip',[x,y+4.2,-2.4],[2.4,.65,5.5+j*.4],6,[0,-side*j*4,0])
+    return m
+
+
 def animations(m):
     n=m.name;t=WIND[n];tree=n=='ancient_treant';wolf=n=='dire_wolf';wyv=n=='wild_wyvern';bird=n=='griffin';quadr=wolf or bird
     names=set(m.by_name);rate=210 if tree else 360;runrate=650 if wolf else 450
@@ -160,7 +233,17 @@ def animations(m):
             gallop=1 if bn.startswith('arm') else -1
             run[bn]={'rotation':[f'math.sin(query.anim_time * {runrate} + {20 if bn.endswith("left") else -20}) * {(gallop if quadr else sign)*42}',0,0]}
         if bn.endswith('_lower'):run[bn]={'rotation':[f'12 + math.sin(query.anim_time * {runrate} - 45) * 18',0,0]}
-        if bn.startswith(('vine_','crown_')):idle[bn]={'rotation':[f'math.sin(query.anim_time * 85) * {2 if tree else 4}',0,0]}
+        if bn.startswith(('vine_','crown_','hair_')):idle[bn]={'rotation':[f'math.sin(query.anim_time * 85) * {2 if tree else 4}',0,0]}
+    for bn in sorted(names):
+        if bn.startswith(('hair_','vine_','crown_')):
+            walk[bn]={'rotation':[f'math.sin(query.anim_time * {rate} - 35) * {3 if tree else 6}',0,0]}
+            run[bn]={'rotation':[f'math.sin(query.anim_time * {runrate} - 45) * {5 if tree else 9}',0,0]}
+        if bn.startswith('ear_'):
+            idle[bn]={'rotation':[f'math.sin(query.anim_time * 63 - 20) * 3',0,0]}
+        if bn.endswith('_paw'):
+            walk[bn]={'rotation':[f'math.sin(query.anim_time * {rate} - 30) * 6',0,0]}
+        if bn.startswith('wing_') and bn.endswith('_tip'):
+            idle[bn]={'rotation':[f'math.sin(query.anim_time * 65 - 35) * 2',0,0]}
     attack={'head':{'rotation':keys(t,[-20,0,0],[30,0,0])},'body':{'rotation':keys(t,[-8,0,0],[12,0,0])}}
     if 'jaw' in names:attack['jaw']={'rotation':keys(t,[28,0,0],[0,0,0])}
     for bn in ('arm_right','fore_right'):
@@ -211,7 +294,11 @@ def animations(m):
 
 def main():
     for name,p in PALETTES.items():
-        m=woodland(name) if name in ('ancient_treant','forest_dryad') else beasts(name)
+        p=list(p)
+        # Refine local material separation within the established muted palette.
+        slot,color={'ancient_treant':(2,'9b8059'),'forest_dryad':(5,'bda788'),'griffin':(6,'c1b69b'),'dire_wolf':(11,'a8afa8'),'wild_wyvern':(6,'796455')}[name]
+        p[slot]=color
+        m=refine(woodland(name) if name in ('ancient_treant','forest_dryad') else beasts(name))
         variants={}
         if name in ('griffin','dire_wolf','wild_wyvern'):
             tame=list(p);tame[7]='603b2e';tame[9]='914d43' if name=='dire_wolf' else 'b19453';tame[8]='c6b47a';variants['_tamed']=tame
@@ -221,6 +308,9 @@ def main():
         w,h=DIMS[name]
         materials=list(MATERIALS)
         if name=='ancient_treant':materials[2]='bark'
+        if name=='forest_dryad':
+            materials[5]='skin';materials[6]='hair';materials[13]='skin';materials[3]='cloth';materials[7]='leather'
+        if name=='griffin':materials[13]='bone'
         if name=='griffin':
             materials[0]='fur';materials[1]=materials[2]=materials[6]='feather'
         if name=='dire_wolf':

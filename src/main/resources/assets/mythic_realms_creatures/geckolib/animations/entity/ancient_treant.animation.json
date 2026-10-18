@@ -66,6 +66,20 @@
             0,
             0
           ]
+        },
+        "crown_left": {
+          "rotation": [
+            "math.sin(query.anim_time * 210 - 35) * 3",
+            0,
+            0
+          ]
+        },
+        "crown_right": {
+          "rotation": [
+            "math.sin(query.anim_time * 210 - 35) * 3",
+            0,
+            0
+          ]
         }
       }
     },
@@ -111,6 +125,20 @@
         "leg_right": {
           "rotation": [
             "math.sin(query.anim_time * 450 + -20) * -42",
+            0,
+            0
+          ]
+        },
+        "crown_left": {
+          "rotation": [
+            "math.sin(query.anim_time * 450 - 45) * 5",
+            0,
+            0
+          ]
+        },
+        "crown_right": {
+          "rotation": [
+            "math.sin(query.anim_time * 450 - 45) * 5",
             0,
             0
           ]
