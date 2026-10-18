@@ -1,6 +1,6 @@
 # Sequential monster visual overhaul V3
 
-Baseline: `50dfab973a053e6c6761f45771e72c898f3963d4`. Completed in order: **harpy, forest_dryad, slime_maiden, minotaur, vampire, valkyrie, succubus, ender_dragon_girl, centaur, fox_spirit_girl, anubis, kobold, cyclops**. Last completed: **Cyclops**. Continue the next requested creature only after committing this stage.
+Baseline: `50dfab973a053e6c6761f45771e72c898f3963d4`. Completed in order: **harpy, forest_dryad, slime_maiden, minotaur, vampire, valkyrie, succubus, ender_dragon_girl, centaur, fox_spirit_girl, anubis, kobold, cyclops, dhampir**. Last completed: **Dhampir**. Continue the next requested creature only after committing this stage.
 
 Reference labels below follow the requested order, not physical attachment filenames: inline images have no supplied filenames. Cyclops uses the earlier conversation image (blue armor, one eye, polearm); that image was not repeated in the latest message. Fox reference is Nine Tails; Ashen Wing Girl is Werecat (confirmed wingless), preserving IDs `fox_spirit_girl` and `werecat`.
 
@@ -19,7 +19,7 @@ Reference labels below follow the requested order, not physical attachment filen
 | 11 | anubis | conversation image 11 (no local filename) | Complete | 154 cubes/29 bones | Original V3 atlas | Nine clips unchanged | 2 passes inspected | Client/build +22 asset tests pass | Visual overhaul: Anubis reference accuracy | Original hidden-back/lighting and still-frame limits |
 | 12 | kobold | conversation image 12 (no local filename) | Complete | 168 cubes/31 bones | Original V3 atlas | Nine clips unchanged | 2 passes inspected | Client/build +22 asset tests pass | Visual overhaul: Kobold reference accuracy | Original hidden-back/lighting and still-frame limits |
 | 13 | cyclops | conversation image 13 (no local filename) | Complete | 151 cubes/30 bones | Original V3 atlas | Eight clips unchanged; cosmetic death weapon support | 2 passes inspected | Client/build +22 asset tests pass | Visual overhaul: Cyclops reference accuracy | Original hidden-back/lighting and still-frame limits |
-| 14 | dhampir | conversation image 14 (no local filename) | Not started | pending | pending | pending | pending | pending | — | pending |
+| 14 | dhampir | conversation image 14 (no local filename) | Complete | 163 cubes/29 bones | Original V3 atlas | Nine clips unchanged | 2 passes inspected | Client/build +22 asset tests pass | Visual overhaul: Dhampir reference accuracy | Original hidden-back/lighting and still-frame limits |
 | 15 | sahuagin | conversation image 15 (no local filename) | Not started | pending | pending | pending | pending | pending | — | pending |
 | 16 | holstaurus | conversation image 16 (no local filename) | Not started | pending | pending | pending | pending | pending | — | pending |
 | 17 | werecat | conversation image 17 (no local filename) | Not started | pending | pending | pending | pending | pending | — | pending |

@@ -118,13 +118,23 @@
     }
   },
   "cyclops": {
-    "commit": "Visual overhaul: Cyclops reference accuracy",
+    "commit": "d4cdf21",
     "files": {
       "src/main/resources/assets/mythic_realms_creatures/geckolib/models/entity/cyclops.geo.json": "f7861d0677cd8eed26ea28801f0407d55ef7d41e2562c0f2ba40b4250e32f03b",
       "src/main/resources/assets/mythic_realms_creatures/geckolib/animations/entity/cyclops.animation.json": "522025abfec09e1515ba250129c7bba5a6985398b0e15910d55f3a74b66754e8",
       "src/main/resources/assets/mythic_realms_creatures/textures/entity/cyclops.png": "75eb9dfaf9b7268fc3c74d89d109bb266e90f7c4617684da4f27c8b17e5fdd12",
       "tools/blockbench/cyclops.bbmodel": "56f3ab53005a943a7c0b2ecf71730f52258660aa040ec3baf28ecd4bbe1e2778",
       "src/main/resources/assets/mythic_realms_creatures/textures/entity/cyclops_glowmask.png": "5ec116af3486076fd39662293a4a60906b2d3cf492a52302f75fcd4d4a7fe365"
+    }
+  },
+  "dhampir": {
+    "commit": "Visual overhaul: Dhampir reference accuracy",
+    "files": {
+      "src/main/resources/assets/mythic_realms_creatures/geckolib/models/entity/dhampir.geo.json": "ea8bb7ad736cb38674bd91a20bbcf2e6fad4021ae87cd28d5fe94382e5de232a",
+      "src/main/resources/assets/mythic_realms_creatures/geckolib/animations/entity/dhampir.animation.json": "cfbb676fdb7770b0b1950ae036710b18c7b5d3863cc4786836169ece23de1f7f",
+      "src/main/resources/assets/mythic_realms_creatures/textures/entity/dhampir.png": "d71d7f40c195c56bc5f235e8a7ff61aedef69613a15c31fc83bf797e83277aec",
+      "tools/blockbench/dhampir.bbmodel": "22bd7cf6da4a624d30f67faae9c8fec65a45afcfc9c55f5046b3d5204b016e2c",
+      "src/main/resources/assets/mythic_realms_creatures/textures/entity/dhampir_glowmask.png": "5a739ce1611492cd89125aba0429bb67fb5eed7a6ab544317928f294196e7f25"
     }
   }
 }
