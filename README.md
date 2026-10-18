@@ -1,10 +1,10 @@
 # Mythic Realms: Creatures
 
-**Development candidate 1.1.0-rc.2 · Fabric · Minecraft Java Edition 1.21.10 · Java 21**
+**Development candidate 1.1.0-rc.3 · Fabric · Minecraft Java Edition 1.21.10 · Java 21**
 
-The `feat/asset-refinement` branch polishes 18 existing creature designs. Crystal Spider and Flame Imp remain unchanged. See the [before/after summary](docs/creature-overhaul/REFINEMENT_CHANGES.md), [in-game preview](docs/creature-overhaul/REFINEMENT_PREVIEW.jpg) and [validation/source limitations](docs/creature-overhaul/REFINEMENT_VALIDATION.md). Candidate files are included on this feature branch; `main` remains stable 1.0.0.
+Candidate rc.3 implements the V2 model/rig/animation overhaul for 18 creatures, including the user-referenced Wyvern head/body, Harpy wings and Moon Stag antlers, stable weapon grips, Basilisk fedora and full layered hair. Crystal Spider and Flame Imp are unchanged. See the [per-creature changelog, references, tests and limitations](docs/overhaul-v2.md).
 
-[Download candidate JAR](releases/1.1.0-rc.2/mythic-realms-creatures-1.1.0-rc.2.jar?raw=true) · [Candidate with required dependencies](releases/1.1.0-rc.2/mythic-realms-creatures-1.1.0-rc.2-with-dependencies.zip?raw=true) · [Candidate source](releases/1.1.0-rc.2/mythic-realms-creatures-1.1.0-rc.2-source.zip?raw=true)
+[Download candidate JAR](releases/1.1.0-rc.3/mythic-realms-creatures-1.1.0-rc.3.jar?raw=true) · [Candidate with required dependencies](releases/1.1.0-rc.3/mythic-realms-creatures-1.1.0-rc.3-with-dependencies.zip?raw=true) · [Candidate source](releases/1.1.0-rc.3/mythic-realms-creatures-1.1.0-rc.3-source.zip?raw=true)
 
 [Download the stable mod JAR](releases/1.0.0/mythic-realms-creatures-1.0.0.jar?raw=true) · [Download with required dependencies](releases/1.0.0/mythic-realms-creatures-1.0.0-with-dependencies.zip?raw=true) · [Editable source](releases/1.0.0/mythic-realms-creatures-1.0.0-source.zip?raw=true)
 
@@ -19,7 +19,7 @@ Install these mods on both clients and the dedicated server:
 | Minecraft Java Edition | **1.21.10 exactly** |
 | Java | **21** |
 | Fabric Loader | **0.19.5 or newer** |
-| Mythic Realms: Creatures | `mythic-realms-creatures-1.1.0-rc.2.jar` (candidate) or stable `1.0.0` |
+| Mythic Realms: Creatures | `mythic-realms-creatures-1.1.0-rc.3.jar` (candidate) or stable `1.0.0` |
 | Fabric API | **0.138.4+1.21.10** |
 | GeckoLib, Fabric | **5.3-alpha-3 for Minecraft 1.21.10** |
 

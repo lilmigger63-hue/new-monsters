@@ -1,0 +1,8 @@
+{
+  "asset_checks_passed": 12,
+  "fresh_junit_passed": 5,
+  "server_tests_per_profile": 40,
+  "runtime_classes_unchanged": 54,
+  "deterministic_resource_native_files": 347,
+  "jar_source_resource_parity": true
+}

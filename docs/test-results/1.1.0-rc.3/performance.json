@@ -1,0 +1,1261 @@
+{
+  "baseline": {
+    "samples": [
+      {
+        "species": "goblin_scout",
+        "fps": 63,
+        "frame_ns": 25015334,
+        "throttle": "NONE"
+      },
+      {
+        "species": "goblin_scout",
+        "fps": 63,
+        "frame_ns": 10208379,
+        "throttle": "NONE"
+      },
+      {
+        "species": "goblin_scout",
+        "fps": 63,
+        "frame_ns": 11678775,
+        "throttle": "NONE"
+      },
+      {
+        "species": "goblin_scout",
+        "fps": 63,
+        "frame_ns": 11374155,
+        "throttle": "NONE"
+      },
+      {
+        "species": "goblin_scout",
+        "fps": 63,
+        "frame_ns": 11778883,
+        "throttle": "NONE"
+      },
+      {
+        "species": "goblin_shaman",
+        "fps": 52,
+        "frame_ns": 12935080,
+        "throttle": "NONE"
+      },
+      {
+        "species": "goblin_shaman",
+        "fps": 52,
+        "frame_ns": 11302965,
+        "throttle": "NONE"
+      },
+      {
+        "species": "goblin_shaman",
+        "fps": 52,
+        "frame_ns": 13202962,
+        "throttle": "NONE"
+      },
+      {
+        "species": "goblin_shaman",
+        "fps": 52,
+        "frame_ns": 13280406,
+        "throttle": "NONE"
+      },
+      {
+        "species": "goblin_shaman",
+        "fps": 65,
+        "frame_ns": 11164907,
+        "throttle": "NONE"
+      },
+      {
+        "species": "orc_warrior",
+        "fps": 49,
+        "frame_ns": 27351419,
+        "throttle": "NONE"
+      },
+      {
+        "species": "orc_warrior",
+        "fps": 60,
+        "frame_ns": 11207271,
+        "throttle": "NONE"
+      },
+      {
+        "species": "orc_warrior",
+        "fps": 60,
+        "frame_ns": 36583621,
+        "throttle": "NONE"
+      },
+      {
+        "species": "orc_warrior",
+        "fps": 60,
+        "frame_ns": 25739823,
+        "throttle": "NONE"
+      },
+      {
+        "species": "orc_warrior",
+        "fps": 60,
+        "frame_ns": 25090537,
+        "throttle": "NONE"
+      },
+      {
+        "species": "minotaur",
+        "fps": 53,
+        "frame_ns": 33608899,
+        "throttle": "NONE"
+      },
+      {
+        "species": "minotaur",
+        "fps": 53,
+        "frame_ns": 19690128,
+        "throttle": "NONE"
+      },
+      {
+        "species": "minotaur",
+        "fps": 53,
+        "frame_ns": 12177800,
+        "throttle": "NONE"
+      },
+      {
+        "species": "minotaur",
+        "fps": 53,
+        "frame_ns": 11299366,
+        "throttle": "NONE"
+      },
+      {
+        "species": "minotaur",
+        "fps": 51,
+        "frame_ns": 13758746,
+        "throttle": "NONE"
+      },
+      {
+        "species": "stone_troll",
+        "fps": 66,
+        "frame_ns": 11539622,
+        "throttle": "NONE"
+      },
+      {
+        "species": "stone_troll",
+        "fps": 66,
+        "frame_ns": 15003550,
+        "throttle": "NONE"
+      },
+      {
+        "species": "stone_troll",
+        "fps": 66,
+        "frame_ns": 11519523,
+        "throttle": "NONE"
+      },
+      {
+        "species": "stone_troll",
+        "fps": 66,
+        "frame_ns": 12407460,
+        "throttle": "NONE"
+      },
+      {
+        "species": "stone_troll",
+        "fps": 62,
+        "frame_ns": 11908372,
+        "throttle": "NONE"
+      },
+      {
+        "species": "ancient_treant",
+        "fps": 51,
+        "frame_ns": 21273673,
+        "throttle": "NONE"
+      },
+      {
+        "species": "ancient_treant",
+        "fps": 41,
+        "frame_ns": 18575885,
+        "throttle": "NONE"
+      },
+      {
+        "species": "ancient_treant",
+        "fps": 41,
+        "frame_ns": 26656334,
+        "throttle": "NONE"
+      },
+      {
+        "species": "ancient_treant",
+        "fps": 41,
+        "frame_ns": 16109543,
+        "throttle": "NONE"
+      },
+      {
+        "species": "ancient_treant",
+        "fps": 41,
+        "frame_ns": 15741704,
+        "throttle": "NONE"
+      },
+      {
+        "species": "forest_dryad",
+        "fps": 32,
+        "frame_ns": 14259019,
+        "throttle": "NONE"
+      },
+      {
+        "species": "forest_dryad",
+        "fps": 41,
+        "frame_ns": 16481342,
+        "throttle": "NONE"
+      },
+      {
+        "species": "forest_dryad",
+        "fps": 41,
+        "frame_ns": 21283083,
+        "throttle": "NONE"
+      },
+      {
+        "species": "forest_dryad",
+        "fps": 41,
+        "frame_ns": 18172516,
+        "throttle": "NONE"
+      },
+      {
+        "species": "forest_dryad",
+        "fps": 41,
+        "frame_ns": 12836196,
+        "throttle": "NONE"
+      },
+      {
+        "species": "griffin",
+        "fps": 47,
+        "frame_ns": 16607246,
+        "throttle": "NONE"
+      },
+      {
+        "species": "griffin",
+        "fps": 47,
+        "frame_ns": 18578443,
+        "throttle": "NONE"
+      },
+      {
+        "species": "griffin",
+        "fps": 47,
+        "frame_ns": 27866133,
+        "throttle": "NONE"
+      },
+      {
+        "species": "griffin",
+        "fps": 47,
+        "frame_ns": 15084091,
+        "throttle": "NONE"
+      },
+      {
+        "species": "griffin",
+        "fps": 47,
+        "frame_ns": 14333160,
+        "throttle": "NONE"
+      },
+      {
+        "species": "dire_wolf",
+        "fps": 65,
+        "frame_ns": 15928460,
+        "throttle": "NONE"
+      },
+      {
+        "species": "dire_wolf",
+        "fps": 65,
+        "frame_ns": 15129324,
+        "throttle": "NONE"
+      },
+      {
+        "species": "dire_wolf",
+        "fps": 66,
+        "frame_ns": 12700913,
+        "throttle": "NONE"
+      },
+      {
+        "species": "dire_wolf",
+        "fps": 66,
+        "frame_ns": 13752669,
+        "throttle": "NONE"
+      },
+      {
+        "species": "dire_wolf",
+        "fps": 66,
+        "frame_ns": 17699950,
+        "throttle": "NONE"
+      },
+      {
+        "species": "wild_wyvern",
+        "fps": 59,
+        "frame_ns": 14343554,
+        "throttle": "NONE"
+      },
+      {
+        "species": "wild_wyvern",
+        "fps": 59,
+        "frame_ns": 12571547,
+        "throttle": "NONE"
+      },
+      {
+        "species": "wild_wyvern",
+        "fps": 59,
+        "frame_ns": 13891321,
+        "throttle": "NONE"
+      },
+      {
+        "species": "wild_wyvern",
+        "fps": 69,
+        "frame_ns": 14500474,
+        "throttle": "NONE"
+      },
+      {
+        "species": "wild_wyvern",
+        "fps": 69,
+        "frame_ns": 12311078,
+        "throttle": "NONE"
+      },
+      {
+        "species": "cave_basilisk",
+        "fps": 62,
+        "frame_ns": 25114475,
+        "throttle": "NONE"
+      },
+      {
+        "species": "cave_basilisk",
+        "fps": 62,
+        "frame_ns": 18511085,
+        "throttle": "NONE"
+      },
+      {
+        "species": "cave_basilisk",
+        "fps": 62,
+        "frame_ns": 14283020,
+        "throttle": "NONE"
+      },
+      {
+        "species": "cave_basilisk",
+        "fps": 49,
+        "frame_ns": 12231640,
+        "throttle": "NONE"
+      },
+      {
+        "species": "cave_basilisk",
+        "fps": 49,
+        "frame_ns": 12219579,
+        "throttle": "NONE"
+      },
+      {
+        "species": "crystal_spider",
+        "fps": 55,
+        "frame_ns": 14101987,
+        "throttle": "NONE"
+      },
+      {
+        "species": "crystal_spider",
+        "fps": 55,
+        "frame_ns": 18400033,
+        "throttle": "NONE"
+      },
+      {
+        "species": "crystal_spider",
+        "fps": 55,
+        "frame_ns": 11956032,
+        "throttle": "NONE"
+      },
+      {
+        "species": "crystal_spider",
+        "fps": 55,
+        "frame_ns": 20908257,
+        "throttle": "NONE"
+      },
+      {
+        "species": "crystal_spider",
+        "fps": 58,
+        "frame_ns": 11879748,
+        "throttle": "NONE"
+      },
+      {
+        "species": "shadow_wraith",
+        "fps": 49,
+        "frame_ns": 13015520,
+        "throttle": "NONE"
+      },
+      {
+        "species": "shadow_wraith",
+        "fps": 53,
+        "frame_ns": 14646595,
+        "throttle": "NONE"
+      },
+      {
+        "species": "shadow_wraith",
+        "fps": 53,
+        "frame_ns": 18821089,
+        "throttle": "NONE"
+      },
+      {
+        "species": "shadow_wraith",
+        "fps": 53,
+        "frame_ns": 17859216,
+        "throttle": "NONE"
+      },
+      {
+        "species": "shadow_wraith",
+        "fps": 53,
+        "frame_ns": 21635542,
+        "throttle": "NONE"
+      },
+      {
+        "species": "grave_knight",
+        "fps": 46,
+        "frame_ns": 15542605,
+        "throttle": "NONE"
+      },
+      {
+        "species": "grave_knight",
+        "fps": 54,
+        "frame_ns": 17266737,
+        "throttle": "NONE"
+      },
+      {
+        "species": "grave_knight",
+        "fps": 54,
+        "frame_ns": 15935340,
+        "throttle": "NONE"
+      },
+      {
+        "species": "grave_knight",
+        "fps": 54,
+        "frame_ns": 12449822,
+        "throttle": "NONE"
+      },
+      {
+        "species": "grave_knight",
+        "fps": 54,
+        "frame_ns": 16602941,
+        "throttle": "NONE"
+      },
+      {
+        "species": "flame_imp",
+        "fps": 47,
+        "frame_ns": 16478917,
+        "throttle": "NONE"
+      },
+      {
+        "species": "flame_imp",
+        "fps": 57,
+        "frame_ns": 15802463,
+        "throttle": "NONE"
+      },
+      {
+        "species": "flame_imp",
+        "fps": 57,
+        "frame_ns": 21117408,
+        "throttle": "NONE"
+      },
+      {
+        "species": "flame_imp",
+        "fps": 57,
+        "frame_ns": 14206235,
+        "throttle": "NONE"
+      },
+      {
+        "species": "flame_imp",
+        "fps": 57,
+        "frame_ns": 15258597,
+        "throttle": "NONE"
+      },
+      {
+        "species": "frost_elemental",
+        "fps": 25,
+        "frame_ns": 29907476,
+        "throttle": "NONE"
+      },
+      {
+        "species": "frost_elemental",
+        "fps": 25,
+        "frame_ns": 32554588,
+        "throttle": "NONE"
+      },
+      {
+        "species": "frost_elemental",
+        "fps": 33,
+        "frame_ns": 16427899,
+        "throttle": "NONE"
+      },
+      {
+        "species": "frost_elemental",
+        "fps": 33,
+        "frame_ns": 15353812,
+        "throttle": "NONE"
+      },
+      {
+        "species": "frost_elemental",
+        "fps": 33,
+        "frame_ns": 13466615,
+        "throttle": "NONE"
+      },
+      {
+        "species": "moon_stag",
+        "fps": 51,
+        "frame_ns": 13527844,
+        "throttle": "NONE"
+      },
+      {
+        "species": "moon_stag",
+        "fps": 51,
+        "frame_ns": 13435279,
+        "throttle": "NONE"
+      },
+      {
+        "species": "moon_stag",
+        "fps": 57,
+        "frame_ns": 13584248,
+        "throttle": "NONE"
+      },
+      {
+        "species": "moon_stag",
+        "fps": 57,
+        "frame_ns": 12651602,
+        "throttle": "NONE"
+      },
+      {
+        "species": "moon_stag",
+        "fps": 57,
+        "frame_ns": 13189051,
+        "throttle": "NONE"
+      },
+      {
+        "species": "slime_maiden",
+        "fps": 50,
+        "frame_ns": 16487077,
+        "throttle": "NONE"
+      },
+      {
+        "species": "slime_maiden",
+        "fps": 50,
+        "frame_ns": 12420618,
+        "throttle": "NONE"
+      },
+      {
+        "species": "slime_maiden",
+        "fps": 50,
+        "frame_ns": 13825294,
+        "throttle": "NONE"
+      },
+      {
+        "species": "slime_maiden",
+        "fps": 52,
+        "frame_ns": 12364330,
+        "throttle": "NONE"
+      },
+      {
+        "species": "slime_maiden",
+        "fps": 52,
+        "frame_ns": 13383739,
+        "throttle": "NONE"
+      },
+      {
+        "species": "harpy",
+        "fps": 63,
+        "frame_ns": 12459405,
+        "throttle": "NONE"
+      },
+      {
+        "species": "harpy",
+        "fps": 63,
+        "frame_ns": 13330545,
+        "throttle": "NONE"
+      },
+      {
+        "species": "harpy",
+        "fps": 63,
+        "frame_ns": 13591053,
+        "throttle": "NONE"
+      },
+      {
+        "species": "harpy",
+        "fps": 63,
+        "frame_ns": 12761843,
+        "throttle": "NONE"
+      },
+      {
+        "species": "harpy",
+        "fps": 62,
+        "frame_ns": 12459357,
+        "throttle": "NONE"
+      },
+      {
+        "species": "demon_sorceress",
+        "fps": 58,
+        "frame_ns": 12419260,
+        "throttle": "NONE"
+      },
+      {
+        "species": "demon_sorceress",
+        "fps": 58,
+        "frame_ns": 12051651,
+        "throttle": "NONE"
+      },
+      {
+        "species": "demon_sorceress",
+        "fps": 58,
+        "frame_ns": 12401649,
+        "throttle": "NONE"
+      },
+      {
+        "species": "demon_sorceress",
+        "fps": 58,
+        "frame_ns": 11957117,
+        "throttle": "NONE"
+      },
+      {
+        "species": "demon_sorceress",
+        "fps": 63,
+        "frame_ns": 12455845,
+        "throttle": "NONE"
+      }
+    ],
+    "median_fps": 54.5,
+    "median_frame_ms": 14.154111,
+    "per_species": {
+      "dire_wolf": 66,
+      "frost_elemental": 33,
+      "shadow_wraith": 53,
+      "harpy": 63,
+      "forest_dryad": 41,
+      "grave_knight": 54,
+      "stone_troll": 66,
+      "ancient_treant": 41,
+      "griffin": 47,
+      "orc_warrior": 60,
+      "demon_sorceress": 58,
+      "moon_stag": 57,
+      "cave_basilisk": 62,
+      "flame_imp": 57,
+      "goblin_shaman": 52,
+      "slime_maiden": 50,
+      "wild_wyvern": 59,
+      "goblin_scout": 63,
+      "crystal_spider": 55,
+      "minotaur": 53
+    }
+  },
+  "v2": {
+    "samples": [
+      {
+        "species": "goblin_scout",
+        "fps": 65,
+        "frame_ns": 12228095,
+        "throttle": "NONE"
+      },
+      {
+        "species": "goblin_scout",
+        "fps": 65,
+        "frame_ns": 10286064,
+        "throttle": "NONE"
+      },
+      {
+        "species": "goblin_scout",
+        "fps": 65,
+        "frame_ns": 11272073,
+        "throttle": "NONE"
+      },
+      {
+        "species": "goblin_scout",
+        "fps": 65,
+        "frame_ns": 10987248,
+        "throttle": "NONE"
+      },
+      {
+        "species": "goblin_scout",
+        "fps": 72,
+        "frame_ns": 12828408,
+        "throttle": "NONE"
+      },
+      {
+        "species": "goblin_shaman",
+        "fps": 64,
+        "frame_ns": 12987429,
+        "throttle": "NONE"
+      },
+      {
+        "species": "goblin_shaman",
+        "fps": 64,
+        "frame_ns": 11501726,
+        "throttle": "NONE"
+      },
+      {
+        "species": "goblin_shaman",
+        "fps": 64,
+        "frame_ns": 14189441,
+        "throttle": "NONE"
+      },
+      {
+        "species": "goblin_shaman",
+        "fps": 64,
+        "frame_ns": 13204949,
+        "throttle": "NONE"
+      },
+      {
+        "species": "goblin_shaman",
+        "fps": 61,
+        "frame_ns": 14600185,
+        "throttle": "NONE"
+      },
+      {
+        "species": "orc_warrior",
+        "fps": 54,
+        "frame_ns": 16455966,
+        "throttle": "NONE"
+      },
+      {
+        "species": "orc_warrior",
+        "fps": 65,
+        "frame_ns": 13098993,
+        "throttle": "NONE"
+      },
+      {
+        "species": "orc_warrior",
+        "fps": 65,
+        "frame_ns": 12094609,
+        "throttle": "NONE"
+      },
+      {
+        "species": "orc_warrior",
+        "fps": 65,
+        "frame_ns": 24736751,
+        "throttle": "NONE"
+      },
+      {
+        "species": "orc_warrior",
+        "fps": 65,
+        "frame_ns": 14023102,
+        "throttle": "NONE"
+      },
+      {
+        "species": "minotaur",
+        "fps": 60,
+        "frame_ns": 11559504,
+        "throttle": "NONE"
+      },
+      {
+        "species": "minotaur",
+        "fps": 60,
+        "frame_ns": 11406267,
+        "throttle": "NONE"
+      },
+      {
+        "species": "minotaur",
+        "fps": 72,
+        "frame_ns": 11376151,
+        "throttle": "NONE"
+      },
+      {
+        "species": "minotaur",
+        "fps": 72,
+        "frame_ns": 11009232,
+        "throttle": "NONE"
+      },
+      {
+        "species": "minotaur",
+        "fps": 72,
+        "frame_ns": 11791157,
+        "throttle": "NONE"
+      },
+      {
+        "species": "stone_troll",
+        "fps": 60,
+        "frame_ns": 16128467,
+        "throttle": "NONE"
+      },
+      {
+        "species": "stone_troll",
+        "fps": 60,
+        "frame_ns": 12912013,
+        "throttle": "NONE"
+      },
+      {
+        "species": "stone_troll",
+        "fps": 66,
+        "frame_ns": 12771255,
+        "throttle": "NONE"
+      },
+      {
+        "species": "stone_troll",
+        "fps": 66,
+        "frame_ns": 15063439,
+        "throttle": "NONE"
+      },
+      {
+        "species": "stone_troll",
+        "fps": 66,
+        "frame_ns": 15372595,
+        "throttle": "NONE"
+      },
+      {
+        "species": "ancient_treant",
+        "fps": 53,
+        "frame_ns": 14684811,
+        "throttle": "NONE"
+      },
+      {
+        "species": "ancient_treant",
+        "fps": 53,
+        "frame_ns": 15613321,
+        "throttle": "NONE"
+      },
+      {
+        "species": "ancient_treant",
+        "fps": 53,
+        "frame_ns": 15507117,
+        "throttle": "NONE"
+      },
+      {
+        "species": "ancient_treant",
+        "fps": 51,
+        "frame_ns": 14230216,
+        "throttle": "NONE"
+      },
+      {
+        "species": "ancient_treant",
+        "fps": 51,
+        "frame_ns": 13326697,
+        "throttle": "NONE"
+      },
+      {
+        "species": "forest_dryad",
+        "fps": 70,
+        "frame_ns": 15646080,
+        "throttle": "NONE"
+      },
+      {
+        "species": "forest_dryad",
+        "fps": 70,
+        "frame_ns": 14826221,
+        "throttle": "NONE"
+      },
+      {
+        "species": "forest_dryad",
+        "fps": 70,
+        "frame_ns": 14730980,
+        "throttle": "NONE"
+      },
+      {
+        "species": "forest_dryad",
+        "fps": 61,
+        "frame_ns": 14864170,
+        "throttle": "NONE"
+      },
+      {
+        "species": "forest_dryad",
+        "fps": 61,
+        "frame_ns": 14164422,
+        "throttle": "NONE"
+      },
+      {
+        "species": "griffin",
+        "fps": 62,
+        "frame_ns": 12957344,
+        "throttle": "NONE"
+      },
+      {
+        "species": "griffin",
+        "fps": 62,
+        "frame_ns": 14779010,
+        "throttle": "NONE"
+      },
+      {
+        "species": "griffin",
+        "fps": 62,
+        "frame_ns": 15312331,
+        "throttle": "NONE"
+      },
+      {
+        "species": "griffin",
+        "fps": 62,
+        "frame_ns": 15192646,
+        "throttle": "NONE"
+      },
+      {
+        "species": "griffin",
+        "fps": 60,
+        "frame_ns": 12706939,
+        "throttle": "NONE"
+      },
+      {
+        "species": "dire_wolf",
+        "fps": 66,
+        "frame_ns": 17198014,
+        "throttle": "NONE"
+      },
+      {
+        "species": "dire_wolf",
+        "fps": 66,
+        "frame_ns": 12450618,
+        "throttle": "NONE"
+      },
+      {
+        "species": "dire_wolf",
+        "fps": 66,
+        "frame_ns": 13164147,
+        "throttle": "NONE"
+      },
+      {
+        "species": "dire_wolf",
+        "fps": 66,
+        "frame_ns": 14675987,
+        "throttle": "NONE"
+      },
+      {
+        "species": "dire_wolf",
+        "fps": 69,
+        "frame_ns": 11623890,
+        "throttle": "NONE"
+      },
+      {
+        "species": "wild_wyvern",
+        "fps": 64,
+        "frame_ns": 12911101,
+        "throttle": "NONE"
+      },
+      {
+        "species": "wild_wyvern",
+        "fps": 65,
+        "frame_ns": 18836007,
+        "throttle": "NONE"
+      },
+      {
+        "species": "wild_wyvern",
+        "fps": 65,
+        "frame_ns": 13701867,
+        "throttle": "NONE"
+      },
+      {
+        "species": "wild_wyvern",
+        "fps": 65,
+        "frame_ns": 13260227,
+        "throttle": "NONE"
+      },
+      {
+        "species": "wild_wyvern",
+        "fps": 65,
+        "frame_ns": 13412885,
+        "throttle": "NONE"
+      },
+      {
+        "species": "cave_basilisk",
+        "fps": 50,
+        "frame_ns": 12329678,
+        "throttle": "NONE"
+      },
+      {
+        "species": "cave_basilisk",
+        "fps": 50,
+        "frame_ns": 12366051,
+        "throttle": "NONE"
+      },
+      {
+        "species": "cave_basilisk",
+        "fps": 64,
+        "frame_ns": 12258248,
+        "throttle": "NONE"
+      },
+      {
+        "species": "cave_basilisk",
+        "fps": 64,
+        "frame_ns": 11639556,
+        "throttle": "NONE"
+      },
+      {
+        "species": "cave_basilisk",
+        "fps": 64,
+        "frame_ns": 13186808,
+        "throttle": "NONE"
+      },
+      {
+        "species": "crystal_spider",
+        "fps": 54,
+        "frame_ns": 12588246,
+        "throttle": "NONE"
+      },
+      {
+        "species": "crystal_spider",
+        "fps": 54,
+        "frame_ns": 12160462,
+        "throttle": "NONE"
+      },
+      {
+        "species": "crystal_spider",
+        "fps": 54,
+        "frame_ns": 11940234,
+        "throttle": "NONE"
+      },
+      {
+        "species": "crystal_spider",
+        "fps": 62,
+        "frame_ns": 15424310,
+        "throttle": "NONE"
+      },
+      {
+        "species": "crystal_spider",
+        "fps": 62,
+        "frame_ns": 14770394,
+        "throttle": "NONE"
+      },
+      {
+        "species": "shadow_wraith",
+        "fps": 54,
+        "frame_ns": 14461473,
+        "throttle": "NONE"
+      },
+      {
+        "species": "shadow_wraith",
+        "fps": 54,
+        "frame_ns": 23254561,
+        "throttle": "NONE"
+      },
+      {
+        "species": "shadow_wraith",
+        "fps": 54,
+        "frame_ns": 20135329,
+        "throttle": "NONE"
+      },
+      {
+        "species": "shadow_wraith",
+        "fps": 48,
+        "frame_ns": 21275015,
+        "throttle": "NONE"
+      },
+      {
+        "species": "shadow_wraith",
+        "fps": 48,
+        "frame_ns": 16259799,
+        "throttle": "NONE"
+      },
+      {
+        "species": "grave_knight",
+        "fps": 57,
+        "frame_ns": 17189934,
+        "throttle": "NONE"
+      },
+      {
+        "species": "grave_knight",
+        "fps": 57,
+        "frame_ns": 15515874,
+        "throttle": "NONE"
+      },
+      {
+        "species": "grave_knight",
+        "fps": 57,
+        "frame_ns": 16130677,
+        "throttle": "NONE"
+      },
+      {
+        "species": "grave_knight",
+        "fps": 57,
+        "frame_ns": 16113490,
+        "throttle": "NONE"
+      },
+      {
+        "species": "grave_knight",
+        "fps": 55,
+        "frame_ns": 13161384,
+        "throttle": "NONE"
+      },
+      {
+        "species": "flame_imp",
+        "fps": 53,
+        "frame_ns": 13817659,
+        "throttle": "NONE"
+      },
+      {
+        "species": "flame_imp",
+        "fps": 68,
+        "frame_ns": 13710902,
+        "throttle": "NONE"
+      },
+      {
+        "species": "flame_imp",
+        "fps": 68,
+        "frame_ns": 13522372,
+        "throttle": "NONE"
+      },
+      {
+        "species": "flame_imp",
+        "fps": 68,
+        "frame_ns": 13562752,
+        "throttle": "NONE"
+      },
+      {
+        "species": "flame_imp",
+        "fps": 68,
+        "frame_ns": 14474444,
+        "throttle": "NONE"
+      },
+      {
+        "species": "frost_elemental",
+        "fps": 51,
+        "frame_ns": 12739669,
+        "throttle": "NONE"
+      },
+      {
+        "species": "frost_elemental",
+        "fps": 66,
+        "frame_ns": 11478427,
+        "throttle": "NONE"
+      },
+      {
+        "species": "frost_elemental",
+        "fps": 66,
+        "frame_ns": 12608368,
+        "throttle": "NONE"
+      },
+      {
+        "species": "frost_elemental",
+        "fps": 66,
+        "frame_ns": 12370956,
+        "throttle": "NONE"
+      },
+      {
+        "species": "frost_elemental",
+        "fps": 66,
+        "frame_ns": 15500055,
+        "throttle": "NONE"
+      },
+      {
+        "species": "moon_stag",
+        "fps": 52,
+        "frame_ns": 21042526,
+        "throttle": "NONE"
+      },
+      {
+        "species": "moon_stag",
+        "fps": 52,
+        "frame_ns": 16005422,
+        "throttle": "NONE"
+      },
+      {
+        "species": "moon_stag",
+        "fps": 55,
+        "frame_ns": 16753749,
+        "throttle": "NONE"
+      },
+      {
+        "species": "moon_stag",
+        "fps": 55,
+        "frame_ns": 14364613,
+        "throttle": "NONE"
+      },
+      {
+        "species": "moon_stag",
+        "fps": 55,
+        "frame_ns": 13740292,
+        "throttle": "NONE"
+      },
+      {
+        "species": "slime_maiden",
+        "fps": 51,
+        "frame_ns": 13455575,
+        "throttle": "NONE"
+      },
+      {
+        "species": "slime_maiden",
+        "fps": 51,
+        "frame_ns": 13897324,
+        "throttle": "NONE"
+      },
+      {
+        "species": "slime_maiden",
+        "fps": 58,
+        "frame_ns": 13438811,
+        "throttle": "NONE"
+      },
+      {
+        "species": "slime_maiden",
+        "fps": 58,
+        "frame_ns": 14957404,
+        "throttle": "NONE"
+      },
+      {
+        "species": "slime_maiden",
+        "fps": 58,
+        "frame_ns": 13984304,
+        "throttle": "NONE"
+      },
+      {
+        "species": "harpy",
+        "fps": 46,
+        "frame_ns": 13902642,
+        "throttle": "NONE"
+      },
+      {
+        "species": "harpy",
+        "fps": 46,
+        "frame_ns": 13944616,
+        "throttle": "NONE"
+      },
+      {
+        "species": "harpy",
+        "fps": 46,
+        "frame_ns": 12776287,
+        "throttle": "NONE"
+      },
+      {
+        "species": "harpy",
+        "fps": 52,
+        "frame_ns": 14129385,
+        "throttle": "NONE"
+      },
+      {
+        "species": "harpy",
+        "fps": 52,
+        "frame_ns": 14613060,
+        "throttle": "NONE"
+      },
+      {
+        "species": "demon_sorceress",
+        "fps": 62,
+        "frame_ns": 12347093,
+        "throttle": "NONE"
+      },
+      {
+        "species": "demon_sorceress",
+        "fps": 62,
+        "frame_ns": 13853653,
+        "throttle": "NONE"
+      },
+      {
+        "species": "demon_sorceress",
+        "fps": 62,
+        "frame_ns": 13256942,
+        "throttle": "NONE"
+      },
+      {
+        "species": "demon_sorceress",
+        "fps": 62,
+        "frame_ns": 13356354,
+        "throttle": "NONE"
+      },
+      {
+        "species": "demon_sorceress",
+        "fps": 58,
+        "frame_ns": 12593355,
+        "throttle": "NONE"
+      }
+    ],
+    "median_fps": 62.0,
+    "median_frame_ms": 13.725597,
+    "per_species": {
+      "dire_wolf": 66,
+      "frost_elemental": 66,
+      "shadow_wraith": 54,
+      "harpy": 46,
+      "forest_dryad": 70,
+      "grave_knight": 57,
+      "stone_troll": 66,
+      "ancient_treant": 53,
+      "griffin": 62,
+      "orc_warrior": 65,
+      "demon_sorceress": 62,
+      "moon_stag": 55,
+      "cave_basilisk": 64,
+      "flame_imp": 68,
+      "goblin_shaman": 64,
+      "slime_maiden": 58,
+      "wild_wyvern": 65,
+      "goblin_scout": 65,
+      "crystal_spider": 54,
+      "minotaur": 72
+    }
+  },
+  "median_fps_change_percent": 13.76,
+  "method": "Same idle-only harness/workload, Xvfb llvmpipe, 1280x720, view distance3, FOV50, vsyncoff, cap260, inactivity limit MINIMIZED; every sample asserts throttle NONE. Each of20 species:20tick settle then5samples every5ticks.",
+  "discarded_attempt": "Initial baseline/full-smoke comparison was invalid: AFK auto-throttled later samples to30FPS and workloads differed. Both were rerun identically in idle-only mode with no throttle."
+}

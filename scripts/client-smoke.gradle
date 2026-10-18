@@ -18,6 +18,11 @@ loom {
             vmArg '-XX:ActiveProcessorCount=4'
             vmArg '-Dfabric.client.gametest'
             vmArg '-Dfabric.client.gametest.modid=mythic_realms_client_smoke'
+            if (project.hasProperty('clientSmokeSpecies')) vmArg '-Dmythic.clientSmoke.species=' + project.property('clientSmokeSpecies')
+            if (project.hasProperty('clientSmokePerformanceSamples')) vmArg '-Dmythic.clientSmoke.performanceSamples=' + project.property('clientSmokePerformanceSamples')
+            if (project.hasProperty('clientSmokeMeasureFrames')) vmArg '-Dmythic.clientSmoke.measureFrames=true'
+            if (project.hasProperty('clientSmokePerformanceOnly')) vmArg '-Dmythic.clientSmoke.performanceOnly=true'
+            if (project.hasProperty('clientSmokeReferenceOnly')) vmArg '-Dmythic.clientSmoke.referenceOnly=true'
             if (project.hasProperty('clientSmokeMountStanceOnly')) vmArg '-Dmythic.clientSmoke.mountStanceOnly=true'
             // Fabric 0.138.4's synchronized startup stalls during integrated spawn preparation.
             // Assertions still wait for actual client entity/renderer state with normal packets.

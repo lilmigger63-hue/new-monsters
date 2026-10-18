@@ -304,17 +304,214 @@ def animations(a,name):
     clips['guard']=clip(.8,{'arm_left':{'rotation':[-65,0,-15]},'arm_right':{'rotation':[-35,0,15]},'body':{'rotation':[4,-15,0]}},True)
     return clips
 
+def faceted(a, bone, origin, size, material, bevel=.18):
+    """Three broad silhouette bands replace each cuboid anatomical core."""
+    x,y,z=origin; w,h,d=size; b=min(w,d)*bevel
+    a.box(bone,(x+b,y,z+b),(w-2*b,h*.16,d-2*b),material)
+    a.box(bone,(x,y+h*.15,z),(w,h*.7,d),material)
+    a.box(bone,(x+b,y+h*.84,z+b),(w-2*b,h*.16,d-2*b),material)
+
+
+def palm_socket(a, weapon, center):
+    """The wood/leather handle and opposing fingers occupy one rigid socket."""
+    x,y,z=center
+    a.bone('grip_right','hand_right',center)
+    a.m.by_name[weapon]['parent']='grip_right'
+    hand=a.m.by_name['hand_right'];hand['cubes']=hand['cubes'][:1]
+    # Palm wraps around handle, with an open thumb side and three closed digits.
+    for k in range(3):
+        yy=y-1.05+k*.7
+        a.box('grip_right',(x-1.12,yy,z-1.13),(1.85,.55,.65),0)
+        a.box('grip_right',(x+.55,yy,z-.95),(.6,.55,1.65),8)
+    a.box('grip_right',(x-1.3,y+.55,z-.8),(.7,.8,1.6),8,(15,0,-16))
+
+
+def v2_sculpt(a,name):
+    """V2 replaces anatomical cores, rather than decorating an unchanged box."""
+    gob=name.startswith('goblin'); bull=name=='minotaur'; stone=name=='stone_troll'
+    sh=13 if gob else 29 if bull else 31 if stone else 24
+    hip=hip_for(name);w=3 if gob else 6 if bull else 8 if stone else 5.5
+    # Keep armor/equipment while replacing original torso and shoulder solids.
+    for bone in ('body','chest'):
+        a.m.by_name[bone]['cubes']=a.m.by_name[bone].get('cubes',[])[1:]
+    faceted(a,'body',(-w*.7,hip,-2.5),(w*1.4,sh-hip-2,5),0 if bull or stone else 1)
+    faceted(a,'chest',(-w- .65,sh-5,-3.5),(w*2+1.3,6.5,7),0)
+    # Broad pectoral planes / shoulder caps, not dozens of tiny details.
+    for side,sign in [('left',1),('right',-1)]:
+        ax=sign*(w+1); aw=2.6 if gob else 4.5 if stone else 4
+        for bone,origin,size,mat in [
+            ('arm_'+side,(ax-aw/2,sh-6,-aw/2),(aw,6,aw),0),
+            ('forearm_'+side,(ax-aw/2,sh-11,-aw/2),(aw,6,aw),8),
+            ('leg_'+side,((sign*(2 if gob else 4 if stone else 3.5))-(2.6 if gob else 5 if stone else 4.5 if bull else 3.6)/2,2,-(2.6 if gob else 5 if stone else 4.5 if bull else 3.6)/2),((2.6 if gob else 5 if stone else 4.5 if bull else 3.6),hip-2,(2.6 if gob else 5 if stone else 4.5 if bull else 3.6)),5 if bull else 1 if gob else 0)]:
+            a.m.by_name[bone]['cubes']=a.m.by_name[bone]['cubes'][1:]
+            faceted(a,bone,origin,size,mat)
+        faceted(a,'arm_'+side,(ax-aw*.64,sh-2.7,-aw*.63),(aw*1.28,3.8,aw*1.26),14 if stone else 0)
+        # Elliptical elbow-like layered joint prevents forearm seams at flexion.
+        a.box('forearm_'+side,(ax-aw*.39,sh-6.1,-aw*.56),(aw*.78,1.9,aw*1.12),14 if stone else 8)
+    if not stone:
+        head=a.m.by_name['head'];head['cubes']=head['cubes'][1:]
+        hy=sh+1
+        faceted(a,'head',(-3,hy,-4.9),(6,5.2 if gob else 6,4.9),0,.15)
+        for sign in (-1,1):
+            a.box('head',(sign*2.4-.55,hy+.6,-5.3),(1.1,2.3,1.2),8,(0,sign*20,sign*10))
+        if bull:
+            # Full bovine barrel muzzle with a narrow nasal bridge and dewlap.
+            faceted(a,'head',(-3.6,hy-1.2,-8),(7.2,4.2,4.8),8,.13)
+            faceted(a,'chest',(-4,sh-7,-4.3),(8,7,2.5),5,.12)
+            a.box('jaw',(-2.4,hy-4,-3.9),(4.8,3,2.7),5,(-18,0,0))
+            for side,sign in [('left',1),('right',-1)]:
+                faceted(a,'horn_'+side,((2.7 if sign>0 else -4.7),hy+2.6,-1.8),(2,2.6,2.4),4,.15)
+                a.box('horn_'+side,((6.5 if sign>0 else -7.3),hy+6,-1.3),(.8,1.9,.9),11,(0,0,-sign*25))
+                # Cloven forefoot lobes remain exactly at the ground plane.
+                lx=sign*3.5
+                a.m.by_name['foot_'+side]['cubes']=[]
+                for offset in (-1.15,1.15):faceted(a,'foot_'+side,(lx+offset-1,0,-3.5),(2,2.8,4.8),1,.13)
+    if name=='goblin_scout':
+        # Seat the proven grip slightly higher in the actual palm; its pommel
+        # now clears the ground while retaining the same rigid attachment.
+        for rigid in ('grip_right','dagger'):
+            bone=a.m.by_name[rigid];bone['pivot'][1]+=.7*a.s
+            for cube in bone['cubes']:
+                cube['origin'][1]+=.7*a.s
+                if 'pivot' in cube:cube['pivot'][1]+=.7*a.s
+    if name=='goblin_shaman':
+        # Remove shaft tilt: handle axis passes through the palm centre.
+        staff=a.m.by_name['staff'];staff['cubes'][0].pop('rotation',None)
+        staff['cubes'][0].pop('pivot',None)
+        palm_socket(a,'staff',(-4.05,1.5,-1.95))
+    elif name=='orc_warrior':
+        # Replace the fourteen-pixel pole with a short cleaver hilt.
+        a.m.by_name['cleaver']['cubes']=[]
+        palm_socket(a,'cleaver',(-6.5,12.5,-1))
+        a.box('cleaver',(-7.05,10.6,-1.55),(1.1,4,1.1),1)
+        a.box('cleaver',(-8,14,-1.8),(3,.6,1.6),2)
+        faceted(a,'cleaver',(-11,14.5,-1.7),(5.3,7.3,1.4),2,.08)
+        a.box('cleaver',(-11.15,14.9,-1.85),(.6,6.5,1.7),9)
+        a.box('cleaver',(-7.3,10.2,-1.8),(1.6,.6,1.6),2)
+    elif bull:
+        palm_socket(a,'axe',(-7,17.5,-1.8))
+        # Support hand closes around the upper shaft. An independent elbow pose
+        # reaches across the chest; left/right arms are intentionally different.
+        a.m.by_name['axe']['cubes']=[]
+        a.box('axe',(-7.7,12,-2.5),(1.4,22,1.4),6)
+        for yy in (16.5,17.2,17.9,24.2,24.9,25.6):a.box('axe',(-7.85,yy,-2.65),(1.7,.4,1.7),1)
+        faceted(a,'axe',(-14.5,30,-3.3),(15,5.4,3),2,.12)
+        for xx in (-14.5,-1.5):a.box('axe',(xx,29,-3.4),(2,7,3.2),9)
+        # Solve the resting support arm in the frontal plane. Shoulder-to-grip
+        # distance is 14.56; elongated monstrous arms provide that reach.
+        import math
+        upper,lower=8.,8.;dx,dy=-14.,-4.
+        distance=math.hypot(dx,dy)
+        alpha=math.acos((upper*upper+distance*distance-lower*lower)/(2*upper*distance))
+        direction=math.atan2(dy,dx)
+        theta=direction+alpha
+        elbow=(7+upper*math.cos(theta),sh+upper*math.sin(theta))
+        lower_angle=math.atan2(25-elbow[1],-7-elbow[0])
+        # Bake the upper/lower rest shapes in model space, so shoulder remains
+        # attached and the support palm genuinely encloses the same shaft.
+        a.m.by_name['arm_left']['cubes']=[]
+        a.m.box('arm_left',[5*a.s,(sh-8)*a.s,-2*a.s],[4*a.s,8*a.s,4*a.s],0,[0,0,math.degrees(theta)+90],[7*a.s,sh*a.s,0])
+        # Explicit pivot lets the lower arm's long axis meet the support grip.
+        a.m.by_name['forearm_left']['pivot']=[elbow[0]*a.s,elbow[1]*a.s,0]
+        a.m.by_name['forearm_left']['cubes']=[]
+        a.m.box('forearm_left',[(elbow[0]-1.7)*a.s,(elbow[1]-8)*a.s,-1.8*a.s],[3.4*a.s,8*a.s,3.6*a.s],8,[0,0,math.degrees(lower_angle)+90],[elbow[0]*a.s,elbow[1]*a.s,0])
+        a.m.by_name['hand_left']['pivot']=[-7*a.s,25*a.s,-1.8*a.s]
+        a.m.by_name['hand_left']['cubes']=[]
+        faceted(a,'hand_left',(-8.5,23.8,-2.8),(3,2.5,3),0)
+        for k in range(3):a.box('hand_left',(-8.1,24+k*.6,-3.2),(2.3,.45,.7),8)
+    elif stone:
+        # Absolutely no eyebrows, eyelids or horizontal forehead ridges.
+        a.m.by_name['head']['cubes']=[];a.m.by_name['jaw']['cubes']=[]
+        a.m.by_name['chest']['cubes']=[]
+        faceted(a,'chest',(-10.8,21,-5.5),(21.6,14,11),14,.14)
+        faceted(a,'head',(-4.3,34,-5.6),(8.6,8,6.8),14,.23)
+        # Sockets cut visually into the dark forward plane, with minute eyes.
+        for xx in (-2.25,1.35):
+            a.box('head',(xx-.3,36.1,-5.76),(1.5,1.6,.25),5)
+            a.box('head',(xx+.1,36.5,-5.92),(.55,.45,.2),7)
+        faceted(a,'jaw',(-6.3,29.3,-10),(12.6,6.8,10),0,.12)
+        a.box('jaw',(-5.1,35.2,-9.7),(10.2,.6,5.8),5)
+        for xx in (-4.5,-1.5,2,4.3):a.box('jaw',(xx,35.3,-9.1),(1.1,1.7,1.3),4,(0,0,xx*3))
+        for idx,(xx,yy,zz,ww,hh) in enumerate([(-12,30,0,5,7),(8,32,-1,5.4,5),(-8,35,3,4.5,5),(2,33,4.5,6,7),(-4,25,5,6,8)]):
+            a.box('chest',(xx,yy,zz),(ww,hh,4),14,(12,(-1)**idx*13,(-1)**idx*17))
+            a.box('chest',(xx+.3,yy+hh-.7,zz+.2),(ww-.6,.8,3.3),15)
+        # Wider heavy feet retain y=0, enlargement is anatomical above ground.
+        for side,sign in [('left',1),('right',-1)]:
+            a.m.by_name['foot_'+side]['cubes']=[]
+            faceted(a,'foot_'+side,(sign*4-3.4,0,-4),(6.8,3,6.2),14,.15)
+    return a
+
+
+def v2_animations(clips,a,name):
+    """Add joint phase offsets and momentum without moving server hit times."""
+    stone=name=='stone_troll';bull=name=='minotaur';gob=name.startswith('goblin')
+    rate=570 if gob else 210 if stone else 330
+    for state in ('idle','walk','run'):
+        bones=clips[state]['bones'];r=85 if state=='idle' else rate*(1.5 if state=='run' else 1)
+        amplitude=2 if state=='idle' else 8 if stone else 14
+        if state=='idle':
+            bones['body']['position']=[0,f'(math.cos(query.anim_time * {r}) - 1) * {0.05 if stone else .09}',0]
+            bones['chest']={'rotation':[f'math.sin(query.anim_time * {r} - 30) * {1 if stone else 2}',f'math.sin(query.anim_time * {r/2}) * 1.5',0]}
+        else:
+            bones['body']['position']=[0,f'(math.cos(query.anim_time * {r*2}) - 1) * {0.08 if stone else .12}',0]
+            bones['chest']={'rotation':[0,f'math.sin(query.anim_time * {r} - 35) * {3 if stone else 7}',0]}
+        for side,sign in [('left',1),('right',-1)]:
+            bones['forearm_'+side]={'rotation':[f'-12 + math.sin(query.anim_time * {r} - {40 if sign>0 else 220}) * {amplitude}',0,0]}
+            bones['hand_'+side]={'rotation':[f'math.sin(query.anim_time * {r} - {75 if sign>0 else 255}) * {amplitude*.35}',0,sign*2]}
+        if name=='goblin_shaman':
+            bones['arm_right']={'rotation':[f'-12 + math.sin(query.anim_time * {r} - 25) * {2 if state=="idle" else 5}',0,6]}
+            bones['forearm_right']={'rotation':[f'-8 + math.sin(query.anim_time * {r} - 55) * 3',0,0]}
+    t=SPECS[name][2]/20
+    for state in ('attack','heavy','cast'):
+        bones=clips[state]['bones']
+        bones['chest']={'rotation':keys(t,(0,-12,-3),(8,16,4),recovery=.4)}
+        bones['hand_right']={'rotation':keys(t,(-12,0,-9),(18,0,6),recovery=.4)}
+        if name=='goblin_shaman':
+            # Staff stays rigid; casting tilt belongs to the gripping wrist.
+            bones.pop('staff',None)
+            bones['hand_right']={'rotation':keys(t,(-8,0,-25),(16,0,18),recovery=.4)}
+            bones['forearm_left']={'rotation':keys(t,(-65,10,-10),(-20,-15,8),recovery=.4)}
+            bones['hand_left']={'rotation':keys(t,(-30,0,-12),(25,0,16),recovery=.4)}
+        if stone:
+            bones['body']={'rotation':keys(t,(-8,-12,-3),(15,16,6),recovery=.4)}
+            bones['forearm_left']={'rotation':keys(t,(-25,0,0),(12,0,0),recovery=.4)}
+    if name=='goblin_shaman':
+        ritual=clips['ritual']['bones'];ritual.pop('staff',None)
+        ritual['hand_right']={'rotation':[0,0,'math.sin(query.anim_time * 180) * 15']}
+        ritual['forearm_right']={'rotation':[-18,0,4]}
+    if bull:
+        # Both hands are already on the shaft in the authored rest geometry.
+        # Drive the complete carry assembly from chest/torso. Differential arm
+        # animations would break the two-hand constraint without runtime IK.
+        for animation in clips.values():
+            bones=animation['bones']
+            for joint in ('arm_left','arm_right','forearm_left','forearm_right','hand_left','hand_right'):
+                bones.pop(joint,None)
+        for state in ('attack','heavy','cast'):
+            attack=clips[state]['bones']
+            attack['chest']={'rotation':keys(t,(-22,-35,-8),(30,40,12),recovery=.4)}
+            # Support hand releases during the windup, then rejoins the upper
+            # handle at recovery. This allows a real elbow/wrist-powered blow.
+            attack['arm_left']={'rotation':keys(t,(0,10,18),(12,-8,25),recovery=.4)}
+            attack['forearm_left']={'rotation':keys(t,(-18,0,0),(-28,0,8),recovery=.4)}
+            attack['arm_right']={'rotation':keys(t,(-18,-8,-8),(22,12,6),recovery=.4)}
+            attack['forearm_right']={'rotation':keys(t,(-30,0,0),(12,0,0),recovery=.4)}
+            attack['hand_right']={'rotation':keys(t,(-10,0,-8),(15,0,5),recovery=.4)}
+        clips['charge']['bones']['chest']={'rotation':[8,0,-3]}
+    return clips
+
+
 def main():
     pipeline.material_atlas=refined_atlas
     for name in SPECS:
         a=goblin(name) if name.startswith('goblin') else warrior() if name=='orc_warrior' else bull() if name=='minotaur' else troll()
-        a=polish(a,name)
+        a=v2_sculpt(polish(a,name),name)
         w,h,_=SPECS[name]
         materials=list(MATERIALS)
         if name=='stone_troll':
             for i in (0,1,2,4,5,6,8,9,11,12,14): materials[i]='stone'
         if name=='minotaur':
             materials[0]=materials[8]='fur'; materials[2]=materials[9]='iron'
-        write_creature(a.m,PALETTES[name],materials,animations(a,name),w,h,glow=(7,13) if name in ('goblin_shaman','stone_troll') else ())
+        write_creature(a.m,PALETTES[name],materials,v2_animations(animations(a,name),a,name),w,h,glow=(7,13) if name in ('goblin_shaman','stone_troll') else ())
 
 if __name__=='__main__':main()

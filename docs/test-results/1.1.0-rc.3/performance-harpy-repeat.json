@@ -1,0 +1,416 @@
+{
+  "baseline": {
+    "samples": [
+      {
+        "fps": 24,
+        "frame_ns": 30570273,
+        "throttle": "NONE"
+      },
+      {
+        "fps": 24,
+        "frame_ns": 23483082,
+        "throttle": "NONE"
+      },
+      {
+        "fps": 36,
+        "frame_ns": 26699426,
+        "throttle": "NONE"
+      },
+      {
+        "fps": 36,
+        "frame_ns": 23739441,
+        "throttle": "NONE"
+      },
+      {
+        "fps": 36,
+        "frame_ns": 14934301,
+        "throttle": "NONE"
+      },
+      {
+        "fps": 36,
+        "frame_ns": 23220931,
+        "throttle": "NONE"
+      },
+      {
+        "fps": 41,
+        "frame_ns": 13055071,
+        "throttle": "NONE"
+      },
+      {
+        "fps": 41,
+        "frame_ns": 76809612,
+        "throttle": "NONE"
+      },
+      {
+        "fps": 41,
+        "frame_ns": 30320485,
+        "throttle": "NONE"
+      },
+      {
+        "fps": 25,
+        "frame_ns": 27816725,
+        "throttle": "NONE"
+      },
+      {
+        "fps": 25,
+        "frame_ns": 26899975,
+        "throttle": "NONE"
+      },
+      {
+        "fps": 25,
+        "frame_ns": 22727352,
+        "throttle": "NONE"
+      },
+      {
+        "fps": 16,
+        "frame_ns": 21863746,
+        "throttle": "NONE"
+      },
+      {
+        "fps": 16,
+        "frame_ns": 16354504,
+        "throttle": "NONE"
+      },
+      {
+        "fps": 16,
+        "frame_ns": 15677126,
+        "throttle": "NONE"
+      },
+      {
+        "fps": 16,
+        "frame_ns": 17925210,
+        "throttle": "NONE"
+      },
+      {
+        "fps": 41,
+        "frame_ns": 30326275,
+        "throttle": "NONE"
+      },
+      {
+        "fps": 41,
+        "frame_ns": 60185223,
+        "throttle": "NONE"
+      },
+      {
+        "fps": 41,
+        "frame_ns": 50754253,
+        "throttle": "NONE"
+      },
+      {
+        "fps": 14,
+        "frame_ns": 47993107,
+        "throttle": "NONE"
+      },
+      {
+        "fps": 14,
+        "frame_ns": 79698907,
+        "throttle": "NONE"
+      },
+      {
+        "fps": 14,
+        "frame_ns": 37096536,
+        "throttle": "NONE"
+      },
+      {
+        "fps": 15,
+        "frame_ns": 58330257,
+        "throttle": "NONE"
+      },
+      {
+        "fps": 15,
+        "frame_ns": 65416271,
+        "throttle": "NONE"
+      },
+      {
+        "fps": 12,
+        "frame_ns": 36842264,
+        "throttle": "NONE"
+      },
+      {
+        "fps": 12,
+        "frame_ns": 16850471,
+        "throttle": "NONE"
+      },
+      {
+        "fps": 12,
+        "frame_ns": 13135495,
+        "throttle": "NONE"
+      },
+      {
+        "fps": 12,
+        "frame_ns": 13165495,
+        "throttle": "NONE"
+      },
+      {
+        "fps": 42,
+        "frame_ns": 17132035,
+        "throttle": "NONE"
+      },
+      {
+        "fps": 42,
+        "frame_ns": 43339239,
+        "throttle": "NONE"
+      },
+      {
+        "fps": 42,
+        "frame_ns": 54929487,
+        "throttle": "NONE"
+      },
+      {
+        "fps": 21,
+        "frame_ns": 35642066,
+        "throttle": "NONE"
+      },
+      {
+        "fps": 21,
+        "frame_ns": 37628831,
+        "throttle": "NONE"
+      },
+      {
+        "fps": 21,
+        "frame_ns": 47821942,
+        "throttle": "NONE"
+      },
+      {
+        "fps": 21,
+        "frame_ns": 26832674,
+        "throttle": "NONE"
+      },
+      {
+        "fps": 25,
+        "frame_ns": 42708948,
+        "throttle": "NONE"
+      },
+      {
+        "fps": 25,
+        "frame_ns": 32920914,
+        "throttle": "NONE"
+      },
+      {
+        "fps": 25,
+        "frame_ns": 35139285,
+        "throttle": "NONE"
+      },
+      {
+        "fps": 25,
+        "frame_ns": 14004896,
+        "throttle": "NONE"
+      },
+      {
+        "fps": 24,
+        "frame_ns": 13957266,
+        "throttle": "NONE"
+      }
+    ],
+    "median_fps": 24.5,
+    "median_frame_ms": 29.068605
+  },
+  "v2": {
+    "samples": [
+      {
+        "fps": 36,
+        "frame_ns": 19181126,
+        "throttle": "NONE"
+      },
+      {
+        "fps": 36,
+        "frame_ns": 22091775,
+        "throttle": "NONE"
+      },
+      {
+        "fps": 36,
+        "frame_ns": 19033507,
+        "throttle": "NONE"
+      },
+      {
+        "fps": 36,
+        "frame_ns": 18021181,
+        "throttle": "NONE"
+      },
+      {
+        "fps": 40,
+        "frame_ns": 16626689,
+        "throttle": "NONE"
+      },
+      {
+        "fps": 40,
+        "frame_ns": 14626396,
+        "throttle": "NONE"
+      },
+      {
+        "fps": 40,
+        "frame_ns": 14826126,
+        "throttle": "NONE"
+      },
+      {
+        "fps": 40,
+        "frame_ns": 36391063,
+        "throttle": "NONE"
+      },
+      {
+        "fps": 37,
+        "frame_ns": 21281344,
+        "throttle": "NONE"
+      },
+      {
+        "fps": 37,
+        "frame_ns": 34749241,
+        "throttle": "NONE"
+      },
+      {
+        "fps": 37,
+        "frame_ns": 38553028,
+        "throttle": "NONE"
+      },
+      {
+        "fps": 37,
+        "frame_ns": 52381777,
+        "throttle": "NONE"
+      },
+      {
+        "fps": 23,
+        "frame_ns": 39200084,
+        "throttle": "NONE"
+      },
+      {
+        "fps": 23,
+        "frame_ns": 47654066,
+        "throttle": "NONE"
+      },
+      {
+        "fps": 15,
+        "frame_ns": 58327404,
+        "throttle": "NONE"
+      },
+      {
+        "fps": 15,
+        "frame_ns": 23148542,
+        "throttle": "NONE"
+      },
+      {
+        "fps": 15,
+        "frame_ns": 16358582,
+        "throttle": "NONE"
+      },
+      {
+        "fps": 15,
+        "frame_ns": 17866790,
+        "throttle": "NONE"
+      },
+      {
+        "fps": 39,
+        "frame_ns": 17641917,
+        "throttle": "NONE"
+      },
+      {
+        "fps": 39,
+        "frame_ns": 19568718,
+        "throttle": "NONE"
+      },
+      {
+        "fps": 39,
+        "frame_ns": 14322862,
+        "throttle": "NONE"
+      },
+      {
+        "fps": 39,
+        "frame_ns": 38870283,
+        "throttle": "NONE"
+      },
+      {
+        "fps": 38,
+        "frame_ns": 46880194,
+        "throttle": "NONE"
+      },
+      {
+        "fps": 38,
+        "frame_ns": 28337712,
+        "throttle": "NONE"
+      },
+      {
+        "fps": 38,
+        "frame_ns": 37623318,
+        "throttle": "NONE"
+      },
+      {
+        "fps": 19,
+        "frame_ns": 41191446,
+        "throttle": "NONE"
+      },
+      {
+        "fps": 19,
+        "frame_ns": 32841426,
+        "throttle": "NONE"
+      },
+      {
+        "fps": 19,
+        "frame_ns": 42334745,
+        "throttle": "NONE"
+      },
+      {
+        "fps": 20,
+        "frame_ns": 34158435,
+        "throttle": "NONE"
+      },
+      {
+        "fps": 20,
+        "frame_ns": 17341599,
+        "throttle": "NONE"
+      },
+      {
+        "fps": 20,
+        "frame_ns": 14148101,
+        "throttle": "NONE"
+      },
+      {
+        "fps": 20,
+        "frame_ns": 16656162,
+        "throttle": "NONE"
+      },
+      {
+        "fps": 48,
+        "frame_ns": 13536665,
+        "throttle": "NONE"
+      },
+      {
+        "fps": 48,
+        "frame_ns": 15277145,
+        "throttle": "NONE"
+      },
+      {
+        "fps": 48,
+        "frame_ns": 16356449,
+        "throttle": "NONE"
+      },
+      {
+        "fps": 48,
+        "frame_ns": 13868209,
+        "throttle": "NONE"
+      },
+      {
+        "fps": 48,
+        "frame_ns": 14410558,
+        "throttle": "NONE"
+      },
+      {
+        "fps": 48,
+        "frame_ns": 16191130,
+        "throttle": "NONE"
+      },
+      {
+        "fps": 48,
+        "frame_ns": 14544142,
+        "throttle": "NONE"
+      },
+      {
+        "fps": 48,
+        "frame_ns": 19566849,
+        "throttle": "NONE"
+      }
+    ],
+    "median_fps": 37.0,
+    "median_frame_ms": 19.3739875
+  },
+  "median_fps_change_percent": 51.02,
+  "method": "Fixed Harpy camera only, unchanged20-species world; same unthrottled harness and40samples every5ticks after20tick settle."
+}

@@ -1,0 +1,27 @@
+[
+  {
+    "url": "https://hytalewiki.org/w/NPC",
+    "error": "<urlopen error Tunnel connection failed: 403 Forbidden>",
+    "images_inspected": false
+  },
+  {
+    "url": "https://ice-and-fire-mod.fandom.com/wiki/Dragons",
+    "error": "<urlopen error Tunnel connection failed: 403 Forbidden>",
+    "images_inspected": false
+  },
+  {
+    "url": "https://fossilsarcheology.wiki.gg/wiki/Ceratosaurus",
+    "error": "<urlopen error Tunnel connection failed: 403 Forbidden>",
+    "images_inspected": false
+  },
+  {
+    "url": "https://fossilsarcheology.wiki.gg/wiki/Megaloceros",
+    "error": "<urlopen error Tunnel connection failed: 403 Forbidden>",
+    "images_inspected": false
+  },
+  {
+    "url": "https://fossilsarcheology.wiki.gg/wiki/Confuciusornis",
+    "error": "<urlopen error Tunnel connection failed: 403 Forbidden>",
+    "images_inspected": false
+  }
+]

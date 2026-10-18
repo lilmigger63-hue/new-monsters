@@ -24,6 +24,11 @@ public final class CreatureClientSmokeTest implements FabricClientGameTest {
         context.runOnClient(client -> {
             client.options.renderDistance().set(3);
             client.options.fov().set(50);
+            if(Boolean.getBoolean("mythic.clientSmoke.measureFrames")) {
+                client.options.enableVsync().set(false);
+                client.options.inactivityFpsLimit().set(net.minecraft.client.InactivityFpsLimit.MINIMIZED);
+                client.options.framerateLimit().set(260);
+            }
             client.options.pauseOnLostFocus = false;
             client.options.hideGui = true;
             for (CreatureKind kind : CreatureKind.values()) {
@@ -81,9 +86,16 @@ public final class CreatureClientSmokeTest implements FabricClientGameTest {
             for (CreatureKind kind : CreatureKind.values()) {
                 int x = (index % 5) * 8;
                 int z = (index++ / 5) * 16;
+                String selectedSpecies=System.getProperty("mythic.clientSmoke.species");
+                if(selectedSpecies!=null && !selectedSpecies.equals(kind.id))continue;
                 boolean stanceOnly=Boolean.getBoolean("mythic.clientSmoke.mountStanceOnly");
                 if(stanceOnly && kind!=CreatureKind.DIRE_WOLF && kind!=CreatureKind.MOON_STAG)continue;
-                double distance = Math.max(4, kind.height * 1.8);
+                if(Boolean.getBoolean("mythic.clientSmoke.referenceOnly")
+                        && kind!=CreatureKind.WILD_WYVERN && kind!=CreatureKind.HARPY
+                        && kind!=CreatureKind.GRIFFIN && kind!=CreatureKind.MOON_STAG)continue;
+                double distance = Math.max(kind==CreatureKind.WILD_WYVERN
+                        || kind==CreatureKind.MOON_STAG && Boolean.getBoolean("mythic.clientSmoke.referenceOnly")
+                        ? 6 : 4, kind.height * 1.8);
                 double cameraFeetY = -60 + kind.height * .55 - 1.62;
                 server.runCommand("tp @a " + x + " " + cameraFeetY + " " + (z + distance) + " 180 0");
                 context.waitTicks(10);
@@ -98,6 +110,20 @@ public final class CreatureClientSmokeTest implements FabricClientGameTest {
                     }
                 });
                 context.takeScreenshot("creature-" + kind.id + "-idle");
+                if(Boolean.getBoolean("mythic.clientSmoke.measureFrames")) {
+                    context.waitTicks(20);
+                    for(int sample=0;sample<Math.max(1,Math.min(120,Integer.getInteger("mythic.clientSmoke.performanceSamples",5)));sample++) {
+                        context.waitTicks(5);
+                        context.runOnClient(client -> {
+                            require(client.getFramerateLimitTracker().getThrottleReason().name().equals("NONE"),
+                                    "Performance sample must not be AFK/window throttled");
+                            LOG.info("CLIENT_FRAME_SAMPLE {} fps={} frame_ns={} throttle={}",
+                                    kind.id,client.getFps(),client.getFrameTimeNs(),
+                                    client.getFramerateLimitTracker().getThrottleReason());
+                        });
+                    }
+                }
+                if(Boolean.getBoolean("mythic.clientSmoke.performanceOnly"))continue;
                 for (String view : new String[]{"side", "back", "distant"}) {
                     double d = view.equals("distant") ? Math.max(12, kind.height * 4) : distance;
                     double cameraX = x + (view.equals("side") ? d : 0);
@@ -118,13 +144,16 @@ public final class CreatureClientSmokeTest implements FabricClientGameTest {
                 });
                 context.waitTicks(8);
                 context.takeScreenshot("creature-" + kind.id + "-attack");
-                for (String clip : new String[]{"walk", "run", "heavy", "cast", "hurt", "death"}) {
+                String[] probes = kind==CreatureKind.WILD_WYVERN || kind==CreatureKind.HARPY || kind==CreatureKind.GRIFFIN
+                        ? new String[]{"walk", "run", "heavy", "cast", "hurt", "death", "fly", "hover"}
+                        : new String[]{"walk", "run", "heavy", "cast", "hurt", "death"};
+                for (String clip : probes) {
                     context.runOnClient(client -> {
                         for (Entity entity : client.level.entitiesForRendering()) {
                             if (!BuiltInRegistries.ENTITY_TYPE.getKey(entity.getType()).equals(ModEntities.id(kind.id))) continue;
                             GeoEntity geo = (GeoEntity)entity;
                             var action = geo.getAnimatableInstanceCache().getManagerForId(entity.getId()).getAnimationControllers().get("action");
-                            action.triggerableAnim("visual_probe", clip.equals("walk") || clip.equals("run") ? RawAnimation.begin().thenLoop(clip) : RawAnimation.begin().thenPlayAndHold(clip));
+                            action.triggerableAnim("visual_probe", clip.equals("walk") || clip.equals("run") || clip.equals("fly") || clip.equals("hover") ? RawAnimation.begin().thenLoop(clip) : RawAnimation.begin().thenPlayAndHold(clip));
                             action.tryTriggerAnimation("visual_probe");
                         }
                     });
@@ -136,13 +165,17 @@ public final class CreatureClientSmokeTest implements FabricClientGameTest {
                     });
                     context.waitTicks(clip.equals("cast") ? Math.max(8, kind.windup) : clip.equals("death") ? 22 : 8);
                     context.takeScreenshot("creature-" + kind.id + "-probe-" + clip);
+                    if(clip.equals("fly")) for(int phase=1;phase<=3;phase++) {
+                        context.waitTicks(3);
+                        context.takeScreenshot("creature-"+kind.id+"-probe-fly-phase-"+phase);
+                    }
                     context.runOnClient(client -> {
                         for (Entity entity : client.level.entitiesForRendering())
                             if (BuiltInRegistries.ENTITY_TYPE.getKey(entity.getType()).equals(ModEntities.id(kind.id)))
                                 ((GeoEntity)entity).stopTriggeredAnim("action", "visual_probe");
                     });
                 }
-                LOG.info("CLIENT_SMOKE_ENTITY_PASS {} geometry, animation bake, texture, renderer, entity sync, four views, server attack, six animation probes", kind.id);
+                LOG.info("CLIENT_SMOKE_ENTITY_PASS {} geometry, animation bake, texture, renderer, entity sync, four views, server attack, {} animation probes", kind.id, probes.length);
             }
             // Real authoritative death alongside held playback probes: retain vanilla corpse lifetime.
             server.runCommand("summon mythic_realms_creatures:grave_knight 40 -60 48 {NoAI:1b,Tags:[overhaul_death_probe]}");

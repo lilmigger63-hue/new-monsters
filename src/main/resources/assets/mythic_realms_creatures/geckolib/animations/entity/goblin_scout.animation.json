@@ -13,7 +13,7 @@
           ],
           "position": [
             0,
-            "math.sin(query.anim_time * 110) * 0.18",
+            "(math.cos(query.anim_time * 85) - 1) * 0.09",
             0
           ]
         },
@@ -51,6 +51,41 @@
             0,
             "math.sin(query.anim_time * 75) * 2"
           ]
+        },
+        "chest": {
+          "rotation": [
+            "math.sin(query.anim_time * 85 - 30) * 2",
+            "math.sin(query.anim_time * 42.5) * 1.5",
+            0
+          ]
+        },
+        "forearm_left": {
+          "rotation": [
+            "-12 + math.sin(query.anim_time * 85 - 40) * 2",
+            0,
+            0
+          ]
+        },
+        "hand_left": {
+          "rotation": [
+            "math.sin(query.anim_time * 85 - 75) * 0.7",
+            0,
+            2
+          ]
+        },
+        "forearm_right": {
+          "rotation": [
+            "-12 + math.sin(query.anim_time * 85 - 220) * 2",
+            0,
+            0
+          ]
+        },
+        "hand_right": {
+          "rotation": [
+            "math.sin(query.anim_time * 85 - 255) * 0.7",
+            0,
+            -2
+          ]
         }
       }
     },
@@ -63,6 +98,11 @@
             12,
             0,
             "math.sin(query.anim_time * 570) * 3"
+          ],
+          "position": [
+            0,
+            "(math.cos(query.anim_time * 1140) - 1) * 0.12",
+            0
           ]
         },
         "head": {
@@ -88,7 +128,7 @@
         },
         "forearm_left": {
           "rotation": [
-            -12,
+            "-12 + math.sin(query.anim_time * 570 - 40) * 14",
             0,
             0
           ]
@@ -109,7 +149,7 @@
         },
         "forearm_right": {
           "rotation": [
-            -12,
+            "-12 + math.sin(query.anim_time * 570 - 220) * 14",
             0,
             0
           ]
@@ -148,6 +188,27 @@
             0,
             0
           ]
+        },
+        "chest": {
+          "rotation": [
+            0,
+            "math.sin(query.anim_time * 570 - 35) * 7",
+            0
+          ]
+        },
+        "hand_left": {
+          "rotation": [
+            "math.sin(query.anim_time * 570 - 75) * 4.8999999999999995",
+            0,
+            2
+          ]
+        },
+        "hand_right": {
+          "rotation": [
+            "math.sin(query.anim_time * 570 - 255) * 4.8999999999999995",
+            0,
+            -2
+          ]
         }
       }
     },
@@ -160,6 +221,11 @@
             12,
             0,
             "math.sin(query.anim_time * 855.0) * 3"
+          ],
+          "position": [
+            0,
+            "(math.cos(query.anim_time * 1710.0) - 1) * 0.12",
+            0
           ]
         },
         "head": {
@@ -185,7 +251,7 @@
         },
         "forearm_left": {
           "rotation": [
-            -12,
+            "-12 + math.sin(query.anim_time * 855.0 - 40) * 14",
             0,
             0
           ]
@@ -206,7 +272,7 @@
         },
         "forearm_right": {
           "rotation": [
-            -12,
+            "-12 + math.sin(query.anim_time * 855.0 - 220) * 14",
             0,
             0
           ]
@@ -244,6 +310,27 @@
             "math.sin(query.anim_time * 855.0 - 25) * -7",
             0,
             0
+          ]
+        },
+        "chest": {
+          "rotation": [
+            0,
+            "math.sin(query.anim_time * 855.0 - 35) * 7",
+            0
+          ]
+        },
+        "hand_left": {
+          "rotation": [
+            "math.sin(query.anim_time * 855.0 - 75) * 4.8999999999999995",
+            0,
+            2
+          ]
+        },
+        "hand_right": {
+          "rotation": [
+            "math.sin(query.anim_time * 855.0 - 255) * 4.8999999999999995",
+            0,
+            -2
           ]
         }
       }
@@ -451,6 +538,54 @@
               -8,
               0,
               -3
+            ],
+            "0.75": [
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        "chest": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              0
+            ],
+            "0.23": [
+              0,
+              -12,
+              -3
+            ],
+            "0.35": [
+              8,
+              16,
+              4
+            ],
+            "0.75": [
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        "hand_right": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              0
+            ],
+            "0.23": [
+              -12,
+              0,
+              -9
+            ],
+            "0.35": [
+              18,
+              0,
+              6
             ],
             "0.75": [
               0,
@@ -695,6 +830,54 @@
               0
             ]
           }
+        },
+        "chest": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              0
+            ],
+            "0.23": [
+              0,
+              -12,
+              -3
+            ],
+            "0.35": [
+              8,
+              16,
+              4
+            ],
+            "0.75": [
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        "hand_right": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              0
+            ],
+            "0.23": [
+              -12,
+              0,
+              -9
+            ],
+            "0.35": [
+              18,
+              0,
+              6
+            ],
+            "0.75": [
+              0,
+              0,
+              0
+            ]
+          }
         }
       }
     },
@@ -901,6 +1084,54 @@
               -8,
               0,
               -3
+            ],
+            "0.75": [
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        "chest": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              0
+            ],
+            "0.23": [
+              0,
+              -12,
+              -3
+            ],
+            "0.35": [
+              8,
+              16,
+              4
+            ],
+            "0.75": [
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        "hand_right": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              0
+            ],
+            "0.23": [
+              -12,
+              0,
+              -9
+            ],
+            "0.35": [
+              18,
+              0,
+              6
             ],
             "0.75": [
               0,

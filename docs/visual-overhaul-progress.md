@@ -1,31 +1,14 @@
-# Visual overhaul progress
+# Current V2 progress — 1.1.0-rc.3
 
-## Phase 1 — Goblin Scout proof
+All 18 requested model/rig/animation updates are implemented. Latest specification: [V2](visual-overhaul-input/MASTER_PROMPT_V2.md); [per-creature changes, references and evidence](overhaul-v2.md).
 
-Implemented a named rigid `grip_right` socket under `hand_right`, with dagger child attachment and three curled fingers plus opposing thumb around the handle. Shortened hilt remains under the guard, with pommel below the fingers. Rebuilt cranial cap and temple planes using original geometry and existing painted UV tiles. Existing 11 clips, attack impact at 7 ticks, gameplay, hitbox and palette preserved. Model: 20 bones / 67 cubes. Exported matching native Blockbench project.
+- Four independent original asset batches integrated, existing IDs/abilities/mounts retained.
+- All five requested weapon attachments verified structurally; staff and sword no longer animate separately from palms. Minotaur support hand releases during attack and rejoins on recovery.
+- Supplied images used for Wyvern dinosaur head + dragon body, Harpy feather wings and Megaloceros Stag antlers.
+- Crystal Spider/Flame Imp unchanged. All 18 runtime model/animation hashes differ from uploaded rc.2 baseline; texture atlases reused as original painted materials.
+- Structural review fixed buried Knight carry sword. Actual-game review fixed Harpy death burial and Griffin resting wing fold. Fresh target captures confirmed corrections.
+- 12 asset checks passed; base and optional Better Combat builds/server runs passed 40 game tests each. Five JUnit checks passed.
+- Base client presented all 20 species; corrective Better Combat client presented four targets and baked all 20 resource/animation sets. 237 combined latest screenshots, 18 before/after comparison images.
+- Performance: matched unthrottled software runs captured 100 samples each; longer 40-sample Harpy repeat showed no reproduced regression. Hardware FPS and all continuous transitions are not certified.
 
-Texture and animation files are unchanged: this is a grip/head proof, not a claim of a completed new species redesign. Existing arm/wrist animation drives the entire attachment without independent socket drift.
-
-## Remaining
-
-- Scout front/side/back/attack screenshots inspected: no visible new detached dagger or missing geometry. Full-cycle gait, foot plants and final art acceptance remain open.
-- Phase 2: remaining Group A; particularly two-handed Minotaur axe and weight-bearing foot plants.
-- Phase 3: seven organic species; assess ground contact and flight transitions against supplied requirements.
-- Phase 4: six distinct adult female species and hair/cloth motion.
-- Phase 5: full variants/optional Better Combat regression, per-species acceptance grid, fresh release artifact.
-- All 18 retain their earlier rc.2 assets except this Scout proof. Crystal Spider and Flame Imp remain untouched.
-
-## Reference limitation
-
-Full uploaded brief and metadata preserved in `visual-overhaul-input/`. Source Forge JAR not supplied; linked wiki blocked by proxy HTTP 403. Inventory used only for technical context, never treated as inspected visual evidence. No copied third-party assets or new dependency.
-
-## Checks
-
-- `python3 scripts/test-assets.py`: 2 PASS.
-- `python3 scripts/test-overhaul-assets.py`: 5 PASS, including rigid grip hierarchy protection.
-- Repeat Group A export: 347 resources/native files byte-identical.
-- `python3 scripts/cloud-gradle.py --no-configuration-cache build runGametest`: PASS; 5 JUnit tests and 40 required server game tests.
-- Before/after actual-game comparison: [Scout comparison](visual-overhaul-scout-comparison.jpg).
-- Base client smoke: PASS, all 20 entities, 222 fresh screenshots, server death/removal and actual Griffin mount flight. Evidence: `/workspace/validation/visual-overhaul/client-base/`.
-- Better Combat was not rerun for this checkpoint; earlier rc.2 evidence does not certify this change.
-- Static views do not establish full-cycle gait or transition quality. No final release artifact created for this partial checkpoint.
+Final artifact is built from these source/assets and packaged under `releases/1.1.0-rc.3/`. No further species implementation is intentionally deferred. Art direction remains subject to user review; the inaccessible external websites were not falsely claimed as inspected.

@@ -125,6 +125,41 @@ def harpy():
     m.box('body',[-3.3,14,-2.2],[6.6,1.1,4.4],10)
     return m
 
+def reference_harpy_wings(m):
+    """Original wing-only bird reference: overlapping tapered flight feathers.
+
+    Broad shoulder coverts blend into layered secondaries and long, individually
+    fanned three-stage primaries. The arm is the wing, with no extra human arms.
+    """
+    for side,n in ((-1,'right'),(1,'left')):
+        wing='wing_'+n;tip='wingtip_'+n
+        m.by_name[wing]['cubes']=m.by_name[wing]['cubes'][:1]
+        m.by_name[tip]['cubes']=m.by_name[tip]['cubes'][:1]
+        m.by_name[wing]['rotation']=[0,0,0]
+        m.by_name[tip]['rotation']=[0,0,0]
+        # Broad overlapping shoulder coverts avoid a skeletal arm attachment.
+        for j in range(5):
+            x=side*(3.3+j*.75)
+            m.box(wing,[x-1.15,15.3-j*.38,-.3],[2.3,5.8-j*.3,1.2],2 if j%2 else 0,[0,0,side*(12+j*6)])
+            m.box(wing,[x-.95,17.7-j*.36,-1],[1.9,3,.75],12 if j%2 else 2,[0,0,side*(10+j*5)])
+        for j in range(4):
+            x=side*(5.5+j*.8);y=15-j*.35;length=6.6+j*.65
+            pivot=[x,y,0]
+            m.box(tip,[x-1,y-length,.2],[2,length,1],2,[0,0,side*(18+j*8)],pivot)
+            m.box(tip,[x-.65,y-length-1.2,.3],[1.3,1.8,.8],6,[0,0,side*(18+j*8)],pivot)
+        # Long primaries fan outward, ending in stepped tapered tips rather than
+        # a rectangular plate edge; each remains a substantial visible feather.
+        for j in range(7):
+            x=side*(7.1+j*.75);y=14.5-j*.26;length=9.2+(3-abs(3-j))*.8
+            pivot=[x,y,0];angle=side*(30+j*6)
+            mat=6 if j%3==0 else 2
+            m.box(tip,[x-1,y-length*.64,.3],[2,length*.64,1],mat,[0,0,angle],pivot)
+            m.box(tip,[x-.73,y-length*.9,.38],[1.46,length*.32,.84],mat,[0,0,angle],pivot)
+            m.box(tip,[x-.4,y-length-1,.45],[.8,length*.17+.5,.7],2 if j%3==0 else 6,[0,0,angle],pivot)
+            m.box(tip,[x-.9,y-3.1,-.5],[1.8,3.6,.65],12 if j%2 else 2,[0,0,angle],pivot)
+    return m
+
+
 def demon():
     m=Model('demon_sorceress');bone(m,'body','root',[0,17,0],[-2.6,13,-1.8],[5.2,10,3.6],13)
     m.box('body',[-3,18,-2],[6,4,4],0)
@@ -339,10 +374,195 @@ def motion(m):
     return a
 
 
+def full_hair(m, top, width, depth, bottom, material):
+    """A continuous scalp cap with overlapping rear and temple locks."""
+    m.box('head',[-width/2,top-1.25,-depth/2],[width,1.65,depth],material)
+    m.box('head',[-width/2+.45,top+.35,-depth/2+.35],[width-.9,.55,depth-.7],material)
+    for i in range(7):
+        x=(i-3)*width/7; y=bottom+(abs(i-3)%3)*.65
+        n='v2_hair_'+str(i)
+        bone(m,n,'head',[x,top-.35,depth/2-1],[x-width/12,y,depth/2-1.35],[width/6+.3,top-y,1.8],material,[5,0,(i-3)*2])
+    for side in (-1,1):
+        n='v2_hair_temple_'+str(side)
+        bone(m,n,'head',[side*(width/2-.5),top-.5,-.8],[side*(width/2-.5)-.65,bottom+1,-1.9],[1.3,top-bottom-1,1.7],material,[0,0,-side*5])
+        m.box('head',[side*.4-.95,top-2.5,-depth/2-.15],[1.9,2,1],material,[0,0,-side*16])
+
+
+def v2_sculpt(m):
+    """V2 adult silhouettes, continuous materials and species-specific anatomy."""
+    if m.name=='frost_elemental':
+        # Preserve the rig but replace the separated golem blocks with a continuous
+        # faceted feminine ice body; the rune core is embedded in the sternum.
+        for n in ('body','torso_shard_0','torso_shard_1','torso_shard_2','head'):
+            m.by_name[n]['cubes']=[]
+        for o,s,mat in [([-3.5,15,-2.3],[7,5,4.6],0),([-2.6,19,-2],[5.2,5.5,4],2),([-4.2,24,-2.3],[8.4,5,4.6],0),([-2.4,28,-1.8],[4.8,3,3.6],2)]:
+            m.box('body',o,s,mat)
+        for side,n in ((-1,'right'),(1,'left')):
+            m.box('body',[side*1.8-1.9,24,-3.3],[3.8,3.5,2.7],2,[0,side*8,-side*8])
+            m.box('body',[side*2.5-1.5,15,-2.6],[3,4,5.2],2,[0,0,-side*10])
+            # Connected shoulders and slender crystalline forearms.
+            m.by_name['arm_'+n]['pivot']=[side*4,27.5,0]
+            m.by_name['arm_'+n]['cubes']=[]
+            m.box('arm_'+n,[side*4.6-1.6,21.5,-1.7],[3.2,7,3.4],0)
+            m.box('arm_'+n,[side*4.6-1.9,25.5,-2],[3.8,3.5,4],2,[0,0,side*12])
+            m.by_name['hand_'+n]['pivot']=[side*4.8,21.5,0]
+            m.by_name['hand_'+n]['cubes']=[]
+            m.box('hand_'+n,[side*4.8-1.3,16,-1.6],[2.6,5.8,3.2],2)
+            for j in range(2):m.box('hand_'+n,[side*4.8-1+j*1.05,14.4,-1.5],[.9,2.4,2],12,[0,0,side*8])
+        m.by_name['core']['cubes']=[]
+        m.box('core',[-.85,25.8,-3.6],[1.7,1.7,.7],11,[0,0,45])
+        m.box('head',[-2.6,30,-2.3],[5.2,5.4,4.6],0)
+        m.box('head',[-1.9,29.6,-2],[3.8,1.2,3.8],2)
+        # An inset single angular aurora slit and split ice mask, no human eyes/nose/mouth.
+        m.box('head',[-2.3,32,-2.5],[4.6,1.2,.5],5)
+        for side in (-1,1):
+            m.box('head',[side*1.05-.9,32.25,-2.8],[1.8,.35,.4],11,[0,0,-side*18])
+            m.box('head',[side*1.8-.55,30.3,-2.65],[1.1,2.4,.6],2,[0,0,-side*20])
+        full_hair(m,35.8,6.1,5.4,23,12)
+    elif m.name=='moon_stag':
+        # Do not change the seat, hips, hocks, hooves or numerical gait solver.
+        m.box('body',[-4.25,12.8,-6.4],[8.5,5.2,6.3],0)
+        m.box('body',[-3.8,12.4,2.3],[7.6,5.2,5.6],2)
+        m.box('neck',[-2.9,16.3,-7.3],[5.8,7,4.5],0,[-12,0,0])
+        m.box('neck',[-2.1,15.7,-8.2],[4.2,5.3,2.2],6,[-18,0,0])
+        for side,n in ((-1,'right'),(1,'left')):
+            ant='antler_'+n;m.by_name[ant]['cubes']=[]
+            # User-supplied Megaloceros image: low sweeping lateral beams and
+            # broad flattened paddles, with long tines around the distal edge.
+            for j in range(5):
+                x=side*(3+j*3.4);y=27.2+j*.42
+                m.box(ant,[x-2.5,y,-5.7-j*.15],[5,1.9,1.9],3,[0,0,-side*6])
+            for j in range(4):
+                x=side*(14+j*4.8);y=28.3+j*.35
+                m.box(ant,[x-3.6,y,-6.3-j*.3],[7.2,4.5-j*.35,1.6],3,[0,0,-side*5])
+                # Outer-edge tines curve up from the continuous palmate web.
+                m.box(ant,[x-.7,y+3.2,-6.25-j*.3],[1.4,4.4-j*.3,1.3],6,[0,0,-side*(14+j*8)])
+                m.box(ant,[x+side*1.15-.45,y+6.2-j*.3,-6.2-j*.3],[.9,2.4,1],6,[0,0,side*14])
+                if j%2==0:
+                    m.box(ant,[x-.85,y+.9,-6.7-j*.3],[1.7,2.6,2],11,[0,0,-side*14])
+                    m.box(ant,[x-.5,y+3.1,-6.5-j*.3],[1,1.5,1.5],4,[0,0,-side*14])
+            m.box(ant,[side*5-.6,28,-7.6],[1.2,3.8,1.3],6,[-35,0,-side*45])
+    else:
+        if m.name=='slime_maiden':
+            # Waist is narrow, upper gel lobes form an opaque-looking modest bodice
+            # in the same translucent material as the rest of the continuous body.
+            m.by_name['gel_3']['cubes'][0].update(origin=[-2.7,9,-2.6],size=[5.4,5,5.2])
+            m.by_name['gel_4']['cubes'][0].update(origin=[-3.4,13,-2.6],size=[6.8,4.7,5.2])
+            for side in (-1,1):m.box('gel_4',[side*1.6-1.65,13.7,-3.4],[3.3,2.9,2.5],2,[0,side*7,-side*7])
+            full_hair(m,23.7,6.7,5.9,12.2,9)
+        elif m.name=='harpy':
+            # Adult, fully clothed torso with defined waist and feather bodice.
+            m.by_name['body']['cubes']=[]
+            for o,s,mat in [([-2.6,13,-2],[5.2,3.5,4],13),([-2.1,16,-1.8],[4.2,3.2,3.6],10),([-3,19,-2],[6,3,4],13)]:m.box('body',o,s,mat)
+            for side in (-1,1):m.box('body',[side*1.4-1.5,18.8,-2.8],[3,2.8,2.1],0,[0,side*8,-side*7])
+            m.box('body',[-2.5,20.7,-2.5],[5,1,.7],6)
+            # Retain crest bones as embedded rear locks rather than erect spikes.
+            for i in range(5):
+                m.by_name['crest_'+str(i)]['rotation']=[6,0,(i-2)*3]
+                m.by_name['crest_'+str(i)]['cubes']=[]
+                m.box('crest_'+str(i),[-2.5+i,18.5,1.8],[1.2,8.4,1.2],9)
+            full_hair(m,27.8,6.1,5.7,17,9)
+        else:
+            m.by_name['body']['cubes']=[]
+            for o,s,mat in [([-2.8,12.8,-1.9],[5.6,3.6,3.8],13),([-2,16,-1.65],[4,3.6,3.3],0),([-3,19.2,-1.9],[6,3.8,3.8],13)]:m.box('body',o,s,mat)
+            for side in (-1,1):
+                m.box('body',[side*1.35-1.45,19,-2.8],[2.9,3,2],0,[0,side*9,-side*8])
+                m.box('body',[side*1.8-.4,16,-2],[.8,5.2,.45],3,[0,0,-side*8])
+            m.box('body',[-2.4,14.6,-2.05],[4.8,.8,4.1],3)
+            m.box('body',[-.6,14.7,-2.6],[1.2,1.4,.65],12,[0,0,45])
+            full_hair(m,28.6,5.9,5.3,16,9)
+    return m
+
+
+def grounded_harpy_death(m):
+    """Support the rolling corpse on its complete rotated silhouette.
+
+    Model coordinates use Y up. Apply cube-local rotation, then every rest
+    bone from child to root; the body has an authored -9 degree X tilt.
+    Sample tightly so linear channel interpolation keeps the floor envelope.
+    """
+    def rotate(point, pivot, angles):
+        x,y,z=[point[i]-pivot[i] for i in range(3)]
+        for axis,angle in enumerate(angles):
+            c=math.cos(math.radians(angle));s=math.sin(math.radians(angle))
+            if axis==0:y,z=y*c-z*s,y*s+z*c
+            elif axis==1:x,z=x*c+z*s,-x*s+z*c
+            else:x,y=x*c-y*s,x*s+y*c
+        return [x+pivot[0],y+pivot[1],z+pivot[2]]
+    folded={}
+    for side,n in ((-1,'right'),(1,'left')):
+        folded['wing_'+n]=[4,side*8,-side*54]
+        folded['wingtip_'+n]=[0,-side*8,side*12]
+    points=[]
+    for b in m.bones:
+        for cube in b.get('cubes',[]):
+            for bits in range(8):
+                point=[cube['origin'][a]+(cube['size'][a] if bits&(1<<a) else 0) for a in range(3)]
+                point=rotate(point,cube.get('pivot',b['pivot']),cube.get('rotation',[0,0,0]))
+                cursor=b
+                while cursor['name']!='root':
+                    point=rotate(point,cursor['pivot'],folded.get(cursor['name'],cursor.get('rotation',[0,0,0])))
+                    cursor=m.by_name[cursor['parent']]
+                points.append(point)
+    frames={};L=.65
+    for i in range(129):
+        u=i/128
+        # Same two-stage angular collapse as the original normalized clip.
+        angle=136*u if u<=.5 else 68+40*(u-.5)
+        minimum=min(rotate(point,[0,0,0],[0,0,angle])[1] for point in points)
+        # 0.08px tolerance covers the chord between the densely sampled supports.
+        frames[str(round(L*u,6))]=[0,max(0,.08-minimum),0]
+    bones={n:{'rotation':{'0':angles}} for n,angles in folded.items()}
+    bones['root']={'rotation':{'0':[0,0,0],'.325':[0,0,68],'.65':[0,0,88]},'position':frames}
+    return clip(L,bones)
+
+
+def v2_motion(m, animations):
+    """Keep combat landmarks and clip lengths; add overlapping secondary action."""
+    t=SIZES[m.name][2]
+    for state,a in animations.items():
+        L=a['animation_length'];b=a['bones']
+        looping=a.get('loop',False)
+        for i,n in enumerate(n for n in m.by_name if n.startswith('v2_hair_')):
+            if looping:
+                b[n]={'rotation':{str(round(L*j/8,6)):[3*math.sin(math.tau*j/8-i*.3),2*math.sin(math.tau*j/8-i*.3),1.5*math.sin(math.tau*j/8-i*.3)] for j in range(9)}}
+            elif state in ('attack','heavy','cast','swoop'):
+                b[n]={'rotation':keys(t,(8,0,2),(-7,0,-2),recovery=min(.3,L-t))}
+        if m.name=='moon_stag':
+            # Stable antlers remain wholly rigid to head; no oscillating crystals.
+            if state in ('walk','run','ride'):
+                b['neck']={'rotation':{'0':[-1.2,0,0],str(L/2):[1.2,0,0],str(L):[-1.2,0,0]}}
+                b['head']={'rotation':{'0':[1.2,0,0],str(L/2):[-1.2,0,0],str(L):[1.2,0,0]}}
+            elif state=='idle':b['neck']={'rotation':{'0':[-1,0,-.5],'1':[1,0,.5],'2':[-1,0,-.5]}}
+        if m.name=='harpy':
+            for side,n in ((-1,'right'),(1,'left')):
+                if state in ('idle','walk','run'):
+                    b['wing_'+n]={'rotation':{'0':[4,side*8,-side*54],str(L/2):[6,side*10,-side*51],str(L):[4,side*8,-side*54]}}
+                    b['wingtip_'+n]={'rotation':{'0':[0,-side*8,side*12],str(L/2):[3,-side*10,side*15],str(L):[0,-side*8,side*12]}}
+                elif state in ('fly','hover'):
+                    b['wingtip_'+n]={'rotation':{str(round(L*j/8,6)):[8*math.sin(math.tau*j/8-.6),side*8,side*32*math.cos(math.tau*j/8-.6)] for j in range(9)}}
+                elif state in ('attack','heavy','swoop'):
+                    b['wingtip_'+n]={'rotation':keys(t,(0,side*15,side*45),(12,-side*12,-side*32))}
+        if m.name in ('frost_elemental','demon_sorceress') and state in ('cast','attack','heavy'):
+            for side,n in ((-1,'right'),(1,'left')):
+                b['hand_'+n]={'rotation':keys(t,(-15,side*18,side*8),(-35,-side*22,-side*12))}
+            b['body']['rotation']=keys(t,(-7,-8,-3),(5,9,3))
+        if m.name=='slime_maiden' and state in ('walk','run','cast','attack','heavy'):
+            for i in range(5):
+                n='gel_'+str(i)
+                if looping:b[n]={'scale':{str(round(L*j/8,6)):[1+.035*math.sin(math.tau*j/8-i*.5),1-.05*math.sin(math.tau*j/8-i*.5),1+.035*math.sin(math.tau*j/8-i*.5)] for j in range(9)}}
+                else:b[n]={'scale':keys(t,(1.04,.94,1.04),(.96,1.06,.96),final=(1,1,1),start=(1,1,1))}
+    if m.name=='harpy':animations['death']=grounded_harpy_death(m)
+    return animations
+
+
 def main():
     asset_pipeline.material_atlas=refined_atlas
     for maker in (frost,stag,slime,harpy,demon):
-        m=refine(maker());p=PALETTES[m.name];w,h,_=SIZES[m.name]
+        m=refine(maker())
+        if m.name=='harpy': m=reference_harpy_wings(m)
+        m=v2_sculpt(m)
+        p=PALETTES[m.name];w,h,_=SIZES[m.name]
         material=['ice','stone','ice','bone','glow','stone','bone','ice','ice','stone','stone','rune','ice','stone','stone','ice'] if m.name=='frost_elemental' else (['slime']*16 if m.name=='slime_maiden' else ['fur','fur','fur','bone','glow','stone','bone','fur','fur','fur','leather','rune','rune','cloth','stone','bone'] if m.name=='moon_stag' else ['feather','feather','feather','bone','glow','bone','bone','feather','skin','feather','leather','rune','feather','cloth','stone','bone'] if m.name=='harpy' else ['cloth','bone','cloth','metal','glow','stone','bone','cloth','skin','fur','leather','rune','rune','cloth','metal','bone'])
         if m.name=='demon_sorceress':material[9]='hair'
         if m.name=='slime_maiden':
@@ -350,6 +570,6 @@ def main():
         variants=None
         if m.name=='moon_stag':
             v=list(p);v[10]='806444';v[13]='3d6579';variants={'_tamed':v}
-        write_creature(m,p,material,motion(m),w,h,glow=(4,11,12) if m.name=='demon_sorceress' else (4,11),variants=variants,translucent=m.name=='slime_maiden')
+        write_creature(m,p,material,v2_motion(m,motion(m)),w,h,glow=(4,11,12) if m.name=='demon_sorceress' else (4,11),variants=variants,translucent=m.name=='slime_maiden')
 
 if __name__=='__main__':main()
