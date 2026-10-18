@@ -1,0 +1,29 @@
+// Isolated graphical test mod; never bundled in the release JAR.
+sourceSets {
+    clientGametest {
+        compileClasspath += sourceSets.main.output + sourceSets.client.output + sourceSets.client.compileClasspath
+        runtimeClasspath += sourceSets.main.output + sourceSets.client.output + sourceSets.client.runtimeClasspath
+    }
+}
+loom {
+    mods {
+        mythic_realms_client_smoke { sourceSet sourceSets.clientGametest }
+    }
+    runs {
+        clientSmoke {
+            client()
+            name 'Creature graphical smoke test'
+            source sourceSets.clientGametest
+            vmArg '-Xmx2G'
+            vmArg '-XX:ActiveProcessorCount=4'
+            vmArg '-Dfabric.client.gametest'
+            vmArg '-Dfabric.client.gametest.modid=mythic_realms_client_smoke'
+            // Fabric 0.138.4's synchronized startup stalls during integrated spawn preparation.
+            // Assertions still wait for actual client entity/renderer state with normal packets.
+            if (!project.hasProperty('clientSmokeSynchronizedNetwork')) {
+                vmArg '-Dfabric.client.gametest.disableNetworkSynchronizer'
+            }
+            runDir 'build/client-smoke'
+        }
+    }
+}

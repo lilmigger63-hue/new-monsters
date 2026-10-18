@@ -22,7 +22,7 @@ public final class GoblinShamanEntity extends MythicHostileEntity {
         if (!wounded.isEmpty()) {
             var ally = wounded.getFirst(); ally.heal(4);
             triggerAnim("action", "cast");
-            level.sendParticles(ParticleTypes.HAPPY_VILLAGER, ally.getX(), ally.getY() + 1, ally.getZ(), 6, .3, .4, .3, .02);
+            com.mythicrealms.creatures.magic.SpellEffects.particles(level,ParticleTypes.HAPPY_VILLAGER,ally.getX(),ally.getY()+1,ally.getZ(),6,.3);
             playSound(SoundEvents.EVOKER_CAST_SPELL, .6f, 1.4f);
         }
     }

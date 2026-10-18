@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "id": "mythic_realms_client_smoke",
+  "version": "1.0.0",
+  "name": "Mythic Realms graphical smoke tests",
+  "environment": "client",
+  "entrypoints": {
+    "fabric-client-gametest": ["com.mythicrealms.creatures.clienttest.CreatureClientSmokeTest"]
+  },
+  "depends": {"mythic_realms_creatures": "*", "fabric-client-gametest-api-v1": "*"}
+}

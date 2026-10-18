@@ -3,7 +3,7 @@
   "id": "mythic_realms_creatures",
   "version": "${version}",
   "name": "Mythic Realms: Creatures",
-  "description": "Early alpha featuring Goblin Scouts, Goblin Shamans, Orc Warriors, Minotaurs and Stone Trolls.",
+  "description": "Twenty fantasy creatures, four exploration structures, magical crafting and owner-persistent flying and ground mounts.",
   "license": "CC0-1.0",
   "environment": "*",
   "entrypoints": {

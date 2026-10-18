@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "pattern": [
+    "SLS",
+    "LPL",
+    "I I"
+  ],
+  "key": {
+    "S": "mythic_realms_creatures:wyvern_scale",
+    "L": "minecraft:leather",
+    "P": "mythic_realms_creatures:slime_pearl",
+    "I": "minecraft:iron_ingot"
+  },
+  "result": {
+    "id": "mythic_realms_creatures:wyvern_harness",
+    "count": 1
+  }
+}

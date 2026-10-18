@@ -1,43 +1,42 @@
-# Persistent progress — 2026-10-17
+# Release progress — 2026-10-18
 
-## Current milestone
+Version **1.0.0** completes the twenty-creature content specification for Minecraft **1.21.10**, Fabric and Java 21. This continues the existing mod and preserves its original ten species.
 
-Early five-creature alpha, Minecraft 1.21.10 / Fabric / Java 21. Not the complete 20-creature mod.
+## Implemented content
 
-## Implemented
+- All twenty species have registered attributes, distinct articulated GeckoLib geometry, 128×128 pixel textures, English names, spawn eggs, loaded survival loot and biome spawn entries. All declared animation clips bake in the actual client. Running, hurt, casting, death, flight and mount states are supplied where applicable.
+- Groups C/D add petrifying Basilisk gaze; wall-climbing Crystal Spider with crystal bolts and breakable temporary webs; translucent Wraith curses; guarded Grave Knight combos; flying fire Imps; frost novas and ice spikes; tameable Moon Stag with nighttime owner healing; neutral bouncing Slime Maiden; swooping Harpy; and teleporting Demon Sorceress.
+- Four owner-persistent rideable species share taming, healing, follow/stay, saddles, owner protection and server-controlled movement. Griffin and rare Wyvern flight uses vanilla player-input packets with bounded acceleration/speed, loaded-chunk and ceiling checks. Moon Stag and Dire Wolf use ground riding.
+- Four real jigsaw structures and structure sets contain persistent inhabitants and usable chest loot: Goblin Watchtower, Forest Shrine, Grave Crypt and Wyvern Nest. Placement follows terrain height and village exclusion. Configuration can disable individual structure sets.
+- Twenty-six items and fourteen recipes provide creature materials, taming foods, Griffin saddle, Wyvern harness, four weapons and a relic. Frostbound Staff has a server cooldown, durability cost and resistance spell. Optional Better Combat presets resolve to real weapon categories and attack animations.
+- Configuration covers per-species spawning, groups, frequency, dimension/biome restrictions, per-species/global difficulty, rare Wyverns, taming, ground/flight speed, particle intensity, structures and pathfinding update intervals. Older configurations preserve settings and acquire missing defaults in memory.
+- Asset generators reproduce resources; C/D also include ten native editable Blockbench projects. Magical creatures use emissive layers; Wraith and Slime Maiden use translucent rendering. Vanilla sounds are reused.
 
-- Working Gradle build, source and distributable JARs. Stable Loom 1.14.10 resolves on Java 21; the initial template's newer Loom snapshot required Java 25 and was replaced.
-- Fabric Loader 0.19.5, Fabric API 0.138.4+1.21.10, GeckoLib 5.3-alpha-3 (verified published Modrinth version 7qjQQSWv).
-- Shared server attack timeline, AI pursuit/cooldowns, ranged retreat, animation triggers and bounded-lifetime projectiles.
-- Five distinct entities: Goblin Scout (flanking), Goblin Shaman (poison projectile and ally healing), Orc Warrior (heavy swings and directional shield), Minotaur (charge/sweep), Stone Troll (boulder/smash).
-- Per-species block geometry, pixel atlas, animations, spawn eggs, English names, loot tables and natural biome spawning.
-- Validated JSON configuration for difficulty and per-species spawn settings; data-pack biome tags.
-- Client render registration isolated from common/server code.
+## Executed verification
 
-## Evidence
+- **34 dedicated-server GameTests pass without Better Combat and with Better Combat 3.0.0**: 33 custom tests plus Minecraft's built-in test. Reports are in [test-results](test-results/).
+- Server checks cover all twenty registrations/attributes/eggs/loaded loot, natural biome spawn entries and rejected dimensions, delayed combat, distinct magic effects, temporary webs, frost reach, combos, guardian healing, taming, owner/state reload, owner-safe targeting, normal-tick rider inputs and bounded flight, all four generated jigsaws/inhabitants/chests, material sources, real crafting, staff cooldown/durability and live Better Combat presets.
+- **Two graphical client runs pass**, with and without Better Combat, under Xvfb/Mesa llvmpipe OpenGL 4.5. Each loads all twenty models and every declared animation, verifies synchronized entities and Geo renderers, captures idle/attack frames, and uses real local-player keyboard packets to move and ascend on the authoritative Griffin. Selected screenshots were visually inspected. Forty-one screenshots per run are retained outside build output under `/workspace/validation/client-base` and `/workspace/validation/client-better-combat`.
+- **Two resource tests pass** across twenty species: distinct nonempty geometry, bone/state references, PNG size, alternate mount textures, loot, eggs and English names.
+- Every retained dependency JAR was rechecked against the published Modrinth SHA-512 and Minecraft 1.21.10 compatibility metadata. Exact versions/hashes are recorded in [the dependency report](test-results/1.0.0-dependencies.json).
+- **`python3 scripts/cloud-gradle.py clean build` passes**, with all eleven tasks executed. Five JUnit tests pass: one attack-timeline test and four bounded flight-motion tests. The final remapped JAR is Java 21 bytecode, version 1.0.0; all source resources match the packaged bytes, and isolated test mods are excluded. It contains twenty models/animation files, fourteen recipes, four NBT structures and four optional weapon presets.
 
-- `python3 scripts/cloud-gradle.py build`: passed, including JUnit combat test (14 assertions).
-- `python3 scripts/cloud-gradle.py runGametest`: passed, 5 custom tests plus Minecraft's built-in test. Covers all five species' server registration, health, eggs and loaded loot; scout windup/impact; shaman projectile damage.
-- `python3 scripts/test-assets.py`: passed for five distinct nonempty models, linked animation bones/states, PNG dimensions, eggs and loot resources.
-- GameTests load the dedicated server and world, apply biome modifications, and shut down automatically. An external Minecraft-services public-key request failed due to direct DNS; local GameTests still completed successfully. This does not verify online player authentication.
+## Defects resolved during integration
 
-## Incomplete / unverified
+- Minecraft 1.21.10 emits no jigsaw pieces at depth zero. Structure definitions now use depth one, and the placement test reads the depth from each actual decoded structure definition before asserting mobs and loot.
+- Frost nova selection now matches its affected region; targets outside it receive ice projectiles. Temporary webs are pickable and break on damage.
+- Grave Knight heavy animation starts during its windup, before the finisher hits. Registered animation names resolve for the relevant species, and damage reactions avoid interrupting active windups.
+- Ranged enemies retain their retreat navigation during recovery. Magical particles share a configurable, bounded, distance-aware emission helper.
+- Fabric's client test network synchronizer stalled initial world loading. The isolated harness uses its documented asynchronous-network option and explicitly waits for actual synchronized client entities. The gameplay mod is unchanged by this test setting.
+- Loom development runs omit embedded optional-mod libraries. The Better Combat development flag now loads the exact nested libraries from its published distributions. Ordinary Fabric installations load these automatically; no optional library is bundled in the mod.
+- Durability/Peaceful tests now use a genuine Survival mock where required; the deprecated server mock reports Creative mode even after changing its game mode.
 
-- Client code compiled, but visual model/animation quality has not been observed in a graphical game client.
-- Real-player multiplayer, optional Better Combat, Terralith and Tectonic are not tested.
-- 15 creatures remain: Ancient Treant, Forest Dryad, Griffin, Dire Wolf, Wild Wyvern, Cave Basilisk, Crystal Spider, Shadow Wraith, Grave Knight, Flame Imp, Frost Elemental, Moon Stag, Slime Maiden, Harpy, Demon Sorceress.
-- Mount/taming/flight, structures, progression items, expanded configuration, custom audio and editable Blockbench projects remain planned.
-- First-group gameplay needs deeper tests of shield direction, charge/sweep, boulder/smash, shaman healing, natural spawning density and reload persistence.
+## Validation limits
 
-## Next execution
+Dedicated-server gameplay tests and an integrated real client are verified. External multi-player sessions, network latency/packet loss, long survival balance/performance sessions and Terralith/Tectonic installations were not exercised. Biome tags and terrain-relative structures support those compatibility goals; this is not a claim of tested terrain-mod integration. Audio hardware was unavailable in the headless client, and offline Mojang profile lookups/X11 cursor warnings were logged without failing gameplay/render tests.
 
-1. Review the current alpha visually in Minecraft 1.21.10 and expand first-group behavioral GameTests.
-2. Continue core systems and Groups B–D from REQUIREMENTS.md without restarting the project or counting names/assets as complete creatures.
-3. Implement mounts, structures, progression and the complete compatibility test matrix.
+## History
 
-Use the current isolated checkout. Original user authorization: implement inline, maintain progress, commit meaningful groups. Do not claim all 20 creatures are done.
-
-## Review and reusable setup
-- Independent review found Minotaur/Troll retaliation excluded non-player targets. Two GameTests failed before the fix and passed after including valid primary targets in area attacks.
-- Model death animation now supplies the death roll without a second renderer roll.
-- Updated install_script and start_skill saved to the cloud configuration draft. Review/save and publish the environment to retain these updates for later tasks.
+- Group A: first five-creature alpha, commit `270a0d3`.
+- Group B: ten-creature alpha with guardians and safe mounts, commit `45ebd3e`.
+- Version 1.0.0 completes Groups C/D, structures, progression, configuration and the client/optional-combat validation above.

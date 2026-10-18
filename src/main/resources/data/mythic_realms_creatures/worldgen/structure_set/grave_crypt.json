@@ -1,0 +1,24 @@
+{
+  "fabric:load_conditions": [
+    {
+      "condition": "mythic_realms_creatures:structure_enabled",
+      "structure": "grave_crypt"
+    }
+  ],
+  "structures": [
+    {
+      "structure": "mythic_realms_creatures:grave_crypt",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+    "spacing": 36,
+    "separation": 12,
+    "salt": 9037143,
+    "exclusion_zone": {
+      "other_set": "minecraft:villages",
+      "chunk_count": 6
+    }
+  }
+}

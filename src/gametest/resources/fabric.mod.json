@@ -5,7 +5,16 @@
   "name": "Mythic Realms Server Tests",
   "environment": "server",
   "entrypoints": {
-    "fabric-gametest": ["com.mythicrealms.creatures.CreatureGameTests"]
+    "fabric-gametest": [
+      "com.mythicrealms.creatures.CreatureGameTests",
+      "com.mythicrealms.creatures.GroupBGameTests",
+      "com.mythicrealms.creatures.CompletionGameTests",
+      "com.mythicrealms.creatures.StructureGameTests",
+      "com.mythicrealms.creatures.ProgressionGameTests"
+    ]
   },
-  "depends": {"mythic_realms_creatures": "*", "fabric-gametest-api-v1": "*"}
+  "depends": {
+    "mythic_realms_creatures": "*",
+    "fabric-gametest-api-v1": "*"
+  }
 }

@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "pattern": [
+    "SS ",
+    "SE ",
+    " I "
+  ],
+  "key": {
+    "S": "mythic_realms_creatures:orc_steel",
+    "E": "mythic_realms_creatures:infernal_ember",
+    "I": "minecraft:stick"
+  },
+  "result": {
+    "id": "mythic_realms_creatures:orc_war_axe",
+    "count": 1
+  }
+}

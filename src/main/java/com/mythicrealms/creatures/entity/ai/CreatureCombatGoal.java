@@ -23,11 +23,14 @@ public final class CreatureCombatGoal extends Goal {
         if (mob.attack.isWindingUp()) { mob.getNavigation().stop(); return; }
         double distance = mob.distanceToSqr(target);
         if (mob.reposition(target)) return;
-        if (mob.ranged() && distance < 16 && mob.tickCount % 10 == 0) {
-            Vec3 retreat = mob.position().subtract(target.position()).normalize().scale(4).add(mob.position());
-            mob.getNavigation().moveTo(retreat.x, retreat.y, retreat.z, 1.1);
+        if (mob.ranged() && distance < 16) {
+            if(mob.tickCount % com.mythicrealms.creatures.config.CreatureConfig.INSTANCE.aiUpdateInterval == 0) {
+                Vec3 retreat = mob.position().subtract(target.position()).normalize().scale(4).add(mob.position());
+                mob.getNavigation().moveTo(retreat.x, retreat.y, retreat.z, 1.1);
+            }
+            if(mob.getSensing().hasLineOfSight(target))mob.tryAttack(target);
         } else if (distance > mob.kind().range * mob.kind().range || !mob.getSensing().hasLineOfSight(target)) {
-            if (mob.tickCount % 10 == 0) mob.getNavigation().moveTo(target, 1.1);
+            if (mob.tickCount % com.mythicrealms.creatures.config.CreatureConfig.INSTANCE.aiUpdateInterval == 0) mob.getNavigation().moveTo(target, 1.1);
         } else {
             mob.getNavigation().stop();
             mob.tryAttack(target);

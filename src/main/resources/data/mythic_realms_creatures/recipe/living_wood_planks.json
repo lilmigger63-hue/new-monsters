@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "mythic_realms_creatures:living_wood"
+  ],
+  "result": {
+    "id": "minecraft:oak_planks",
+    "count": 8
+  }
+}

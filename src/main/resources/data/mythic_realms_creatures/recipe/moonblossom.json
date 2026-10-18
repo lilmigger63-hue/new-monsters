@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "minecraft:glow_berries",
+    "minecraft:sweet_berries",
+    "minecraft:lily_of_the_valley"
+  ],
+  "result": {
+    "id": "mythic_realms_creatures:moonblossom",
+    "count": 3
+  }
+}

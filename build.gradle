@@ -111,3 +111,25 @@ loom {
         }
     }
 }
+
+apply from: 'scripts/client-smoke.gradle'
+
+if (project.hasProperty('withBetterCombat')) {
+    def combatMods = ['maven.modrinth:better-combat:qaOWa2t6',
+        'maven.modrinth:cloth-config:qMxkrrmq',
+        'maven.modrinth:player-animation-library:p8nawkdm']
+    def distributions = configurations.create('combatDistributions') {
+        canBeConsumed = false
+        transitive = false
+    }
+    combatMods.each { coordinate ->
+        dependencies.add('modRuntimeOnly', coordinate)
+        dependencies.add(distributions.name, coordinate)
+    }
+    // Loom development runs omit jars nested in mod distributions. Load their exact
+    // embedded libraries as development dependencies; normal Fabric installs load them automatically.
+    distributions.resolve().each { distribution ->
+        def nested = zipTree(distribution).matching { include 'META-INF/jars/*.jar' }.files
+        dependencies.add('modRuntimeOnly', files(nested))
+    }
+}

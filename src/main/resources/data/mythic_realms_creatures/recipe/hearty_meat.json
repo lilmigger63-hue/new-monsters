@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "minecraft:cooked_beef",
+    "minecraft:sweet_berries",
+    "minecraft:cooked_chicken"
+  ],
+  "result": {
+    "id": "mythic_realms_creatures:hearty_meat",
+    "count": 3
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "minecraft:rotten_flesh",
+    "minecraft:spider_eye",
+    "minecraft:fermented_spider_eye"
+  ],
+  "result": {
+    "id": "mythic_realms_creatures:venomous_morsel",
+    "count": 3
+  }
+}

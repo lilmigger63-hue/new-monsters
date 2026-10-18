@@ -1,0 +1,42 @@
+[
+  {
+    "project": "fabric-api",
+    "version": "0.138.4+1.21.10",
+    "id": "tV4Gc0Zo",
+    "file": "fabric-api-0.138.4+1.21.10.jar",
+    "url": "https://cdn.modrinth.com/data/P7dR8mSH/versions/tV4Gc0Zo/fabric-api-0.138.4%2B1.21.10.jar",
+    "sha512": "5e64c53391dfd1c059777d671c52be17a4e27a29d9bd7340ea9e3f55ce7a770b38db0a15e0966e981ee8c1b9372fb89543a278521624689268acebb85bd5c6e9"
+  },
+  {
+    "project": "geckolib",
+    "version": "5.3-alpha-3",
+    "id": "7qjQQSWv",
+    "file": "geckolib-fabric-1.21.10-5.3-alpha-3.jar",
+    "url": "https://cdn.modrinth.com/data/8BmcQJ2H/versions/7qjQQSWv/geckolib-fabric-1.21.10-5.3-alpha-3.jar",
+    "sha512": "8feeb42b5849376526a606acdc1c78357263100583cb4400974a1eb864a95b72323836d31781709885947da0e36747698db989141e18169e5cc79b7f27a3a1e5"
+  },
+  {
+    "project": "better-combat",
+    "version": "3.0.0+1.21.10-fabric",
+    "id": "qaOWa2t6",
+    "file": "bettercombat-fabric-3.0.0+1.21.10.jar",
+    "url": "https://cdn.modrinth.com/data/5sy6g3kz/versions/qaOWa2t6/bettercombat-fabric-3.0.0%2B1.21.10.jar",
+    "sha512": "c1b34aa047d692db1e41e8ce5a4b56d9c1ed81f03e82ec3d62fae4bc8747a34332990d777852795479f0ddc22d8168da13c7d080f79ddb50ca4275059fda9755"
+  },
+  {
+    "project": "cloth-config",
+    "version": "20.0.149+fabric",
+    "id": "qMxkrrmq",
+    "file": "cloth-config-20.0.149-fabric.jar",
+    "url": "https://cdn.modrinth.com/data/9s6osm5g/versions/qMxkrrmq/cloth-config-20.0.149-fabric.jar",
+    "sha512": "df1d9e0349dc64fc0859f17b65b67b0d7745a26b4905e87fc148ddebc0285de51a3255848599f0d5ee24f6aab00fbac4849d40bb9052936eaa452d216c7ada62"
+  },
+  {
+    "project": "player-animation-library",
+    "version": "1.1.3",
+    "id": "p8nawkdm",
+    "file": "PlayerAnimationLibFabric-1.1.3+mc.1.21.9.jar",
+    "url": "https://cdn.modrinth.com/data/ha1mEyJS/versions/p8nawkdm/PlayerAnimationLibFabric-1.1.3%2Bmc.1.21.9.jar",
+    "sha512": "49e244833810ea7732de792882af676a4354a44175e2f9c3f0ba7c315cc27c7035579e0c05d264cfea970792ae0454eb2db002651ed6db054f339284eb0c94b1"
+  }
+]

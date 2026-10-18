@@ -1,6 +1,14 @@
 package com.mythicrealms.creatures.client;
 
-import com.mythicrealms.creatures.entity.MythicHostileEntity;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.client.renderer.RenderType;
+import software.bernie.geckolib.renderer.layer.AutoGlowingGeoLayer;
+import software.bernie.geckolib.animatable.GeoEntity;
+import com.mythicrealms.creatures.entity.mount.MythicMountEntity;
+import software.bernie.geckolib.model.DefaultedEntityGeoModel;
+import software.bernie.geckolib.constant.dataticket.DataTicket;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.ResourceLocation;
 import com.mythicrealms.creatures.registry.ModEntities;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
@@ -18,16 +26,65 @@ public final class MythicRealmsClient implements ClientModInitializer {
         register(ModEntities.ORC_WARRIOR, .5f);
         register(ModEntities.MINOTAUR, .75f);
         register(ModEntities.STONE_TROLL, .9f);
+        register(ModEntities.ANCIENT_TREANT,1.1f);
+        register(ModEntities.FOREST_DRYAD,.35f);
+        register(ModEntities.GRIFFIN,.8f);
+        register(ModEntities.DIRE_WOLF,.6f);
+        register(ModEntities.WILD_WYVERN,.95f);
+        register(ModEntities.CAVE_BASILISK,.6f);
+        register(ModEntities.CRYSTAL_SPIDER,.7f);
+        register(ModEntities.SHADOW_WRAITH,.35f);
+        register(ModEntities.GRAVE_KNIGHT,.4f);
+        register(ModEntities.FLAME_IMP,.25f);
+        register(ModEntities.FROST_ELEMENTAL,.55f);
+        register(ModEntities.MOON_STAG,.55f);
+        register(ModEntities.SLIME_MAIDEN,.4f);
+        register(ModEntities.HARPY,.45f);
+        register(ModEntities.DEMON_SORCERESS,.35f);
+        EntityRendererRegistry.register(ModEntities.CRYSTAL_BOLT, context -> new ThrownItemRenderer<>(context,.65f,true));
+        EntityRendererRegistry.register(ModEntities.DARK_BOLT, context -> new ThrownItemRenderer<>(context,.7f,true));
+        EntityRendererRegistry.register(ModEntities.FIRE_BOLT, context -> new ThrownItemRenderer<>(context,.6f,true));
+        EntityRendererRegistry.register(ModEntities.ICE_SPIKE, context -> new ThrownItemRenderer<>(context,.8f,true));
+        EntityRendererRegistry.register(ModEntities.FEATHER_BOLT, context -> new ThrownItemRenderer<>(context,.8f,false));
+        EntityRendererRegistry.register(ModEntities.SLIME_BUBBLE, context -> new ThrownItemRenderer<>(context,.9f,false));
+        EntityRendererRegistry.register(ModEntities.WEB_TRAP, context -> new ThrownItemRenderer<>(context,1.5f,false));
+        EntityRendererRegistry.register(ModEntities.ROOT_SHARD, context -> new ThrownItemRenderer<>(context, 1.2f, false));
+        EntityRendererRegistry.register(ModEntities.VINE_SEED, context -> new ThrownItemRenderer<>(context, .7f, true));
+        EntityRendererRegistry.register(ModEntities.POISON_BREATH, context -> new ThrownItemRenderer<>(context, .8f, true));
         EntityRendererRegistry.register(ModEntities.SHAMAN_BOLT, context -> new ThrownItemRenderer<>(context, .65f, true));
         EntityRendererRegistry.register(ModEntities.TROLL_BOULDER, context -> new ThrownItemRenderer<>(context, 1.8f, false));
     }
-    private static <T extends MythicHostileEntity> void register(EntityType<T> type, float shadow) {
+    private static <T extends Mob & GeoEntity> void register(EntityType<T> type, float shadow) {
         EntityRendererRegistry.register(type, context -> new CreatureRenderer<>(context, type, shadow));
     }
-    private static final class CreatureRenderer<T extends MythicHostileEntity, R extends LivingEntityRenderState & GeoRenderState>
+    private static final class CreatureModel<T extends Mob & GeoEntity> extends DefaultedEntityGeoModel<T> {
+        private static final DataTicket<Boolean> TAMED=DataTicket.create("mythic_mount_tamed",Boolean.class);
+        private static final DataTicket<Boolean> RARE=DataTicket.create("mythic_mount_rare",Boolean.class);
+        private final ResourceLocation id;
+        CreatureModel(EntityType<T> type){super(BuiltInRegistries.ENTITY_TYPE.getKey(type));id=BuiltInRegistries.ENTITY_TYPE.getKey(type);}
+        @Override public void addAdditionalStateData(T entity,GeoRenderState state){
+            super.addAdditionalStateData(entity,state);
+            state.addGeckolibData(TAMED,entity instanceof MythicMountEntity mount && mount.isTame());
+            state.addGeckolibData(RARE,entity instanceof MythicMountEntity mount && mount.isRareVariant());
+        }
+        @Override public ResourceLocation getTextureResource(GeoRenderState state){
+            String suffix=state.getOrDefaultGeckolibData(TAMED,false)?"_tamed":state.getOrDefaultGeckolibData(RARE,false)?"_rare":"";
+            return id.withPath("textures/entity/"+id.getPath()+suffix+".png");
+        }
+    }
+    private static final class CreatureRenderer<T extends Mob & GeoEntity, R extends LivingEntityRenderState & GeoRenderState>
             extends GeoEntityRenderer<T, R> {
+        private final boolean translucent;
         CreatureRenderer(EntityRendererProvider.Context context, EntityType<T> type, float shadow) {
-            super(context, type); this.shadowRadius = shadow;
+            super(context, new CreatureModel<T>(type)); this.shadowRadius = shadow;
+            String id=BuiltInRegistries.ENTITY_TYPE.getKey(type).getPath();
+            translucent=id.equals("shadow_wraith") || id.equals("slime_maiden");
+            if (java.util.Set.of("goblin_shaman","ancient_treant","forest_dryad","wild_wyvern","cave_basilisk","crystal_spider","shadow_wraith","grave_knight","flame_imp",
+                    "frost_elemental","moon_stag","slime_maiden","harpy","demon_sorceress").contains(id))
+                withRenderLayer(new AutoGlowingGeoLayer<>(this));
+        }
+        @Override public RenderType getRenderType(R state,ResourceLocation texture) {
+            return translucent && !state.isInvisible ? RenderType.entityTranslucent(texture) : super.getRenderType(state,texture);
         }
         // The model supplies its own death pose; avoid applying a second vanilla roll.
         @Override protected float getDeathMaxRotation(GeoRenderState state) { return 0; }

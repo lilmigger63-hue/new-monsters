@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.mythicrealms.creatures.entity.mount.FlightMotionTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2026-10-18T01:58:09.265Z" hostname="f11172c5ddfd" time="0.013">
+  <properties/>
+  <testcase name="yawRotatesForwardAndMalformedValuesAreFinite()" classname="com.mythicrealms.creatures.entity.mount.FlightMotionTest" time="0.005"/>
+  <testcase name="oppositeKeysAndNoInputBrakeToRest()" classname="com.mythicrealms.creatures.entity.mount.FlightMotionTest" time="0.003"/>
+  <testcase name="accelerationAndSpeedStayBounded()" classname="com.mythicrealms.creatures.entity.mount.FlightMotionTest" time="0.002"/>
+  <testcase name="ceilingPreventsUpwardMovement()" classname="com.mythicrealms.creatures.entity.mount.FlightMotionTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -55,6 +55,161 @@
         }
       }
     },
+    "run": {
+      "loop": true,
+      "animation_length": 1.2,
+      "bones": {
+        "root": {
+          "position": [
+            0,
+            "math.abs(math.sin(query.anim_time * 300)) * 0.675",
+            0
+          ]
+        },
+        "body": {
+          "rotation": [
+            12,
+            0,
+            "math.sin(query.anim_time * 300) * 2"
+          ]
+        },
+        "head": {
+          "rotation": [
+            -7.199999999999999,
+            0,
+            0
+          ]
+        },
+        "leg_left": {
+          "rotation": [
+            "math.sin(query.anim_time * 300) * 33",
+            0,
+            0
+          ]
+        },
+        "leg_right": {
+          "rotation": [
+            "-math.sin(query.anim_time * 300) * 33",
+            0,
+            0
+          ]
+        },
+        "arm_left": {
+          "rotation": [
+            "-math.sin(query.anim_time * 300) * 21.45",
+            0,
+            -6
+          ]
+        },
+        "arm_right": {
+          "rotation": [
+            "math.sin(query.anim_time * 300) * 21.45",
+            0,
+            6
+          ]
+        }
+      }
+    },
+    "hurt": {
+      "animation_length": 0.55,
+      "bones": {
+        "root": {
+          "position": {
+            "0.0": [
+              0,
+              0,
+              0
+            ],
+            ".08": [
+              0,
+              0,
+              1.05
+            ],
+            "0.55": [
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        "body": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              0
+            ],
+            ".08": [
+              -8,
+              0,
+              6
+            ],
+            "0.55": [
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        "head": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              0
+            ],
+            ".08": [
+              7,
+              -5,
+              -4
+            ],
+            "0.55": [
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        "arm_left": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              0
+            ],
+            ".08": [
+              -12,
+              0,
+              -10
+            ],
+            "0.55": [
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        "arm_right": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              0
+            ],
+            ".08": [
+              -18,
+              0,
+              10
+            ],
+            "0.55": [
+              0,
+              0,
+              0
+            ]
+          }
+        }
+      }
+    },
     "attack": {
       "animation_length": 1.4,
       "bones": {

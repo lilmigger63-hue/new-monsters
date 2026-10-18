@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "pattern": [
+    "GSG",
+    "FTF",
+    "GSG"
+  ],
+  "key": {
+    "S": "mythic_realms_creatures:shadow_essence",
+    "F": "mythic_realms_creatures:forest_essence",
+    "T": "mythic_realms_creatures:troll_heartstone",
+    "G": "minecraft:gold_ingot"
+  },
+  "result": {
+    "id": "mythic_realms_creatures:twilight_relic",
+    "count": 1
+  }
+}

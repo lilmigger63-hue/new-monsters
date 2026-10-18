@@ -17,7 +17,7 @@ public final class StoneTrollEntity extends MythicHostileEntity {
                 melee(level, player, 4.5, 1);
                 player.knockback(.9, getX() - player.getX(), getZ() - player.getZ());
             }
-            level.sendParticles(ParticleTypes.CLOUD, getX(), getY() + .2, getZ(), 16, 1.5, .1, 1.5, .03);
+            com.mythicrealms.creatures.magic.SpellEffects.particles(level,ParticleTypes.CLOUD,getX(),getY()+.2,getZ(),16,1.1);
             playSound(SoundEvents.GENERIC_EXPLODE.value(), .5f, .6f);
         } else if (distanceToSqr(target) < 256) CreatureProjectile.launch(ModEntities.TROLL_BOULDER, this, target, 1.2f);
     }

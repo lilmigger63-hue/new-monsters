@@ -9,7 +9,22 @@ public enum CreatureKind {
     GOBLIN_SHAMAN("goblin_shaman", 24, 4, .24, 1, .65f, 1.55f, 16, 45, 12, 5),
     ORC_WARRIOR("orc_warrior", 40, 7, .23, 7, .95f, 2.15f, 18, 28, 2.8, 7),
     MINOTAUR("minotaur", 65, 9, .27, 5, 1.35f, 2.85f, 24, 55, 9, 3),
-    STONE_TROLL("stone_troll", 80, 11, .17, 10, 1.6f, 3.2f, 22, 55, 14, 3);
+    STONE_TROLL("stone_troll", 80, 11, .17, 10, 1.6f, 3.2f, 22, 55, 14, 3),
+    ANCIENT_TREANT("ancient_treant", 100, 8, .16, 8, 1.8f, 4.6f, 24, 45, 13, 2),
+    FOREST_DRYAD("forest_dryad", 28, 3, .26, 2, .65f, 1.9f, 16, 40, 10, 5),
+    GRIFFIN("griffin", 48, 6, .28, 3, 1.4f, 1.8f, 12, 25, 2.8, 3),
+    DIRE_WOLF("dire_wolf", 36, 5, .34, 2, 1.05f, 1.35f, 7, 18, 2.3, 6),
+    WILD_WYVERN("wild_wyvern", 64, 7, .25, 5, 1.6f, 2.1f, 20, 55, 9, 1),
+    CAVE_BASILISK("cave_basilisk", 34, 5, .25, 4, 1.2f, .85f, 20, 40, 9, 4),
+    CRYSTAL_SPIDER("crystal_spider", 28, 4, .29, 3, 1.4f, 1.1f, 14, 35, 12, 5),
+    SHADOW_WRAITH("shadow_wraith", 30, 5, .25, 1, .7f, 2f, 18, 36, 12, 4),
+    GRAVE_KNIGHT("grave_knight", 46, 6, .24, 9, .8f, 2.1f, 12, 20, 2.8, 4),
+    FLAME_IMP("flame_imp", 16, 4, .28, 0, .5f, .8f, 14, 35, 12, 5),
+    FROST_ELEMENTAL("frost_elemental", 42, 6, .2, 5, 1.1f, 2.4f, 24, 45, 12, 4),
+    MOON_STAG("moon_stag", 32, 3, .32, 1, 1.1f, 1.8f, 8, 25, 2.5, 1),
+    SLIME_MAIDEN("slime_maiden", 30, 4, .24, 1, .85f, 1.65f, 14, 30, 9, 4),
+    HARPY("harpy", 26, 4, .3, 2, .9f, 1.8f, 12, 25, 10, 4),
+    DEMON_SORCERESS("demon_sorceress", 40, 6, .25, 3, .7f, 1.95f, 22, 50, 13, 2);
 
     public final String id;
     public final double health, damage, speed, armor, range;
@@ -24,6 +39,7 @@ public enum CreatureKind {
     public AttributeSupplier.Builder attributes(double difficulty) {
         return Monster.createMonsterAttributes().add(Attributes.MAX_HEALTH, health * difficulty)
             .add(Attributes.ATTACK_DAMAGE, damage * difficulty).add(Attributes.MOVEMENT_SPEED, speed)
+            .add(Attributes.TEMPT_RANGE, 10).add(Attributes.FLYING_SPEED, .35).add(Attributes.STEP_HEIGHT, 1)
             .add(Attributes.ARMOR, armor).add(Attributes.FOLLOW_RANGE, 28)
             .add(Attributes.KNOCKBACK_RESISTANCE, width >= 1.3 ? .6 : .1);
     }

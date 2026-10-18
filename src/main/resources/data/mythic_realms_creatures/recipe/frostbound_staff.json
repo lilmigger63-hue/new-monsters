@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "pattern": [
+    " FC",
+    " WF",
+    "W  "
+  ],
+  "key": {
+    "F": "mythic_realms_creatures:frost_essence",
+    "C": "mythic_realms_creatures:crystal_shard",
+    "W": "mythic_realms_creatures:living_wood"
+  },
+  "result": {
+    "id": "mythic_realms_creatures:frostbound_staff",
+    "count": 1
+  }
+}

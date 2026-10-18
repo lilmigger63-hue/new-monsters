@@ -39,6 +39,12 @@ for index, (name, palette) in enumerate(PALETTES.items()):
                 texture.putpixel((x+px,y+py), tuple(max(0,min(255,c+noise+shade)) for c in color)+(255,))
     (ASSET/'textures/entity').mkdir(parents=True,exist_ok=True)
     texture.save(ASSET/f'textures/entity/{name}.png')
+    if name == 'goblin_shaman':
+        # GeckoLib AutoGlowingGeoLayer reads this suffix. Only the magic
+        # material (eyes, staff crystal and pendant) emits light.
+        glowmask = Image.new('RGBA', texture.size)
+        glowmask.paste(texture.crop((0,32,32,64)), (0,32))
+        glowmask.save(ASSET/f'textures/entity/{name}_glowmask.png')
     bones = [{'name':'root','pivot':[0,0,0]}]
     scale = SCALE[name]
     def bone(key, parent, pivot):
@@ -113,6 +119,35 @@ for index, (name, palette) in enumerate(PALETTES.items()):
     attack_bones={'arm_right':{'rotation':{'0.0':[0,0,0], str(round(windup-.05,2)):[-135,0,-12],str(windup):[45,0,8], str(round(windup+.3,2)):[0,0,0]}}}
     if name=='goblin_shaman':attack_bones['arm_left']={'rotation':[-90,0,20]}
     if name=='minotaur':attack_bones['body']={'rotation':{'0.0':[0,0,0],str(windup):[28,0,0],str(windup+.3):[0,0,0]}}
+    # A run is a faster, longer stride with a forward lean and full-body lift.
+    # The shaman braces its staff; the two giants keep their heavier cadence.
+    run_rate = [720,540,540,450,300][index]
+    stride = [45,34,40,42,33][index]
+    lean = [12,8,14,22,12][index]
+    bounce = [.55,.35,.45,.6,.45][index] * scale
+    run_bones = {
+        'root': {'position':[0,f'math.abs(math.sin(query.anim_time * {run_rate})) * {bounce}',0]},
+        'body': {'rotation':[lean,0,f'math.sin(query.anim_time * {run_rate}) * 2']},
+        'head': {'rotation':[-lean*.6,0,0]},
+        'leg_left': {'rotation':[f'math.sin(query.anim_time * {run_rate}) * {stride}',0,0]},
+        'leg_right': {'rotation':[f'-math.sin(query.anim_time * {run_rate}) * {stride}',0,0]},
+        'arm_left': {'rotation':[f'-math.sin(query.anim_time * {run_rate}) * {stride*.65}',0,-6]},
+        'arm_right': {'rotation':[f'math.sin(query.anim_time * {run_rate}) * {stride*.65}',0,6]},
+    }
+    if name == 'goblin_shaman':
+        run_bones['arm_right'] = {'rotation':[f'-22 + math.sin(query.anim_time * {run_rate}) * 6',0,-10]}
+    if name == 'minotaur':
+        run_bones['tail'] = {'rotation':[12,f'math.sin(query.anim_time * {run_rate}) * 14',0]}
+    hurt_length = [.3,.4,.4,.5,.55][index]
+    def recoil_channel(impact, recovery=None):
+        return {'0.0':[0,0,0],'.08':impact,str(hurt_length):recovery or [0,0,0]}
+    hurt_bones = {
+        'root': {'position':recoil_channel([0,0,round(.7*scale,3)])},
+        'body': {'rotation':recoil_channel([-14 if index<3 else -8,0,6])},
+        'head': {'rotation':recoil_channel([12 if index<3 else 7,-5,-4])},
+        'arm_left': {'rotation':recoil_channel([-12,0,-10])},
+        'arm_right': {'rotation':recoil_channel([-18,0,10])},
+    }
     animations={
         'idle':{'loop':True,'animation_length':2,'bones':{'body':{'position':[0,f'math.sin(query.anim_time * 180) * {0.25+index*.04}',0]},'head':{'rotation':[0,'math.sin(query.anim_time * 90) * 3',0]}}},
         'walk':{'loop':True,'animation_length':1,'bones':{
@@ -120,6 +155,8 @@ for index, (name, palette) in enumerate(PALETTES.items()):
             'leg_right':{'rotation':[f'-math.sin(query.anim_time * {speed}) * 28',0,0]},
             'arm_left':{'rotation':[f'-math.sin(query.anim_time * {speed}) * 20',0,0]},
             'arm_right':{'rotation':[f'math.sin(query.anim_time * {speed}) * 20',0,0]}}},
+        'run':{'loop':True,'animation_length':360/run_rate,'bones':run_bones},
+        'hurt':{'animation_length':hurt_length,'bones':hurt_bones},
         'attack':{'animation_length':round(windup+.3,2),'bones':attack_bones},
         'cast':{'animation_length':.8,'bones':{'arm_left':{'rotation':{'0.0':[0,0,0],'.3':[-120,0,20],'.8':[0,0,0]}},'arm_right':{'rotation':{'0.0':[0,0,0],'.3':[-120,0,-20],'.8':[0,0,0]}}}},
         'death':{'animation_length':.8,'bones':{'root':{'rotation':{'0.0':[0,0,0],'.8':[0,0,85]},'position':{'0.0':[0,0,0],'.8':[0,1,0]}}}}
@@ -137,7 +174,8 @@ for index, (name, palette) in enumerate(PALETTES.items()):
     biomes=[['minecraft:plains','minecraft:sunflower_plains','#minecraft:is_forest'],['minecraft:swamp','minecraft:mangrove_swamp'],['#minecraft:is_forest','#minecraft:is_hill'],['#minecraft:is_mountain'],['#minecraft:is_overworld']][index]
     save(ROOT/f'data/{NS}/tags/worldgen/biome/spawns/{name}.json',{'replace':False,'values':[{'id':b,'required':False} for b in biomes]})
 
-language={}
+langpath=ASSET/'lang/en_us.json'
+language=json.loads(langpath.read_text()) if langpath.exists() else {}
 for name in PALETTES:
     title=name.replace('_',' ').title()
     language[f'entity.{NS}.{name}']=title

@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "mythic_realms_creatures:goblin_scrap",
+    "mythic_realms_creatures:goblin_scrap",
+    "mythic_realms_creatures:goblin_scrap",
+    "mythic_realms_creatures:goblin_scrap",
+    "mythic_realms_creatures:goblin_scrap",
+    "mythic_realms_creatures:goblin_scrap",
+    "mythic_realms_creatures:goblin_scrap",
+    "mythic_realms_creatures:goblin_scrap",
+    "mythic_realms_creatures:goblin_scrap"
+  ],
+  "result": {
+    "id": "minecraft:iron_ingot",
+    "count": 1
+  }
+}

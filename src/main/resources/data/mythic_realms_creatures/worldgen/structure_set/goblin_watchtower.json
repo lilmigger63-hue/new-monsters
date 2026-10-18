@@ -1,0 +1,24 @@
+{
+  "fabric:load_conditions": [
+    {
+      "condition": "mythic_realms_creatures:structure_enabled",
+      "structure": "goblin_watchtower"
+    }
+  ],
+  "structures": [
+    {
+      "structure": "mythic_realms_creatures:goblin_watchtower",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+    "spacing": 30,
+    "separation": 10,
+    "salt": 9037141,
+    "exclusion_zone": {
+      "other_set": "minecraft:villages",
+      "chunk_count": 6
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "minecraft:wheat",
+    "minecraft:wheat",
+    "minecraft:golden_carrot",
+    "minecraft:sunflower"
+  ],
+  "result": {
+    "id": "mythic_realms_creatures:sunseed_biscuit",
+    "count": 4
+  }
+}
