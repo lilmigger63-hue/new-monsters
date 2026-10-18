@@ -467,7 +467,73 @@ def vampire():
     X('head',[.25,27.1,-3.4],[2.2,1.1,.7],5,[0,0,12])
     return m,palette,roles,(.7,1.85)
 
-BUILDERS={'harpy':harpy,'forest_dryad':dryad,'slime_maiden':slime,'minotaur':minotaur,'vampire':vampire}
+def valkyrie():
+    m=old_model('valkyrie');X=m.box
+    # Remove superseded original plates before adding the larger fitted replacements.
+    m.by_name['head']['cubes']=[c for c in m.by_name['head']['cubes'] if int(c['uv']['north']['uv'][0]//32+4*(c['uv']['north']['uv'][1]//32)) not in (2,3,6,12)]
+    for n in ('right','left'):
+        m.by_name['shin_'+n]['cubes']=[];m.by_name['foot_'+n]['cubes']=[]
+    # Compact feather span keeps the reference's body-sized resting wings.
+    for b in m.bones:
+        if b['name'].startswith(('wing_','wingtip_')):
+            center=[-2.6 if b['name'].endswith('right') else 2.6,22.3,1.9]
+            def wingpoint(v):return [center[i]+(v[i]-center[i])*.67 for i in range(3)]
+            b['pivot']=wingpoint(b['pivot'])
+            for c in b.get('cubes',[]):
+                c['origin']=wingpoint(c['origin']);c['size']=[v*.67 for v in c['size']]
+                if 'pivot' in c:c['pivot']=wingpoint(c['pivot'])
+    # Keep the detailed species rig, attachments and armor seams; rebuild helmet/head proportions.
+    headnames={'head',*(f'hair_back_{j}' for j in range(5)),'hair_side_right','hair_side_left'}
+    def point(p,head=False):
+        x,y,z=p
+        if head:return [x*1.23,25.4+(y-25.4)*1.08,z*1.18]
+        return [x,y,z]
+    for b in m.bones:
+        if b['name'] in headnames:
+            b['pivot']=point(b['pivot'],True)
+            for c in b.get('cubes',[]):
+                c['origin']=point(c['origin'],True);c['size']=[c['size'][0]*1.23,c['size'][1]*1.08,c['size'][2]*1.18]
+                if 'pivot' in c:c['pivot']=point(c['pivot'],True)
+    # Add broad cheek plates, helmet brow and an unmistakable swept metal wing crest.
+    X('head',[-3.8,31.3,-3.4],[7.6,.85,6.8],2)
+    X('head',[-3.5,29.3,-3.35],[7,1.05,6.8],2)
+    X('head',[-3.3,29.4,-3.65],[6.6,.55,.7],12)
+    X('head',[-2.6,30.2,-2.9],[5.2,.9,5.8],14)
+    X('head',[-2,31,-2.3],[4,.65,4.7],3)
+    for side,n in [(-1,'right'),(1,'left')]:
+        X('head',[side*3.2-.65,26.2,-2.8],[1.3,3.5,3.2],2)
+        X('head',[side*3.4-.4,25.8,-2.95],[.8,1.3,2.4],12)
+        for j in range(3):
+            X('head',[side*(3.2+j*.65)-.55,30.1+j*.6,-.8],[1.1,3.4-j*.35,1.6],12,[0,0,-side*(31+j*12)])
+            X('head',[side*(3.3+j*.65)-.3,32.7+j*.25,-.7],[.6,1.2,1.3],6,[0,0,-side*(31+j*12)])
+        # More substantial segmented greaves, dark joints and bright toe plates.
+        x=side*1.35
+        X('shin_'+n,[x-1.3,2.1,-1.4],[2.6,5.7,3],2)
+        for y in (2.3,4.2,6.1):X('shin_'+n,[x-1.4,y,-1.65],[2.8,.65,.5],12)
+        X('foot_'+n,[x-1.4,.2,-2.7],[2.8,1.3,4.1],14)
+        X('foot_'+n,[x-1.25,.9,-2.85],[2.5,.55,1.7],12)
+        # Reference-style pale upper arm and substantial silver shoulder stack.
+        X('arm_'+n,[side*3.7-1.55,21,-1.75],[3.1,1.3,3.7],12,[0,0,-side*12])
+        X('arm_'+n,[side*3.9-1.5,20.4,-1.85],[3,1,3.9],14,[0,0,-side*14])
+        m.by_name['wing_'+n]['rotation']=[0,0,-side*15]
+        m.by_name['wingtip_'+n]['rotation']=[0,0,-side*10]
+        for c in m.by_name['wingtip_'+n]['cubes']:
+            if 'rotation' in c:c['rotation'][2]=-c['rotation'][2]
+    # Short red central tabard, overlapping silver faulds and dark waist joints.
+    X('body',[-1.45,11.1,-2.7],[2.9,4.5,.7],7)
+    X('body',[-1.05,11,-2.85],[2.1,.6,.45],13)
+    for side in (-1,1):X('body',[side*2.1-.8,15,-2.2],[1.6,1.3,.5],14)
+    palette=['e0cdb9','282326','929797','b8a158','ce5452','19171c','e3e4da','963744','ead7c1','c1a360','353136','c2c9c7','c4cac7','572b37','656d6e','f3ead8']
+    roles=['skin','feather','metal','gold','eyes','feather','metal','cloth','skin','hair','leather','metal','metal','cloth','metal','skin']
+    X('head',[-3.55,30.2,-3.65],[7.1,1.25,.7],2)
+    # The released blade projected behind the palm. Mirror its Z geometry forward.
+    for c in m.by_name['sword']['cubes']:
+        c['origin'][2]=-.2-c['origin'][2]-c['size'][2]
+        if 'pivot' in c:c['pivot'][2]=-.2-c['pivot'][2]
+        if 'rotation' in c:c['rotation'][0]*=-1;c['rotation'][1]*=-1
+    return m,palette,roles,(.8,2)
+
+BUILDERS={'harpy':harpy,'forest_dryad':dryad,'slime_maiden':slime,'minotaur':minotaur,'vampire':vampire,'valkyrie':valkyrie}
 
 BASE_ATLAS=pipeline.material_atlas
 

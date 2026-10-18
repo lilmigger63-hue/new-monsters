@@ -39,13 +39,23 @@
     }
   },
   "vampire": {
-    "commit": "Visual overhaul: Vampire reference accuracy",
+    "commit": "054cbfd",
     "files": {
       "src/main/resources/assets/mythic_realms_creatures/geckolib/models/entity/vampire.geo.json": "5ca76be88d22061bb4ff3d225405ceb6aa5f5e2ea061470fb38f9aa8b40fd71c",
       "src/main/resources/assets/mythic_realms_creatures/geckolib/animations/entity/vampire.animation.json": "8aaad1aa3dd3ccbd48b1b7fac499eab1cc8c538c7cf74910797eb456ca5ac41d",
       "src/main/resources/assets/mythic_realms_creatures/textures/entity/vampire.png": "3e75781b558c1bd7e06293f56e73b99db93932a24efe5f8839afa8cb40811e7f",
       "src/main/resources/assets/mythic_realms_creatures/textures/entity/vampire_glowmask.png": "c0aa61bb2054675952ceb993260ae07e3566066b2681e155fbafcf0e3d52a634",
       "tools/blockbench/vampire.bbmodel": "e23bb86039d8c3d3f36302637f6788325368680b3dcb8fe3d054e18f931490d8"
+    }
+  },
+  "valkyrie": {
+    "commit": "Visual overhaul: Valkyrie reference accuracy",
+    "files": {
+      "src/main/resources/assets/mythic_realms_creatures/geckolib/models/entity/valkyrie.geo.json": "ec63b2efa3b8cbf783c78d1cca1bbf9ae68d9a4ae4585e9488cee42f93c89e5d",
+      "src/main/resources/assets/mythic_realms_creatures/geckolib/animations/entity/valkyrie.animation.json": "51e1bed60410d460bfd2c28c2f7e4edeb29b03d145c72da22750439f5292093d",
+      "src/main/resources/assets/mythic_realms_creatures/textures/entity/valkyrie.png": "1ff3b8e70e1627f78e1889cfb969869986dd298d12a7c065591e13bc8144ab05",
+      "src/main/resources/assets/mythic_realms_creatures/textures/entity/valkyrie_glowmask.png": "f6bb4b34670e0da1966b0e29cb3004e84c25fc2a2ab4b72177132b1bf1dde47e",
+      "tools/blockbench/valkyrie.bbmodel": "5bbdc6676f0b88ad887c8e8ea0d85f3e3d90909626146f9776e46ecb569854cb"
     }
   }
 }
