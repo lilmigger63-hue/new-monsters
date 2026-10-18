@@ -6,6 +6,8 @@ branching antlers; gel layered lobes; avian primary/secondary feathers; horned
 caster's layered robes. See docs/creature-overhaul/REFERENCE_ATLAS.md.
 """
 import math
+from PIL import ImageDraw
+import overhaul_asset_pipeline as asset_pipeline
 from overhaul_asset_pipeline import Model, clip, keys, write_creature
 
 PALETTES = {
@@ -155,19 +157,115 @@ def demon():
     return m
 
 
+def refine(m):
+    """Original finishing pass; keep authored proportions, costume and joint names."""
+    name=m.name
+    if name=='frost_elemental':
+        # Facet bevels bridge the shoulder/wrist intersections without filling the core.
+        for side,n in ((-1,'right'),(1,'left')):
+            m.box('arm_'+n,[side*7-2.2,25,-2.75],[4.4,2.2,5.5],2,[0,0,side*18])
+            m.box('hand_'+n,[side*8-1.9,19,-2.8],[3.8,1.7,5.6],12,[0,0,-side*10])
+            m.box('leg_'+n,[side*3-1.9,8,-2.3],[3.8,2.3,4.6],2,[0,0,side*9])
+            m.box('head',[side*2.7- .4,30.7,-2.9],[.8,4.2,.65],0,[0,0,side*11])
+        m.box('head',[-2.1,30,-2.85],[4.2,.8,.7],0)
+    elif name=='moon_stag':
+        # Keep the corrected vertical metatarsals and flat cloven soles.
+        for side,n in ((-1,'right'),(1,'left')):
+            for front in (True,False):
+                leg=('front_' if front else 'rear_')+n; z=-5 if front else 5
+                upper=m.by_name[leg];lower=m.by_name[leg+'_hock']
+                upper.pop('rotation',None);lower.pop('rotation',None)
+                # Organic bend is sculpted into the upper surface, never the sole.
+                upper['cubes'][0]['size']=[2,7.4,2]
+                # Isolate cloven hoof orientation from the bending hock.
+                hoof=bone(m,leg+'_hoof',leg+'_hock',[side*2.7,2,z])
+                m.by_name[hoof]['cubes']=lower['cubes'][1:]
+                lower['cubes']=lower['cubes'][:1]
+                m.box(leg,[side*2.7-1.15,7.3,z-1],[2.3,1.8,2.3],0)
+            m.box('ear_'+n,[side*2.1-.6,25.6,-5.92],[1.2,2.6,.18],7)
+            m.box('head',[side*1.8-.35,23.2,-8.2],[.7,1.5,.45],0,[0,0,side*18])
+        # Under-jaw and throat taper; no changes above the y19.008 saddle seat.
+        m.box('head',[-1.7,22.7,-9.8],[3.4,.7,3.2],2)
+        m.box('neck',[-1.8,17,-7.3],[3.6,5,1.4],6,[-17,0,0])
+    else:
+        # Replace square luminous eyes with sclera, a narrower iris and tapered lash.
+        head=m.by_name['head'];head['cubes']=head['cubes'][:1]+head['cubes'][7:]
+        x,y,z,w={'slime_maiden':(1.25,20,-2.94,1.05),'harpy':(1.25,24.7,-2.84,.85),'demon_sorceress':(1.15,25.4,-2.65,.8)}[name]
+        for side in (-1,1):
+            center=side*x
+            m.box('head',[center-w*.62,y-.08,z],[w*1.24,1.04,.18],5)
+            m.box('head',[center-w*.5,y+.07,z-.12],[w,.78,.16],6)
+            m.box('head',[center-w*.25,y+.08,z-.24],[w*.5,.76,.13],4)
+            m.box('head',[center-.08,y+.56,z-.36],[.18,.2,.09],15)
+            m.box('head',[center-w*.65,y+.92,z-.08],[w*1.3,.16,.2],5,[0,0,-side*7])
+            m.box('head',[center-w*.45,y+1.45,z+.01],[w*.9,.14,.16],9,[0,0,-side*5])
+        # A shallow tapered jaw reduces the hard square transition, same head envelope.
+        skin=2 if name=='slime_maiden' else 8
+        bottom={'slime_maiden':17.5,'harpy':22,'demon_sorceress':23}[name]
+        cube=head['cubes'][0];cube['origin'][1]+=.45;cube['size'][1]-=.45
+        m.box('head',[-1.95,bottom,-2.32],[3.9,.8,4.35],skin)
+        if name=='slime_maiden':
+            for side,n in ((-1,'right'),(1,'left')):
+                m.box('hand_'+n,[side*4-1.2,7,-1.65],[2.4,1.8,3.3],0,[0,0,side*14])
+                m.box('hair_'+('0' if side<0 else '5'),[side*2.55-.45,18,-2],[.9,4.8,1],9,[0,0,-side*9])
+            # Reshape existing gel lobes rather than stacking dozens of extra cubes.
+            for i in range(3):
+                cube=m.by_name['gel_'+str(i)]['cubes'][0]
+                cube['rotation']=[0,(i-1)*9,(i%3-1)*5]
+        elif name=='harpy':
+            for side,n in ((-1,'right'),(1,'left')):
+                bone(m,'temple_'+n,'head',[side*2.1,26,0],[side*2.1-.55,22.4,-.7],[1.1,4.2,1.8],9,[0,0,-side*12])
+                # Small coverts articulate the wing root; retain all long primaries.
+                m.box('wing_'+n,[side*3-.9,18.5,-1.4],[1.8,3,.7],2,[0,0,-side*25])
+                m.box('talon_'+n,[side*1.7-.3,1.1,2.1],[.6,1.1,2.2],5,[-22,0,0])
+            m.box('body',[-2.7,20.6,-2.4],[5.4,.6,.6],10)
+        else:
+            for side,n in ((-1,'right'),(1,'left')):
+                bone(m,'fringe_'+n,'head',[side*1.7,27.5,-1.5],[side*1.7-.65,25.7,-2.65],[1.3,2.3,.65],9,[0,0,-side*19])
+                m.box('hand_'+n,[side*3.7-.9,13.8,-1.13],[1.8,.7,.25],3)
+                m.box('sleeve_'+n,[side*3-1.4,13,-.1],[2.8,.65,2.2],3)
+            m.box('body',[-1.4,20.8,-2.15],[2.8,.6,.4],3)
+    return m
+
+
+def refined_atlas(palette,materials,translucent=False):
+    """Small original material finishing marks, authored without external pixels."""
+    image=BASE_ATLAS(palette,materials,translucent);draw=ImageDraw.Draw(image)
+    def color(index,delta=0,alpha=255):
+        rgb=tuple(int(palette[index][i:i+2],16) for i in (0,2,4))
+        return tuple(max(0,min(255,c+delta)) for c in rgb)+(alpha,)
+    # Eye tile keeps the established hue and adds a dark pupil/high catch light.
+    draw.ellipse((6,34,25,61),fill=color(4,-12))
+    draw.ellipse((11,36,20,60),fill=color(4,12))
+    draw.ellipse((14,39,18,57),fill=color(5))
+    draw.rectangle((10,36,13,40),fill=color(15))
+    # Hair strands and cloth seams remain subtle at the original 128px resolution.
+    for index,role in enumerate(materials):
+        if role not in ('hair','cloth','feather','slime','fur'):continue
+        x,y=index%4*32,index//4*32
+        alpha=202 if translucent else 255
+        for dx in (10,23):
+            draw.line([(x+dx,y+6),(x+dx-1,y+14),(x+dx+1,y+23)],fill=color(index,9,alpha),width=1)
+    return image
+
+BASE_ATLAS=asset_pipeline.material_atlas
+
 def motion(m):
     name=m.name;t=SIZES[name][2];B=m.by_name
     def c(length,b,loop=False):return clip(length,b,loop=loop)
-    def wave(v=(0,0,0),half=(0,0,0),length=2):return {'0':list(v),str(length/2):list(half),str(length):list(v)}
+    def wave(v=(0,0,0),half=(0,0,0),length=2):
+        return {str(round(length*i/8,6)):[a+(b-a)*(1-math.cos(math.tau*i/8))/2 for a,b in zip(v,half)] for i in range(9)}
     idle={'body':{'rotation':wave((0,0,-1),(0,0,1))},'head':{'rotation':wave((0,-4,0),(2,4,0))}}
     for n in B:
-        if n.startswith(('hair_','robe_','sleeve_','tail','crest_','earring_')):idle[n]={'rotation':wave((-3,0,-2),(4,0,2))}
+        if n.startswith(('hair_','robe_','sleeve_','tail','crest_','earring_','temple_','fringe_')):idle[n]={'rotation':wave((-3,0,-2),(4,0,2))}
         if n=='nova':idle[n]={'scale':{'0':[.01,.01,.01]}}
         if n.startswith('circle_'):idle[n]={'scale':{'0':[.015,.015,.015]}}
         if n.startswith(('orbit_','bubble_')):idle[n]={'position':wave((0,-.45,0),(0,.45,0)),'rotation':wave((0,0,-8),(0,18,8))}
+    if name=='moon_stag':idle['body']={'rotation':{'0':[0,0,0]}}
     if name=='slime_maiden':
         idle['body']['scale']=wave((1.035,.96,1.035),(.97,1.035,.97))
-        for i in range(5):idle['gel_'+str(i)]={'scale':wave((1.02,.96,1.02),(.98,1.04,.98))}
+        for i in range(5):
+            idle['gel_'+str(i)]={'scale':{str(round(j/4,6)):[1+.02*math.cos(math.tau*j/8-i*.4),1-.035*math.cos(math.tau*j/8-i*.4),1+.02*math.cos(math.tau*j/8-i*.4)] for j in range(9)}}
     a={'idle':c(2,idle,True)}
     for run in (False,True):
         length=.65 if run else 1.1; b={'body':{'position':wave((0,0,0),(0,1.1 if run else .4,0),length)}}
@@ -178,7 +276,7 @@ def motion(m):
                 b[n]={'rotation':wave((sign*(32 if run else 20),0,0),(-sign*(32 if run else 20),0,0),length)}
         if name=='slime_maiden':b['body']['scale']=wave((1.1,.9,1.1),(.91,1.12,.91),length)
         for n in B:
-            if n.startswith(('hair_','robe_','tail','sleeve_')):b[n]={'rotation':wave((-8,0,-4),(10,0,4),length)}
+            if n.startswith(('hair_','robe_','tail','sleeve_','crest_','temple_','fringe_')):b[n]={'rotation':wave((-8,0,-4),(10,0,4),length)}
         for n in B:
             if n=='nova':b[n]={'scale':{'0':[.01,.01,.01]}}
             if n.startswith('circle_'):b[n]={'scale':{'0':[.015,.015,.015]}}
@@ -203,8 +301,27 @@ def motion(m):
     if name=='moon_stag':
         sit={'body':{'position':{'0':[0,-7,0]}},'neck':{'rotation':{'0':[-12,0,0]}}}
         for n in B:
-            if n.startswith(('front_','rear_')):sit[n]={'rotation':{'0':[70 if n.endswith('_hock') else -75,0,0]}}
+            if n.startswith(('front_','rear_')):sit[n]={'rotation':{'0':[5 if n.endswith('_hoof') else 70 if n.endswith('_hock') else -75,0,0]}}
         a['sit']=c(2,sit,True);a['tame']=c(1.2,{'head':{'rotation':wave((0,0,-8),(0,0,8),1.2)}});a['ride']=a['run']
+        # Stance/swing inverse kinematics: two planted diagonal hooves at all times.
+        for state in ('walk','run'):
+            animation=a[state];L=animation['animation_length'];b=animation['bones']
+            b['body']={'position':{'0':[0,-.8,0]}}
+            for side in ('right','left'):
+                for front in (True,False):
+                    leg=('front_' if front else 'rear_')+side
+                    phase=0 if (front==(side=='right')) else .5
+                    hip={};knee={};hoof={}
+                    for frame in range(65):
+                        u=frame/64;f=(u+phase)%1;stride=2.4 if state=='run' else 1.8
+                        dz=stride*(1-4*f) if f<.5 else stride*(-1+4*(f-.5))
+                        lift=0 if f<=.5 else (1.1 if state=='run' else .6)*math.sin(math.tau*(f-.5))**2
+                        dy=12.2-lift;d=math.hypot(dy,dz)
+                        h=math.atan2(-dz,dy)-math.acos(max(-1,min(1,(49+d*d-36)/(14*d))))
+                        k=math.acos(max(-1,min(1,(d*d-49-36)/84)))
+                        time=str(round(L*u,6));hip[time]=[math.degrees(h),0,0];knee[time]=[math.degrees(k),0,0];hoof[time]=[-math.degrees(h+k),0,0]
+                    b[leg]={'rotation':hip};b[leg+'_hock']={'rotation':knee};b[leg+'_hoof']={'rotation':hoof}
+        a['ride']=a['run']
         a['jump']=c(.8,{'body':{'rotation':wave((-12,0,0),(15,0,0),.8),'position':wave((0,0,0),(0,2,0),.8)}})
     if name=='harpy':
         for state,L,amp in [('fly',.55,62),('hover',.9,42)]:
@@ -223,9 +340,11 @@ def motion(m):
 
 
 def main():
+    asset_pipeline.material_atlas=refined_atlas
     for maker in (frost,stag,slime,harpy,demon):
-        m=maker();p=PALETTES[m.name];w,h,_=SIZES[m.name]
+        m=refine(maker());p=PALETTES[m.name];w,h,_=SIZES[m.name]
         material=['ice','stone','ice','bone','glow','stone','bone','ice','ice','stone','stone','rune','ice','stone','stone','ice'] if m.name=='frost_elemental' else (['slime']*16 if m.name=='slime_maiden' else ['fur','fur','fur','bone','glow','stone','bone','fur','fur','fur','leather','rune','rune','cloth','stone','bone'] if m.name=='moon_stag' else ['feather','feather','feather','bone','glow','bone','bone','feather','skin','feather','leather','rune','feather','cloth','stone','bone'] if m.name=='harpy' else ['cloth','bone','cloth','metal','glow','stone','bone','cloth','skin','fur','leather','rune','rune','cloth','metal','bone'])
+        if m.name=='demon_sorceress':material[9]='hair'
         if m.name=='slime_maiden':
             material[4]='glow';material[11]='rune';material[15]='glow'
         variants=None
