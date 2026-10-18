@@ -108,13 +108,23 @@
     }
   },
   "kobold": {
-    "commit": "Visual overhaul: Kobold reference accuracy",
+    "commit": "f8f4bb8",
     "files": {
       "src/main/resources/assets/mythic_realms_creatures/geckolib/models/entity/kobold.geo.json": "c57079ce7cd7153014c167452467263bd93462f5a9e5aac34f815c38f6197fd8",
       "src/main/resources/assets/mythic_realms_creatures/geckolib/animations/entity/kobold.animation.json": "170dcb5a938b64818711d0a57ce6dc434a9d6b2ae5e9176ef4b812df99fb0c05",
       "src/main/resources/assets/mythic_realms_creatures/textures/entity/kobold.png": "8d93560f798c97eb65e30cd73f01701d9627867464a8f3b1d46011f7731f17e9",
       "tools/blockbench/kobold.bbmodel": "6b9372a8fefc4867d0502951bfc0e16e529baa026b55ec5a46fddacf2d6ac2af",
       "src/main/resources/assets/mythic_realms_creatures/textures/entity/kobold_glowmask.png": "2ee48ae110d5a6b86c242383356345dbd00e6b44668ee22fe3cea2ace4327dd9"
+    }
+  },
+  "cyclops": {
+    "commit": "Visual overhaul: Cyclops reference accuracy",
+    "files": {
+      "src/main/resources/assets/mythic_realms_creatures/geckolib/models/entity/cyclops.geo.json": "f7861d0677cd8eed26ea28801f0407d55ef7d41e2562c0f2ba40b4250e32f03b",
+      "src/main/resources/assets/mythic_realms_creatures/geckolib/animations/entity/cyclops.animation.json": "522025abfec09e1515ba250129c7bba5a6985398b0e15910d55f3a74b66754e8",
+      "src/main/resources/assets/mythic_realms_creatures/textures/entity/cyclops.png": "75eb9dfaf9b7268fc3c74d89d109bb266e90f7c4617684da4f27c8b17e5fdd12",
+      "tools/blockbench/cyclops.bbmodel": "56f3ab53005a943a7c0b2ecf71730f52258660aa040ec3baf28ecd4bbe1e2778",
+      "src/main/resources/assets/mythic_realms_creatures/textures/entity/cyclops_glowmask.png": "5ec116af3486076fd39662293a4a60906b2d3cf492a52302f75fcd4d4a7fe365"
     }
   }
 }
