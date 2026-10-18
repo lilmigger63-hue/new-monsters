@@ -1,5 +1,5 @@
 To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/9.7.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
-Daemon will be stopped at the end of the build 
+Daemon will be stopped at the end of the build
 
 > Configure project :
 Fabric Loom: 1.14.10
@@ -267,7 +267,7 @@ ALSA lib pcm.c:2722:(snd_pcm_open_noupdate) Unknown PCM default
 [21:11:45] [Server thread/INFO] (Minecraft) Selecting global world spawn...
 [21:11:46] [Server thread/INFO] (Minecraft) Loading 0 persistent chunks...
 [21:11:46] [Server thread/INFO] (Minecraft) Preparing spawn area: 16%
-[21:11:46] [Server thread/WARN] (TranslationConventionLogWarnings) 
+[21:11:46] [Server thread/WARN] (TranslationConventionLogWarnings)
 	Dev warning - Untranslated Item Tags detected. Please translate your item tags so other mods such as recipe viewers can properly display your tag's name.
 	The format desired is tag.item.<namespace>.<path> for the translation key with slashes in path turned into periods.
 	To disable this message, set this system property in your runs: `-Dfabric-tag-conventions-v2.missingTagTranslationWarning=SILENCED`.

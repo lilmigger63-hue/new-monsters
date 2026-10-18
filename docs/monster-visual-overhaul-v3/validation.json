@@ -82,5 +82,19 @@
     "Offline authentication-key requests fail; online authentication not validated",
     "Still images sample real animation playback; not every interpolated frame certified",
     "Requested external packs not incorporated because downloads/licenses could not be inspected"
-  ]
+  ],
+  "archived_logs": {
+    "build-better-combat.log": {
+      "sha256": "0072d1ca1264b8eac1b68b04b2b7f2d1ae119b7e9ee3d9ef6e173c370c59ad35",
+      "normalization": "Trailing whitespace removed; original log hash remains recorded for client evidence"
+    },
+    "client.log": {
+      "sha256": "4f207d6f0ab68fcb67ae0a506f2048d99b852e8f0701d7736c4af3d55dce1455",
+      "normalization": "Trailing whitespace removed; original log hash remains recorded for client evidence"
+    },
+    "build-base.log": {
+      "sha256": "9de7e334adca59611834668dbc6600673ee067311481b1e7b0f2956938e9dd3f",
+      "normalization": "Trailing whitespace removed; original log hash remains recorded for client evidence"
+    }
+  }
 }

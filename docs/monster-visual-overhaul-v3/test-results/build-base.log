@@ -1,5 +1,5 @@
 To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/9.7.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
-Daemon will be stopped at the end of the build 
+Daemon will be stopped at the end of the build
 
 > Configure project :
 Fabric Loom: 1.14.10
@@ -130,7 +130,7 @@ Caused by: java.net.UnknownHostException: api.minecraftservices.com
 [21:10:15] [Server thread/INFO] (Minecraft) Preparing spawn area: 100%
 [21:10:15] [Server thread/INFO] (Minecraft) Time elapsed: 250 ms
 [21:10:15] [Server thread/INFO] (Minecraft) Started game test server
-[21:10:15] [Server thread/WARN] (TranslationConventionLogWarnings) 
+[21:10:15] [Server thread/WARN] (TranslationConventionLogWarnings)
 	Dev warning - Untranslated Item Tags detected. Please translate your item tags so other mods such as recipe viewers can properly display your tag's name.
 	The format desired is tag.item.<namespace>.<path> for the translation key with slashes in path turned into periods.
 	To disable this message, set this system property in your runs: `-Dfabric-tag-conventions-v2.missingTagTranslationWarning=SILENCED`.
