@@ -55,12 +55,33 @@ def basilisk():
         for z in (0,4,8):m.box('body',[side*3-1,8,z],[2,1.4,3.5],2)
     b(m,'tail','body',[0,6,10],[-3,3.7,10],[6,4,8],0,[0,12,0])
     b(m,'tail_tip','tail',[0,5.5,17],[-1.8,4,17],[3.6,2.6,9],2,[0,18,0])
+    # Articulated mandible edge, cheek shields and staggered scutes preserve
+    # the broad low reptile silhouette while breaking its flat planes.
+    m.box('jaw',[-2.8,4.55,-16],[5.6,.45,6.8],1)
+    m.box('head',[-2.9,7.8,-17.15],[5.8,.5,.4],9)
+    for side in (-1,1):
+        m.box('head',[side*2.1-.35,8.1,-17.25],[.7,.35,.3],5)
+        m.box('head',[side*3.8-.55,6.3,-11.4],[1.1,2.3,3],8,[0,side*9,side*8],[side*4,7,-10])
+        for row,z in enumerate((-2,1,4,7)):
+            m.box('body',[side*4.55-.25,5.7,z],[.5,1.5,2.2],8 if row%2 else 2,[0,0,side*9],[side*4.55,6,z])
+        for i,z in enumerate((-2,7)):
+            n=f'leg_{side}_{i}'
+            m.box(n,[side*5.8-1,3.1,z-1.1],[2,2.5,2.2],8)
+            m.box(n+'_foot',[side*7-.9,2.6,z-1.2],[1.8,.55,2.3],2)
+    for i in range(5):
+        m.box('tail_tip',[-1.25+i*.08,6.1-i*.1,17+i*1.5],[2.5-i*.16,.5,1],9 if i%2 else 8)
     a=common(m,1.0,'head')
     for state,speed in [('walk',1),('run',1.7)]:
         bones={'tail':{'rotation':oscillate(11,1)},'tail_tip':{'rotation':oscillate(-16,1)}}
         for side in (-1,1):
             for i in range(2):bones[f'leg_{side}_{i}']={'rotation':oscillate((17 if (i+(side==1))%2 else -17)*speed)}
+        for side in (-1,1):
+            for i in range(2):
+                phase=1 if (i+(side==1))%2 else -1
+                bones[f'leg_{side}_{i}_foot']={'rotation':oscillate(-phase*8*speed)}
+        bones['neck']={'rotation':oscillate(1.7)}
         a[state]=clip(1/speed,bones,True)
+    a['idle']['bones']['jaw']={'rotation':oscillate(1.2)}
     a['attack']=clip(1.5,{'neck':action(1,[-18,0,0],[22,0,0]),'jaw':action(1,[30,0,0],[-5,0,0]),'tail':action(1,[0,-22,0],[0,24,0])})
     a['cast']=clip(1.5,{'head':action(1,[-15,-20,0],[4,20,0]),'body':{'scale':{'0':[1,1,1],'.8':[1,1.05,1],'1':[1,1,1]}},'jaw':action(1,[8,0,0],[22,0,0])})
     return m,a
@@ -110,8 +131,20 @@ def wraith():
     m=Model('shadow_wraith')
     b(m,'body','root',[0,22,0],[-4,17,-2.5],[8,9,5],13)
     b(m,'head','body',[0,27,0],[-3.5,25,-3.4],[7,6.5,6.5],1)
-    m.box('head',[-2.7,25.4,-3.8],[5.4,4.9,.6],5)
-    for side in (-1,1):m.box('head',[side*1.5-.6,28,-4],[1.2,.65,.5],4)
+    # Pallid tapered spectral face stays recessed inside the original hood.
+    m.box('head',[-2.25,26,-3.8],[4.5,4.2,.6],12)
+    m.box('head',[-1.65,25.65,-3.85],[3.3,.75,.5],12)
+    m.box('head',[-.65,26.35,-4.03],[1.3,.17,.2],13)
+    m.box('head',[-.2,27.15,-4.03],[.4,.65,.25],6)
+    for side in (-1,1):
+        x=side*1.15
+        m.box('head',[x-.75,28.15,-4.06],[1.5,.85,.25],5)
+        m.box('head',[x-.58,28.2,-4.22],[1.15,.6,.2],4)
+        m.box('head',[x-.17,28.22,-4.35],[.34,.55,.15],1)
+        m.box('head',[x-.55,29.18,-4.06],[1.15,.18,.2],13,[0,0,side*-7],[x,29.2,-4])
+        b(m,f'hair_{side}','head',[side*2.5,30,-3.5],[side*2.55-.65,24.8,-4.02],[1.3,5.5,.65],2,[0,0,side*-5])
+        m.box(f'hair_{side}',[side*2.65-.4,23.7,-3.7],[.8,2,.55],0)
+    m.box('head',[-2.4,29.6,-4.1],[3.2,1,.7],2,[0,0,-12],[-1,30,-3.5])
     m.box('head',[-4,30,-3.7],[8,1.8,7],13)
     for side in (-1,1):
         n=f'arm_{side}';b(m,n,'body',[side*4,24,0],[side*5-1.5,17,-1.8],[3,7,3.6],14,[0,0,side*19])
@@ -122,13 +155,27 @@ def wraith():
         x=-4.5+i*1.35; y=3+(i*3)%5
         n=f'shroud_{i}';b(m,n,'body',[x,18,1],[x-.8,y,-1+(i%2)*2],[1.7,18-y,2.2],13 if i%2 else 0,[0,0,(i-3)*3])
         b(m,n+'_wisp',n,[x,y,0],[x-.45,y-2.5,.2],[.9,4,1],12,[14,0,(i-3)*7])
+    # Folded neckline and waist seams read as the same spectral shroud.
+    m.box('body',[-2.7,23.7,-2.85],[5.4,1,.55],1)
+    m.box('body',[-2.4,18,-2.7],[4.8,.65,.5],2)
+    for side in (-1,1):
+        m.box('body',[side*2.8-.3,19,-2.8],[.6,4.5,.45],0,[0,0,side*10],[side*2.8,22,-2.5])
     a=common(m,.9,'body')
     floatbones={'body':{'position':{'0':[0,0,0],'1':[0,1.2,0],'2':[0,0,0]}},'head':{'rotation':oscillate(5,1)}}
     for i in range(7):floatbones[f'shroud_{i}']={'rotation':oscillate((i-3)*2+5)}
     a['idle']=clip(2,floatbones,True)
+    for side in (-1,1):
+        floatbones[f'hair_{side}']={'rotation':{'0':[0,0,side*2],'.5':[3,0,0],'1':[0,0,-side*2],'1.5':[-3,0,0],'2':[0,0,side*2]}}
+    for i in range(7):
+        floatbones[f'shroud_{i}_wisp']={'rotation':{'0':[2,0,0],'.5':[0,0,3],'1':[-2,0,0],'1.5':[0,0,-3],'2':[2,0,0]}}
     for s in ['walk','run','fly','hover']:a[s]=clip(2,floatbones,True)
     for s in ['attack','cast','heavy']:
         a[s]=clip(1.5,{'body':action(.9,[0,-25,0],[0,28,0]),'arm_-1':action(.9,[-65,0,-25],[25,0,15]),'arm_1':action(.9,[-65,0,25],[25,0,-15]),'head':action(.9,[-12,0,0],[14,0,0])})
+    for state in ('attack','cast','heavy'):
+        for side in (-1,1):
+            a[state]['bones'][f'hair_{side}']={'rotation':keys(1.02,[-4,0,side*3],[5,0,-side*2])}
+        for i in range(7):
+            a[state]['bones'][f'shroud_{i}']={'rotation':keys(1.02,[-3,0,(i-3)*2],[5,0,-(i-3)*2])}
     a['death']=clip(2,{'body':{'position':{'0':[0,0,0],'1.5':[0,-12,0]},'scale':{'0':[1,1,1],'1.8':[.1,.05,.1]}},'shroud_3':{'rotation':{'0':[0,0,0],'1.5':[0,180,0]}}})
     return m,a
 
@@ -139,9 +186,23 @@ def knight():
     m.box('body',[-3.5,17,-3.2],[7,7,.8],14)
     m.box('body',[-.6,18,-3.7],[1.2,6,.5],3)
     b(m,'head','body',[0,27,0],[-3,26,-3],[6,6.1,6],0)
-    m.box('head',[-3.3,28,-3.6],[6.6,1.2,.7],1)
-    m.box('head',[-2.5,28.4,-3.9],[5,.4,.4],4)
-    m.box('head',[-.5,26,-4],[1,5,.7],14)
+    # Open the existing visor recess without removing helmet, crown or armor.
+    # Cool ivory complexion and silver hair use the established palette.
+    m.box('head',[-2.15,26.4,-3.22],[4.3,3.9,.55],6)
+    m.box('head',[-1.5,26.15,-3.28],[3,.65,.5],6)
+    m.box('head',[-3.3,30,-3.6],[6.6,.75,.7],1)
+    m.box('head',[-.25,27.4,-3.9],[.5,.65,.25],6)
+    m.box('head',[-.65,26.85,-3.9],[1.3,.16,.2],7)
+    for side in (-1,1):
+        x=side*1.1
+        m.box('head',[x-.7,28.35,-3.84],[1.4,.7,.25],1)
+        m.box('head',[x-.55,28.4,-4.01],[1.1,.5,.16],4)
+        m.box('head',[x-.15,28.4,-4.14],[.3,.48,.14],5)
+        m.box('head',[x-.5,29.35,-3.86],[1.05,.16,.2],1,[0,0,side*-6],[x,29.4,-3.5])
+        m.box('head',[side*2.65-.45,26,-3.65],[.9,4.1,.7],14)
+        b(m,f'hair_{side}','head',[side*2,30,-2.6],[side*2-.5,24.2,-3.5],[1,5.8,.6],2,[0,0,side*5])
+        m.box(f'hair_{side}',[side*2-.3,23.5,-3.1],[.6,1.5,.55],14)
+    m.box('head',[-1.8,29.6,-3.8],[2.7,.7,.6],2,[0,0,-10],[-.8,30,-3])
     for side in (-1,1):
         for j in range(2):m.box('head',[side*(2-j*.4)-.4,31,-1+j*2],[.8,2.4+j*.5,.8],3,[0,0,side*-13],[side*2,31,0])
         n=f'leg_{side}';b(m,n,'body',[side*2.4,16,0],[side*2.4-1.9,8,-2],[3.8,8,4],1)
@@ -162,13 +223,28 @@ def knight():
     for side in (-1,1):
         n=f'cape_{side}';b(m,n,'body',[side*2.2,25,3],[side*2.2-2,8+(side==1)*2,3],[4,17-(side==1)*2,.8],13,[8,0,side*5])
         for j in range(2):m.box(n,[side*2.2-1.8+j*2,5+j*2,3.4],[1.5,5,.6],7)
+    # Articulated waist lames and gauntlet fingers remain on existing bones.
+    for side in (-1,1):
+        for j in range(3):
+            m.box('body',[side*3.1-1.3,16+j*.8,-3.1],[2.6,.65,.7],14 if j%2 else 0)
+            m.box(f'arm_{side}_forearm',[side*5-1.45+j*.9,11.4,-2.25],[.65,1.6,.55],1)
+        m.box(f'leg_{side}_shin',[side*2.4-1.1,2,-2.35],[2.2,5.2,.5],14)
     a=common(m,.6,'body')
     for state,speed in [('walk',1),('run',1.5)]:
         a[state]=clip(1/speed,{'leg_-1':{'rotation':oscillate(22)},'leg_1':{'rotation':oscillate(-22)},'arm_-1':{'rotation':oscillate(-12)},'arm_1':{'rotation':oscillate(9)},'cape_-1':{'rotation':oscillate(7)},'cape_1':{'rotation':oscillate(-6)}} ,True)
     a['attack']=clip(1.25,{'body':action(.6,[0,-30,0],[0,42,0]),'arm_1':action(.6,[-45,0,-60],[30,0,40]),'sword':action(.6,[-25,0,0],[22,0,0]),'cape_1':action(.6,[0,-12,0],[0,25,0])})
     a['attack_two']=clip(1.25,{'body':action(.6,[0,35,0],[0,-40,0]),'arm_1':action(.6,[25,0,60],[-60,0,-35]),'sword':action(.6,[15,0,0],[-28,0,0])})
     a['heavy']=clip(1.6,{'body':action(.6,[-16,0,0],[25,0,0]),'arm_1':action(.6,[-145,0,-15],[40,0,8]),'arm_-1':action(.6,[-90,0,30],[20,0,0]),'sword':action(.6,[-30,0,0],[35,0,0])})
+    for state in ('idle','walk','run'):
+        length=a[state]['animation_length']
+        for side in (-1,1):
+            a[state]['bones'][f'hair_{side}']={'rotation':{'0':[0,0,0],str(round(length*.25,6)):[2,0,side],str(round(length*.75,6)):[-2,0,-side],str(length):[0,0,0]}}
     a['guard']=clip(1,{'arm_-1':{'rotation':[ -55,0,-20]},'arm_1':{'rotation':[-25,0,-30]},'body':{'rotation':[0,15,0]}},True)
+    for state in ('attack','attack_two','heavy'):
+        for side in (-1,1):
+            a[state]['bones'][f'hair_{side}']={'rotation':keys(.72,[-3,0,side*2],[4,0,-side*2])}
+            if f'cape_{side}' not in a[state]['bones']:
+                a[state]['bones'][f'cape_{side}']={'rotation':keys(.72,[-4,0,side*3],[7,0,-side*3])}
     a['cast']=a['heavy']
     a['death']=clip(2.2,{'body':{'rotation':{'0':[0,0,0],'.7':[18,0,0],'1.3':[18,0,0],'2.2':[80,0,-8]},'position':{'0':[0,0,0],'1.3':[0,-8,0],'2.2':[0,-15,0]}},'arm_1':{'rotation':{'0':[0,0,0],'1.2':[30,0,25]}},'sword':{'rotation':{'0':[0,0,0],'1.2':[35,0,0]}}})
     return m,a
@@ -218,8 +294,9 @@ def common(m,t,focus):
 def main():
     for build,w,h in [(basilisk,1.2,.85),(spider,1.4,1.1),(wraith,.7,2),(knight,.8,2.1),(imp,.5,.8)]:
         m,a=build(); mats=list(MATERIALS)
-        if m.name=='grave_knight':mats[:3]=['metal']*3
-        if m.name=='shadow_wraith':mats[:3]=['cloth']*3
+        if m.name=='grave_knight':mats[:3]=['metal']*3; mats[6]='skin'; mats[2]='hair'
+        if m.name=='shadow_wraith':mats[:3]=['cloth']*3; mats[2]='hair'; mats[12]='skin'
+        if m.name=='cave_basilisk':mats[8]='scales'; mats[9]='scales'
         if m.name=='crystal_spider':mats[:3]=['chitin']*3
         if m.name=='flame_imp':mats[:3]=['skin']*3
         # Normalize gait cycles to their speed-dependent clip duration.
