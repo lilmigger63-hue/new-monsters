@@ -1,0 +1,84 @@
+Mythic Realms: Creatures 1.2.0-rc.1 — actual validation
+Minecraft1.21.10 / FabricLoader0.19.5 / FabricAPI0.138.4+1.21.10 / GeckoLib5.3-alpha-3 / Java21.0.8
+Asset/export suites: 16 tests passed (2+5+5+4).
+Standalone AttackTimeline: 14 checks passed.
+Particle-coordinate parity: all300 supported unit-circle points bit-identical.
+
+server-optimized-base:
+[18:30:06] [Server thread/INFO] (Minecraft) All 51 required tests passed :)
+BUILD SUCCESSFUL in 30s
+
+server-optimized-better-combat:
+[18:28:32] [Server thread/INFO] (Minecraft) All 51 required tests passed :)
+BUILD SUCCESSFUL in 36s
+
+client-verified:
+[18:25:06] [Test thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_ENTITY_PASS minotaur geometry, animation bake, texture, renderer, entity sync, four views, server attack, 6 animation probes
+[18:25:12] [Test thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_ENTITY_PASS forest_dryad geometry, animation bake, texture, renderer, entity sync, four views, server attack, 6 animation probes
+[18:25:19] [Test thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_ENTITY_PASS slime_maiden geometry, animation bake, texture, renderer, entity sync, four views, server attack, 6 animation probes
+[18:25:29] [Test thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_ENTITY_PASS harpy geometry, animation bake, texture, renderer, entity sync, four views, server attack, 8 animation probes
+[18:25:38] [Test thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_ENTITY_PASS ender_dragon_girl geometry, animation bake, texture, renderer, entity sync, four views, server attack, 8 animation probes
+[18:25:45] [Test thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_ENTITY_PASS vampire geometry, animation bake, texture, renderer, entity sync, four views, server attack, 6 animation probes
+[18:25:51] [Test thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_ENTITY_PASS holstaurus geometry, animation bake, texture, renderer, entity sync, four views, server attack, 6 animation probes
+[18:25:58] [Test thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_ENTITY_PASS centaur geometry, animation bake, texture, renderer, entity sync, four views, server attack, 6 animation probes
+[18:26:06] [Test thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_SWIM_PASS sahuagin submerged idle/swim playback
+[18:26:06] [Test thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_ENTITY_PASS sahuagin geometry, animation bake, texture, renderer, entity sync, four views, server attack, 6 animation probes
+[18:26:15] [Test thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_ENTITY_PASS valkyrie geometry, animation bake, texture, renderer, entity sync, four views, server attack, 8 animation probes
+[18:26:23] [Test thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_ENTITY_PASS fox_spirit_girl geometry, animation bake, texture, renderer, entity sync, four views, server attack, 6 animation probes
+[18:26:29] [Test thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_ENTITY_PASS anubis geometry, animation bake, texture, renderer, entity sync, four views, server attack, 6 animation probes
+[18:26:35] [Test thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_ENTITY_PASS kobold geometry, animation bake, texture, renderer, entity sync, four views, server attack, 6 animation probes
+[18:26:42] [Test thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_ENTITY_PASS cyclops geometry, animation bake, texture, renderer, entity sync, four views, server attack, 6 animation probes
+[18:26:48] [Test thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_ENTITY_PASS dhampir geometry, animation bake, texture, renderer, entity sync, four views, server attack, 6 animation probes
+[18:26:58] [Test thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_ENTITY_PASS succubus geometry, animation bake, texture, renderer, entity sync, four views, server attack, 8 animation probes
+[18:27:05] [Test thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_ENTITY_PASS werecat geometry, animation bake, texture, renderer, entity sync, four views, server attack, 6 animation probes
+[18:27:08] [Test thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_PASS 33 resource sets and synced entities; 17 species presented in a real singleplayer world
+BUILD SUCCESSFUL in 2m 53s
+
+client-optimized-all:
+[18:30:55] [Test thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_ENTITY_PASS goblin_scout geometry, animation bake, texture, renderer, entity sync, four views, server attack, 6 animation probes
+[18:31:01] [Test thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_ENTITY_PASS goblin_shaman geometry, animation bake, texture, renderer, entity sync, four views, server attack, 6 animation probes
+[18:31:07] [Test thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_ENTITY_PASS orc_warrior geometry, animation bake, texture, renderer, entity sync, four views, server attack, 6 animation probes
+[18:31:13] [Test thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_ENTITY_PASS minotaur geometry, animation bake, texture, renderer, entity sync, four views, server attack, 6 animation probes
+[18:31:20] [Test thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_ENTITY_PASS stone_troll geometry, animation bake, texture, renderer, entity sync, four views, server attack, 6 animation probes
+[18:31:26] [Test thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_ENTITY_PASS ancient_treant geometry, animation bake, texture, renderer, entity sync, four views, server attack, 6 animation probes
+[18:31:33] [Test thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_ENTITY_PASS forest_dryad geometry, animation bake, texture, renderer, entity sync, four views, server attack, 6 animation probes
+[18:31:40] [Test thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_ENTITY_PASS griffin geometry, animation bake, texture, renderer, entity sync, four views, server attack, 8 animation probes
+[18:31:46] [Test thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_ENTITY_PASS dire_wolf geometry, animation bake, texture, renderer, entity sync, four views, server attack, 6 animation probes
+[18:31:54] [Test thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_ENTITY_PASS wild_wyvern geometry, animation bake, texture, renderer, entity sync, four views, server attack, 8 animation probes
+[18:32:00] [Test thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_ENTITY_PASS cave_basilisk geometry, animation bake, texture, renderer, entity sync, four views, server attack, 6 animation probes
+[18:32:06] [Test thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_ENTITY_PASS crystal_spider geometry, animation bake, texture, renderer, entity sync, four views, server attack, 6 animation probes
+[18:32:13] [Test thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_ENTITY_PASS shadow_wraith geometry, animation bake, texture, renderer, entity sync, four views, server attack, 6 animation probes
+[18:32:19] [Test thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_ENTITY_PASS grave_knight geometry, animation bake, texture, renderer, entity sync, four views, server attack, 6 animation probes
+[18:32:25] [Test thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_ENTITY_PASS flame_imp geometry, animation bake, texture, renderer, entity sync, four views, server attack, 6 animation probes
+[18:32:32] [Test thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_ENTITY_PASS frost_elemental geometry, animation bake, texture, renderer, entity sync, four views, server attack, 6 animation probes
+[18:32:39] [Test thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_ENTITY_PASS moon_stag geometry, animation bake, texture, renderer, entity sync, four views, server attack, 6 animation probes
+[18:32:45] [Test thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_ENTITY_PASS slime_maiden geometry, animation bake, texture, renderer, entity sync, four views, server attack, 6 animation probes
+[18:32:55] [Test thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_ENTITY_PASS harpy geometry, animation bake, texture, renderer, entity sync, four views, server attack, 8 animation probes
+[18:33:03] [Test thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_ENTITY_PASS demon_sorceress geometry, animation bake, texture, renderer, entity sync, four views, server attack, 6 animation probes
+[18:33:12] [Test thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_ENTITY_PASS ender_dragon_girl geometry, animation bake, texture, renderer, entity sync, four views, server attack, 8 animation probes
+[18:33:18] [Test thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_ENTITY_PASS vampire geometry, animation bake, texture, renderer, entity sync, four views, server attack, 6 animation probes
+[18:33:25] [Test thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_ENTITY_PASS holstaurus geometry, animation bake, texture, renderer, entity sync, four views, server attack, 6 animation probes
+[18:33:32] [Test thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_ENTITY_PASS centaur geometry, animation bake, texture, renderer, entity sync, four views, server attack, 6 animation probes
+[18:33:41] [Test thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_SWIM_PASS sahuagin submerged idle/swim playback
+[18:33:41] [Test thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_ENTITY_PASS sahuagin geometry, animation bake, texture, renderer, entity sync, four views, server attack, 6 animation probes
+[18:33:49] [Test thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_ENTITY_PASS valkyrie geometry, animation bake, texture, renderer, entity sync, four views, server attack, 8 animation probes
+[18:33:57] [Test thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_ENTITY_PASS fox_spirit_girl geometry, animation bake, texture, renderer, entity sync, four views, server attack, 6 animation probes
+[18:34:04] [Test thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_ENTITY_PASS anubis geometry, animation bake, texture, renderer, entity sync, four views, server attack, 6 animation probes
+[18:34:09] [Test thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_ENTITY_PASS kobold geometry, animation bake, texture, renderer, entity sync, four views, server attack, 6 animation probes
+[18:34:17] [Test thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_ENTITY_PASS cyclops geometry, animation bake, texture, renderer, entity sync, four views, server attack, 6 animation probes
+[18:34:23] [Test thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_ENTITY_PASS dhampir geometry, animation bake, texture, renderer, entity sync, four views, server attack, 6 animation probes
+[18:34:32] [Test thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_ENTITY_PASS succubus geometry, animation bake, texture, renderer, entity sync, four views, server attack, 8 animation probes
+[18:34:39] [Test thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_ENTITY_PASS werecat geometry, animation bake, texture, renderer, entity sync, four views, server attack, 6 animation probes
+[18:34:43] [Test thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_PASS 33 resource sets and synced entities; 33 species presented in a real singleplayer world
+BUILD SUCCESSFUL in 4m 29s
+
+client-optimized-better-combat:
+[18:35:43] [Test thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_ENTITY_PASS werecat geometry, animation bake, texture, renderer, entity sync, four views, server attack, 6 animation probes
+[18:35:47] [Test thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_PASS 33 resource sets and synced entities; 1 species presented in a real singleplayer world
+BUILD SUCCESSFUL in 54s
+
+PlayableJAR SHA256: 58f6dfb726ebfb5725fc900efcd2c6588818b5cc0213019644ce0748fdcf70fb
+Artifact:76 Java21 classes;33 models/animations; final Werecat98 cubes; no GameTest/clienttest/reference assets.
+No external asset pack files incorporated: seven proxy CONNECT403 failures, licenses unverified. Original art only.
+Scope: real local singleplayer graphical runs under Xvfb/llvmpipe, server GameTests; no hardware FPS, multiplayer endurance or exhaustive continuous-animation certification.
+Particlering microbenchmark is coordinate math only; no overall FPS/TPS gain claimed.

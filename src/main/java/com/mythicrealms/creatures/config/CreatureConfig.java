@@ -32,6 +32,13 @@ public final class CreatureConfig {
         SpawnRule(int weight) { this.weight = weight; }
         SpawnRule(CreatureKind kind) {
             weight=kind.spawnWeight;
+            enabled=kind.allowsNaturalSpawning();
+            if(kind.isExpansion()) {
+                maxGroup=kind==CreatureKind.KOBOLD || kind==CreatureKind.SAHUAGIN?2:1;
+                frequency=kind==CreatureKind.VALKYRIE || kind==CreatureKind.ENDER_DRAGON_GIRL?6:kind==CreatureKind.CYCLOPS?4:2;
+                if(kind==CreatureKind.ENDER_DRAGON_GIRL)dimensions=new java.util.ArrayList<>(java.util.List.of("minecraft:the_end"));
+                if(kind==CreatureKind.SUCCUBUS)dimensions=new java.util.ArrayList<>(java.util.List.of("minecraft:the_nether"));
+            }
             if(kind==CreatureKind.FLAME_IMP || kind==CreatureKind.DEMON_SORCERESS)dimensions=new java.util.ArrayList<>(java.util.List.of("minecraft:the_nether"));
         }
     }

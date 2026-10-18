@@ -7,7 +7,7 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.level.Level;
 
-public final class GoblinShamanEntity extends MythicHostileEntity {
+public class GoblinShamanEntity extends MythicHostileEntity {
     public GoblinShamanEntity(EntityType<? extends GoblinShamanEntity> type, Level level) { super(type, level); }
     @Override public CreatureKind kind() { return CreatureKind.GOBLIN_SHAMAN; }
     @Override public boolean ranged() { return true; }

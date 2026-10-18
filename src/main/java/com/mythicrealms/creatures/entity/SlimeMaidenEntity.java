@@ -6,7 +6,7 @@ import net.minecraft.sounds.*;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.level.Level;
 
-public final class SlimeMaidenEntity extends ForestGuardianEntity {
+public class SlimeMaidenEntity extends ForestGuardianEntity {
     public SlimeMaidenEntity(EntityType<? extends SlimeMaidenEntity> type,Level level){super(type,level);}
     @Override public CreatureKind kind(){return CreatureKind.SLIME_MAIDEN;}
     @Override public void performAttack(ServerLevel level,LivingEntity target){if(distanceToSqr(target)<100)CreatureProjectile.launch(ModEntities.SLIME_BUBBLE,this,target,1.1f);}

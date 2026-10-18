@@ -19,6 +19,11 @@ except ImportError:
     pipeline=None
 IDS='goblin_scout goblin_shaman orc_warrior minotaur stone_troll ancient_treant forest_dryad griffin dire_wolf wild_wyvern cave_basilisk crystal_spider shadow_wraith grave_knight flame_imp frost_elemental moon_stag slime_maiden harpy demon_sorceress'.split()
 
+# Expansion exports use the same runtime/native/UV contracts.
+expansion_manifest=REPO/'docs/monster-girl-expansion/species.json'
+if expansion_manifest.exists():
+    IDS += sorted(json.loads(expansion_manifest.read_text()))
+
 class ExporterTests(unittest.TestCase):
     def test_material_paint_is_deterministic_and_preserves_spectral_alpha(self):
         self.assertIsNotNone(pipeline,'Shared original-material exporter is missing')

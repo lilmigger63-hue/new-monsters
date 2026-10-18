@@ -9,14 +9,15 @@ import software.bernie.geckolib.animation.*;
 
 public interface MythicCreature extends GeoEntity {
     CreatureKind kind();
-    java.util.Map<String,RawAnimation> LOOPS=java.util.stream.Stream.of("idle","walk","run","fly","hover","sit","ride","jump","guard","charge","sneak","levitate")
+    RawAnimation DEATH_ANIMATION=RawAnimation.begin().thenPlayAndHold("death");
+    java.util.Map<String,RawAnimation> LOOPS=java.util.stream.Stream.of("idle","walk","run","fly","hover","sit","ride","jump","guard","charge","sneak","levitate","swim","idle_swim","hop")
         .collect(java.util.stream.Collectors.toUnmodifiableMap(name->name,name->RawAnimation.begin().thenLoop(name)));
     static RawAnimation loop(String name){return LOOPS.get(name);}
     @Override default void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
         controllers.add(new AnimationController<MythicCreature>("locomotion",5,test -> {
             var entity=(LivingEntity)test.animatable();
             String state="idle";
-            if (entity.isDeadOrDying()) return test.setAndContinue(RawAnimation.begin().thenPlayAndHold("death"));
+            if (entity.isDeadOrDying()) return test.setAndContinue(DEATH_ANIMATION);
             if (entity instanceof MythicMountEntity mount) {
                 if (mount.isInSittingPose()) state="sit";
                 else if (mount.isFlying()) state=test.isMoving()?"fly":"hover";

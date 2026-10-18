@@ -3,6 +3,7 @@ package com.mythicrealms.creatures.registry;
 import com.mythicrealms.creatures.MythicRealmsCreatures;
 import com.mythicrealms.creatures.config.CreatureConfig;
 import com.mythicrealms.creatures.entity.*;
+import com.mythicrealms.creatures.entity.expansion.*;
 import net.fabricmc.fabric.api.biome.v1.*;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityType;
@@ -39,6 +40,19 @@ public final class ModEntities {
     public static final EntityType<SlimeMaidenEntity> SLIME_MAIDEN = companion(CreatureKind.SLIME_MAIDEN, SlimeMaidenEntity::new);
     public static final EntityType<HarpyEntity> HARPY = creature(CreatureKind.HARPY, HarpyEntity::new);
     public static final EntityType<DemonSorceressEntity> DEMON_SORCERESS = creature(CreatureKind.DEMON_SORCERESS, DemonSorceressEntity::new);
+    public static final EntityType<EnderDragonGirlEntity> ENDER_DRAGON_GIRL = creature(CreatureKind.ENDER_DRAGON_GIRL, EnderDragonGirlEntity::new);
+    public static final EntityType<VampireEntity> VAMPIRE = creature(CreatureKind.VAMPIRE, VampireEntity::new);
+    public static final EntityType<HolstaurusEntity> HOLSTAURUS = companion(CreatureKind.HOLSTAURUS, HolstaurusEntity::new);
+    public static final EntityType<CentaurEntity> CENTAUR = creature(CreatureKind.CENTAUR, CentaurEntity::new);
+    public static final EntityType<SahuaginEntity> SAHUAGIN = creature(CreatureKind.SAHUAGIN, SahuaginEntity::new);
+    public static final EntityType<ValkyrieEntity> VALKYRIE = creature(CreatureKind.VALKYRIE, ValkyrieEntity::new);
+    public static final EntityType<FoxSpiritGirlEntity> FOX_SPIRIT_GIRL = creature(CreatureKind.FOX_SPIRIT_GIRL, FoxSpiritGirlEntity::new);
+    public static final EntityType<AnubisEntity> ANUBIS = creature(CreatureKind.ANUBIS, AnubisEntity::new);
+    public static final EntityType<KoboldEntity> KOBOLD = creature(CreatureKind.KOBOLD, KoboldEntity::new);
+    public static final EntityType<CyclopsEntity> CYCLOPS = creature(CreatureKind.CYCLOPS, CyclopsEntity::new);
+    public static final EntityType<DhampirEntity> DHAMPIR = creature(CreatureKind.DHAMPIR, DhampirEntity::new);
+    public static final EntityType<SuccubusEntity> SUCCUBUS = creature(CreatureKind.SUCCUBUS, SuccubusEntity::new);
+    public static final EntityType<WerecatEntity> WERECAT = creature(CreatureKind.WERECAT, WerecatEntity::new);
     public static final EntityType<CreatureProjectile> CRYSTAL_BOLT = projectile("crystal_bolt", .25f);
     public static final EntityType<CreatureProjectile> DARK_BOLT = projectile("dark_bolt", .3f);
     public static final EntityType<CreatureProjectile> FIRE_BOLT = projectile("fire_bolt", .25f);
@@ -58,11 +72,12 @@ public final class ModEntities {
         var rule = CreatureConfig.INSTANCE.spawning.get(kind.id);
         var builder = FabricEntityType.Builder.createMob(factory, MobCategory.MONSTER, extra -> extra
             .defaultAttributes(() -> kind.attributes(CreatureConfig.INSTANCE.difficultyMultiplier*rule.difficultyMultiplier))
-            .spawnRestriction(SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
-                (type, level, reason, pos, random) -> allowConfiguredSpawn(kind,level,pos) && random.nextInt(rule.frequency) == 0
+            .spawnRestriction(kind==CreatureKind.SAHUAGIN?SpawnPlacementTypes.IN_WATER:SpawnPlacementTypes.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                (type, level, reason, pos, random) -> allowedSpawnReason(kind,reason) && allowConfiguredSpawn(kind,level,pos) && random.nextInt(rule.frequency) == 0
+                    && (kind!=CreatureKind.SAHUAGIN || level.getFluidState(pos).is(net.minecraft.tags.FluidTags.WATER))
                     && ((kind != CreatureKind.STONE_TROLL && kind != CreatureKind.CAVE_BASILISK && kind != CreatureKind.CRYSTAL_SPIDER) || pos.getY() < level.getLevel().getSeaLevel() - 8)
-                    && ((kind==CreatureKind.FLAME_IMP || kind==CreatureKind.DEMON_SORCERESS) ? level.getDifficulty()!=Difficulty.PEACEFUL : Monster.checkMonsterSpawnRules(type, level, reason, pos, random))));
-        if(kind==CreatureKind.FLAME_IMP || kind==CreatureKind.DEMON_SORCERESS)builder.fireImmune();
+                    && ((kind==CreatureKind.FLAME_IMP || kind==CreatureKind.DEMON_SORCERESS || kind==CreatureKind.SUCCUBUS || kind==CreatureKind.ENDER_DRAGON_GIRL || kind==CreatureKind.SAHUAGIN) ? level.getDifficulty()!=Difficulty.PEACEFUL && (!kind.isExpansion() || level.getRawBrightness(pos,0)<=12) : Monster.checkMonsterSpawnRules(type, level, reason, pos, random))));
+        if(kind==CreatureKind.FLAME_IMP || kind==CreatureKind.DEMON_SORCERESS || kind==CreatureKind.SUCCUBUS || kind==CreatureKind.ENDER_DRAGON_GIRL)builder.fireImmune();
         var type = Registry.register(BuiltInRegistries.ENTITY_TYPE, key,
             builder.sized(kind.width, kind.height).clientTrackingRange(8).build(key));
         finishCreature(kind,type,MobCategory.MONSTER);
@@ -75,7 +90,7 @@ public final class ModEntities {
         var builder=FabricEntityType.Builder.createMob(factory,category,extra -> extra
             .defaultAttributes(() -> kind.attributes(CreatureConfig.INSTANCE.difficultyMultiplier*rule.difficultyMultiplier))
             .spawnRestriction(SpawnPlacementTypes.ON_GROUND,Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
-                (type,level,reason,pos,random) -> allowConfiguredSpawn(kind,level,pos) && random.nextInt(rule.frequency)==0
+                (type,level,reason,pos,random) -> allowedSpawnReason(kind,reason) && allowConfiguredSpawn(kind,level,pos) && random.nextInt(rule.frequency)==0
                     && (kind==CreatureKind.WILD_WYVERN
                         ? level.getDifficulty()!=Difficulty.PEACEFUL && Monster.isDarkEnoughToSpawn(level,pos,random)
                         : level.getRawBrightness(pos,0)>8 && (level.getBlockState(pos.below()).is(BlockTags.DIRT)
@@ -89,11 +104,14 @@ public final class ModEntities {
         Item egg = Registry.register(BuiltInRegistries.ITEM, itemKey,
             new SpawnEggItem(new Item.Properties().setId(itemKey).spawnEgg(type)));
         ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.SPAWN_EGGS).register(entries -> entries.accept(egg));
-        if (rule.enabled && rule.weight > 0) {
+        if (kind.allowsNaturalSpawning() && rule.enabled && rule.weight > 0) {
             TagKey<Biome> tag = TagKey.create(Registries.BIOME, id("spawns/" + kind.id));
             BiomeModifications.addSpawn(BiomeSelectors.tag(tag), category, type,
                 rule.weight, rule.minGroup, rule.maxGroup);
         }
+    }
+    private static boolean allowedSpawnReason(CreatureKind kind,EntitySpawnReason reason) {
+        return kind.allowsNaturalSpawning() || reason!=EntitySpawnReason.NATURAL && reason!=EntitySpawnReason.CHUNK_GENERATION;
     }
     private static boolean allowConfiguredSpawn(CreatureKind kind,net.minecraft.world.level.ServerLevelAccessor level,net.minecraft.core.BlockPos pos){
         var rule=CreatureConfig.INSTANCE.spawning.get(kind.id);

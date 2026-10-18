@@ -8,7 +8,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.level.Level;
 
-public final class DemonSorceressEntity extends MythicHostileEntity {
+public class DemonSorceressEntity extends MythicHostileEntity {
     private int teleportCooldown;
     public DemonSorceressEntity(EntityType<? extends DemonSorceressEntity> type,Level level){super(type,level);}
     @Override public CreatureKind kind(){return CreatureKind.DEMON_SORCERESS;}

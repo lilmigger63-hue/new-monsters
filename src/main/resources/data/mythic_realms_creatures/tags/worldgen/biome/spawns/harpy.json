@@ -1,13 +1,4 @@
 {
   "replace": false,
-  "values": [
-    {
-      "id": "#minecraft:is_mountain",
-      "required": false
-    },
-    {
-      "id": "minecraft:windswept_hills",
-      "required": false
-    }
-  ]
+  "values": []
 }

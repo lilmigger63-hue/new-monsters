@@ -1,13 +1,4 @@
 {
   "replace": false,
-  "values": [
-    {
-      "id": "minecraft:dripstone_caves",
-      "required": false
-    },
-    {
-      "id": "minecraft:lush_caves",
-      "required": false
-    }
-  ]
+  "values": []
 }

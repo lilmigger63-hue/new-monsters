@@ -41,8 +41,7 @@ public final class StructureGameTests {
     @GameTest(structure="mythic_realms_creatures_test:structures_arena", maxTicks=100, skyAccess=true)
     public void registeredJigsawsPlaceInhabitantsAndUsableLoot(GameTestHelper helper) {
         var level = helper.getLevel();
-        var expected = List.of(Set.of("goblin_scout", "goblin_shaman"),
-            Set.of("forest_dryad", "ancient_treant"), Set.of("grave_knight", "shadow_wraith"), Set.of("wild_wyvern"));
+        var expected = List.of(Set.<String>of(), Set.of("forest_dryad"), Set.<String>of(), Set.<String>of());
         for (int index=0; index<StructureContent.STRUCTURES.size(); index++) {
             String name = StructureContent.STRUCTURES.get(index);
             var registry = level.registryAccess();
@@ -63,7 +62,10 @@ public final class StructureGameTests {
             check(helper,depth>0,name+" configured jigsaw depth places at least one piece");
             check(helper, JigsawPlacement.generateJigsaw(level, pool, id("entry"), depth, anchor, false), name+" jigsaw actually places");
             var sourceEntities=template.save(new CompoundTag()).getListOrEmpty("entities").compoundStream().toList();
-            check(helper, !sourceEntities.isEmpty(), name+" template contains entity NBT");
+            check(helper, sourceEntities.size()==expected.get(index).size(), name+" only permitted natural inhabitants remain");
+            for(var source:sourceEntities)check(helper,
+                source.getCompoundOrEmpty("nbt").getStringOr("id", "").equals(MythicRealmsCreatures.MOD_ID+":forest_dryad"),
+                name+" excludes forbidden original natural structure spawns");
             for(var source : sourceEntities) {
                 var loaded=EntityType.create(TagValueInput.create(ProblemReporter.DISCARDING, registry,
                     source.getCompoundOrEmpty("nbt")),level,EntitySpawnReason.STRUCTURE).orElseThrow();
@@ -83,7 +85,7 @@ public final class StructureGameTests {
                     .map(mob -> BuiltInRegistries.ENTITY_TYPE.getKey(mob.getType()))
                     .filter(key -> key.getNamespace().equals(MythicRealmsCreatures.MOD_ID))
                     .map(ResourceLocation::getPath).collect(Collectors.toSet());
-                check(helper, actual.containsAll(expected.get(index)), name+" persistent inhabitants spawn: "+actual);
+                check(helper, actual.equals(expected.get(index)), name+" persistent inhabitants spawn: "+actual);
                 int containers=0;
                 for (BlockPos pos : BlockPos.betweenClosed(anchor.offset(-9,-1,-9), anchor.offset(9,18,9))) {
                     if (level.getBlockEntity(pos) instanceof RandomizableContainerBlockEntity chest) {

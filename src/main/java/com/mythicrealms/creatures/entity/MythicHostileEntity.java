@@ -135,9 +135,11 @@ public abstract class MythicHostileEntity extends Monster implements GeoEntity {
         controllers.add(new AnimationController<MythicHostileEntity>("locomotion",5,test -> {
             var mob=test.animatable();
             if(mob.isDeadOrDying())return test.setAndContinue(DEATH);
-            String state=mob instanceof AerialHostileEntity && !mob.onGround()?(test.isMoving()?"fly":"hover"):
+            String state=mob instanceof com.mythicrealms.creatures.entity.expansion.SahuaginEntity && mob.isInWater()
+                ?(test.isMoving()?"swim":"idle_swim"):
+                mob instanceof AerialHostileEntity && !mob.onGround()?(test.isMoving()?"fly":"hover"):
                 test.isMoving()?(mob.getDeltaMovement().horizontalDistanceSqr()>.01?"run":"walk"):
-                mob.kind()==CreatureKind.DEMON_SORCERESS?"levitate":"idle";
+                mob instanceof DemonSorceressEntity?"levitate":"idle";
             return test.setAndContinue(MythicCreature.loop(state));
         }));
         controllers.add(new AnimationController<MythicHostileEntity>("posture",4,test -> {
@@ -153,7 +155,7 @@ public abstract class MythicHostileEntity extends Monster implements GeoEntity {
         if(kind()==CreatureKind.GRAVE_KNIGHT || kind()==CreatureKind.STONE_TROLL)action.triggerableAnim("heavy",RawAnimation.begin().thenPlay("heavy"));
         if(kind()==CreatureKind.STONE_TROLL)action.triggerableAnim("throw",RawAnimation.begin().thenPlay("throw"));
         if(kind()==CreatureKind.HARPY)action.triggerableAnim("swoop",RawAnimation.begin().thenPlay("swoop"));
-        if(kind()==CreatureKind.DEMON_SORCERESS)action.triggerableAnim("teleport",RawAnimation.begin().thenPlay("teleport"));
+        if(this instanceof DemonSorceressEntity)action.triggerableAnim("teleport",RawAnimation.begin().thenPlay("teleport"));
         controllers.add(action);
     }
     @Override public AnimatableInstanceCache getAnimatableInstanceCache() { return animationCache; }

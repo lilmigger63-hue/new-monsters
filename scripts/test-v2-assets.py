@@ -19,7 +19,7 @@ def geometry(name):
 
 class V2Contracts(unittest.TestCase):
     def test_all_eighteen_targets_have_real_model_and_animation_updates(self):
-        models = list(GEO.glob('*.geo.json'))
+        models = [p for p in GEO.glob('*.geo.json') if str(p.relative_to(ASSETS)) in BASE]
         self.assertEqual(len(models), 20)
         for model in models:
             name = model.name.removesuffix('.geo.json')

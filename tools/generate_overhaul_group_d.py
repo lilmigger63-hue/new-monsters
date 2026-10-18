@@ -13,8 +13,8 @@ from overhaul_asset_pipeline import Model, clip, keys, write_creature
 PALETTES = {
 'frost_elemental': ['659db9','294358','b8dce5','eef8f5','c5ffff','152d41','e6f3ef','4f7786','789fab','375569','506576','68e4fa','9acbd7','617987','90b3bd','ffffff'],
 'moon_stag':['899ba9','445565','cbd4d2','baa77c','b9efff','233441','e8e7db','687b8d','aabdc4','4e6375','59494b','a6deed','92b0c6','3e586c','9ea9ae','f1f9ef'],
-'slime_maiden':['49aaa2','236575','8bcbb9','cee9d1','bcffe7','183d51','e0fff0','5b87a3','8ccfc4','327b88','37767a','9beed6','67bebd','56a899','8ebfba','f3fff5'],
-'harpy':['665970','332c41','a999a5','c5b18a','e7c57d','211f2b','e5d9c5','796778','c9a18f','483c50','5b4640','d5b375','8d8998','534357','8e858b','efe3d2'],
+'slime_maiden':['3bb73e','18752a','75db5a','b6ed9b','bfff8b','164b23','d5ffba','409e38','66ce4b','249634','238631','a5f779','54c643','46b340','88d96b','e5ffd2'],
+'harpy':['795034','3e2c23','a8784d','a2ac51','c9b754','171b18','efe1bf','875b3c','f0d9c4','634029','543c27','d7c680','b88b57','6b482f','8f7960','fff4da'],
 'demon_sorceress':['46354c','211f2e','70506d','b79a61','f4a4e5','171822','d1bbaa','8f3e5a','bd9294','292739','503640','dc77d3','a761c7','352936','91838e','ffdfef']}
 SIZES={'frost_elemental':(1.1,2.4,1.2),'moon_stag':(1.1,1.8,.4),'slime_maiden':(.85,1.65,.7),'harpy':(.9,1.8,.6),'demon_sorceress':(.7,1.95,1.1)}
 
@@ -107,7 +107,7 @@ def harpy():
     m=Model('harpy');bone(m,'body','root',[0,16,0],[-3.2,13,-2],[6.4,9,4],0,[-9,0,0])
     m.box('body',[-2.7,17,-2.3],[5.4,4,1],8)
     bone(m,'head','body',[0,23,0],[-2.8,22,-2.6],[5.6,5.5,5.2],8);eyes(m,'head',1.25,24.7,-2.84,.85)
-    m.box('head',[-.5,23.1,-3.1],[1,.55,.9],3)
+    m.box('head',[-.35,23.3,-2.95],[.7,.55,.55],8)
     for i in range(5):bone(m,'crest_'+str(i),'head',[-2+i,26,1],[-2.5+i,25,1],[1.1,4+i%2,2.8],9,[-25-i*7,0,(i-2)*9])
     for s,n in [(-1,'right'),(1,'left')]:
         # The wing is the arm; no extra humanoid arms alongside it.
@@ -450,6 +450,16 @@ def v2_sculpt(m):
             m.by_name['gel_4']['cubes'][0].update(origin=[-3.4,13,-2.6],size=[6.8,4.7,5.2])
             for side in (-1,1):m.box('gel_4',[side*1.6-1.65,13.7,-3.4],[3.3,2.9,2.5],2,[0,side*7,-side*7])
             full_hair(m,23.7,6.7,5.9,12.2,9)
+            # Broad side gel clumps are integrated pigtails, not human hair ties.
+            # Existing animated hair roots carry every overlapping lobe rigidly.
+            for side,n in ((-1,'hair_0'),(1,'hair_5')):
+                m.by_name[n]['cubes']=[]
+                m.box(n,[side*3.65-.75,20.8,-.4],[1.5,2.1,2.6],0)
+                m.box(n,[side*5-.9,21.3,.1],[1.8,1.4,2.7],9)
+                m.box(n,[side*5-1.65,17.3,-.2],[3.3,4.5,3.6],9)
+                m.box(n,[side*5-1.25,15.5,.2],[2.5,2.4,2.9],0)
+                m.box(n,[side*5-.75,14.6,.6],[1.5,1.5,2],2)
+
         elif m.name=='harpy':
             # Adult, fully clothed torso with defined waist and feather bodice.
             m.by_name['body']['cubes']=[]
@@ -565,6 +575,7 @@ def main():
         p=PALETTES[m.name];w,h,_=SIZES[m.name]
         material=['ice','stone','ice','bone','glow','stone','bone','ice','ice','stone','stone','rune','ice','stone','stone','ice'] if m.name=='frost_elemental' else (['slime']*16 if m.name=='slime_maiden' else ['fur','fur','fur','bone','glow','stone','bone','fur','fur','fur','leather','rune','rune','cloth','stone','bone'] if m.name=='moon_stag' else ['feather','feather','feather','bone','glow','bone','bone','feather','skin','feather','leather','rune','feather','cloth','stone','bone'] if m.name=='harpy' else ['cloth','bone','cloth','metal','glow','stone','bone','cloth','skin','fur','leather','rune','rune','cloth','metal','bone'])
         if m.name=='demon_sorceress':material[9]='hair'
+        if m.name=='harpy':material[9]='hair';material[13]='feather'
         if m.name=='slime_maiden':
             material[4]='glow';material[11]='rune';material[15]='glow'
         variants=None

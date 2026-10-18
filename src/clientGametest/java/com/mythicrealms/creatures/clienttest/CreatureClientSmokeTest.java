@@ -53,15 +53,16 @@ public final class CreatureClientSmokeTest implements FabricClientGameTest {
         });
         try (var world = context.worldBuilder().create()) {
             var server = world.getServer();
+            server.runCommand("gamerule doMobSpawning false");
             server.runCommand("difficulty normal");
             server.runCommand("gamemode spectator @a");
             server.runCommand("time set noon");
             server.runCommand("weather clear");
-            server.runCommand("tp @a 16 -59 30 180 8");
+            server.runCommand("tp @a 20 -59 30 180 8");
             int index = 0;
             for (CreatureKind kind : CreatureKind.values()) {
-                int x = (index % 5) * 8;
-                int z = (index++ / 5) * 16;
+                int x = (index % 6) * 8;
+                int z = (index++ / 6) * 12;
                 server.runCommand("summon mythic_realms_creatures:" + kind.id + " " + x + " -60 " + z + " {NoAI:1b,PersistenceRequired:1b,Invulnerable:1b,Rotation:[0f,0f]}");
             }
             context.waitTicks(20);
@@ -83,17 +84,22 @@ public final class CreatureClientSmokeTest implements FabricClientGameTest {
             });
             require(count == CreatureKind.values().length, "Expected " + CreatureKind.values().length + " client entities, got " + count);
             index = 0;
+            int presented=0;
             for (CreatureKind kind : CreatureKind.values()) {
-                int x = (index % 5) * 8;
-                int z = (index++ / 5) * 16;
+                int x = (index % 6) * 8;
+                int z = (index++ / 6) * 12;
                 String selectedSpecies=System.getProperty("mythic.clientSmoke.species");
                 if(selectedSpecies!=null && !selectedSpecies.equals(kind.id))continue;
+                if(Boolean.getBoolean("mythic.clientSmoke.expansionOnly") && !kind.isExpansion()
+                        && kind!=CreatureKind.HARPY && kind!=CreatureKind.MINOTAUR
+                        && kind!=CreatureKind.SLIME_MAIDEN && kind!=CreatureKind.FOREST_DRYAD)continue;
                 boolean stanceOnly=Boolean.getBoolean("mythic.clientSmoke.mountStanceOnly");
                 if(stanceOnly && kind!=CreatureKind.DIRE_WOLF && kind!=CreatureKind.MOON_STAG)continue;
                 if(Boolean.getBoolean("mythic.clientSmoke.referenceOnly")
                         && kind!=CreatureKind.WILD_WYVERN && kind!=CreatureKind.HARPY
                         && kind!=CreatureKind.GRIFFIN && kind!=CreatureKind.MOON_STAG)continue;
-                double distance = Math.max(kind==CreatureKind.WILD_WYVERN
+                presented++;
+                double distance = Math.max(kind==CreatureKind.WILD_WYVERN || kind==CreatureKind.CENTAUR
                         || kind==CreatureKind.MOON_STAG && Boolean.getBoolean("mythic.clientSmoke.referenceOnly")
                         ? 6 : 4, kind.height * 1.8);
                 double cameraFeetY = -60 + kind.height * .55 - 1.62;
@@ -124,11 +130,13 @@ public final class CreatureClientSmokeTest implements FabricClientGameTest {
                     }
                 }
                 if(Boolean.getBoolean("mythic.clientSmoke.performanceOnly"))continue;
-                for (String view : new String[]{"side", "back", "distant"}) {
+                for (String view : kind==CreatureKind.FOX_SPIRIT_GIRL
+                        ? new String[]{"side", "back", "rear-quarter", "distant"}
+                        : new String[]{"side", "back", "distant"}) {
                     double d = view.equals("distant") ? Math.max(12, kind.height * 4) : distance;
-                    double cameraX = x + (view.equals("side") ? d : 0);
-                    double cameraZ = z + (view.equals("side") ? 0 : view.equals("back") ? -d : d);
-                    int yaw = view.equals("side") ? 90 : view.equals("back") ? 0 : 180;
+                    double cameraX = x + (view.equals("side") ? d : view.equals("rear-quarter") ? d*.707 : 0);
+                    double cameraZ = z + (view.equals("side") ? 0 : view.equals("back") ? -d : view.equals("rear-quarter") ? -d*.707 : d);
+                    int yaw = view.equals("side") ? 90 : view.equals("back") ? 0 : view.equals("rear-quarter") ? 45 : 180;
                     server.runCommand("tp @a " + cameraX + " " + cameraFeetY + " " + cameraZ + " " + yaw + " 0");
                     context.waitTicks(4);
                     world.getClientWorld().waitForChunksRender();
@@ -145,6 +153,7 @@ public final class CreatureClientSmokeTest implements FabricClientGameTest {
                 context.waitTicks(8);
                 context.takeScreenshot("creature-" + kind.id + "-attack");
                 String[] probes = kind==CreatureKind.WILD_WYVERN || kind==CreatureKind.HARPY || kind==CreatureKind.GRIFFIN
+                        || kind==CreatureKind.ENDER_DRAGON_GIRL || kind==CreatureKind.SUCCUBUS || kind==CreatureKind.VALKYRIE
                         ? new String[]{"walk", "run", "heavy", "cast", "hurt", "death", "fly", "hover"}
                         : new String[]{"walk", "run", "heavy", "cast", "hurt", "death"};
                 for (String clip : probes) {
@@ -165,6 +174,10 @@ public final class CreatureClientSmokeTest implements FabricClientGameTest {
                     });
                     context.waitTicks(clip.equals("cast") ? Math.max(8, kind.windup) : clip.equals("death") ? 22 : 8);
                     context.takeScreenshot("creature-" + kind.id + "-probe-" + clip);
+                    if(clip.equals("death") && kind==CreatureKind.HARPY) {
+                        context.waitTicks(18);
+                        context.takeScreenshot("creature-harpy-probe-death-held");
+                    }
                     if(clip.equals("fly")) for(int phase=1;phase<=3;phase++) {
                         context.waitTicks(3);
                         context.takeScreenshot("creature-"+kind.id+"-probe-fly-phase-"+phase);
@@ -175,11 +188,39 @@ public final class CreatureClientSmokeTest implements FabricClientGameTest {
                                 ((GeoEntity)entity).stopTriggeredAnim("action", "visual_probe");
                     });
                 }
+                if(kind==CreatureKind.SAHUAGIN) {
+                    server.runCommand("fill 76 -62 76 84 -54 84 glass");
+                    server.runCommand("fill 77 -61 77 83 -55 83 water");
+                    server.runCommand("tp @e[type=mythic_realms_creatures:sahuagin] 80 -59 80");
+                    server.runCommand("data merge entity @e[type=mythic_realms_creatures:sahuagin,limit=1] {NoGravity:1b}");
+                    server.runCommand("tp @a 80 -59 86 180 0");
+                    context.waitTicks(15);
+                    context.runOnClient(client -> {
+                        for(Entity entity:client.level.entitiesForRendering())
+                            if(entity.getType()==ModEntities.SAHUAGIN)require(entity.isInWater(),"Sahuagin is actually submerged");
+                    });
+                    for(String swimClip:new String[]{"idle_swim","swim"}) {
+                        context.runOnClient(client -> {
+                            for(Entity entity:client.level.entitiesForRendering())if(entity.getType()==ModEntities.SAHUAGIN) {
+                                var action=((GeoEntity)entity).getAnimatableInstanceCache().getManagerForId(entity.getId()).getAnimationControllers().get("action");
+                                action.triggerableAnim("swim_probe",RawAnimation.begin().thenLoop(swimClip));
+                                action.tryTriggerAnimation("swim_probe");
+                            }
+                        });
+                        context.waitTicks(10);
+                        context.takeScreenshot("creature-sahuagin-water-"+swimClip);
+                        context.runOnClient(client -> {
+                            for(Entity entity:client.level.entitiesForRendering())if(entity.getType()==ModEntities.SAHUAGIN)
+                                ((GeoEntity)entity).stopTriggeredAnim("action","swim_probe");
+                        });
+                    }
+                    LOG.info("CLIENT_SMOKE_SWIM_PASS sahuagin submerged idle/swim playback");
+                }
                 LOG.info("CLIENT_SMOKE_ENTITY_PASS {} geometry, animation bake, texture, renderer, entity sync, four views, server attack, {} animation probes", kind.id, probes.length);
             }
             // Real authoritative death alongside held playback probes: retain vanilla corpse lifetime.
-            server.runCommand("summon mythic_realms_creatures:grave_knight 40 -60 48 {NoAI:1b,Tags:[overhaul_death_probe]}");
-            server.runCommand("tp @a 40.5 -60.45 52 180 0");
+            server.runCommand("summon mythic_realms_creatures:grave_knight 64 -60 72 {NoAI:1b,Tags:[overhaul_death_probe]}");
+            server.runCommand("tp @a 64.5 -60.45 76 180 0");
             context.waitTicks(10);
             server.runCommand("kill @e[tag=overhaul_death_probe]");
             context.waitTicks(18);
@@ -224,7 +265,7 @@ public final class CreatureClientSmokeTest implements FabricClientGameTest {
             context.waitTicks(2);
             context.takeScreenshot("griffin-real-player-flight");
             LOG.info("CLIENT_SMOKE_MOUNT_PASS real integrated player keyboard packets moved authoritative griffin {} -> {}", start, end);
-            LOG.info("CLIENT_SMOKE_PASS {} creature types in a real singleplayer world", count);
+            LOG.info("CLIENT_SMOKE_PASS {} resource sets and synced entities; {} species presented in a real singleplayer world", count,presented);
         }
     }
 

@@ -5,7 +5,7 @@ from overhaul_asset_pipeline import Model, clip, keys, write_creature
 MATERIALS=['bark','bark','bone','moss','glow','skin','feather','leather','iron','cloth','fur','fur','rune','bone','skin','moss']
 PALETTES={
 'ancient_treant':['49372b','2c2921','917752','405037','e2be65','665740','657449','5b4631','77776a','364331','544638','8d7853','a9ce72','b7a784','332d25','6a7748'],
-'forest_dryad':['705641','3f392a','b8ac82','34553b','b4df9b','b5a17c','73926a','4c5131','7c8c70','44674a','677656','9f9974','d3dc9c','d3bd8f','776f52','71834e'],
+'forest_dryad':['edd9c4','25412b','d9e4c3','397d34','b9ed82','f5e3d0','428a36','376231','9fb878','2e682a','568c40','75a855','d5eaa0','f5eedc','b18a76','709e43'],
 'griffin':['8e6a41','55442e','d1c6a5','65624b','d1ad55','303439','b9ad8f','4b3429','8c805c','6b4634','92744c','62543c','c5ae71','dfc795','6e634b','84795b'],
 'dire_wolf':['646d70','363e43','c1c0ac','626c62','b8ceb3','242b2d','939b96','4a3530','8b8a76','713c36','778184','a0a69f','b1baa5','c6bd9d','474b48','6d7770'],
 'wild_wyvern':['4b6150','2a3d38','b9ac80','475c3f','d0de81','292d2c','6d574c','45372e','8a876b','664a3b','536b5a','849071','a8c173','d0c49d','303f38','687253']}
@@ -350,19 +350,58 @@ def overhaul_v2(m):
         for j in range(4):
             box(m,'head',[-4.5+j*3,51-j%2,-6],[1.5,3+j%2,1.5],0,[0,0,(j-1.5)*13])
     elif n=='forest_dryad':
-        # Covered adult leaf bodice has true volume and tapers to a narrow waist.
+        # Expansion reference: pale adult woodland woman, leaf costume and green hair.
+        # All legacy rig bones and every animation are preserved verbatim.
         m.by_name['head']['cubes']=[]
-        box(m,'head',[-2.65,23,-2.5],[5.3,5.5,4.5],0)
-        box(m,'head',[-1.8,23.5,-2.8],[3.6,4,.6],1)
+        box(m,'head',[-2.65,23.4,-2.5],[5.3,5.1,4.5],5)
+        box(m,'head',[-2.1,23,-2.3],[4.2,1,4.1],5)
+        box(m,'head',[-.25,24.35,-2.93],[.5,.65,.5],5)
+        box(m,'head',[-.56,23.9,-2.85],[1.12,.16,.15],14)
         for side in (-1,1):
-            box(m,'body',[side*1.15-1.15,19.1,-2.7],[2.3,2.8,1.8],3,[0,0,-side*10])
-            box(m,'body',[side*1.1-.85,17,-1.8],[1.7,2.8,.8],6,[0,0,side*15])
-            box(m,'head',[side*1.25-.7,25,-3.02],[1.4,.65,.4],4,[0,0,side*17])
-            box(m,'head',[side*2-.55,23.3,-3],[1.1,4.2,1],0,[0,0,-side*21])
-            box(m,'head',[side*1.6-1,27,-2.7],[2,2,4.4],6,[0,0,side*12])
-            box(m,'head',[side*2.6-.6,25,-.5],[1.2,4,2],3,[0,0,-side*25])
-        box(m,'head',[-1.5,27.6,-1.8],[3,1.2,3.5],6)
-        box(m,'head',[-.45,23.8,-3.1],[.9,3.7,.65],2,[0,0,14])
+            x=side*1.25
+            box(m,'head',[x-.72,25.1,-2.72],[1.44,.93,.16],13)
+            box(m,'head',[x-.35,25.15,-2.88],[.7,.77,.14],3)
+            box(m,'head',[x-.12,25.2,-3.02],[.24,.64,.1],1)
+            box(m,'head',[x-.25,25.62,-3.13],[.18,.18,.08],13)
+            box(m,'head',[x-.78,25.97,-2.86],[1.56,.15,.19],1,[0,0,-side*6])
+            box(m,'head',[x-.5,26.5,-2.68],[1.05,.13,.16],9,[0,0,-side*6])
+            # Long pointed ears start inside the cheek planes, behind the hair.
+            box(m,'head',[side*3.15-.8,25.1,-.7],[1.6,2.5,.8],5,[0,0,-side*38])
+            box(m,'head',[side*3.8-.35,26.6,-.6],[.7,1.6,.65],5,[0,0,-side*38])
+        # Continuous cap covers the full upper skull, followed by broad green locks.
+        box(m,'head',[-3,27.6,-2.8],[6,1.25,5.3],6)
+        box(m,'head',[-2.5,28.7,-2.3],[5,.55,4.4],6)
+        for side,label in ((-1,'right'),(1,'left')):
+            hair='hair_'+label;m.by_name[hair]['cubes']=[]
+            box(m,hair,[side*2.65-.7,18.2,-1.5],[1.4,10,1.8],6,[0,0,-side*4])
+            box(m,hair,[side*2.7-.5,17.2,-1.1],[1,3.2,1.3],9,[0,0,-side*7])
+            for j in range(3):
+                x=side*(.65+j*.85)
+                box(m,hair,[x-.65,16.5+j*.7,1.5],[1.4,11.5-j*.7,1.6],6,[5,0,side*(j+2)])
+            box(m,'head',[side*1.3-1.2,26.9,-2.95],[2.4,1.4,.8],6,[0,0,-side*12])
+            m.by_name['crown_'+label]['cubes']=[]
+            # Small leaf circlet integrated with the scalp rather than wooden horns.
+            box(m,'crown_'+label,[side*1.8-.7,28,-1.1],[1.4,1.3,.65],3,[0,0,-side*28])
+            for j in range(3):
+                n=f'finger_{side}_{j}';m.by_name[n]['cubes']=[]
+                box(m,n,[side*3.5-.6+j*.6,7.5,-1.5],[.4,2.5,.6],5,[8+j*9,0,side*8])
+            # Tall light boots with grounded soles; no collision/leg pivot change.
+            leg='leg_'+label;m.by_name[leg]['cubes']=[]
+            box(m,leg,[side*1.5-.9,1,-1.15],[1.8,10.5,2.3],2)
+            box(m,leg,[side*1.5-1,0,-2.5],[2,1.6,3.8],2)
+            box(m,leg,[side*1.5-1.02,9.3,-1.25],[2.04,1.2,2.5],13)
+        m.by_name['body']['cubes']=[]
+        for o,sz,mat in [([-2.3,12,-1.6],[4.6,4.3,3.2],0),([-1.8,16,-1.5],[3.6,3.7,3],3),([-2.7,19,-1.8],[5.4,3.2,3.6],0)]:box(m,'body',o,sz,mat)
+        for side in (-1,1):
+            box(m,'body',[side*1.15-1.25,19,-2.7],[2.5,2.8,1.7],3,[0,0,-side*9])
+            box(m,'body',[side*1.5-.75,16.5,-1.95],[1.5,3.1,.7],6,[0,0,-side*13])
+            front='vine_front_'+str(side);m.by_name[front]['cubes']=[]
+            for j in range(3):box(m,front,[side*(.6+j*.6)-1,9.3+j*.9,-2.25],[2,4.5,.7],3 if j%2 else 6,[0,0,-side*15])
+            for j in range(4):
+                n=f'vine_{side}_{j}';m.by_name[n]['cubes']=[]
+                box(m,n,[side*(1.6+j*.25)-.7,10+j*.3,1.3+j*.25],[1.5,5-j*.2,.9],3,[0,0,side*(8+j*4)])
+                box(m,n,[side*(1.6+j*.25)-.65,9.4+j*.3,1.4+j*.25],[1.3,1.6,.65],6,[0,0,side*22])
+        box(m,'body',[-2.2,14.5,-1.9],[4.4,.65,3.8],7)
     else:
         wolf=n=='dire_wolf';wyv=n=='wild_wyvern';y=13 if wolf else 17 if wyv else 16
         # Overlapping pectoral/scapular masses replace rectangular slab reads.
@@ -509,7 +548,7 @@ def main():
     for name,p in PALETTES.items():
         p=list(p)
         # Refine local material separation within the established muted palette.
-        slot,color={'ancient_treant':(2,'9b8059'),'forest_dryad':(5,'bda788'),'griffin':(6,'c1b69b'),'dire_wolf':(11,'a8afa8'),'wild_wyvern':(6,'796455')}[name]
+        slot,color={'ancient_treant':(2,'9b8059'),'forest_dryad':(5,'f5e3d0'),'griffin':(6,'c1b69b'),'dire_wolf':(11,'a8afa8'),'wild_wyvern':(6,'796455')}[name]
         p[slot]=color
         m=refine(woodland(name) if name in ('ancient_treant','forest_dryad') else beasts(name))
         if name=='wild_wyvern': m=reference_wyvern_head(m)
@@ -524,7 +563,7 @@ def main():
         materials=list(MATERIALS)
         if name=='ancient_treant':materials[2]='bark'
         if name=='forest_dryad':
-            materials[5]='skin';materials[6]='hair';materials[13]='skin';materials[3]='cloth';materials[7]='leather'
+            materials[0]=materials[5]='skin';materials[6]=materials[9]='hair';materials[13]='bone';materials[2]='cloth';materials[3]='cloth';materials[7]='leather'
         if name=='griffin':materials[13]='bone'
         if name=='griffin':
             materials[0]='fur';materials[1]=materials[2]=materials[6]='feather'

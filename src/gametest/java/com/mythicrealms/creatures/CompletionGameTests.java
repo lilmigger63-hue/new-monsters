@@ -14,8 +14,8 @@ import net.minecraft.world.level.block.Blocks;
 public final class CompletionGameTests {
     private void floor(GameTestHelper h){for(int x=0;x<8;x++)for(int z=0;z<8;z++)h.setBlock(x,1,z,Blocks.STONE);}
     private void check(GameTestHelper h,boolean value,String text){h.assertTrue(value,Component.literal(text));}
-    @GameTest public void allTwentySpeciesHaveEggsAttributesAndLoadedLoot(GameTestHelper h){
-        floor(h);check(h,CreatureKind.values().length==20,"exactly twenty species");
+    @GameTest public void allThirtyThreeSpeciesHaveEggsAttributesAndLoadedLoot(GameTestHelper h){
+        floor(h);check(h,CreatureKind.values().length==33,"exactly thirty-three species");
         for(var kind:CreatureKind.values()){
             var type=BuiltInRegistries.ENTITY_TYPE.getValue(ModEntities.id(kind.id));
             var entity=type.create(h.getLevel(),EntitySpawnReason.COMMAND);
@@ -85,6 +85,7 @@ public final class CompletionGameTests {
     @GameTest public void naturalSpawnEntriesResolveInEachConfiguredHabitat(GameTestHelper h){
         var biomes=h.getLevel().registryAccess().lookupOrThrow(net.minecraft.core.registries.Registries.BIOME);
         for(var kind:CreatureKind.values()) {
+            if(!kind.allowsNaturalSpawning())continue;
             var type=BuiltInRegistries.ENTITY_TYPE.getValue(ModEntities.id(kind.id));
             var tag=net.minecraft.tags.TagKey.create(net.minecraft.core.registries.Registries.BIOME,ModEntities.id("spawns/"+kind.id));
             var tagged=biomes.get(tag).orElseThrow();
@@ -95,7 +96,7 @@ public final class CompletionGameTests {
                     && weighted.value().minCount()==rule.minGroup && weighted.value().maxCount()==rule.maxGroup));
             check(h,entry,"natural biome spawn entry: "+kind.id);
             var position=h.absolutePos(new net.minecraft.core.BlockPos(3,2,3));
-            var blocked=(kind==CreatureKind.FLAME_IMP || kind==CreatureKind.DEMON_SORCERESS)?h.getLevel():
+            var blocked=rule.dimensions.contains("minecraft:the_nether") || rule.dimensions.contains("minecraft:the_end")?h.getLevel():
                 h.getLevel().getServer().getLevel(net.minecraft.world.level.Level.NETHER);
             check(h,!net.minecraft.world.entity.SpawnPlacements.checkSpawnRules(type,blocked,EntitySpawnReason.NATURAL,position,blocked.random),
                 "dimension restriction rejects wrong dimension: "+kind.id);

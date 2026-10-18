@@ -41,6 +41,19 @@ public final class MythicRealmsClient implements ClientModInitializer {
         register(ModEntities.SLIME_MAIDEN,.4f);
         register(ModEntities.HARPY,.45f);
         register(ModEntities.DEMON_SORCERESS,.35f);
+        register(ModEntities.ENDER_DRAGON_GIRL,0.45f);
+        register(ModEntities.VAMPIRE,0.35f);
+        register(ModEntities.HOLSTAURUS,0.4f);
+        register(ModEntities.CENTAUR,0.65f);
+        register(ModEntities.SAHUAGIN,0.35f);
+        register(ModEntities.VALKYRIE,0.4f);
+        register(ModEntities.FOX_SPIRIT_GIRL,0.4f);
+        register(ModEntities.ANUBIS,0.35f);
+        register(ModEntities.KOBOLD,0.3f);
+        register(ModEntities.CYCLOPS,0.45f);
+        register(ModEntities.DHAMPIR,0.35f);
+        register(ModEntities.SUCCUBUS,0.4f);
+        register(ModEntities.WERECAT,0.35f);
         EntityRendererRegistry.register(ModEntities.CRYSTAL_BOLT, context -> new ThrownItemRenderer<>(context,.65f,true));
         EntityRendererRegistry.register(ModEntities.DARK_BOLT, context -> new ThrownItemRenderer<>(context,.7f,true));
         EntityRendererRegistry.register(ModEntities.FIRE_BOLT, context -> new ThrownItemRenderer<>(context,.6f,true));
@@ -60,16 +73,23 @@ public final class MythicRealmsClient implements ClientModInitializer {
     private static final class CreatureModel<T extends Mob & GeoEntity> extends DefaultedEntityGeoModel<T> {
         private static final DataTicket<Boolean> TAMED=DataTicket.create("mythic_mount_tamed",Boolean.class);
         private static final DataTicket<Boolean> RARE=DataTicket.create("mythic_mount_rare",Boolean.class);
-        private final ResourceLocation id;
-        CreatureModel(EntityType<T> type){super(BuiltInRegistries.ENTITY_TYPE.getKey(type));id=BuiltInRegistries.ENTITY_TYPE.getKey(type);}
+        private final ResourceLocation texture, tamedTexture, rareTexture;
+        CreatureModel(EntityType<T> type){
+            super(BuiltInRegistries.ENTITY_TYPE.getKey(type));
+            var id=BuiltInRegistries.ENTITY_TYPE.getKey(type);
+            String path="textures/entity/"+id.getPath();
+            texture=id.withPath(path+".png");
+            tamedTexture=id.withPath(path+"_tamed.png");
+            rareTexture=id.withPath(path+"_rare.png");
+        }
         @Override public void addAdditionalStateData(T entity,GeoRenderState state){
             super.addAdditionalStateData(entity,state);
             state.addGeckolibData(TAMED,entity instanceof MythicMountEntity mount && mount.isTame());
             state.addGeckolibData(RARE,entity instanceof MythicMountEntity mount && mount.isRareVariant());
         }
         @Override public ResourceLocation getTextureResource(GeoRenderState state){
-            String suffix=state.getOrDefaultGeckolibData(TAMED,false)?"_tamed":state.getOrDefaultGeckolibData(RARE,false)?"_rare":"";
-            return id.withPath("textures/entity/"+id.getPath()+suffix+".png");
+            return state.getOrDefaultGeckolibData(TAMED,false)?tamedTexture:
+                state.getOrDefaultGeckolibData(RARE,false)?rareTexture:texture;
         }
     }
     private static final class CreatureRenderer<T extends Mob & GeoEntity, R extends LivingEntityRenderState & GeoRenderState>
@@ -80,7 +100,9 @@ public final class MythicRealmsClient implements ClientModInitializer {
             String id=BuiltInRegistries.ENTITY_TYPE.getKey(type).getPath();
             translucent=id.equals("shadow_wraith") || id.equals("slime_maiden");
             if (java.util.Set.of("stone_troll","goblin_shaman","ancient_treant","forest_dryad","wild_wyvern","cave_basilisk","crystal_spider","shadow_wraith","grave_knight","flame_imp",
-                    "frost_elemental","moon_stag","slime_maiden","harpy","demon_sorceress").contains(id))
+                    "frost_elemental","moon_stag","slime_maiden","harpy","demon_sorceress",
+                    "ender_dragon_girl","vampire","valkyrie","fox_spirit_girl",
+                    "anubis","kobold","cyclops","dhampir","succubus").contains(id))
                 withRenderLayer(new AutoGlowingGeoLayer<>(this));
         }
         @Override public RenderType getRenderType(R state,ResourceLocation texture) {

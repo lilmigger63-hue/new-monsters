@@ -33,7 +33,7 @@ PALETTES = {
 'goblin_scout':['58683c','3c3026','79776a','63543b','d1c69d','32352a','63503a','dab65d','778553','a2a08b','3e4931','ede1b2','795938','c2a267','686d5c','687449'],
 'goblin_shaman':['536a42','423327','6b7565','45364f','d1c8a1','303c2d','65513a','8de16a','74875b','92967e','65516c','eee2ba','856643','b8e891','586658','607544'],
 'orc_warrior':['64704d','483426','5a6261','613b34','d5c8a0','3a352d','5d4936','deae63','859069','8a928b','3c2928','eee0b5','846247','a78754','646a61','65704d'],
-'minotaur':['77503a','49332b','a17b42','663d32','d5c69c','46352b','624733','d4a55b','986d4b','c5a264','382d2a','eee0ba','836343','b89b56','62675e','69704c'],
+'minotaur':['503326','282123','747b80','963d71','e9e5d9','33251e','61442f','d6b26b','694533','a5adb0','51263e','fff9e9','4b332b','ba8b48','5b6368','4b4738'],
 'stone_troll':['747d75','46514b','899389','4a554a','b0b8a4','39443c','535e4e','b0d18a','929d8b','aeb5a5','334237','ced4b8','6d7664','a6bb75','667267','526c40']}
 SPECS={'goblin_scout':(.65,1.25,7),'goblin_shaman':(.65,1.55,16),'orc_warrior':(.95,2.15,18),'minotaur':(1.35,2.85,24),'stone_troll':(1.6,3.2,22)}
 
@@ -395,8 +395,12 @@ def v2_sculpt(a,name):
         a.m.by_name['axe']['cubes']=[]
         a.box('axe',(-7.7,12,-2.5),(1.4,22,1.4),6)
         for yy in (16.5,17.2,17.9,24.2,24.9,25.6):a.box('axe',(-7.85,yy,-2.65),(1.7,.4,1.7),1)
-        faceted(a,'axe',(-14.5,30,-3.3),(15,5.4,3),2,.12)
-        for xx in (-14.5,-1.5):a.box('axe',(xx,29,-3.4),(2,7,3.2),9)
+        # Expansion visual: original solid gray war hammer, never an axe blade.
+        # Keep the exact shaft, both palm sockets and legacy 'axe' bone ID.
+        faceted(a,'axe',(-13.5,30,-5.3),(13,6.6,7),2,.12)
+        for xx in (-14.1,-1):faceted(a,'axe',(xx,30.4,-5.6),(1.6,5.8,7.6),9,.08)
+        a.box('axe',(-8.15,29.5,-5.55),(2.3,7.5,7.5),14)
+        a.box('axe',(-8,36.6,-2.65),(2,.8,1.9),9)
         # Solve the resting support arm in the frontal plane. Shoulder-to-grip
         # distance is 14.56; elongated monstrous arms provide that reach.
         import math

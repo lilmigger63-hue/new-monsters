@@ -10,6 +10,7 @@ import net.minecraft.world.level.block.Blocks;
 
 /** Bounded, nearby-player-only presentation. No damage, targeting or movement authority. */
 public final class SpellEffects {
+    private static final BlockParticleOption STONE_PARTICLE = new BlockParticleOption(ParticleTypes.BLOCK,Blocks.STONE.defaultBlockState());
     private SpellEffects() { }
     private static boolean visible(ServerLevel level,double x,double y,double z){
         for(var player:level.players())if(player.distanceToSqr(x,y,z)<=32*32)return true;
@@ -23,8 +24,7 @@ public final class SpellEffects {
         int amount=Math.clamp((int)Math.round(requested*CreatureConfig.INSTANCE.magicParticleIntensity),0,24);
         if(amount==0 || !visible(level,x,y,z))return;
         for(int i=0;i<amount;i++){
-            double angle=Math.PI*2*i/amount;
-            level.sendParticles(particle,x+Math.cos(angle)*radius,y,z+Math.sin(angle)*radius,1,0,0,0,0);
+            level.sendParticles(particle,x+ParticleRing.x(amount,i)*radius,y,z+ParticleRing.z(amount,i)*radius,1,0,0,0,0);
         }
     }
     public static void telegraph(ServerLevel level,Mob caster,CreatureKind kind,LivingEntity target){
@@ -37,7 +37,15 @@ public final class SpellEffects {
             case CAVE_BASILISK -> ParticleTypes.ASH;
             case WILD_WYVERN,SLIME_MAIDEN -> ParticleTypes.SNEEZE;
             case HARPY,GRIFFIN -> ParticleTypes.WHITE_ASH;
-            case MINOTAUR,STONE_TROLL -> new BlockParticleOption(ParticleTypes.BLOCK,Blocks.STONE.defaultBlockState());
+            case MINOTAUR,STONE_TROLL -> STONE_PARTICLE;
+            case ENDER_DRAGON_GIRL -> ParticleTypes.PORTAL;
+            case VAMPIRE,DHAMPIR -> ParticleTypes.CRIMSON_SPORE;
+            case HOLSTAURUS -> ParticleTypes.HAPPY_VILLAGER;
+            case CENTAUR,KOBOLD,CYCLOPS -> ParticleTypes.CRIT;
+            case SAHUAGIN -> ParticleTypes.SPLASH;
+            case VALKYRIE -> ParticleTypes.END_ROD;
+            case FOX_SPIRIT_GIRL,ANUBIS,WERECAT -> ParticleTypes.ENCHANT;
+            case SUCCUBUS -> ParticleTypes.WITCH;
             default -> null;
         };
         if(particle==null)return;

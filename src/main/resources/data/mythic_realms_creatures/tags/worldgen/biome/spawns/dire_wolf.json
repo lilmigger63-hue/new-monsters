@@ -1,9 +1,4 @@
 {
   "replace": false,
-  "values": [
-    {
-      "id": "#minecraft:is_forest",
-      "required": false
-    }
-  ]
+  "values": []
 }

@@ -1,13 +1,4 @@
 {
   "replace": false,
-  "values": [
-    {
-      "id": "#minecraft:is_forest",
-      "required": false
-    },
-    {
-      "id": "minecraft:cherry_grove",
-      "required": false
-    }
-  ]
+  "values": []
 }

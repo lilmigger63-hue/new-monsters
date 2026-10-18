@@ -1,0 +1,124 @@
+{
+  "reference_jar": {
+    "path": "/workspace/attachments/b5d37cbd-3374-45ed-a8e5-50f3c7534f72/GrimoireOfGaia4-1.20.1-4.0.0-alpha.12.jar",
+    "sha256": "cb3e635dfa8779f32c1fe7810e6c38b983d733988b0298001ef6332eb167b56b",
+    "entry_count": 1498,
+    "license": "Assets:ARR,Code:CC0",
+    "incorporated": false
+  },
+  "sources": [
+    {
+      "url": "https://quaternius.com/packs/ultimatemodularwomen.html",
+      "status": null,
+      "error": "<urlopen error Tunnel connection failed: 403 Forbidden>",
+      "license": "unknown",
+      "incorporated": false,
+      "proxy_connect_status": 403,
+      "origin_http_status": null,
+      "archive_sha256": null,
+      "individual_asset_license_verified": false,
+      "file_contents_verified": false
+    },
+    {
+      "url": "https://quaternius.com/packs/ultimatemonsters.html",
+      "status": null,
+      "error": "<urlopen error Tunnel connection failed: 403 Forbidden>",
+      "license": "unknown",
+      "incorporated": false,
+      "proxy_connect_status": 403,
+      "origin_http_status": null,
+      "archive_sha256": null,
+      "individual_asset_license_verified": false,
+      "file_contents_verified": false
+    },
+    {
+      "url": "https://quaternius.com/packs/modularcharacteroutfitsfantasy.html",
+      "status": null,
+      "error": "<urlopen error Tunnel connection failed: 403 Forbidden>",
+      "license": "unknown",
+      "incorporated": false,
+      "proxy_connect_status": 403,
+      "origin_http_status": null,
+      "archive_sha256": null,
+      "individual_asset_license_verified": false,
+      "file_contents_verified": false
+    },
+    {
+      "url": "https://quaternius.com/packs/ultimateanimatedanimals.html",
+      "status": null,
+      "error": "<urlopen error Tunnel connection failed: 403 Forbidden>",
+      "license": "unknown",
+      "incorporated": false,
+      "proxy_connect_status": 403,
+      "origin_http_status": null,
+      "archive_sha256": null,
+      "individual_asset_license_verified": false,
+      "file_contents_verified": false
+    },
+    {
+      "url": "https://quaternius.com/packs/universalanimationlibrary2.html",
+      "status": null,
+      "error": "<urlopen error Tunnel connection failed: 403 Forbidden>",
+      "license": "unknown",
+      "incorporated": false,
+      "proxy_connect_status": 403,
+      "origin_http_status": null,
+      "archive_sha256": null,
+      "individual_asset_license_verified": false,
+      "file_contents_verified": false
+    },
+    {
+      "url": "https://vediagames.itch.io/characters-fantasy-voxel-pack",
+      "status": null,
+      "error": "<urlopen error Tunnel connection failed: 403 Forbidden>",
+      "license": "unknown",
+      "incorporated": false,
+      "proxy_connect_status": 403,
+      "origin_http_status": null,
+      "archive_sha256": null,
+      "individual_asset_license_verified": false,
+      "file_contents_verified": false
+    },
+    {
+      "url": "https://kenney.nl/assets/particle-pack",
+      "status": null,
+      "error": "<urlopen error Tunnel connection failed: 403 Forbidden>",
+      "license": "unknown",
+      "incorporated": false,
+      "proxy_connect_status": 403,
+      "origin_http_status": null,
+      "archive_sha256": null,
+      "individual_asset_license_verified": false,
+      "file_contents_verified": false
+    }
+  ],
+  "audit_date_utc": "2026-10-18T17:54:06.667177+00:00",
+  "method": "One urllib HTTPS GET attempt per exact URL, all seven in one parallel batch; no unchanged retries. Proxy CONNECT refused all requests before origin HTTP response.",
+  "external_archives_downloaded": [],
+  "third_party_assets_incorporated": [],
+  "isolated_reference_directory": "/workspace/validation/monster-girl-expansion/references",
+  "shipping_policy": "Never copy Grimoire assets into source resources or distributable. Original independent art only.",
+  "identifications": [
+    {
+      "temporary_name": "Fox Spirit Girl",
+      "reference_species": "Nine Tails",
+      "reference_key": "nine_tails",
+      "confidence": "high from supplied textual description; screenshot not directly available to this audit",
+      "evidence": [
+        "gold hair, green eyes, red fantasy tunic texture",
+        "NineTailsModel has nine tail chains in three rows"
+      ]
+    },
+    {
+      "temporary_name": "Ashen Wing Girl",
+      "reference_species": "Werecat",
+      "reference_variant": "werecat01",
+      "confidence": "high from supplied textual description; screenshot not directly available to this audit",
+      "evidence": [
+        "silver-gray hair, red eyes, silver details and navy gauntlet/leg texture",
+        "WerecatModel has rightear, leftear, tail1, tail2; no wing-named parts"
+      ],
+      "caveat": "Keep provisional implementation identity until user confirms; do not infer visible wings."
+    }
+  ]
+}

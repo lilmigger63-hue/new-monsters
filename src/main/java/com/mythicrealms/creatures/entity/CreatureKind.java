@@ -24,7 +24,20 @@ public enum CreatureKind {
     MOON_STAG("moon_stag", 32, 3, .32, 1, 1.1f, 1.8f, 8, 25, 2.5, 1),
     SLIME_MAIDEN("slime_maiden", 30, 4, .24, 1, .85f, 1.65f, 14, 30, 9, 4),
     HARPY("harpy", 26, 4, .3, 2, .9f, 1.8f, 12, 25, 10, 4),
-    DEMON_SORCERESS("demon_sorceress", 40, 6, .25, 3, .7f, 1.95f, 22, 50, 13, 2);
+    DEMON_SORCERESS("demon_sorceress", 40, 6, .25, 3, .7f, 1.95f, 22, 50, 13, 2),
+    ENDER_DRAGON_GIRL("ender_dragon_girl",40,6,.25,4,.85f,2.05f,22,50,13,1),
+    VAMPIRE("vampire",28,4,.32,2,.7f,1.85f,7,22,2.1,3),
+    HOLSTAURUS("holstaurus",30,4,.24,2,.8f,1.9f,14,30,9,3),
+    CENTAUR("centaur",38,5,.32,4,1.25f,2.15f,10,24,2.6,2),
+    SAHUAGIN("sahuagin",28,4,.29,3,.7f,1.85f,10,24,2.4,3),
+    VALKYRIE("valkyrie",42,6,.28,8,.8f,2f,14,30,2.8,1),
+    FOX_SPIRIT_GIRL("fox_spirit_girl",30,4,.27,2,.75f,1.85f,16,40,13,2),
+    ANUBIS("anubis",34,5,.29,5,.7f,1.95f,10,24,2.5,2),
+    KOBOLD("kobold",20,3,.32,3,.6f,1.3f,7,20,2.1,4),
+    CYCLOPS("cyclops",48,7,.23,7,.85f,2.05f,18,36,3.2,1),
+    DHAMPIR("dhampir",30,5,.3,4,.7f,1.85f,9,24,2.6,2),
+    SUCCUBUS("succubus",36,5,.25,3,.75f,1.9f,22,50,13,2),
+    WERECAT("werecat",28,4,.29,3,.7f,1.8f,16,38,13,3);
 
     public final String id;
     public final double health, damage, speed, armor, range;
@@ -36,6 +49,8 @@ public enum CreatureKind {
         this.armor = armor; this.width = width; this.height = height;
         this.windup = windup; this.recovery = recovery; this.range = range; this.spawnWeight = weight;
     }
+    public boolean isExpansion() { return ordinal()>DEMON_SORCERESS.ordinal(); }
+    public boolean allowsNaturalSpawning() { return isExpansion() || this==FOREST_DRYAD || this==SLIME_MAIDEN; }
     public AttributeSupplier.Builder attributes(double difficulty) {
         return Monster.createMonsterAttributes().add(Attributes.MAX_HEALTH, health * difficulty)
             .add(Attributes.ATTACK_DAMAGE, damage * difficulty).add(Attributes.MOVEMENT_SPEED, speed)

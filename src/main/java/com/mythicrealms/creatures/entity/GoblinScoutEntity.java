@@ -5,7 +5,7 @@ import net.minecraft.world.entity.*;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 
-public final class GoblinScoutEntity extends MythicHostileEntity {
+public class GoblinScoutEntity extends MythicHostileEntity {
     public GoblinScoutEntity(EntityType<? extends GoblinScoutEntity> type, Level level) { super(type, level); }
     @Override public CreatureKind kind() { return CreatureKind.GOBLIN_SCOUT; }
     @Override public boolean reposition(LivingEntity target) {
@@ -24,7 +24,7 @@ public final class GoblinScoutEntity extends MythicHostileEntity {
         if(tickCount%40!=0 || target==null || !target.isAlive() || !canAttack(target))return;
         int recruited=0;
         for(var ally:level.getEntitiesOfClass(GoblinScoutEntity.class,getBoundingBox().inflate(8))) {
-            if(ally==this || ally.getTarget()!=null || !ally.canAttack(target)
+            if(ally==this || ally.kind()!=kind() || ally.getTarget()!=null || !ally.canAttack(target)
                 || ally.distanceToSqr(target)>28*28 || !ally.getSensing().hasLineOfSight(target))continue;
             ally.setTarget(target);
             if(++recruited==4)break;

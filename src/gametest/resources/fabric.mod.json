@@ -10,7 +10,9 @@
       "com.mythicrealms.creatures.GroupBGameTests",
       "com.mythicrealms.creatures.CompletionGameTests",
       "com.mythicrealms.creatures.StructureGameTests",
-      "com.mythicrealms.creatures.ProgressionGameTests"
+      "com.mythicrealms.creatures.ProgressionGameTests",
+      "com.mythicrealms.creatures.ExpansionGameTests",
+      "com.mythicrealms.creatures.ExpansionBehaviorGameTests"
     ]
   },
   "depends": {

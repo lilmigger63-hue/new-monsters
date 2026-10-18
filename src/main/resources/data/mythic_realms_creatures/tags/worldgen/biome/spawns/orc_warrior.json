@@ -1,13 +1,4 @@
 {
   "replace": false,
-  "values": [
-    {
-      "id": "#minecraft:is_forest",
-      "required": false
-    },
-    {
-      "id": "#minecraft:is_hill",
-      "required": false
-    }
-  ]
+  "values": []
 }

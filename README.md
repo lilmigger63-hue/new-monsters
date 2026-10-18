@@ -1,14 +1,14 @@
 # Mythic Realms: Creatures
 
-**Development candidate 1.1.0-rc.3 · Fabric · Minecraft Java Edition 1.21.10 · Java 21**
+**Development candidate 1.2.0-rc.1 · Fabric · Minecraft Java Edition 1.21.10 · Java 21**
 
-Candidate rc.3 implements the V2 model/rig/animation overhaul for 18 creatures, including the user-referenced Wyvern head/body, Harpy wings and Moon Stag antlers, stable weapon grips, Basilisk fedora and full layered hair. Crystal Spider and Flame Imp are unchanged. See the [per-creature changelog, references, tests and limitations](docs/overhaul-v2.md).
+Candidate 1.2.0-rc.1 adds 13 original monster-girl species and refreshes Harpy, Minotaur, Slime Maiden and Forest Dryad. All 20 original entities remain available through eggs and commands. Only Forest Dryad and Slime Maiden retain natural spawning among the original species; all 13 new species have their own habitat rules. Shared rendering/animation/particle caches reduce repeated work without simplifying artwork. See the [expansion inventory and validation](docs/monster-girl-expansion/README.md).
 
-[Download candidate JAR](releases/1.1.0-rc.3/mythic-realms-creatures-1.1.0-rc.3.jar?raw=true) · [Candidate with required dependencies](releases/1.1.0-rc.3/mythic-realms-creatures-1.1.0-rc.3-with-dependencies.zip?raw=true) · [Candidate source](releases/1.1.0-rc.3/mythic-realms-creatures-1.1.0-rc.3-source.zip?raw=true)
+[Download candidate JAR](releases/1.2.0-rc.1/mythic-realms-creatures-1.2.0-rc.1.jar?raw=true) · [Candidate with required dependencies](releases/1.2.0-rc.1/mythic-realms-creatures-1.2.0-rc.1-with-dependencies.zip?raw=true) · [Candidate source](releases/1.2.0-rc.1/mythic-realms-creatures-1.2.0-rc.1-source.zip?raw=true)
 
 [Download the stable mod JAR](releases/1.0.0/mythic-realms-creatures-1.0.0.jar?raw=true) · [Download with required dependencies](releases/1.0.0/mythic-realms-creatures-1.0.0-with-dependencies.zip?raw=true) · [Editable source](releases/1.0.0/mythic-realms-creatures-1.0.0-source.zip?raw=true)
 
-Twenty fantasy creatures, four rideable species, four exploration structures, and a compact survival progression with 26 items and 14 recipes. Creatures use distinct block models, textures, GeckoLib animations, server-controlled attacks, biome spawning, spawn eggs, and loot tables. Better Combat adds optional player weapon animations.
+Thirty-three fantasy creatures, four rideable species, four exploration structures, and a compact survival progression with 26 items and 14 recipes. Creatures use distinct block models, textures, GeckoLib animations, server-controlled attacks, biome spawning, spawn eggs, and loot tables. Better Combat adds optional player weapon animations.
 
 ## Installation
 
@@ -19,7 +19,7 @@ Install these mods on both clients and the dedicated server:
 | Minecraft Java Edition | **1.21.10 exactly** |
 | Java | **21** |
 | Fabric Loader | **0.19.5 or newer** |
-| Mythic Realms: Creatures | `mythic-realms-creatures-1.1.0-rc.3.jar` (candidate) or stable `1.0.0` |
+| Mythic Realms: Creatures | `mythic-realms-creatures-1.2.0-rc.1.jar` (candidate) or stable `1.0.0` |
 | Fabric API | **0.138.4+1.21.10** |
 | GeckoLib, Fabric | **5.3-alpha-3 for Minecraft 1.21.10** |
 
@@ -41,7 +41,7 @@ Integration uses Better Combat 3.0.0's supported `data/<namespace>/weapon_attrib
 
 ## Creature reference
 
-Values are base attributes at difficulty multipliers of 1. Health and damage use Minecraft points; two health points equal one heart. Speed is the movement attribute, and armor is armor points. Individual attacks can apply additional effects or damage multipliers. Habitat describes default natural spawning.
+Values are base attributes at difficulty multipliers of 1. Health and damage use Minecraft points; two health points equal one heart. Speed is the movement attribute, and armor is armor points. Individual attacks can apply additional effects or damage multipliers. The original-species habitat column records their historical habitats. In 1.2.0, only Forest Dryad and Slime Maiden from this table spawn naturally; the other 18 require eggs, commands or existing saved entities. New species habitats are listed in the expansion documentation.
 
 | Creature / registry ID | Health | Damage | Speed | Armor | Behavior | Habitat | Drops |
 | --- | ---: | ---: | ---: | ---: | --- | --- | --- |
@@ -66,7 +66,7 @@ Values are base attributes at difficulty multipliers of 1. Health and damage use
 | Harpy `harpy` | 26 | 4 | 0.30 | 2 | Aerial swoops and fast feather projectiles | Mountains, windswept hills | Feathers, Griffin Feather |
 | Demon Sorceress `demon_sorceress` | 40 | 6 | 0.25 | 3 | Cursing dark bolts; retreats by bounded teleport; fire immune | Nether wastes, crimson forests | Glowstone dust, Shadow Essence, Infernal Ember |
 
-Overworld hostile species use darkness and difficulty checks. Nether casters require a non-Peaceful difficulty. Guardians and peaceful mounts use daylight and suitable ground checks. Natural spawns obey biome tags, dimension restrictions, configurable weights, and group limits. Forest guardians retaliate and attack monsters; they do not hunt peaceful players. Rare mounts and structure inhabitants also offer exploration encounters.
+Overworld hostile species use darkness and difficulty checks. Nether casters require a non-Peaceful difficulty. Guardians and peaceful mounts use daylight and suitable ground checks. Natural spawns obey biome tags, dimension restrictions, configurable weights, and group limits. Forest guardians retaliate and attack monsters; they do not hunt peaceful players. Newly generated structures retain their blocks and loot, but only the Forest Shrine retains its Dryad inhabitant. Existing saved creatures are preserved.
 
 All IDs use the namespace `mythic_realms_creatures`. With operator permission:
 
@@ -86,7 +86,7 @@ All IDs use the namespace `mythic_realms_creatures`. With operator permission:
 | Moon Stag | Moonblossom | Golden carrot | Glow berries, golden carrot | Vanilla saddle |
 | Rare blue Wyvern | Venomous Morsel | Fermented spider eye | Fermented spider eye | Wyvern Harness or vanilla saddle |
 
-Feed an untamed creature using the main hand. Default taming success is one in three attempts. One in twenty naturally spawned Wyverns is the blue tameable variant by default; ordinary Wyverns reject taming food without consuming it. Bones tame Dire Wolves but do not heal them. Healing food restores six health points and is consumed only when healing is needed.
+Feed an untamed creature using the main hand. Default taming success is one in three attempts. The default randomized Wyvern variant has a one-in-twenty chance of being blue and tameable; ordinary Wyverns reject taming food without consuming it. Bones tame Dire Wolves but do not heal them. Healing food restores six health points and is consumed only when healing is needed.
 
 The owner can equip a saddle by right-clicking, then mount a saddled adult with an empty hand. Shift-right-click beside an unmounted pet toggles stay/follow; flying pets must land first. The owner UUID, saddle state, stay command, and Wyvern variant persist across saves. Pets defend their owner and avoid attacking the owner or pets owned by the same player.
 
@@ -149,7 +149,7 @@ The first start creates `config/mythic_realms_creatures.json`. Restart after cha
 | `rareWyvernChance` | `20` | `1`–`1000`; natural blue-Wyvern chance is one in this many |
 | `structuresEnabled` | `true` | Global natural structure generation switch |
 | `structures.<structure_id>` | `true` | Individual switches for `goblin_watchtower`, `forest_shrine`, `grave_crypt`, `wyvern_nest` |
-| `spawning.<species>.enabled` | `true` | Natural spawning switch; eggs and summon commands stay available |
+| `spawning.<species>.enabled` | `true` | Natural spawning switch for eligible species; disabled original species cannot be re-enabled; eggs and summon commands stay available |
 | `spawning.<species>.weight` | Species-specific, `1`–`12` | `0`–`100`; relative biome spawn weight; `0` disables natural spawning |
 | `spawning.<species>.minGroup` | `1` | `1`–`6`; minimum group size |
 | `spawning.<species>.maxGroup` | `2` | Minimum through `6`; maximum group size |
@@ -158,7 +158,7 @@ The first start creates `config/mythic_realms_creatures.json`. Restart after cha
 | `spawning.<species>.dimensions` | `["minecraft:overworld"]` | Dimension-ID allowlist; Flame Imp and Demon Sorceress default to `["minecraft:the_nether"]`; empty list disables natural spawning |
 | `spawning.<species>.biomes` | `[]` | Optional biome-ID / `#biome_tag` allowlist; empty list imposes no further biome restriction |
 
-Biome configuration **narrows the species' existing spawn tag**. It does not inject spawning into additional biomes. To expand biome support, extend `data/mythic_realms_creatures/tags/worldgen/biome/spawns/<species>.json` in a data pack, then allow the intended dimensions and optional biome whitelist. Structure biome tags are under `tags/worldgen/biome/has_structure/`. Shadow Wraith's tag also includes soul sand valley, but its default Overworld dimension restriction prevents natural Nether spawning until configured.
+Biome configuration **narrows the species' existing spawn tag**. It does not inject spawning into additional biomes. To expand biome support, extend `data/mythic_realms_creatures/tags/worldgen/biome/spawns/<species>.json` in a data pack, then allow the intended dimensions and optional biome whitelist. Structure biome tags are under `tags/worldgen/biome/has_structure/`. The 18 retired original natural-spawn tags are empty and the registration policy also blocks their natural/chunk-generation spawn reasons, including legacy configurations with enabled=true.
 
 The global and species difficulty multipliers multiply together. For example, global `1.5` and species `2` produce three times that species' base health and damage. Enabling a dimension alone does not remove biome or ground checks.
 

@@ -1,0 +1,154 @@
+{
+  "ender_dragon_girl": {
+    "name": "Ender Dragon Girl",
+    "biomes": [
+      "end_highlands",
+      "end_midlands",
+      "small_end_islands"
+    ],
+    "drops": [
+      "ender_pearl",
+      "obsidian"
+    ]
+  },
+  "vampire": {
+    "name": "Vampire",
+    "biomes": [
+      "dark_forest",
+      "taiga"
+    ],
+    "drops": [
+      "redstone",
+      "rotten_flesh"
+    ]
+  },
+  "holstaurus": {
+    "name": "Holstaurus",
+    "biomes": [
+      "plains",
+      "sunflower_plains",
+      "meadow"
+    ],
+    "drops": [
+      "leather",
+      "beef"
+    ]
+  },
+  "centaur": {
+    "name": "Centaur",
+    "biomes": [
+      "savanna",
+      "plains",
+      "forest"
+    ],
+    "drops": [
+      "leather",
+      "arrow"
+    ]
+  },
+  "sahuagin": {
+    "name": "Sahuagin",
+    "biomes": [
+      "ocean",
+      "lukewarm_ocean",
+      "deep_ocean",
+      "river"
+    ],
+    "drops": [
+      "prismarine_shard",
+      "cod"
+    ]
+  },
+  "valkyrie": {
+    "name": "Valkyrie",
+    "biomes": [
+      "jagged_peaks",
+      "frozen_peaks",
+      "stony_peaks"
+    ],
+    "drops": [
+      "iron_nugget",
+      "feather"
+    ]
+  },
+  "fox_spirit_girl": {
+    "name": "Nine-Tailed Fox Spirit",
+    "biomes": [
+      "cherry_grove",
+      "old_growth_pine_taiga",
+      "forest"
+    ],
+    "drops": [
+      "glow_berries",
+      "gold_nugget"
+    ]
+  },
+  "anubis": {
+    "name": "Anubis",
+    "biomes": [
+      "desert",
+      "badlands"
+    ],
+    "drops": [
+      "bone",
+      "gold_nugget"
+    ]
+  },
+  "kobold": {
+    "name": "Kobold",
+    "biomes": [
+      "dripstone_caves",
+      "lush_caves",
+      "windswept_gravelly_hills"
+    ],
+    "drops": [
+      "iron_nugget",
+      "mythic_realms_creatures:goblin_scrap"
+    ]
+  },
+  "cyclops": {
+    "name": "Cyclops",
+    "biomes": [
+      "windswept_hills",
+      "stony_peaks"
+    ],
+    "drops": [
+      "copper_ingot",
+      "leather"
+    ]
+  },
+  "dhampir": {
+    "name": "Dhampir",
+    "biomes": [
+      "dark_forest",
+      "old_growth_spruce_taiga"
+    ],
+    "drops": [
+      "iron_nugget",
+      "redstone"
+    ]
+  },
+  "succubus": {
+    "name": "Succubus",
+    "biomes": [
+      "crimson_forest",
+      "soul_sand_valley"
+    ],
+    "drops": [
+      "blaze_powder",
+      "mythic_realms_creatures:shadow_essence"
+    ]
+  },
+  "werecat": {
+    "name": "Werecat",
+    "biomes": [
+      "taiga",
+      "snowy_taiga",
+      "grove"
+    ],
+    "drops": [
+      "string",
+      "amethyst_shard"
+    ]
+  }
+}

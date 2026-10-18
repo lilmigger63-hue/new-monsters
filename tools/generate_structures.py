@@ -71,6 +71,9 @@ class Template:
                  {'id': string('minecraft:chest'), 'LootTable': string(NS + 'chests/' + self.name)})
 
     def inhabitant(self, kind, x, y, z):
+        # Structure generation is natural spawning too; keep only the two
+        # original inhabitants permitted by the expansion's population policy.
+        if kind not in ('forest_dryad', 'slime_maiden'): return
         self.entities.append({'pos': doubles([x, y, z]), 'blockPos': ints([math.floor(x), math.floor(y), math.floor(z)]),
             'nbt': compound({'id': string(NS + kind), 'Pos': doubles([x, y, z]),
                 'Rotation': sequence(5, [0., 0.]), 'PersistenceRequired': byte(1), 'OnGround': byte(1)})})
