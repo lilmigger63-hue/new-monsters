@@ -646,7 +646,58 @@ def ender_dragon_girl():
         X('head',[side*2.8-.55,26.6,-2.5],[1.1,3.5,.85],9,[0,0,-side*8])
     return m,palette,roles,(.8,2.05)
 
-BUILDERS={'harpy':harpy,'forest_dryad':dryad,'slime_maiden':slime,'minotaur':minotaur,'vampire':vampire,'valkyrie':valkyrie,'succubus':succubus,'ender_dragon_girl':ender_dragon_girl}
+def centaur():
+    m=old_model('centaur');X=m.box
+    m.by_name['horse_body']['cubes']=[]
+    for b in m.bones:
+        if b['name']=='head' or b['name'].startswith('hair_'):
+            def p(v):return [v[0]*1.28,27+(v[1]-27)*1.08,v[2]*1.18]
+            b['pivot']=p(b['pivot'])
+            for c in b.get('cubes',[]):
+                c['origin']=p(c['origin']);c['size']=[c['size'][0]*1.28,c['size'][1]*1.08,c['size'][2]*1.18]
+                if 'pivot' in c:c['pivot']=p(c['pivot'])
+    # Full horse barrel, rounded croup and an overlapping withers-to-torso transition.
+    X('horse_body',[-4.8,11,-.7],[9.6,6.3,17.8],0)
+    X('horse_body',[-3.9,10.2,3],[7.8,2.4,10.8],0)
+    X('horse_body',[-4.6,12.2,13],[9.2,5.4,6],2)
+    X('horse_body',[-3.8,15.4,-.9],[7.6,3.3,7.5],0)
+    X('body',[-3,17,-2],[6,2.1,4.1],10)
+    X('body',[-2,19,-1.6],[4,2.5,3.2],8)
+    X('chest',[-2.9,23.7,-2.2],[5.8,.8,.7],14)
+    for side,n in [(-1,'right'),(1,'left')]:
+        X('arm_'+n,[side*3.2-1.6,22.6,-1.65],[3.2,1.4,3.4],14,[0,0,-side*10])
+        X('arm_'+n,[side*3.3-1.5,22,-1.7],[3,1,3.5],3,[0,0,-side*13])
+        X('body',[side*1.8-1.2,15,-2.35],[2.4,3.1,.65],7,[0,0,-side*10])
+        # Fetlocks/hooves remain individual four-chain anatomy, front silver cuffs only.
+        X('front_'+n+'_lower',[side*3.3-1.3,1.8,-1.4],[2.6,1.3,2.9],14)
+        for fore in ('front_','hind_'):
+            z=0 if fore=='front_' else 15
+            X(fore+n+'_foot',[side*3.3-1.4,.1,z-1.95],[2.8,1.2,3.7],1)
+        X('horse_body',[side*4.5-.3,12.6,3.5],[.6,4.2,1],10)
+        X('horse_body',[side*4.6-.35,13.4,3.4],[.7,1.2,1.2],4)
+    # Reference sword points forward/down; retain original weapon attachment name.
+    m.by_name['weapon']['cubes']=[];m.by_name['weapon']['rotation']=[25,0,0]
+    X('weapon',[-3.6,15.9,-1.8],[.8,.8,3.1],10)
+    X('weapon',[-3.85,15.7,1.1],[1.3,1.2,.65],4)
+    X('weapon',[-5.2,15.8,-2.5],[4,.9,.7],4)
+    X('weapon',[-3.85,16,-11.9],[1.3,.55,9.5],14)
+    X('weapon',[-3.55,15.9,-11.9],[.7,.75,9.5],12)
+    X('weapon',[-3.6,16.05,-13],[.8,.45,1.3],14)
+    for j in range(3):X('hand_right',[-4.1+j*.65,15.3,-1.2],[.55,1,1.8],8)
+    palette=['79513c','302c2a','91654c','777c7b','a48d54','202725','eee6d7','782e36','e0c8ae','252a27','4e3930','9a7751','b5bcb7','343b3a','9fa7a3','f4ebdc']
+    roles=['fur','leather','fur','metal','gold','skin','skin','cloth','skin','hair','leather','cloth','metal','cloth','metal','skin']
+    for side,n in [(-1,'right'),(1,'left')]:
+        for prefix in ('front_','hind_'):
+            name=prefix+n+'_lower'
+            for c in m.by_name[name]['cubes']:
+                if c['size'][1]>3:
+                    center=c['origin'][0]+c['size'][0]/2;c['size'][0]*=1.25;c['origin'][0]=center-c['size'][0]/2
+        X('hair_'+str(side),[side*3-.6,24.6,-1.4],[1.2,6.7,1.8],9,[0,0,-side*6])
+    for j in range(3):X('head',[-2.8+j*1.9,29+(j%2)*.5,-3],[2.1,2-(j%2)*.4,.8],9,[0,0,(j-1)*10])
+    for j in range(3):X('tail_tip',[-.9+j*.6,4+j*.4,19],[.6,3-j*.3,2.1],9,[-8,0,(j-1)*9])
+    return m,palette,roles,(1.25,2.15)
+
+BUILDERS={'harpy':harpy,'forest_dryad':dryad,'slime_maiden':slime,'minotaur':minotaur,'vampire':vampire,'valkyrie':valkyrie,'succubus':succubus,'ender_dragon_girl':ender_dragon_girl,'centaur':centaur}
 
 BASE_ATLAS=pipeline.material_atlas
 
@@ -667,6 +718,12 @@ def reference_atlas(palette,roles,translucent=False,species=None):
             draw.rectangle((x,y,x+31,y+31),fill=gel(0))
             for box,delta in [((0,0,31,2),12),((4,4,10,8),21),((11,5,15,10),13),((3,15,9,23),-9),((14,18,25,25),7),((22,27,31,31),-13)]:
                 draw.rectangle(tuple(v+(x if i%2==0 else y) for i,v in enumerate(box)),fill=gel(delta))
+    if species=='centaur':
+        for k in (0,2):
+            x=k%4*32;y=k//4*32;rgb=tuple(int(palette[k][i:i+2],16) for i in (0,2,4))
+            draw.rectangle((x,y,x+31,y+31),fill=rgb+(255,))
+            for box,delta in [((0,0,31,4),9),((4,7,13,15),6),((16,10,28,20),-8),((4,22,18,30),-10)]:
+                draw.rectangle(tuple(v+(x if i%2==0 else y) for i,v in enumerate(box)),fill=tuple(max(0,min(255,c+delta)) for c in rgb)+(255,))
     if species=='ender_dragon_girl':
         for k in (7,9):
             x=k%4*32;y=k//4*32;rgb=tuple(int(palette[k][i:i+2],16) for i in (0,2,4))
@@ -707,6 +764,6 @@ def main():
     if args.species in ('forest_dryad','succubus','ender_dragon_girl'):
         from visual_v3_geometry import support_death
         support_death(model,animations)
-    write_creature(model,palette,roles,animations,*size,glow=() if args.species=='minotaur' else (13,) if args.species=='vampire' else (11,) if args.species=='slime_maiden' else (4,),translucent=args.species=='slime_maiden')
+    write_creature(model,palette,roles,animations,*size,glow=() if args.species in ('minotaur','centaur') else (13,) if args.species=='vampire' else (11,) if args.species=='slime_maiden' else (4,),translucent=args.species=='slime_maiden')
 
 if __name__=='__main__':main()

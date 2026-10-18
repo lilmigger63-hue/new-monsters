@@ -69,13 +69,22 @@
     }
   },
   "ender_dragon_girl": {
-    "commit": "Visual overhaul: Ender Dragon Girl reference accuracy",
+    "commit": "4ff1c9f",
     "files": {
       "src/main/resources/assets/mythic_realms_creatures/geckolib/models/entity/ender_dragon_girl.geo.json": "475d39af434c418d5147d2d1425af7692e59aa99ecafcf67158a3839236bbd14",
       "src/main/resources/assets/mythic_realms_creatures/geckolib/animations/entity/ender_dragon_girl.animation.json": "2a2cfc0fe1f89148bbba606f13c52b5086045785f0662bc7eb58f6cad72432f5",
       "src/main/resources/assets/mythic_realms_creatures/textures/entity/ender_dragon_girl.png": "26439dc2ee498bba683eff3920f39798c443000b7081f69558f884b179d17a49",
       "src/main/resources/assets/mythic_realms_creatures/textures/entity/ender_dragon_girl_glowmask.png": "085791fdf9c977e5c70f8728ebaa60d9d5f4b166de8b09ff6e82379586b40f6d",
       "tools/blockbench/ender_dragon_girl.bbmodel": "d1b5826da1b6bd903c151333d597d5e39c4f18cd1ded05c08e4f9df963a3d33a"
+    }
+  },
+  "centaur": {
+    "commit": "Visual overhaul: Centaur reference accuracy",
+    "files": {
+      "src/main/resources/assets/mythic_realms_creatures/geckolib/models/entity/centaur.geo.json": "8e1da103116a1a8425dd6317887c42dc2ca49d915c4de70fe317ddc0cfe33f88",
+      "src/main/resources/assets/mythic_realms_creatures/geckolib/animations/entity/centaur.animation.json": "a603637d84f84d202c74ebd0b947e87e068180bbb584f933762fbd312818eb29",
+      "src/main/resources/assets/mythic_realms_creatures/textures/entity/centaur.png": "8f7a4dbc260bfd8660d6813f027c43b20ee4a0d0764a096b69e902fac9c981ea",
+      "tools/blockbench/centaur.bbmodel": "aa8294ba6690c62d00cf940c2a4deab6bfc6e993ab06965eac2cb8410a7592fd"
     }
   }
 }
