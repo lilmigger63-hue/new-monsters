@@ -374,7 +374,100 @@ def minotaur():
     # The shaft remains continuous into the lowered head, with excess upper wood hidden.
     return m,palette,roles,(1.35,2.85)
 
-BUILDERS={'harpy':harpy,'forest_dryad':dryad,'slime_maiden':slime,'minotaur':minotaur}
+def vampire():
+    m=old_model('vampire',True);X=m.box
+    def joint(n,p):m.by_name[n]['pivot']=p
+    for n,p in [('pelvis',[0,11,0]),('body',[0,14,0]),('chest',[0,19,0]),('neck',[0,22,0]),('head',[0,23.1,-.1])]:joint(n,p)
+    X('pelvis',[-2.9,10,-1.8],[5.8,3.6,3.6],2)
+    X('body',[-2.3,13,-1.65],[4.6,5.1,3.3],3)
+    X('chest',[-3.2,17.5,-1.95],[6.4,4.5,4],2)
+    X('neck',[-1,21.5,-.9],[2,2,1.8],1)
+    # Crimson waistcoat and narrow gold fastening strips under charcoal lapels.
+    X('body',[-2.5,13,-1.9],[5,4.6,.6],10)
+    X('chest',[-2.4,17,-2.2],[4.8,4.8,.8],3)
+    for y in (14,15.8,17.6):
+        X('body',[-2.45,y,-2.25],[4.9,.55,.5],4)
+        X('body',[-.35,y-.1,-2.8],[.7,.8,.25],9)
+    for side in (-1,1):
+        X('chest',[side*1.75-.65,18,-2.7],[1.3,4,.8],15,[0,0,side*22])
+        X('neck',[side*2.2-.8,21.5,.3],[1.6,3.4,1.2],15,[0,0,side*29])
+        X('neck',[side*2-.55,22,.05],[1.1,2.4,.4],10,[0,0,side*29])
+        for j in range(3):X('chest',[side*(.55+j*.55)-.38,20.5-j*.13,-2.7],[.76,1.5,.65],11,[0,0,side*(8+j*12)])
+    X('chest',[-.6,20.2,-3.15],[1.2,1.1,.5],7,[0,0,45])
+    # Adult broad pale face framed by solid blonde scalp and layered short fringe.
+    X('head',[-3.5,23,-3],[7,6.1,5.7],0)
+    X('head',[-2.8,22.7,-2.8],[5.6,.9,5.2],1)
+    X('head',[-.35,25,-3.3],[.7,.7,.6],1)
+    X('head',[-.6,23.8,-3.2],[1.2,.16,.2],12)
+    for side in (-1,1):
+        x=side*1.8
+        X('head',[x-.8,25.3,-3.15],[1.6,1.35,.18],11)
+        X('head',[x-.5,25.35,-3.34],[1,1.25,.16],13)
+        X('head',[x-.17,25.4,-3.53],[.34,1.13,.12],15)
+        X('head',[x-.4,26.12,-3.66],[.24,.25,.08],11)
+        X('head',[x-.95,26.7,-3.3],[1.9,.23,.3],5)
+        X('head',[side*3.45-.45,24.5,-.5],[.9,1.5,1.4],1)
+    X('head',[-3.75,28,-3.1],[7.5,1.6,6.2],5)
+    for j in range(5):
+        X('head',[-3.6+j*1.4,26.2+(j%2)*.7,-3.2],[1.6,2.4-(j%2)*.7,.8],8 if j%2 else 5,[0,0,(j-2)*7])
+    for side,n in [(-1,'right'),(1,'left')]:
+        joint('hair_'+n,[side*3.3,28.6,0]);joint('hair_tip_'+n,[side*3.3,22,0])
+        X('hair_'+n,[side*3.3-.7,21.7,-1.6],[1.4,7.1,3.6],5)
+        X('hair_tip_'+n,[side*3.3-.6,19.5,-1.4],[1.2,3,3.2],8)
+    joint('hair_back',[0,28.6,2.3])
+    for j in range(5):X('hair_back',[-3.5+j*1.35,19.5+abs(2-j)*.7,2],[1.5,9.4-abs(2-j)*.7,1.5],5 if j%2 else 8)
+    # Small asymmetric red bow, clearly separate from forehead/eyes.
+    for side in (-1,1):X('head',[2.4+side*.7-.7,28.7,-1.2],[1.4,.8,1.8],7,[0,0,-side*17])
+    X('head',[2,28.6,-1.3],[.8,1,1.9],10)
+    for side,n in [(-1,'right'),(1,'left')]:
+        x=side*1.55
+        joint('thigh_'+n,[x,11,0]);joint('shin_'+n,[x,5.7,0]);joint('foot_'+n,[x,1.5,0])
+        X('thigh_'+n,[x-1.3,5.5,-1.25],[2.6,5.8,2.7],2)
+        X('shin_'+n,[x-1.2,1,-1.25],[2.4,4.9,2.7],15)
+        X('foot_'+n,[x-1.4,.1,-2.3],[2.8,1.5,3.9],15)
+        x=side*4.1;arm='arm_'+n;fore='forearm_'+n;hand='hand_'+n
+        joint(arm,[x,21.2,0]);joint(fore,[x,16.8,0]);joint(hand,[x,12.6,-.6])
+        X(arm,[x-1.3,16.5,-1.35],[2.6,5,2.8],2)
+        X(arm,[x-1.65,19.5,-1.65],[3.3,2.4,3.4],15)
+        X(fore,[x-1.3,12,-1.35],[2.6,4.9,2.8],3)
+        X(fore,[x-1.6,13,-1.6],[3.2,1.4,3.4],10)
+        X(hand,[x-1.4,10.7,-1.8],[2.8,2.1,3.2],10)
+        if side>0:
+            for j in range(3):X(hand,[x-1.2+j*.8,10,-1.9],[.7,1.2,1.7],3)
+        coat='coat_'+n;joint(coat,[side*1.8,11.4,.5])
+        for j,(yy,ww,dd) in enumerate([(7.2,3.8,4.6),(4,4.3,5.1),(1.8,4.8,5.6)]):
+            X(coat,[side*2-ww/2,yy,-dd/2],[ww,3.5,dd],15)
+            X(coat,[side*2-ww/2,yy,-dd/2-.12],[ww,1.1,.35],10)
+            X(coat,[side*2-ww/2,yy,dd/2-.2],[ww,1.2,.45],3)
+        X(coat,[side*3.5-.4,3.4,-2.95],[.8,6.5,.45],7)
+    joint('cape',[0,21.7,2.1])
+    for j in range(5):
+        w=6.3+j*.6;y=17.3-j*3.2
+        X('cape',[-w/2,y,2.4+j*.22],[w,3.7,.85],15,[5,0,0])
+        X('cape',[-w/2,y,3.15+j*.22],[w,.65,.35],10,[5,0,0])
+    joint('grip_right',[-4.1,11.8,-1.8]);joint('dagger',[-4.1,11.8,-1.8])
+    for j in range(3):X('grip_right',[-5.35,10.9+j*.6,-2.55],[1.8,.5,.65],3)
+    X('grip_right',[-3.7,11,-2.5],[.6,1.6,1.5],10)
+    X('dagger',[-4.5,9.5,-2.2],[.8,4,.8],6)
+    X('dagger',[-5.45,13,-2.5],[2.7,.55,1.4],4)
+    X('dagger',[-4.65,13.5,-2],[1.1,4.6,.45],9)
+    X('dagger',[-4.4,18,-1.95],[.6,.9,.35],9,[0,0,16])
+    palette=['e5cfb5','f1dac1','292a2c','6f2132','a78c49','b49b56','26252b','ce3549','c7ad68','929a9c','9d2941','f1ede2','b78f80','df5260','60533e','191b20']
+    roles=['skin','skin','cloth','cloth','gold','hair','leather','cloth','hair','metal','cloth','skin','skin','cloth','hair','cloth']
+    # Corrective pass: swept blonde locks, a readable bow and flared black mantle.
+    for side,n in [(-1,'right'),(1,'left')]:
+        X('hair_'+n,[side*3.35-.8,23.5,-1.8],[1.6,5.3,3.9],8,[0,0,-side*5])
+        X('hair_tip_'+n,[side*3.5-.5,19.8,.3],[1,3.4,2.4],5,[0,0,side*9])
+        for j in range(3):
+            X('cape',[side*(3+j*.3)-.8,15.2-j*3.6,2.8+j*.4],[1.6,4.2,1.1],15,[0,0,-side*(8+j*4)])
+            X('cape',[side*(3.3+j*.35)-.5,13.7-j*3.6,3+j*.4],[1,2.2,1.1],10,[0,0,-side*16])
+        X('arm_'+n,[side*4.1-1.8,20.9,-1.7],[3.6,1.1,3.6],15,[0,0,-side*13])
+        X('head',[2.4+side*.95-.85,28.75,-1.3],[1.7,.85,2.1],7,[0,0,-side*18])
+    X('head',[-2.4,26.6,-3.45],[2.7,1.3,.8],8,[0,0,-13])
+    X('head',[.25,27.1,-3.4],[2.2,1.1,.7],5,[0,0,12])
+    return m,palette,roles,(.7,1.85)
+
+BUILDERS={'harpy':harpy,'forest_dryad':dryad,'slime_maiden':slime,'minotaur':minotaur,'vampire':vampire}
 
 BASE_ATLAS=pipeline.material_atlas
 
@@ -395,6 +488,11 @@ def reference_atlas(palette,roles,translucent=False,species=None):
             draw.rectangle((x,y,x+31,y+31),fill=gel(0))
             for box,delta in [((0,0,31,2),12),((4,4,10,8),21),((11,5,15,10),13),((3,15,9,23),-9),((14,18,25,25),7),((22,27,31,31),-13)]:
                 draw.rectangle(tuple(v+(x if i%2==0 else y) for i,v in enumerate(box)),fill=gel(delta))
+    if species=='vampire':
+        for k in (5,8):
+            x=k%4*32;y=k//4*32;rgb=tuple(int(palette[k][i:i+2],16) for i in (0,2,4))
+            for box,delta in [((3,5,12,11),12),((15,8,24,18),-10),((5,19,14,26),7),((23,23,30,30),-15)]:
+                draw.rectangle(tuple(v+(x if i%2==0 else y) for i,v in enumerate(box)),fill=tuple(max(0,min(255,c+delta)) for c in rgb)+(255,))
     if species=='minotaur':
         for k,role in enumerate(roles):
             if role!='fur':continue
@@ -420,6 +518,6 @@ def main():
     if args.species=='forest_dryad':
         from visual_v3_geometry import support_death
         support_death(model,animations)
-    write_creature(model,palette,roles,animations,*size,glow=() if args.species=='minotaur' else (11,) if args.species=='slime_maiden' else (4,),translucent=args.species=='slime_maiden')
+    write_creature(model,palette,roles,animations,*size,glow=() if args.species=='minotaur' else (13,) if args.species=='vampire' else (11,) if args.species=='slime_maiden' else (4,),translucent=args.species=='slime_maiden')
 
 if __name__=='__main__':main()

@@ -30,12 +30,22 @@
     }
   },
   "minotaur": {
-    "commit": "Visual overhaul: Minotaur reference accuracy",
+    "commit": "9391176",
     "files": {
       "src/main/resources/assets/mythic_realms_creatures/geckolib/models/entity/minotaur.geo.json": "4e7df0137ea825ad83e1f39b835831361c3f1529509d04b6bbe42936748cddfe",
       "src/main/resources/assets/mythic_realms_creatures/geckolib/animations/entity/minotaur.animation.json": "ac56a3b475581f02fcfcb7055f3b6f47c45f15a66950d42cae6938565f73d9f0",
       "src/main/resources/assets/mythic_realms_creatures/textures/entity/minotaur.png": "84938d5791a4e12b0f3e49ff2f2c51e1f55133421cd95908da0a220f0ac17b3a",
       "tools/blockbench/minotaur.bbmodel": "ab81d32debc34c251740c991e213de4c36d735c364a6254b0e8ff4fa7fa7de31"
+    }
+  },
+  "vampire": {
+    "commit": "Visual overhaul: Vampire reference accuracy",
+    "files": {
+      "src/main/resources/assets/mythic_realms_creatures/geckolib/models/entity/vampire.geo.json": "5ca76be88d22061bb4ff3d225405ceb6aa5f5e2ea061470fb38f9aa8b40fd71c",
+      "src/main/resources/assets/mythic_realms_creatures/geckolib/animations/entity/vampire.animation.json": "8aaad1aa3dd3ccbd48b1b7fac499eab1cc8c538c7cf74910797eb456ca5ac41d",
+      "src/main/resources/assets/mythic_realms_creatures/textures/entity/vampire.png": "3e75781b558c1bd7e06293f56e73b99db93932a24efe5f8839afa8cb40811e7f",
+      "src/main/resources/assets/mythic_realms_creatures/textures/entity/vampire_glowmask.png": "c0aa61bb2054675952ceb993260ae07e3566066b2681e155fbafcf0e3d52a634",
+      "tools/blockbench/vampire.bbmodel": "e23bb86039d8c3d3f36302637f6788325368680b3dcb8fe3d054e18f931490d8"
     }
   }
 }
