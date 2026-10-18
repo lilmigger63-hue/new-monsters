@@ -28,3 +28,5 @@ Only the three assigned builders were exported with the existing pipeline. The c
 - Crystal Spider/Flame Imp: 38-file byte guard passed.
 
 No Java, dependencies, Gradle settings, gameplay or tests were edited. No Gradle or new in-game run was performed by this asset-only task.
+
+Final integration: both actual client profiles and both40-test server profiles passed. Fresh visual samples were reviewed; see [refinement validation](REFINEMENT_VALIDATION.md) for scope and remaining manual checks.

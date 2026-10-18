@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.mythicrealms.creatures.entity.combat.AttackTimelineJUnitTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2026-10-18T14:03:40.661Z" hostname="48b94361d6cd" time="0.083">
+  <properties/>
+  <testcase name="attackWindupImpactRecoveryAndCancellation()" classname="com.mythicrealms.creatures.entity.combat.AttackTimelineJUnitTest" time="0.046"/>
+  <system-out><![CDATA[AttackTimeline: 14 checks passed
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -38,3 +38,5 @@ Executed after export:
 - Confirmed all five exported death lengths equal 0.65; Frost nova full scale at 1.2 seconds.
 
 No Gradle, Java, dependencies, shared pipeline, gameplay files or tests were modified by this group. Updated in-game visual review/build results belong to the overall validation report; numerical and asset checks do not substitute for that client review.
+
+Final integration: both actual client profiles and both40-test server profiles passed. Fresh visual samples were reviewed; see [refinement validation](REFINEMENT_VALIDATION.md) for scope and remaining manual checks.

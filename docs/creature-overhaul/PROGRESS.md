@@ -1,5 +1,7 @@
 # Overhaul progress
 
+Newer candidate **1.1.0-rc.2** refines18existing designs while preserving Spider/Imp: [changes](REFINEMENT_CHANGES.md) · [validation](REFINEMENT_VALIDATION.md) · [updated preview](REFINEMENT_PREVIEW.jpg).
+
 Candidate **1.1.0-rc.1** implemented and verified on `feat/creature-overhaul`. All20art sets, native sources and runtime integration are complete. Both server profiles pass40tests; both graphical profiles pass, with focused stance reruns. [Validation](VALIDATION.md) · [In-game preview](CLIENT_PREVIEW.jpg). Main merge and GitHub Release remain pending.
 
 | Creature | Research | Model | Textures | Animation | VFX | Behavior | Tests |

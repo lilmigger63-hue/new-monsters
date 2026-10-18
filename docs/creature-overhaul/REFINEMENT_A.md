@@ -19,3 +19,5 @@ Locomotion now includes ankle articulation and delayed accessory motion; orc/min
 Validation: `python tools/generate_overhaul_group_a.py` exported and verified all five native projects, UVs and PNGs. `python scripts/test-overhaul-assets.py` passed all four tests. No Java, gameplay, shared pipeline, dependencies, or Gradle changes. Runtime visual review of the new exports is delegated to the parent integration pass; baseline images alone do not establish new in-game clipping coverage.
 
 Files: `tools/generate_overhaul_group_a.py`; five species files in `src/main/resources/assets/mythic_realms_creatures/geckolib/models/entity/*.geo.json`, `geckolib/animations/entity/*.animation.json`, `textures/entity/*.png`; shaman/troll glowmasks; and `tools/blockbench/{goblin_scout,goblin_shaman,orc_warrior,minotaur,stone_troll}.bbmodel`.
+
+Final integration: both actual client profiles and both40-test server profiles passed. Fresh visual samples were reviewed; see [refinement validation](REFINEMENT_VALIDATION.md) for scope and remaining manual checks.

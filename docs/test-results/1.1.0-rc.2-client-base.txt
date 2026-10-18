@@ -1,0 +1,23 @@
+[13:55:59] [Test thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_ENTITY_PASS goblin_scout geometry, animation bake, texture, renderer, entity sync, four views, server attack, six animation probes
+[13:56:05] [Test thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_ENTITY_PASS goblin_shaman geometry, animation bake, texture, renderer, entity sync, four views, server attack, six animation probes
+[13:56:11] [Test thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_ENTITY_PASS orc_warrior geometry, animation bake, texture, renderer, entity sync, four views, server attack, six animation probes
+[13:56:18] [Test thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_ENTITY_PASS minotaur geometry, animation bake, texture, renderer, entity sync, four views, server attack, six animation probes
+[13:56:24] [Test thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_ENTITY_PASS stone_troll geometry, animation bake, texture, renderer, entity sync, four views, server attack, six animation probes
+[13:56:31] [Test thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_ENTITY_PASS ancient_treant geometry, animation bake, texture, renderer, entity sync, four views, server attack, six animation probes
+[13:56:37] [Test thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_ENTITY_PASS forest_dryad geometry, animation bake, texture, renderer, entity sync, four views, server attack, six animation probes
+[13:56:43] [Test thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_ENTITY_PASS griffin geometry, animation bake, texture, renderer, entity sync, four views, server attack, six animation probes
+[13:56:49] [Test thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_ENTITY_PASS dire_wolf geometry, animation bake, texture, renderer, entity sync, four views, server attack, six animation probes
+[13:56:55] [Test thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_ENTITY_PASS wild_wyvern geometry, animation bake, texture, renderer, entity sync, four views, server attack, six animation probes
+[13:57:02] [Test thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_ENTITY_PASS cave_basilisk geometry, animation bake, texture, renderer, entity sync, four views, server attack, six animation probes
+[13:57:08] [Test thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_ENTITY_PASS crystal_spider geometry, animation bake, texture, renderer, entity sync, four views, server attack, six animation probes
+[13:57:14] [Test thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_ENTITY_PASS shadow_wraith geometry, animation bake, texture, renderer, entity sync, four views, server attack, six animation probes
+[13:57:20] [Test thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_ENTITY_PASS grave_knight geometry, animation bake, texture, renderer, entity sync, four views, server attack, six animation probes
+[13:57:26] [Test thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_ENTITY_PASS flame_imp geometry, animation bake, texture, renderer, entity sync, four views, server attack, six animation probes
+[13:57:33] [Test thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_ENTITY_PASS frost_elemental geometry, animation bake, texture, renderer, entity sync, four views, server attack, six animation probes
+[13:57:39] [Test thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_ENTITY_PASS moon_stag geometry, animation bake, texture, renderer, entity sync, four views, server attack, six animation probes
+[13:57:45] [Test thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_ENTITY_PASS slime_maiden geometry, animation bake, texture, renderer, entity sync, four views, server attack, six animation probes
+[13:57:51] [Test thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_ENTITY_PASS harpy geometry, animation bake, texture, renderer, entity sync, four views, server attack, six animation probes
+[13:57:58] [Test thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_ENTITY_PASS demon_sorceress geometry, animation bake, texture, renderer, entity sync, four views, server attack, six animation probes
+[13:58:02] [Test thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_MOUNT_PASS real integrated player keyboard packets moved authoritative griffin (16.5, -60.0, 16.5) -> (16.5, -50.89999999999996, 1.7999999999999916)
+[13:58:02] [Test thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_PASS 20 creature types in a real singleplayer world
+BUILD SUCCESSFUL in 2m 43s

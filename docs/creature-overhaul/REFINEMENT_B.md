@@ -25,3 +25,5 @@ All refinements are original procedural geometry and material work. The source-v
 - `python scripts/test-overhaul-assets.py`: 4 tests passed (repository-wide assets at the time of execution).
 - Direct comparison against HEAD: every pre-existing bone ID, parent and pivot preserved across all five species; death <=0.65 seconds; Wyvern has no foreleg arm bones.
 - Gradle and fresh in-game rendering are reserved for the integrating agent. The changes above describe implemented geometry/materials, not a claim that a fresh client screenshot has already confirmed every view or clip.
+
+Final integration: both actual client profiles and both40-test server profiles passed. Fresh visual samples were reviewed; see [refinement validation](REFINEMENT_VALIDATION.md) for scope and remaining manual checks.
