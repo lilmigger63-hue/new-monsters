@@ -9,6 +9,8 @@ export LIBGL_ALWAYS_SOFTWARE=1
 export LP_NUM_THREADS="${LP_NUM_THREADS:-4}"
 export MESA_SHADER_CACHE_DIR="$PWD/build/client-smoke-shader-cache"
 mkdir -p build/client-smoke-evidence "$MESA_SHADER_CACHE_DIR"
+# Keep evidence specific to this run, including focused suites.
+rm -rf -- build/client-smoke/screenshots
 evidence_dir="${CLIENT_SMOKE_EVIDENCE_DIR:-/workspace/validation/client-base}"
 for argument in "$@"; do
     if [[ "$argument" == -PwithBetterCombat* ]]; then

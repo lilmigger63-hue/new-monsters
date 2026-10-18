@@ -1,28 +1,28 @@
 # Overhaul progress
 
-Plan: [IMPLEMENTATION_PLAN.md](IMPLEMENTATION_PLAN.md). Baseline6fb834f: build,5JUnit and34server tests PASS. All20 original art sets and runtime integration are implemented. Overhaul37server tests PASS; real client multi-angle/animation checks are running. No overhaul release or merge has been published.
+Candidate **1.1.0-rc.1** implemented and verified on `feat/creature-overhaul`. All20art sets, native sources and runtime integration are complete. Both server profiles pass40tests; both graphical profiles pass, with focused stance reruns. [Validation](VALIDATION.md) · [In-game preview](CLIENT_PREVIEW.jpg). Main merge and GitHub Release remain pending.
 
 | Creature | Research | Model | Textures | Animation | VFX | Behavior | Tests |
 |---|---|---|---|---|---|---|---|
-| goblin_scout | 3 inspected refs | exported/native parity | original materials | integrated | bounded effects | preserved/refined | assets +37server pass; client pending |
-| goblin_shaman | 3 inspected refs | exported/native parity | original materials | integrated | bounded effects | preserved/refined | assets +37server pass; client pending |
-| orc_warrior | 3 inspected refs | exported/native parity | original materials | integrated | bounded effects | preserved/refined | assets +37server pass; client pending |
-| minotaur | 3 inspected refs | exported/native parity | original materials | integrated | bounded effects | preserved/refined | assets +37server pass; client pending |
-| stone_troll | 3 inspected refs | exported/native parity | original materials | integrated | bounded effects | preserved/refined | assets +37server pass; client pending |
-| ancient_treant | 3 inspected refs | exported/native parity | original materials | integrated | bounded effects | preserved/refined | assets +37server pass; client pending |
-| forest_dryad | 3 inspected refs | exported/native parity | original materials | integrated | bounded effects | preserved/refined | assets +37server pass; client pending |
-| griffin | 3 inspected refs | exported/native parity | original materials | integrated | bounded effects | preserved/refined | assets +37server pass; client pending |
-| dire_wolf | 3 inspected refs | exported/native parity | original materials | integrated | bounded effects | preserved/refined | assets +37server pass; client pending |
-| wild_wyvern | 3 inspected refs | exported/native parity | original materials | integrated | bounded effects | preserved/refined | assets +37server pass; client pending |
-| cave_basilisk | 3 inspected refs | exported/native parity | original materials | integrated | bounded effects | preserved/refined | assets +37server pass; client pending |
-| crystal_spider | 3 inspected refs | exported/native parity | original materials | integrated | bounded effects | preserved/refined | assets +37server pass; client pending |
-| shadow_wraith | 3 inspected refs | exported/native parity | original materials | integrated | bounded effects | preserved/refined | assets +37server pass; client pending |
-| grave_knight | 3 inspected refs | exported/native parity | original materials | integrated | bounded effects | preserved/refined | assets +37server pass; client pending |
-| flame_imp | 3 inspected refs | exported/native parity | original materials | integrated | bounded effects | preserved/refined | assets +37server pass; client pending |
-| frost_elemental | 3 inspected refs | exported/native parity | original materials | integrated | bounded effects | preserved/refined | assets +37server pass; client pending |
-| moon_stag | 3 inspected refs | exported/native parity | original materials | integrated | bounded effects | preserved/refined | assets +37server pass; client pending |
-| slime_maiden | 3 inspected refs | exported/native parity | original materials | integrated | bounded effects | preserved/refined | assets +37server pass; client pending |
-| harpy | 3 inspected refs | exported/native parity | original materials | integrated | bounded effects | preserved/refined | assets +37server pass; client pending |
-| demon_sorceress | 3 inspected refs | exported/native parity | original materials | integrated | bounded effects | preserved/refined | assets +37server pass; client pending |
+| goblin_scout | 3 inspected refs | exported/native parity | original materials | integrated | physical windup | preserved/refined | assets/server/client pass |
+| goblin_shaman | 3 inspected refs | exported/native parity | original materials | integrated | bounded effects | preserved/refined | assets/server/client pass |
+| orc_warrior | 3 inspected refs | exported/native parity | original materials | integrated | physical windup | preserved/refined | assets/server/client pass |
+| minotaur | 3 inspected refs | exported/native parity | original materials | integrated | bounded effects | preserved/refined | assets/server/client pass |
+| stone_troll | 3 inspected refs | exported/native parity | original materials | integrated | bounded effects | preserved/refined | assets/server/client pass |
+| ancient_treant | 3 inspected refs | exported/native parity | original materials | integrated | bounded effects | preserved/refined | assets/server/client pass |
+| forest_dryad | 3 inspected refs | exported/native parity | original materials | integrated | bounded effects | preserved/refined | assets/server/client pass |
+| griffin | 3 inspected refs | exported/native parity | original materials | integrated | bounded effects | preserved/refined | assets/server/client pass |
+| dire_wolf | 3 inspected refs | exported/native parity | original materials | integrated | physical windup | preserved/refined | assets/server/client pass |
+| wild_wyvern | 3 inspected refs | exported/native parity | original materials | integrated | bounded effects | preserved/refined | assets/server/client pass |
+| cave_basilisk | 3 inspected refs | exported/native parity | original materials | integrated | bounded effects | preserved/refined | assets/server/client pass |
+| crystal_spider | 3 inspected refs | exported/native parity | original materials | integrated | bounded effects | preserved/refined | assets/server/client pass |
+| shadow_wraith | 3 inspected refs | exported/native parity | original materials | integrated | bounded effects | preserved/refined | assets/server/client pass |
+| grave_knight | 3 inspected refs | exported/native parity | original materials | integrated | physical windup | preserved/refined | assets/server/client pass |
+| flame_imp | 3 inspected refs | exported/native parity | original materials | integrated | bounded effects | preserved/refined | assets/server/client pass |
+| frost_elemental | 3 inspected refs | exported/native parity | original materials | integrated | bounded effects | preserved/refined | assets/server/client pass |
+| moon_stag | 3 inspected refs | exported/native parity | original materials | integrated | bounded effects | preserved/refined | assets/server/client pass |
+| slime_maiden | 3 inspected refs | exported/native parity | original materials | integrated | bounded effects | preserved/refined | assets/server/client pass |
+| harpy | 3 inspected refs | exported/native parity | original materials | integrated | bounded effects | preserved/refined | assets/server/client pass |
+| demon_sorceress | 3 inspected refs | exported/native parity | original materials | integrated | bounded effects | preserved/refined | assets/server/client pass |
 
-Next: finish real client visual review, resolve findings, verify optional Better Combat, run clean build and create downloadable candidate. Regeneration of all original generator entrypoints preserved346 art/gameplay files byte-for-byte. Review caught long death animations; exporter now finishes collapse within0.95s before vanilla corpse removal.
+Next: review/play the downloadable candidate and review the feature branch before merging/releasing. All346generated art/gameplay files reproduce byte-for-byte. Visual defects in tail joints, spider stance, death timing and remote mount stance were corrected and verified.

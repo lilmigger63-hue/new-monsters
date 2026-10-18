@@ -81,11 +81,22 @@ public final class CreatureClientSmokeTest implements FabricClientGameTest {
             for (CreatureKind kind : CreatureKind.values()) {
                 int x = (index % 5) * 8;
                 int z = (index++ / 5) * 16;
+                boolean stanceOnly=Boolean.getBoolean("mythic.clientSmoke.mountStanceOnly");
+                if(stanceOnly && kind!=CreatureKind.DIRE_WOLF && kind!=CreatureKind.MOON_STAG)continue;
                 double distance = Math.max(4, kind.height * 1.8);
                 double cameraFeetY = -60 + kind.height * .55 - 1.62;
                 server.runCommand("tp @a " + x + " " + cameraFeetY + " " + (z + distance) + " 180 0");
                 context.waitTicks(10);
                 world.getClientWorld().waitForChunksRender();
+                if(stanceOnly)context.runOnClient(client -> {
+                    for(Entity entity:client.level.entitiesForRendering()){
+                        if(!BuiltInRegistries.ENTITY_TYPE.getKey(entity.getType()).equals(ModEntities.id(kind.id)))continue;
+                        GeoEntity geo=(GeoEntity)entity;
+                        var raw=geo.getAnimatableInstanceCache().getManagerForId(entity.getId()).getAnimationControllers().get("locomotion").getCurrentRawAnimation();
+                        require(raw!=null && raw.getAnimationStages().getFirst().animationName().equals("idle"),
+                            "Stationary remote mount must idle: "+kind.id+" ground="+entity.onGround()+" velocity="+entity.getDeltaMovement()+" clip="+raw);
+                    }
+                });
                 context.takeScreenshot("creature-" + kind.id + "-idle");
                 for (String view : new String[]{"side", "back", "distant"}) {
                     double d = view.equals("distant") ? Math.max(12, kind.height * 4) : distance;

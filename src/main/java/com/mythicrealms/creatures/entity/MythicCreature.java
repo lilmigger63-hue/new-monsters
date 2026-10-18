@@ -20,7 +20,7 @@ public interface MythicCreature extends GeoEntity {
             if (entity instanceof MythicMountEntity mount) {
                 if (mount.isInSittingPose()) state="sit";
                 else if (mount.isFlying()) state=test.isMoving()?"fly":"hover";
-                else if (!mount.onGround() && !mount.canFly()) state="jump";
+                else if (!mount.onGround() && !mount.canFly() && Math.abs(mount.getDeltaMovement().y)>.08) state="jump";
                 else if (test.isMoving()) state=mount.isVehicle()?"ride":mount.getDeltaMovement().horizontalDistanceSqr()>.01?"run":"walk";
             } else if (test.isMoving()) state=entity.getDeltaMovement().horizontalDistanceSqr()>.01?"run":"walk";
             return test.setAndContinue(loop(state));

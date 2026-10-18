@@ -43,7 +43,7 @@ Files: tools/generate_overhaul_group_{a,b,c,d}.py; only that group's entity geom
 Interfaces: use Task2 exports and actual CreatureKind windup/height/width. Group generators expose `main()` and do not change gameplay data.
 - [x] Audit assigned group, inspect assigned atlas references, build original distinctive geometry.
 - [x] Paint material maps and all alternate skins/masks; author species-specific animation and secondary motion.
-- [ ] Validate exports, actual rendered shots and gameplay before committing each batch.
+- [x] Validate exports, actual rendered shots and gameplay before committing each batch.
 
 ## Task7: Runtime presentation and fair combat
 
@@ -56,5 +56,5 @@ Files: shared MythicCreature/MythicHostileEntity controllers, SpellEffects and b
 
 Files: original generator entrypoints, scripts/client-smoke.gradle and client harness if needed; progress/validation docs; compiled artifacts outside tracked releases until publication is authorized.
 - [x] Test regeneration/UV/native source parity and preserve gameplay-data hashes.
-- [ ] Run clean build, server checks and actual client visuals/riding with/without Better Combat.
-- [ ] Review full branch and fix important regressions, record honest limits, produce downloadable candidate JAR/source.
+- [x] Run clean build, server checks and actual client visuals/riding with/without Better Combat.
+- [x] Review full branch and fix important regressions, record honest limits, produce downloadable candidate JAR/source.

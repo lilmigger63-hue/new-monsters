@@ -18,6 +18,7 @@ loom {
             vmArg '-XX:ActiveProcessorCount=4'
             vmArg '-Dfabric.client.gametest'
             vmArg '-Dfabric.client.gametest.modid=mythic_realms_client_smoke'
+            if (project.hasProperty('clientSmokeMountStanceOnly')) vmArg '-Dmythic.clientSmoke.mountStanceOnly=true'
             // Fabric 0.138.4's synchronized startup stalls during integrated spawn preparation.
             // Assertions still wait for actual client entity/renderer state with normal packets.
             if (!project.hasProperty('clientSmokeSynchronizedNetwork')) {

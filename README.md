@@ -2,7 +2,9 @@
 
 **Development candidate 1.1.0-rc.1 · Fabric · Minecraft Java Edition 1.21.10 · Java 21**
 
-The `feat/creature-overhaul` branch contains the original 20-creature art overhaul, native editable Blockbench sources, and revised combat presentation. See [overhaul progress and validation](docs/creature-overhaul/PROGRESS.md). Publication is pending; the links below refer to the existing stable 1.0.0 release.
+The `feat/creature-overhaul` branch contains the original 20-creature art overhaul, native editable Blockbench sources, and revised combat presentation. See [overhaul progress and validation](docs/creature-overhaul/PROGRESS.md) and [actual in-game preview](docs/creature-overhaul/CLIENT_PREVIEW.jpg). Candidate files are included on this feature branch; `main` remains the stable1.0.0 release.
+
+[Download candidate JAR](releases/1.1.0-rc.1/mythic-realms-creatures-1.1.0-rc.1.jar?raw=true) · [Candidate with required dependencies](releases/1.1.0-rc.1/mythic-realms-creatures-1.1.0-rc.1-with-dependencies.zip?raw=true) · [Candidate source](releases/1.1.0-rc.1/mythic-realms-creatures-1.1.0-rc.1-source.zip?raw=true)
 
 [Download the stable mod JAR](releases/1.0.0/mythic-realms-creatures-1.0.0.jar?raw=true) · [Download with required dependencies](releases/1.0.0/mythic-realms-creatures-1.0.0-with-dependencies.zip?raw=true) · [Editable source](releases/1.0.0/mythic-realms-creatures-1.0.0-source.zip?raw=true)
 
