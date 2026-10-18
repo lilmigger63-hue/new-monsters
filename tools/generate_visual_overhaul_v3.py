@@ -277,7 +277,104 @@ def slime_motion(model,animations):
     support_death(model,animations)
     return animations
 
-BUILDERS={'harpy':harpy,'forest_dryad':dryad,'slime_maiden':slime}
+def minotaur():
+    m=old_model('minotaur',True);X=m.box
+    def joint(n,p):m.by_name[n]['pivot']=p
+    joint('body',[0,16.5,0]);joint('chest',[0,26,0]);joint('head',[0,33,-1]);joint('jaw',[0,33,-4])
+    # Bull barrel and shoulder hump: broad pectorals, pinched flank and fur seams.
+    X('body',[-4.8,15,-3],[9.6,5.5,6],0)
+    X('body',[-4.2,20,-2.7],[8.4,7.4,5.6],0)
+    X('chest',[-6.6,25,-3.1],[13.2,7.7,7],0)
+    X('chest',[-5.4,29,1.4],[10.8,7,4.3],1,[8,0,0])
+    for side,n in [(-1,'right'),(1,'left')]:
+        for j in range(3):
+            X('chest',[side*(2.8+j*.6)-2,27+j*1.6,-3.7],[4,2.4,1.3],8,[0,0,-side*8])
+            X('body',[side*2.4-1.5,20+j*1.7,-3],[3,1.5,.8],8)
+        X('chest',[side*6.8-2.4,28.2,-2.6],[4.8,5,5.3],0,[0,0,-side*10])
+        for j in range(3):X('chest',[side*(6+j*.5)-.8,26.5+j*.9,1.3],[1.6,3,2],1,[0,0,-side*19])
+    # Squared bovine skull, projecting dark muzzle and heavy brow.
+    X('head',[-4.1,33,-4.7],[8.2,7.6,7.3],0)
+    X('head',[-3.4,38.6,-4.6],[6.8,3.1,6.4],8)
+    X('head',[-3.8,32.6,-7],[7.6,3.9,4.3],8)
+    X('head',[-3.25,33,-7.5],[6.5,2.7,1],5)
+    X('jaw',[-3.3,31.7,-6.7],[6.6,1.7,4.4],1)
+    X('jaw',[-2.4,31.9,-7],[4.8,.25,.35],5)
+    for side,n in [(-1,'right'),(1,'left')]:
+        x=side*2.4
+        X('head',[x-.7,36.4,-4.95],[1.4,1.25,.35],11)
+        X('head',[x-.25,36.5,-5.33],[.5,.85,.16],5)
+        X('head',[x-1,37.55,-5.15],[2.2,1,1.1],1,[0,0,side*12])
+        X('head',[side*1.9-.5,34,-7.65],[1,.8,.2],1)
+        X('head',[side*4.5-1.25,36.6,-.7],[2.5,1.6,2.5],0,[0,0,-side*22])
+        X('head',[side*4.7-.7,36.9,-.85],[1.4,.7,1.6],8,[0,0,-side*22])
+        joint('horn_'+n,[side*3.7,39.8,-1.1])
+        # Successive blocks bend laterally then upward and inward; ivory tips.
+        for x,y,w,h,angle,mat in [(4,39.5,2.6,2.3,-side*28,4),(5.7,40.6,2.1,2.5,side*5,4),(6.3,42.4,1.45,2.1,side*24,11),(5.9,44,1,.95,side*35,11)]:
+            X('horn_'+n,[side*x-w/2,y,-2],[w,h,2 if mat==4 else 1.4],mat,[0,0,angle])
+        leg='leg_'+n;foot='foot_'+n;x=side*3.5
+        joint(leg,[x,16.4,0]);joint(foot,[x,2,0])
+        X(leg,[x-2.25,9.5,-2],[4.5,7.5,4.8],0,[-9,0,0])
+        X(leg,[x-1.8,2,-.8],[3.6,8.5,3.7],8,[12,0,0])
+        X(leg,[x-2.1,8.5,-2.25],[4.2,2.5,2.4],1)
+        for j in range(2):X(foot,[x-2+j*2.15,.15,-3.1],[1.85,2.3,5.6],14)
+        X(foot,[x-2.1,2,-1.5],[4.2,1.2,3.7],2)
+        arm='arm_'+n;fore='forearm_'+n;hand='hand_'+n;x=side*8
+        joint(arm,[x,31.3,0]);joint(fore,[x,24,0]);joint(hand,[x,18,-.2])
+        X(arm,[x-2.2,23.6,-2.1],[4.4,8,4.5],0)
+        X(arm,[x-2.6,27.5,-2.4],[5.2,4.6,4.9],8)
+        X(fore,[x-2.15,17.4,-2],[4.3,7,4.3],0)
+        X(fore,[x-2.5,17.7,-2.3],[5,2.5,4.9],2)
+        X(fore,[x-2.65,17.5,-2.45],[5.3,.55,5.2],9)
+        X(hand,[x-1.75,15.6,-1.9],[3.5,2.2,3.8],1)
+        if side==1:
+            for j in range(3):X(hand,[x-1.5+j*1.1,14.8,-2],[.95,1.6,1.6],8)
+    joint('loincloth',[0,17,0]);X('loincloth',[-4.8,15.6,-3.25],[9.6,1.7,6.5],10)
+    for side in (-1,1):
+        X('loincloth',[side*1.85-1.9,10.7,-3.45],[3.8,5.2,.85],3,[0,0,-side*5])
+        X('loincloth',[side*2-1.8,10.9,2.8],[3.6,5,.85],3,[0,0,side*5])
+        X('loincloth',[side*4.2-.7,12,-2.6],[1.4,4.3,5.4],10)
+    joint('tail',[0,17,2.5]);joint('tail_tip',[0,8,4]);X('tail',[-.6,7,3],[1.2,10,1.3],0,[12,0,0]);X('tail_tip',[-1.1,5.5,3.6],[2.2,3,2.4],1)
+    # Closed three-finger grip around one continuous wooden hammer shaft.
+    joint('grip_right',[-8,16.7,-2]);joint('axe',[-8,16.7,-2])
+    for j in range(3):
+        X('grip_right',[-9.6,15.55+j*.7,-2.85],[2.2,.55,.8],8)
+        X('grip_right',[-7.6,15.55+j*.7,-2.7],[.65,.55,1.6],1)
+    X('grip_right',[-9.9,16.8,-1.8],[.8,1.1,1.6],8,[0,0,-15])
+    X('axe',[-8.65,12.5,-2.3],[1.3,16,1.3],6)
+    for y in (13,14,15,18,19,20):X('axe',[-8.8,y,-2.45],[1.6,.45,1.6],1)
+    X('axe',[-12.7,26,-5],[9.4,5.8,6.5],2)
+    X('axe',[-12.2,25.5,-4.5],[8.4,.8,5.5],14)
+    X('axe',[-12.2,31.4,-4.5],[8.4,.8,5.5],9)
+    for x in (-13.1,-3.7):
+        X('axe',[x,26.5,-4.65],[.8,4.8,5.8],14)
+        X('axe',[x-.12,28,-2.6],[1,1.5,1.5],9)
+    X('axe',[-8.9,31.9,-2.5],[1.8,.6,1.8],14)
+    palette=['704232','432d28','8c9293','9b3056','e5e1cb','282423','725039','b29463','85503c','b2b7b1','70203d','f8f4df','63392f','a97850','53585b','9d6750']
+    roles=['fur','fur','metal','cloth','horn','skin','wood','leather','fur','metal','cloth','ivory','fur','fur','metal','fur']
+    # Corrective pass: shorten the long abdomen without reducing the feet/hips.
+    def ymap(y):return y if y<17 else 17+(y-17)*.7 if y<26 else y-2.7
+    for bone in m.bones:
+        bone['pivot'][1]=ymap(bone['pivot'][1])
+        for cube in bone.get('cubes',[]):
+            low=cube['origin'][1];cube['origin'][1]=ymap(low);cube['size'][1]=ymap(low+cube['size'][1])-ymap(low)
+            if 'pivot' in cube:cube['pivot'][1]=ymap(cube['pivot'][1])
+    # Broader bovine head and shoulders, with a short overlapping forelock.
+    for bone in m.bones:
+        if bone['name'] in ('head','jaw','horn_left','horn_right'):
+            bone['pivot'][0]*=1.14
+            for cube in bone.get('cubes',[]):
+                cube['origin'][0]*=1.14;cube['size'][0]*=1.14
+                if 'pivot' in cube:cube['pivot'][0]*=1.14
+    for j in range(5):
+        X('head',[-4+j*1.6,36.7+(j%2)*.6,-4.9],[1.8,2.5-(j%2)*.4,1.25],8,[0,0,(j-2)*7])
+    for side in (-1,1):
+        X('chest',[side*5.1-2,25.4,-3.7],[4,4.3,1.4],0,[0,0,-side*8])
+    for cube in m.by_name['axe']['cubes']:
+        if cube['origin'][1]>22:cube['origin'][1]-=2.6
+    # The shaft remains continuous into the lowered head, with excess upper wood hidden.
+    return m,palette,roles,(1.35,2.85)
+
+BUILDERS={'harpy':harpy,'forest_dryad':dryad,'slime_maiden':slime,'minotaur':minotaur}
 
 BASE_ATLAS=pipeline.material_atlas
 
@@ -298,6 +395,14 @@ def reference_atlas(palette,roles,translucent=False,species=None):
             draw.rectangle((x,y,x+31,y+31),fill=gel(0))
             for box,delta in [((0,0,31,2),12),((4,4,10,8),21),((11,5,15,10),13),((3,15,9,23),-9),((14,18,25,25),7),((22,27,31,31),-13)]:
                 draw.rectangle(tuple(v+(x if i%2==0 else y) for i,v in enumerate(box)),fill=gel(delta))
+    if species=='minotaur':
+        for k,role in enumerate(roles):
+            if role!='fur':continue
+            x=k%4*32;y=k//4*32;rgb=tuple(int(palette[k][i:i+2],16) for i in (0,2,4))
+            def fur(delta):return tuple(max(0,min(255,c+delta)) for c in rgb)+(255,)
+            draw.rectangle((x,y,x+31,y+31),fill=fur(0))
+            for box,delta in [((0,0,31,4),8),((3,6,12,12),-9),((14,4,23,10),7),((7,15,18,23),10),((20,14,28,25),-12),((0,27,31,31),-15)]:
+                draw.rectangle(tuple(v+(x if i%2==0 else y) for i,v in enumerate(box)),fill=fur(delta))
     if species=='forest_dryad':
         for tile in (9,13):
             x=tile%4*32;y=tile//4*32;rgb=tuple(int(palette[tile][i:i+2],16) for i in (0,2,4))
@@ -315,6 +420,6 @@ def main():
     if args.species=='forest_dryad':
         from visual_v3_geometry import support_death
         support_death(model,animations)
-    write_creature(model,palette,roles,animations,*size,glow=(11,) if args.species=='slime_maiden' else (4,),translucent=args.species=='slime_maiden')
+    write_creature(model,palette,roles,animations,*size,glow=() if args.species=='minotaur' else (11,) if args.species=='slime_maiden' else (4,),translucent=args.species=='slime_maiden')
 
 if __name__=='__main__':main()

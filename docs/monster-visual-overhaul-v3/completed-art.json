@@ -20,13 +20,22 @@
     }
   },
   "slime_maiden": {
-    "commit": "Visual overhaul: Slime Maiden reference accuracy",
+    "commit": "1f493b6",
     "files": {
       "src/main/resources/assets/mythic_realms_creatures/geckolib/models/entity/slime_maiden.geo.json": "737810210d1df045d32ac315a189cf0d600b11d706339d1c0b483dfe2d579901",
       "src/main/resources/assets/mythic_realms_creatures/geckolib/animations/entity/slime_maiden.animation.json": "b4d1fd0aa640ee801abbb824374b4201712b273573012ed1b1ba3641d32324a9",
       "src/main/resources/assets/mythic_realms_creatures/textures/entity/slime_maiden.png": "28a5d67ace97ec0418e5b8703bed341f4bd9326a6b7dcea85a502136d15d0572",
       "src/main/resources/assets/mythic_realms_creatures/textures/entity/slime_maiden_glowmask.png": "e76f61cd70e642529eaf523e5526b0449c8d4f74b744a80f099105f0b425a1e5",
       "tools/blockbench/slime_maiden.bbmodel": "776c045b90e3aba2f2319f3c1cd79989ce513243225df0fc736b100172a802a3"
+    }
+  },
+  "minotaur": {
+    "commit": "Visual overhaul: Minotaur reference accuracy",
+    "files": {
+      "src/main/resources/assets/mythic_realms_creatures/geckolib/models/entity/minotaur.geo.json": "4e7df0137ea825ad83e1f39b835831361c3f1529509d04b6bbe42936748cddfe",
+      "src/main/resources/assets/mythic_realms_creatures/geckolib/animations/entity/minotaur.animation.json": "ac56a3b475581f02fcfcb7055f3b6f47c45f15a66950d42cae6938565f73d9f0",
+      "src/main/resources/assets/mythic_realms_creatures/textures/entity/minotaur.png": "84938d5791a4e12b0f3e49ff2f2c51e1f55133421cd95908da0a220f0ac17b3a",
+      "tools/blockbench/minotaur.bbmodel": "ab81d32debc34c251740c991e213de4c36d735c364a6254b0e8ff4fa7fa7de31"
     }
   }
 }

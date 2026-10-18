@@ -175,6 +175,8 @@ public final class CreatureClientSmokeTest implements FabricClientGameTest {
                 });
                 context.waitTicks(8);
                 context.takeScreenshot("creature-" + kind.id + "-attack");
+                context.waitTicks(Math.max(1, kind.windup - 8));
+                context.takeScreenshot("creature-" + kind.id + "-attack-impact");
                 String[] probes = kind==CreatureKind.WILD_WYVERN || kind==CreatureKind.HARPY || kind==CreatureKind.GRIFFIN
                         || kind==CreatureKind.ENDER_DRAGON_GIRL || kind==CreatureKind.SUCCUBUS || kind==CreatureKind.VALKYRIE
                         ? new String[]{"walk", "run", "heavy", "cast", "hurt", "death", "fly", "hover"}
@@ -197,6 +199,10 @@ public final class CreatureClientSmokeTest implements FabricClientGameTest {
                     });
                     context.waitTicks(clip.equals("cast") ? Math.max(8, kind.windup) : clip.equals("death") ? 22 : 8);
                     context.takeScreenshot("creature-" + kind.id + "-probe-" + clip);
+                    if(clip.equals("heavy")) {
+                        context.waitTicks(Math.max(1, kind.windup - 8));
+                        context.takeScreenshot("creature-" + kind.id + "-probe-heavy-impact");
+                    }
                     if(clip.equals("death") && kind==CreatureKind.HARPY) {
                         context.waitTicks(18);
                         context.takeScreenshot("creature-harpy-probe-death-held");
