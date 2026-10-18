@@ -1,6 +1,6 @@
 # Sequential monster visual overhaul V3
 
-Baseline: `50dfab973a053e6c6761f45771e72c898f3963d4`. Completed: **Harpy** (`84ec9ce`) **Forest Dryad** (`23fb1e2`) and **Slime Maiden**. **Minotaur** complete. **Vampire** complete. **Valkyrie** complete. Next: **Succubus**. Work remains sequential; no later creature is started until the active one is validated and committed.
+Baseline: `50dfab973a053e6c6761f45771e72c898f3963d4`. Completed: **Harpy** (`84ec9ce`) **Forest Dryad** (`23fb1e2`) and **Slime Maiden**. **Minotaur** complete. **Vampire** complete. **Valkyrie** complete. **Succubus** complete. Next: **Ender Dragon Girl**. Work remains sequential; no later creature is started until the active one is validated and committed.
 
 Reference labels below follow the requested order, not physical attachment filenames: inline images have no supplied filenames. Cyclops uses the earlier conversation image (blue armor, one eye, polearm); that image was not repeated in the latest message. Fox reference is Nine Tails; Ashen Wing Girl is Werecat (confirmed wingless), preserving IDs `fox_spirit_girl` and `werecat`.
 
@@ -11,8 +11,8 @@ Reference labels below follow the requested order, not physical attachment filen
 | 3 | slime_maiden | conversation image3; no local filename | Complete | 80 cubes/33 bones | Original green gel atlas | Cosmetic gait/death; timing preserved | Three passes inspected | Client/build +20 asset tests pass | 1f493b6 | Original cropped-foot/back and still-frame limits |
 | 4 | minotaur | conversation image 4 (no local filename) | Complete | 115 cubes/22 bones | Original brown fur/metal | Ten clips unchanged | Two passes +impact poses inspected | Client/build +20 asset tests pass | 9391176 | Posed-reference/hidden-back and still-frame limits |
 | 5 | vampire | conversation image 5 (no local filename) | Complete | 138 cubes/28 bones | Original blonde/crimson atlas | Nine clips unchanged | Two passes +impact poses inspected | Client/build +20 asset tests pass | 054cbfd | Rigid coat/hidden-back and still-frame limits |
-| 6 | valkyrie | conversation image 6 (no local filename) | Complete | 177 cubes/32 bones | Original silver/blonde/black feather | 13 clips unchanged | Three passes +flight/impact inspected | Client/build +20 asset tests pass | Visual overhaul: Valkyrie reference accuracy | Original hidden back/rigid armor and still-frame limits |
-| 7 | succubus | conversation image 7 (no local filename) | Not started | pending | pending | pending | pending | pending | — | pending |
+| 6 | valkyrie | conversation image 6 (no local filename) | Complete | 177 cubes/32 bones | Original silver/blonde/black feather | 13 clips unchanged | Three passes +flight/impact inspected | Client/build +20 asset tests pass | c2f14b6 | Original hidden back/rigid armor and still-frame limits |
+| 7 | succubus | conversation image 7 (no local filename) | Complete | 136 cubes/37 bones | Original blonde/black/red membrane | Cosmetic death folded; 12 clips unchanged | Four passes +flight/impact inspected | Client/build +21 asset tests pass | Visual overhaul: Succubus reference accuracy | Original membrane/back and still-frame limits |
 | 8 | ender_dragon_girl | conversation image 8 (no local filename) | Not started | pending | pending | pending | pending | pending | — | pending |
 | 9 | centaur | conversation image 9 (no local filename) | Not started | pending | pending | pending | pending | pending | — | pending |
 | 10 | fox_spirit_girl | conversation image 10 (no local filename) | Not started | pending | pending | pending | pending | pending | — | pending |
@@ -24,6 +24,6 @@ Reference labels below follow the requested order, not physical attachment filen
 | 16 | holstaurus | conversation image 16 (no local filename) | Not started | pending | pending | pending | pending | pending | — | pending |
 | 17 | werecat | conversation image 17 (no local filename) | Not started | pending | pending | pending | pending | pending | — | pending |
 
-Next step: Succubus inspection and rebuild. No later creature has been edited.
+Next step: Ender Dragon Girl inspection and rebuild. No later creature has been edited.
 
 Cloud resume: run Gradle/client commands with `--offline --init-script /workspace/toolchains/retained-minecraft-metadata.gradle`; `/workspace/toolchains/prepare-retained-minecraft.py` verifies the retained original metadata and artifacts. Run only one Gradle process at a time.

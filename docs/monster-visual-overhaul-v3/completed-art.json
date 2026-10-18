@@ -49,13 +49,23 @@
     }
   },
   "valkyrie": {
-    "commit": "Visual overhaul: Valkyrie reference accuracy",
+    "commit": "c2f14b6",
     "files": {
       "src/main/resources/assets/mythic_realms_creatures/geckolib/models/entity/valkyrie.geo.json": "ec63b2efa3b8cbf783c78d1cca1bbf9ae68d9a4ae4585e9488cee42f93c89e5d",
       "src/main/resources/assets/mythic_realms_creatures/geckolib/animations/entity/valkyrie.animation.json": "51e1bed60410d460bfd2c28c2f7e4edeb29b03d145c72da22750439f5292093d",
       "src/main/resources/assets/mythic_realms_creatures/textures/entity/valkyrie.png": "1ff3b8e70e1627f78e1889cfb969869986dd298d12a7c065591e13bc8144ab05",
       "src/main/resources/assets/mythic_realms_creatures/textures/entity/valkyrie_glowmask.png": "f6bb4b34670e0da1966b0e29cb3004e84c25fc2a2ab4b72177132b1bf1dde47e",
       "tools/blockbench/valkyrie.bbmodel": "5bbdc6676f0b88ad887c8e8ea0d85f3e3d90909626146f9776e46ecb569854cb"
+    }
+  },
+  "succubus": {
+    "commit": "Visual overhaul: Succubus reference accuracy",
+    "files": {
+      "src/main/resources/assets/mythic_realms_creatures/geckolib/models/entity/succubus.geo.json": "e489e2eb11ad97c19de99ffd8e808fa0b03b0b5c7fa8ae1c955b6d41191c1df2",
+      "src/main/resources/assets/mythic_realms_creatures/geckolib/animations/entity/succubus.animation.json": "4f83a0b41ce860df0ba7d29a0441e7b7afd39986527a38831183140d125d12dd",
+      "src/main/resources/assets/mythic_realms_creatures/textures/entity/succubus.png": "e9f87c3f72d1d4e493ba15a201f3fe8b34b3ccdba953190bbc33e19b6f7b1c8e",
+      "src/main/resources/assets/mythic_realms_creatures/textures/entity/succubus_glowmask.png": "550370841395b3d765a37a8ad027c8e289fbecb9007eb97671ec351c964016c8",
+      "tools/blockbench/succubus.bbmodel": "d1c956aedaa43f86955854fdad23b31257151836a4ec1d8f46c66b6f27759445"
     }
   }
 }

@@ -533,7 +533,62 @@ def valkyrie():
         if 'rotation' in c:c['rotation'][0]*=-1;c['rotation'][1]*=-1
     return m,palette,roles,(.8,2)
 
-BUILDERS={'harpy':harpy,'forest_dryad':dryad,'slime_maiden':slime,'minotaur':minotaur,'vampire':vampire,'valkyrie':valkyrie}
+def succubus():
+    m=old_model('succubus');X=m.box
+    for b in m.bones:
+        n=b['name']
+        if n=='head' or n.startswith(('hair_','horn_','earring_')):
+            def p(v):return [v[0]*1.27,24.13+(v[1]-24.13)*1.08,v[2]*1.2]
+            b['pivot']=p(b['pivot'])
+            for c in b.get('cubes',[]):
+                c['origin']=p(c['origin']);c['size']=[c['size'][0]*1.27,c['size'][1]*1.08,c['size'][2]*1.2]
+                if 'pivot' in c:c['pivot']=p(c['pivot'])
+                if n.startswith('hair_'):
+                    low=c['origin'][1];top=low+c['size'][1];c['origin'][1]=max(low,21.2);c['size'][1]=max(.3,top-c['origin'][1])
+        if n.startswith(('wing_','wingtip_')):
+            center=[-2.185 if n.endswith('right') else 2.185,20.9,1.425]
+            def p(v):return [center[i]+(v[i]-center[i])*.66 for i in range(3)]
+            b['pivot']=p(b['pivot'])
+            for c in b.get('cubes',[]):
+                c['origin']=p(c['origin']);c['size']=[v*.66 for v in c['size']]
+                if 'pivot' in c:c['pivot']=p(c['pivot'])
+    # Fitted two-piece bodice: pale adult waist separated by dark belts.
+    m.by_name['body']['cubes']=[]
+    X('body',[-2.7,11.6,-1.8],[5.4,3.2,3.7],2)
+    X('body',[-1.95,14.6,-1.6],[3.9,4.2,3.2],8)
+    X('body',[-2.4,14.1,-2],[4.8,.8,4],10)
+    X('body',[-2.35,17.4,-1.8],[4.7,.8,3.6],2)
+    for side,n in [(-1,'right'),(1,'left')]:
+        m.by_name['gown_'+n]['cubes']=[];m.by_name['horn_'+n]['cubes']=[]
+        for x,y,w,h,ang in [(2.3,29.2,1.8,2.4,-side*28),(3.4,30,1.8,2.3,side*22),(3.6,28.8,1.8,1.9,side*60),(2.9,28.3,1.3,1.5,side*85)]:
+            X('horn_'+n,[side*x-w/2,y,-1.5],[w,h,1.8],1,[0,0,ang])
+        X('gown_'+n,[side*2.1-.75,10.5,-2.1],[1.5,3.7,4.2],2,[0,0,-side*8])
+        x=side*1.4
+        X('leg_'+n,[x-1.25,7,-1.25],[2.5,4.7,2.6],2)
+        X('leg_'+n,[x-1.4,9.6,-1.45],[2.8,.9,3],10)
+        X('shin_'+n,[x-1.2,1.3,-1.25],[2.4,5.7,2.7],2)
+        X('foot_'+n,[x-1.4,.1,-2.5],[2.8,1.8,4],2)
+        X('foot_'+n,[x-1.45,.1,-2.6],[2.9,.7,4.2],14)
+        x=side*3.7
+        X('forearm_'+n,[x-1.6,12.4,-1.6],[3.2,5.2,3.4],10)
+        X('forearm_'+n,[x-1.8,15.8,-1.8],[3.6,1.5,3.8],2)
+        X('hand_'+n,[x-1.35,11.3,-1.6],[2.7,2.1,3.1],10)
+        for j in range(3):X('hand_'+n,[x-1.15+j*.8,10.8,-1.65],[.7,1.2,1.7],2)
+    X('head',[-2.4,27.5,-3],[2.9,1.5,.8],9,[0,0,-12])
+    X('head',[.1,27.7,-3.05],[2.7,1.3,.85],12,[0,0,14])
+    palette=['e2cbb4','563728','242528','767a78','bd6260','252322','eee2cb','a44438','ead8bf','b59d57','343539','c95752','ccb36c','393738','969995','f5ecdc']
+    roles=['skin','horn','cloth','metal','eyes','skin','skin','membrane','skin','hair','leather','eyes','hair','cloth','metal','skin']
+    # Continuous overlapping membrane bays replace the old disconnected rib-like strips.
+    for side,n in [(-1,'right'),(1,'left')]:
+        wing='wingtip_'+n;m.by_name[wing]['cubes']=[]
+        for j,(x,top,h) in enumerate([(4.8,22.1,4.9),(6.6,21.2,5),(8.3,19.9,4.2)]):
+            X(wing,[side*x-1.15,top-h,2.05],[2.3,h,.5],7)
+            X(wing,[side*x-.7,top-h-.65,2.07],[1.4,1,.46],7)
+            X(wing,[side*x-.18,top-h,1.8],[.36,h+.25,.8],1)
+        X(wing,[side*8.9-.35,15.2,2],[.7,1.9,.75],1,[0,0,-side*18])
+    return m,palette,roles,(.7,1.9)
+
+BUILDERS={'harpy':harpy,'forest_dryad':dryad,'slime_maiden':slime,'minotaur':minotaur,'vampire':vampire,'valkyrie':valkyrie,'succubus':succubus}
 
 BASE_ATLAS=pipeline.material_atlas
 
@@ -581,7 +636,11 @@ def main():
     pipeline.material_atlas=lambda p,r,t=False:reference_atlas(p,r,t,args.species)
     animations=baseline(ASSET/'geckolib/animations/entity'/f'{args.species}.animation.json')['animations']
     if args.species=='slime_maiden':animations=slime_motion(model,animations)
-    if args.species=='forest_dryad':
+    if args.species=='succubus':
+        for side,n in [(-1,'right'),(1,'left')]:
+            animations['death']['bones']['wing_'+n]={'rotation':{'0':[0,side*90,0]}}
+            animations['death']['bones']['wingtip_'+n]={'rotation':{'0':[0,0,0]}}
+    if args.species in ('forest_dryad','succubus'):
         from visual_v3_geometry import support_death
         support_death(model,animations)
     write_creature(model,palette,roles,animations,*size,glow=() if args.species=='minotaur' else (13,) if args.species=='vampire' else (11,) if args.species=='slime_maiden' else (4,),translucent=args.species=='slime_maiden')

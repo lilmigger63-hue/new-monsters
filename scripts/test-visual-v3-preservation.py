@@ -21,6 +21,17 @@ class Preservation(unittest.TestCase):
         for species,record in records.items():
             for path,digest in record['files'].items():
                 self.assertEqual(hashlib.sha256((ROOT/path).read_bytes()).hexdigest(),digest,species+': '+path)
+    def test_succubus_death_rests_on_ground_with_folded_wings(self):
+        asset=ROOT/'src/main/resources/assets/mythic_realms_creatures/geckolib'
+        bones=json.loads((asset/'models/entity/succubus.geo.json').read_text())['minecraft:geometry'][0]['bones']
+        death=json.loads((asset/'animations/entity/succubus.animation.json').read_text())['animations']['death']['bones']
+        final=lambda frames:max(frames.items(),key=lambda item:float(item[0]))[1]
+        pose={name:final(channels['rotation']) for name,channels in death.items() if name!='root' and 'rotation' in channels}
+        floor=minimum_y(bones,final(death['root']['rotation']),pose)+final(death['root']['position'])[1]
+        self.assertAlmostEqual(floor,.1,delta=.2,msg='The compact folded wings must not leave the corpse hovering')
+        bodybones=[{**bone,'cubes':[] if bone['name'].startswith(('wing_','wingtip_')) else bone.get('cubes',[])} for bone in bones]
+        bodyfloor=minimum_y(bodybones,final(death['root']['rotation']),pose)+final(death['root']['position'])[1]
+        self.assertLess(bodyfloor,1.5,'Folded wings must allow the torso/arms to reach the ground')
     def test_dryad_death_does_not_bury_attached_limbs(self):
         asset=ROOT/'src/main/resources/assets/mythic_realms_creatures/geckolib'
         bones=json.loads((asset/'models/entity/forest_dryad.geo.json').read_text())['minecraft:geometry'][0]['bones']

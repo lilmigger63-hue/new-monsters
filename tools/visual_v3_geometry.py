@@ -12,11 +12,11 @@ def around(pivot,angles):
     pivot=np.array(pivot);matrix[:3,3]=pivot-rotation@pivot
     return matrix
 
-def minimum_y(bones,root_rotation):
+def minimum_y(bones,root_rotation,pose=None):
     by_name={b['name']:b for b in bones};matrices={}
     def matrix(name):
         if name not in matrices:
-            b=by_name[name];local=around(b['pivot'],root_rotation if name=='root' else b.get('rotation',[0,0,0]))
+            b=by_name[name];angles=[a+d for a,d in zip(b.get('rotation',[0,0,0]),(pose or {}).get(name,[0,0,0]))];local=around(b['pivot'],root_rotation if name=='root' else angles)
             matrices[name]=matrix(b['parent'])@local if 'parent' in b else local
         return matrices[name]
     result=math.inf
@@ -36,5 +36,14 @@ def support_death(model,animations):
         lower=max((p for p in keys if p[0]<=time),default=keys[0]);upper=min((p for p in keys if p[0]>=time),default=keys[-1])
         fraction=(time-lower[0])/(upper[0]-lower[0]) if upper[0]>lower[0] else 0
         rotation=[a+(b-a)*fraction for a,b in zip(lower[1],upper[1])]
-        positions[str(round(time,6))]=[0,max(0,.1-minimum_y(model.bones,rotation)),0]
+        pose={}
+        for name,channels in animations['death']['bones'].items():
+            if name=='root' or 'rotation' not in channels:continue
+            values=channels['rotation']
+            if isinstance(values,list):pose[name]=values;continue
+            frames=sorted((float(k),v) for k,v in values.items())
+            low=max((p for p in frames if p[0]<=time),default=frames[0]);high=min((p for p in frames if p[0]>=time),default=frames[-1])
+            fraction=(time-low[0])/(high[0]-low[0]) if high[0]>low[0] else 0
+            pose[name]=[a+(b-a)*fraction for a,b in zip(low[1],high[1])]
+        positions[str(round(time,6))]=[0,max(0,.1-minimum_y(model.bones,rotation,pose)),0]
     root['position']=positions
