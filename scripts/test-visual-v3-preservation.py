@@ -16,6 +16,11 @@ class Preservation(unittest.TestCase):
             name=Path(path).name
             if any(name.startswith(id+'.') or name.startswith(id+'_') for id in TARGETS):continue
             self.assertEqual(hashlib.sha256((ROOT/path).read_bytes()).hexdigest(),digest,path)
+    def test_finished_creatures_are_not_overwritten(self):
+        records=json.loads((DOC/'completed-art.json').read_text())
+        for species,record in records.items():
+            for path,digest in record['files'].items():
+                self.assertEqual(hashlib.sha256((ROOT/path).read_bytes()).hexdigest(),digest,species+': '+path)
     def test_dryad_death_does_not_bury_attached_limbs(self):
         asset=ROOT/'src/main/resources/assets/mythic_realms_creatures/geckolib'
         bones=json.loads((asset/'models/entity/forest_dryad.geo.json').read_text())['minecraft:geometry'][0]['bones']

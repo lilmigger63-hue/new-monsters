@@ -99,6 +99,15 @@ public final class CreatureClientSmokeTest implements FabricClientGameTest {
                         && kind!=CreatureKind.WILD_WYVERN && kind!=CreatureKind.HARPY
                         && kind!=CreatureKind.GRIFFIN && kind!=CreatureKind.MOON_STAG)continue;
                 presented++;
+                if(selectedSpecies!=null) {
+                    server.runOnServer(mcServer -> {
+                        for(Entity entity:mcServer.overworld().getAllEntities()) {
+                            var id=BuiltInRegistries.ENTITY_TYPE.getKey(entity.getType());
+                            if(id.getNamespace().equals("mythic_realms_creatures"))entity.setInvisible(!id.equals(ModEntities.id(kind.id)));
+                        }
+                    });
+                    context.waitTicks(3);
+                }
                 if(Boolean.getBoolean("mythic.clientSmoke.groundedReference"))context.runOnClient(client -> {
                     for(Entity entity:client.level.entitiesForRendering()) {
                         if(!BuiltInRegistries.ENTITY_TYPE.getKey(entity.getType()).equals(ModEntities.id(kind.id)))continue;
@@ -232,6 +241,10 @@ public final class CreatureClientSmokeTest implements FabricClientGameTest {
                 }
                 LOG.info("CLIENT_SMOKE_ENTITY_PASS {} geometry, animation bake, texture, renderer, entity sync, four views, server attack, {} animation probes", kind.id, probes.length);
             }
+            if(System.getProperty("mythic.clientSmoke.species")!=null)server.runOnServer(mcServer -> {
+                for(Entity entity:mcServer.overworld().getAllEntities())
+                    if(BuiltInRegistries.ENTITY_TYPE.getKey(entity.getType()).getNamespace().equals("mythic_realms_creatures"))entity.setInvisible(false);
+            });
             // Real authoritative death alongside held playback probes: retain vanilla corpse lifetime.
             server.runCommand("summon mythic_realms_creatures:grave_knight 64 -60 72 {NoAI:1b,Tags:[overhaul_death_probe]}");
             server.runCommand("tp @a 64.5 -60.45 76 180 0");

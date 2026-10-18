@@ -1,3 +1,11 @@
 {
-  "forest_dryad": ["death"]
+  "forest_dryad": [
+    "death"
+  ],
+  "slime_maiden": [
+    "idle",
+    "walk",
+    "run",
+    "death"
+  ]
 }

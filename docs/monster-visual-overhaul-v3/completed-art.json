@@ -1,0 +1,32 @@
+{
+  "harpy": {
+    "commit": "84ec9ce",
+    "files": {
+      "src/main/resources/assets/mythic_realms_creatures/geckolib/models/entity/harpy.geo.json": "6fb28163121a243b0d3ef3556913390c5b8d35948dac75d8bb391398818d523d",
+      "src/main/resources/assets/mythic_realms_creatures/geckolib/animations/entity/harpy.animation.json": "f7d5505b8495f5d292e2d862f1a1dba1ec481bb397f67c8dddfb8c5965c6544e",
+      "src/main/resources/assets/mythic_realms_creatures/textures/entity/harpy.png": "112394ac931c0f6e8ef030359613f0992960607c9af3ebbb03753b745307b802",
+      "src/main/resources/assets/mythic_realms_creatures/textures/entity/harpy_glowmask.png": "97992e69e106b24cc8f453642f4626fe28c5d384effaa568974f778b57ff0480",
+      "tools/blockbench/harpy.bbmodel": "48211b6c65c366d503a71c473b100990e015f7f303d3b8bd498c358566007ba1"
+    }
+  },
+  "forest_dryad": {
+    "commit": "23fb1e2",
+    "files": {
+      "src/main/resources/assets/mythic_realms_creatures/geckolib/models/entity/forest_dryad.geo.json": "5a428387d99fc04ac74efbea51d960eb774f3d054f697e940a8dc89104cb17b9",
+      "src/main/resources/assets/mythic_realms_creatures/geckolib/animations/entity/forest_dryad.animation.json": "c99c1d697382d183f2e222878f0edc79bd8dc7cc76307a7c11a7d9d307a1bdf6",
+      "src/main/resources/assets/mythic_realms_creatures/textures/entity/forest_dryad.png": "84db35f6b97952fd3039786f6a6408d868e0ae67cf8d579627dce35642efda86",
+      "src/main/resources/assets/mythic_realms_creatures/textures/entity/forest_dryad_glowmask.png": "64b573b0499510e0ce684c27d69938f39e00fd20257bdebcfef75b7eacd7d2f8",
+      "tools/blockbench/forest_dryad.bbmodel": "1cc1e716e204e163b2f40f97da4f071c5f30c64ce2a6af5462f71231077bb1d3"
+    }
+  },
+  "slime_maiden": {
+    "commit": "Visual overhaul: Slime Maiden reference accuracy",
+    "files": {
+      "src/main/resources/assets/mythic_realms_creatures/geckolib/models/entity/slime_maiden.geo.json": "737810210d1df045d32ac315a189cf0d600b11d706339d1c0b483dfe2d579901",
+      "src/main/resources/assets/mythic_realms_creatures/geckolib/animations/entity/slime_maiden.animation.json": "b4d1fd0aa640ee801abbb824374b4201712b273573012ed1b1ba3641d32324a9",
+      "src/main/resources/assets/mythic_realms_creatures/textures/entity/slime_maiden.png": "28a5d67ace97ec0418e5b8703bed341f4bd9326a6b7dcea85a502136d15d0572",
+      "src/main/resources/assets/mythic_realms_creatures/textures/entity/slime_maiden_glowmask.png": "e76f61cd70e642529eaf523e5526b0449c8d4f74b744a80f099105f0b425a1e5",
+      "tools/blockbench/slime_maiden.bbmodel": "776c045b90e3aba2f2319f3c1cd79989ce513243225df0fc736b100172a802a3"
+    }
+  }
+}

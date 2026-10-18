@@ -195,7 +195,89 @@ def dryad():
     roles=['skin','leaf','hair','leaf','eyes','cloth','leaf','leaf','skin','hair','leaf','leaf','cloth','cloth','cloth','skin']
     return m,palette,roles,(.65,1.9)
 
-BUILDERS={'harpy':harpy,'forest_dryad':dryad}
+def slime():
+    m=old_model('slime_maiden',True);X=m.box
+    m.bones=[b for b in m.bones if not b['name'].startswith('bubble_')];m.by_name={b['name']:b for b in m.bones}
+    def joint(n,p):m.by_name[n]['pivot']=p
+    joint('body',[0,10.5,0]);joint('head',[0,19.4,0])
+    for name,p,o,s,k in [
+        ('gel_0',[0,9.6,0],[-3.1,8.4,-1.9],[6.2,3.5,3.8],0),
+        ('gel_1',[0,12.2,0],[-2.3,10.8,-1.6],[4.6,3.8,3.2],8),
+        ('gel_2',[0,15.3,0],[-3,13.7,-1.8],[6,4.1,3.6],0),
+        ('gel_3',[0,18,0],[-1,17.4,-.9],[2,1.6,1.8],8)]:
+        joint(name,p);X(name,o,s,k)
+    joint('gel_4',[0,15.5,0])
+    for side in (-1,1):
+        X('gel_4',[side*1.4-1.5,14.3,-2.6],[3,2.9,1.8],8,[0,0,-side*6])
+        X('gel_0',[side*2.5-.75,8.1,-1.7],[1.5,2.7,3.4],12)
+    X('head',[-3.45,18.4,-2.9],[6.9,6.2,5.8],8)
+    X('head',[-2.9,18.1,-2.6],[5.8,.9,5.2],8)
+    X('head',[-.3,20,-3.15],[.6,.55,.4],8)
+    X('head',[-.45,19.25,-3.1],[.9,.14,.14],5)
+    for side in (-1,1):
+        x=side*1.65
+        X('head',[x-.62,20.5,-3.07],[1.24,.68,.17],4)
+        X('head',[x-.3,20.96,-3.28],[.24,.22,.1],15)
+        X('head',[side*2.25-.3,19.9,-3.12],[.6,.4,.12],7)
+    X('head',[-3.6,23.6,-3],[7.2,1.7,6.1],9)
+    X('head',[-3.5,21.1,2.1],[7,3.4,1.4],9)
+    # Two hollow-topped gel loops with heavy, tapering side lobes.
+    for side,name in [(-1,'hair_0'),(1,'hair_5')]:
+        joint(name,[side*3.1,23.4,0])
+        m.by_name[name]['rotation']=[0,0,side*12]
+        X(name,[side*3.65-1.1,22.9,-.6],[2.2,2,2.7],9)
+        X(name,[side*4.8-2,25.9,-.4],[4,2,3.4],9)
+        X(name,[side*6.1-1.45,23.1,-.3],[2.9,3.8,3.6],9)
+        X(name,[side*5.8-1.65,20.2,-.3],[3.3,3.6,3.4],0)
+        X(name,[side*5.35-1.15,18.3,.1],[2.3,2.5,2.8],9)
+        X(name,[side*5.1-.65,17.2,.5],[1.3,1.7,1.9],12)
+        X(name,[side*5.8-1.05,23.6,-.48],[2.1,.5,.15],2)
+    for i,name in enumerate(['hair_1','hair_2','hair_3','hair_4']):
+        x=-2.7+i*1.8;joint(name,[x,24,-1.8])
+        X(name,[x-.95,22.2+(i%2)*.5,-3.18],[1.9,2.8-(i%2)*.5,1],9)
+        X(name,[x-.65,21.9+(i%2)*.5,-3.1],[1.3,.9,.8],0)
+    for i in range(7):
+        name='v2_hair_'+str(i);x=(i-3)*.95;joint(name,[x,24.2,2.1])
+        X(name,[x-.58,17.5+abs(i-3)*.3,2.1],[1.16,7-abs(i-3)*.3,1.5],9)
+        X(name,[x-.36,17.1+abs(i-3)*.3,2.25],[.72,1.3,1.1],0)
+    for side in (-1,1):
+        name='v2_hair_temple_'+str(side);joint(name,[side*3.2,23.5,-.8])
+        X(name,[side*3.2-.65,19,-1.4],[1.3,5.3,2.2],9)
+    for side,n in [(-1,'right'),(1,'left')]:
+        arm='arm_'+n;hand='hand_'+n;joint(arm,[side*3.35,16.3,0]);joint(hand,[side*3.65,11.9,0])
+        m.by_name[arm]['rotation']=[0,0,-side*8]
+        X(arm,[side*3.35-1.1,11.9,-1],[2.2,4.9,2.1],0)
+        X(arm,[side*3.35-1.3,15,-1.2],[2.6,1.8,2.5],12)
+        X(hand,[side*3.65-.95,8.2,-.95],[1.9,4.1,2],0)
+        X(hand,[side*3.65-1.05,7.4,-1.1],[2.1,1.4,2.3],8)
+        for j in range(3):X(hand,[side*3.65-.9+j*.6,6.8,-1],[.55,1.1,1.8],0)
+        leg='leg_'+n;lower=leg+'_lower';foot=leg+'_foot'
+        m.bone(leg,'root',[side*1.6,9.8,0]);X(leg,[side*1.6-1.4,5.9,-1.2],[2.8,4.3,2.6],0)
+        m.bone(lower,leg,[side*1.6,6.1,0]);X(lower,[side*1.6-1.25,.8,-1.25],[2.5,5.6,2.7],0)
+        m.bone(foot,lower,[side*1.6,1,-.2]);X(foot,[side*1.6-1.4,.12,-2.3],[2.8,1.35,3.8],0)
+        X(foot,[side*1.6-1.1,.12,-2.65],[2.2,.8,1.1],8)
+    palette=['79c953','44983d','a5e17b','95d368','273b25','1e3b24','d0f7ac','c7a489','84cf60','68b952','4b9c43','bbf191','91d96b','75c452','5aaa43','aef397']
+    roles=['slime']*16;roles[4]='eyes';roles[7]='skin'
+    return m,palette,roles,(.85,1.65)
+
+def slime_motion(model,animations):
+    for clip in animations.values():
+        for name in list(clip['bones']):
+            if name.startswith('bubble_'):del clip['bones'][name]
+    for state,amplitude in [('walk',18),('run',28)]:
+        clip=animations[state];length=clip['animation_length'];bones=clip['bones']
+        for side,n in [(-1,'right'),(1,'left')]:
+            upper={};lower={};feet={}
+            for i in range(9):
+                t=length*i/8;phase=math.tau*i/8+(math.pi if side<0 else 0)
+                angle=math.sin(phase)*amplitude;knee=max(0,math.cos(phase))*16
+                key=str(round(t,6));upper[key]=[angle,0,0];lower[key]=[knee,0,0];feet[key]=[-angle-knee,0,0]
+            bones['leg_'+n]={'rotation':upper};bones['leg_'+n+'_lower']={'rotation':lower};bones['leg_'+n+'_foot']={'rotation':feet}
+    from visual_v3_geometry import support_death
+    support_death(model,animations)
+    return animations
+
+BUILDERS={'harpy':harpy,'forest_dryad':dryad,'slime_maiden':slime}
 
 BASE_ATLAS=pipeline.material_atlas
 
@@ -208,6 +290,14 @@ def reference_atlas(palette,roles,translucent=False,species=None):
         draw.rectangle((x,y,x+31,y+31),fill=ink(0))
         for box,d in [((0,0,31,5),10),((0,6,8,18),5),((9,6,23,13),-7),((16,14,31,24),6),((3,19,14,28),-10),((15,25,31,31),-15)]:
             draw.rectangle(tuple(v+(x if i%2==0 else y) for i,v in enumerate(box)),fill=ink(d))
+    if species=='slime_maiden':
+        for k,role in enumerate(roles):
+            if role!='slime':continue
+            x=k%4*32;y=k//4*32;rgb=tuple(int(palette[k][i:i+2],16) for i in (0,2,4))
+            def gel(delta):return tuple(max(0,min(255,c+delta)) for c in rgb)+(228,)
+            draw.rectangle((x,y,x+31,y+31),fill=gel(0))
+            for box,delta in [((0,0,31,2),12),((4,4,10,8),21),((11,5,15,10),13),((3,15,9,23),-9),((14,18,25,25),7),((22,27,31,31),-13)]:
+                draw.rectangle(tuple(v+(x if i%2==0 else y) for i,v in enumerate(box)),fill=gel(delta))
     if species=='forest_dryad':
         for tile in (9,13):
             x=tile%4*32;y=tile//4*32;rgb=tuple(int(palette[tile][i:i+2],16) for i in (0,2,4))
@@ -221,9 +311,10 @@ def main():
     model,palette,roles,size=BUILDERS[args.species]()
     pipeline.material_atlas=lambda p,r,t=False:reference_atlas(p,r,t,args.species)
     animations=baseline(ASSET/'geckolib/animations/entity'/f'{args.species}.animation.json')['animations']
+    if args.species=='slime_maiden':animations=slime_motion(model,animations)
     if args.species=='forest_dryad':
         from visual_v3_geometry import support_death
         support_death(model,animations)
-    write_creature(model,palette,roles,animations,*size,glow=(4,))
+    write_creature(model,palette,roles,animations,*size,glow=(11,) if args.species=='slime_maiden' else (4,),translucent=args.species=='slime_maiden')
 
 if __name__=='__main__':main()
