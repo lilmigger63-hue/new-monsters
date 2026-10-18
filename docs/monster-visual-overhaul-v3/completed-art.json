@@ -128,13 +128,22 @@
     }
   },
   "dhampir": {
-    "commit": "Visual overhaul: Dhampir reference accuracy",
+    "commit": "1b48c87",
     "files": {
       "src/main/resources/assets/mythic_realms_creatures/geckolib/models/entity/dhampir.geo.json": "ea8bb7ad736cb38674bd91a20bbcf2e6fad4021ae87cd28d5fe94382e5de232a",
       "src/main/resources/assets/mythic_realms_creatures/geckolib/animations/entity/dhampir.animation.json": "cfbb676fdb7770b0b1950ae036710b18c7b5d3863cc4786836169ece23de1f7f",
       "src/main/resources/assets/mythic_realms_creatures/textures/entity/dhampir.png": "d71d7f40c195c56bc5f235e8a7ff61aedef69613a15c31fc83bf797e83277aec",
       "tools/blockbench/dhampir.bbmodel": "22bd7cf6da4a624d30f67faae9c8fec65a45afcfc9c55f5046b3d5204b016e2c",
       "src/main/resources/assets/mythic_realms_creatures/textures/entity/dhampir_glowmask.png": "5a739ce1611492cd89125aba0429bb67fb5eed7a6ab544317928f294196e7f25"
+    }
+  },
+  "sahuagin": {
+    "commit": "Visual overhaul: Sahuagin reference accuracy",
+    "files": {
+      "src/main/resources/assets/mythic_realms_creatures/geckolib/models/entity/sahuagin.geo.json": "772d9f3ed577ed96102c85a849d3c95a76d424feefcf158e91d1d29189998cfa",
+      "src/main/resources/assets/mythic_realms_creatures/geckolib/animations/entity/sahuagin.animation.json": "688ccc26a1e3557f62c320f2cf6fb362ea0d3956d9d084e11d6d5f4908956403",
+      "src/main/resources/assets/mythic_realms_creatures/textures/entity/sahuagin.png": "a185bf1049791092972f0cfbe0ea62bf6a63e7a7654ae7a3b3083be0b5680ee2",
+      "tools/blockbench/sahuagin.bbmodel": "faffc9e54005b4d8934c059174f084d962600f4cecc45c9e52c2f2a14d5c54a1"
     }
   }
 }

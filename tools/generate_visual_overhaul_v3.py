@@ -948,7 +948,57 @@ def dhampir():
     X('head',[-4.5,25.6,-4.1],[9,.55,.7],15)
     return m,palette,roles,(.7,1.85)
 
-BUILDERS={'harpy':harpy,'forest_dryad':dryad,'slime_maiden':slime,'minotaur':minotaur,'vampire':vampire,'valkyrie':valkyrie,'succubus':succubus,'ender_dragon_girl':ender_dragon_girl,'centaur':centaur,'fox_spirit_girl':fox_spirit_girl,'anubis':anubis,'kobold':kobold,'cyclops':cyclops,'dhampir':dhampir}
+def sahuagin():
+    m=old_model('sahuagin');X=m.box
+    for b in m.bones:
+        if b['name']=='head' or b['name'].startswith(('hair_','fin_head_')):
+            def p(v):return [v[0]*1.28,22+(v[1]-22)*1.08,v[2]*1.18]
+            b['pivot']=p(b['pivot'])
+            for c in b.get('cubes',[]):
+                c['origin']=p(c['origin']);c['size']=[c['size'][0]*1.28,c['size'][1]*1.08,c['size'][2]*1.18]
+                if 'pivot' in c:c['pivot']=p(c['pivot'])
+        if b['name'].startswith('leg_') and not b['name'].endswith(('_lower','_foot')):
+            for c in b.get('cubes',[]):
+                if material_of(c)==13:repaint_cube(c,8)
+        if b['name'].startswith('hand_'):
+            for c in b.get('cubes',[]):
+                if material_of(c)==8:repaint_cube(c,3)
+        if b['name'].endswith('_foot'):
+            for c in b.get('cubes',[]):
+                if material_of(c)==6:repaint_cube(c,1)
+    m.by_name['body']['cubes']=[]
+    X('body',[-2.65,11.5,-1.8],[5.3,2.5,3.6],13)
+    X('body',[-1.95,14,-1.6],[3.9,4.1,3.2],8)
+    X('body',[-2.7,13,-1.95],[5.4,.75,4],9)
+    m.by_name['chest']['cubes']=[c for c in m.by_name['chest']['cubes'] if material_of(c)!=3]
+    for c in m.by_name['chest']['cubes']:
+        if material_of(c)==13:repaint_cube(c,8)
+    X('chest',[-2.8,17,-1.7],[5.6,3.1,3.4],8)
+    for side,n in [(-1,'right'),(1,'left')]:
+        X('chest',[side*1.4-1.15,18.3,-2.5],[2.3,1.7,1.2],3,[0,0,-side*9])
+        X('fore_'+n,[side*3.2-1.35,10.8,-1.4],[2.7,4.3,2.9],3)
+        X('fore_'+n,[side*3.2-1.5,13.9,-1.55],[3,1.2,3.2],2)
+        X('fore_'+n,[side*4.6-.3,11.8,-.2],[.6,3.2,2.6],12,[0,0,-side*23])
+        X('leg_'+n,[side*1.45-1.25,8,-1.35],[2.5,1,2.8],3)
+        X('leg_'+n,[side*1.45-1.3,10.4,-1.4],[2.6,.7,2.9],9)
+    X('chest',[-2.3,18.15,-2.65],[4.6,.45,.55],6)
+    X('chest',[-.4,20.15,-1.9],[.8,.7,.45],4)
+    palette=['507f78','203e57','41678c','365c85','a6a064','253b3a','d9dfd5','876f70','d8c4ac','294b45','324959','608f98','35567c','2c4e48','647b90','eef0de']
+    roles=['scale','scale','scale','metal','gold','skin','cloth','cloth','skin','hair','leather','cloth','membrane','cloth','metal','skin']
+    m.by_name['weapon']['rotation']=[115,0,0]
+    m.by_name['tail']['cubes']=[];m.by_name['tail_tip']['cubes']=[]
+    m.by_name['tail_tip']['pivot']=[0,7.8,3.3]
+    X('tail',[-.7,7.3,1.8],[1.4,6.3,2.4],0)
+    X('tail_tip',[-.55,5.1,2.7],[1.1,3.4,2.1],0)
+    for side,n in [(-1,'right'),(1,'left')]:
+        X('tail_tip',[side*1.15-1.15,3.3,4.5],[2.3,2.9,.65],12,[0,0,side*25],[0,5.5,4.7])
+        lower='leg_'+n+'_lower'
+        X(lower,[side*2.2-.4,2.5,.1],[.8,3,2.2],3)
+        X(lower,[side*2.5-.35,2.7,.5],[.7,2.5,1.7],12,[0,0,-side*22],[side*2.25,3.9,.4])
+    for j in range(3):X('head',[-2.8+j*1.8,24.3+j%2*.5,-2.95],[2,2.1-j%2*.5,.8],9,[0,0,(j-1)*9])
+    return m,palette,roles,(.7,1.85)
+
+BUILDERS={'harpy':harpy,'forest_dryad':dryad,'slime_maiden':slime,'minotaur':minotaur,'vampire':vampire,'valkyrie':valkyrie,'succubus':succubus,'ender_dragon_girl':ender_dragon_girl,'centaur':centaur,'fox_spirit_girl':fox_spirit_girl,'anubis':anubis,'kobold':kobold,'cyclops':cyclops,'dhampir':dhampir,'sahuagin':sahuagin}
 
 BASE_ATLAS=pipeline.material_atlas
 
@@ -1042,6 +1092,6 @@ def main():
     if args.species in ('forest_dryad','succubus','ender_dragon_girl','fox_spirit_girl','cyclops'):
         from visual_v3_geometry import support_death
         support_death(model,animations)
-    write_creature(model,palette,roles,animations,*size,glow=() if args.species in ('minotaur','centaur') else (7,) if args.species in ('cyclops','dhampir') else (13,) if args.species=='kobold' else (7,) if args.species=='anubis' else (13,) if args.species=='vampire' else (11,) if args.species=='slime_maiden' else (4,),translucent=args.species=='slime_maiden')
+    write_creature(model,palette,roles,animations,*size,glow=() if args.species in ('minotaur','centaur','sahuagin') else (7,) if args.species in ('cyclops','dhampir') else (13,) if args.species=='kobold' else (7,) if args.species=='anubis' else (13,) if args.species=='vampire' else (11,) if args.species=='slime_maiden' else (4,),translucent=args.species=='slime_maiden')
 
 if __name__=='__main__':main()

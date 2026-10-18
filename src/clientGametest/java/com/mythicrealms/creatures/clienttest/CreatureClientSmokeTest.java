@@ -222,7 +222,8 @@ public final class CreatureClientSmokeTest implements FabricClientGameTest {
                     server.runCommand("fill 77 -61 77 83 -55 83 water");
                     server.runCommand("tp @e[type=mythic_realms_creatures:sahuagin] 80 -59 80");
                     server.runCommand("data merge entity @e[type=mythic_realms_creatures:sahuagin,limit=1] {NoGravity:1b}");
-                    server.runCommand("tp @a 80 -59 86 180 0");
+                    server.runCommand("tp @a 80 -60 82.8 180 0");
+                    server.runCommand("effect give @a minecraft:night_vision 999 0 true");
                     context.waitTicks(15);
                     context.runOnClient(client -> {
                         for(Entity entity:client.level.entitiesForRendering())
@@ -238,11 +239,17 @@ public final class CreatureClientSmokeTest implements FabricClientGameTest {
                         });
                         context.waitTicks(10);
                         context.takeScreenshot("creature-sahuagin-water-"+swimClip);
+                        server.runCommand("tp @a 82.8 -60 80 90 0");
+                        context.waitTicks(4);
+                        context.takeScreenshot("creature-sahuagin-water-"+swimClip+"-side");
+                        server.runCommand("tp @a 80 -60 82.8 180 0");
+                        context.waitTicks(4);
                         context.runOnClient(client -> {
                             for(Entity entity:client.level.entitiesForRendering())if(entity.getType()==ModEntities.SAHUAGIN)
                                 ((GeoEntity)entity).stopTriggeredAnim("action","swim_probe");
                         });
                     }
+                    server.runCommand("effect clear @a minecraft:night_vision");
                     LOG.info("CLIENT_SMOKE_SWIM_PASS sahuagin submerged idle/swim playback");
                 }
                 LOG.info("CLIENT_SMOKE_ENTITY_PASS {} geometry, animation bake, texture, renderer, entity sync, four views, server attack, {} animation probes", kind.id, probes.length);
