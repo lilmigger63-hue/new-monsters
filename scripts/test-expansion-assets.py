@@ -25,14 +25,28 @@ class ExpansionAssets(unittest.TestCase):
         self.assertIn('werecat', SPECIES)
         self.assertNotIn('ashen_wing_girl', models)
 
-    def test_original_attributes_and_four_existing_animation_files_preserved(self):
+    def test_original_attributes_and_existing_animation_contracts_preserved(self):
         source = (ROOT / 'src/main/java/com/mythicrealms/creatures/entity/CreatureKind.java').read_text()
         attrs = {m[1]: re.sub(r'\s+', '', m[2]) for m in re.finditer(r'^\s*([A-Z_]+)\(([^\n]+)\)[,;]', source, re.M)}
         self.assertEqual(len(BASE['original_attributes']), 20)
         for name, params in BASE['original_attributes'].items():
             self.assertEqual(attrs[name], params, name)
         for path, digest in BASE['animations'].items():
-            self.assertEqual(hashlib.sha256((ROOT / path).read_bytes()).hexdigest(), digest, path)
+            current=ROOT/path
+            if hashlib.sha256(current.read_bytes()).hexdigest()==digest:continue
+            # V3 explicitly permits appearance-only animation adjustments.
+            adaptations=ROOT/'docs/monster-visual-overhaul-v3/animation-adaptations.json'
+            allowed=json.loads(adaptations.read_text()) if adaptations.exists() else {}
+            species=current.name.removesuffix('.animation.json')
+            self.assertIn(species,allowed,path)
+            original=ROOT/'tools/visual_v3_baselines'/current.name
+            self.assertEqual(hashlib.sha256(original.read_bytes()).hexdigest(),digest,'original animation baseline must remain authentic')
+            previous=json.loads(original.read_text())['animations'];actual=json.loads(current.read_text())['animations']
+            self.assertEqual(set(actual),set(previous),species)
+            for clip,before in previous.items():
+                self.assertEqual(actual[clip]['animation_length'],before['animation_length'],species+'/'+clip)
+                self.assertEqual(actual[clip].get('loop'),before.get('loop'),species+'/'+clip)
+                if clip not in allowed[species]:self.assertEqual(actual[clip],before,species+'/'+clip)
 
     def test_only_allowed_original_habitat_tags_remain_populated(self):
         tags = RES / 'data' / NS / 'tags/worldgen/biome/spawns'

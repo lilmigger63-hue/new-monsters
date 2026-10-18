@@ -124,26 +124,106 @@ def harpy():
     roles=['feather','feather','feather','scales','eyes','cloth','bone','feather','skin','hair','leather','feather','feather','feather','scales','skin']
     return m,palette,roles,(.9,1.8)
 
-BUILDERS={'harpy':harpy}
+def dryad():
+    m=old_model('forest_dryad',True);X=m.box
+    def joint(n,p):m.by_name[n]['pivot']=p
+    joint('body',[0,12,0]);joint('head',[0,23,0])
+    for o,s,k in [([-3,11.3,-1.9],[6,3.8,3.8],3),([-2.2,15,-1.65],[4.4,3.4,3.3],0),([-2.85,18,-1.8],[5.7,3.7,3.6],0),([-1,21.1,-.95],[2,1.7,1.9],0)]:X('body',o,s,k)
+    for side in (-1,1):
+        X('body',[side*1.35-1.5,18.1,-2.5],[3,3.1,1.4],3,[0,0,-side*10])
+        X('body',[side*.85-.55,16.7,-2],[1.1,3.5,.8],6,[0,0,-side*20])
+    X('body',[-2.55,14.5,-2],[5.1,.8,4.1],10)
+    # Full adult face, leaf-green scalp, pointed ears and layered long hair.
+    X('head',[-3.7,22.1,-3.15],[7.4,7.2,6.15],0)
+    X('head',[-3.1,21.7,-2.9],[6.2,.8,5.6],0)
+    X('head',[-.32,24.1,-3.5],[.64,.7,.55],0)
+    X('head',[-.7,23,-3.35],[1.4,.15,.16],8)
+    for side,n in [(-1,'right'),(1,'left')]:
+        x=side*1.8
+        X('head',[x-.87,24.7,-3.31],[1.74,1.05,.18],15)
+        X('head',[x-.4,24.7,-3.51],[.8,1.02,.14],4)
+        X('head',[x-.15,24.74,-3.66],[.3,.95,.1],5)
+        X('head',[x-.95,25.67,-3.49],[1.9,.25,.22],5)
+        X('head',[x-.27,25.34,-3.78],[.21,.23,.08],15)
+        for j in range(3):
+            w=1.45-j*.3
+            X('head',[side*(3.9+j*.8)-w/2,24.7+j*.34,-.75],[w,1.5-j*.32,1.3-j*.25],0)
+        X('head',[side*6-.2,25.65,-.65],[.4,.4,.65],0)
+        hair='hair_'+n;joint(hair,[side*3,29,1])
+        X(hair,[side*3.4-.9,20.4,-1.6],[1.8,8.8,3.1],9)
+        for j in range(4):
+            x=side*(.55+j*.9);bottom=13.8+j*.45
+            X(hair,[x-.65,bottom+.5,2.4],[1.3,15-j*.45,1.9],9 if j%2 else 3)
+            X(hair,[x-.6,bottom+.3,3.8],[1.2,8-j*.5,.7],2 if j%2 else 9)
+            X(hair,[x-.45,bottom-.4,2.6],[.9,1.7,1.7],9 if j%2 else 3)
+        for j in range(3):X('head',[side*(.7+j*1.15)-.9,26.5+j*.4,-3.5],[1.8,2.5-j*.15,.8],9,[0,0,-side*(9+j*4)])
+        arm='arm_'+n;fore='fore_'+n;joint(arm,[side*3.65,21,0]);joint(fore,[side*3.65,15.3,0])
+        m.by_name[arm]['rotation']=[0,0,-side*6]
+        X(arm,[side*3.65-1,15.1,-1.1],[2,6.1,2.2],0)
+        X(arm,[side*3.65-1.35,20,-1.4],[2.7,2,2.8],3)
+        X(arm,[side*3.65-1.45,19.6,-1.5],[2.9,.8,3],6)
+        X(arm,[side*3.65-1.3,19.3,-1.4],[2.6,.55,2.8],13)
+        X(fore,[side*3.65-.9,10.9,-1.05],[1.8,4.6,2.1],0)
+        X(fore,[side*3.65-1,9.6,-1.1],[2,1.7,2.2],0)
+        for j in range(3):
+            finger='finger_'+str(side)+'_'+str(j);x=side*3.65+(j-1)*.57;joint(finger,[x,9.9,-.6])
+            X(finger,[x-.24,8.9,-.75],[.48,1.25,1.3],0)
+        joint('leg_'+n,[side*1.65,12,0])
+        X('leg_'+n,[side*1.65-1.35,7.6,-1.3],[2.7,4.8,2.6],0)
+        X('leg_'+n,[side*1.65-1.45,1,-1.4],[2.9,7.3,2.8],13)
+        X('leg_'+n,[side*1.65-1.55,7.9,-1.5],[3.1,.8,3],14)
+        X('leg_'+n,[side*1.65-1.5,.12,-2.3],[3,1.5,4],13)
+        X('leg_'+n,[side*1.65-1.5,.12,-2.4],[3,.45,4.1],14)
+        X('leg_'+n,[side*1.65-1.48,2,-1.43],[2.96,.45,2.86],14)
+        X('leg_'+n,[side*1.65-.12,2.4,-1.48],[.24,5,.16],14)
+        for j in range(4):
+            vine='vine_'+str(side)+'_'+str(j);z=-1.45+j*1.05;joint(vine,[side*2.65,14.5,z])
+            X(vine,[side*2.75-1.15,8.4+j%2*.7,z-.65],[2.3,6.4,.95],3 if j%2 else 6,[0,0,-side*(7+j*3)])
+            X(vine,[side*2.75-.8,7.8+j%2*.7,z-.55],[1.6,1.6,.75],7)
+        front='vine_front_'+str(side);joint(front,[side*1.4,14,-2])
+        for j in range(3):
+            X(front,[side*(.6+j*.85)-.9,8.3+abs(j-1)*.65,-2.45-j*.07],[1.8,6.2-abs(j-1)*.4,1.05],3 if j%2 else 6,[0,0,-side*(4+j*5)])
+        crown='crown_'+n;joint(crown,[side*2.6,29.5,0])
+        X(crown,[side*2.6-1,29.5,-.3],[2,1,2.7],6,[0,0,side*12])
+        if side==1:
+            X(crown,[1.5,30,-.2],[1,1.6,1],11,[0,0,-20])
+            X(crown,[2.2,30.9,-.35],[2.4,.8,1.3],12,[0,0,-25])
+            X(crown,[3.8,31.3,-.25],[1.3,.55,1],6,[0,0,-25])
+    X('head',[-3.9,28.4,-3.2],[7.8,1.8,6.6],9)
+    X('head',[-3.8,25.4,2.2],[7.6,3.8,1.5],9)
+    palette=['eedbc7','263d24','7e9b3a','4d7c2c','68813a','292c21','729c3b','365823','cbb8a4','4b752d','507529','89a347','c5c14a','eee9db','c4cabc','fff2df']
+    roles=['skin','leaf','hair','leaf','eyes','cloth','leaf','leaf','skin','hair','leaf','leaf','cloth','cloth','cloth','skin']
+    return m,palette,roles,(.65,1.9)
+
+BUILDERS={'harpy':harpy,'forest_dryad':dryad}
 
 BASE_ATLAS=pipeline.material_atlas
 
-def reference_atlas(palette,roles,translucent=False):
+def reference_atlas(palette,roles,translucent=False,species=None):
     image=BASE_ATLAS(palette,roles,translucent);draw=ImageDraw.Draw(image)
     for k,role in enumerate(roles):
-        if role!='feather':continue
+        if role not in ('feather','leaf'):continue
         x=k%4*32;y=k//4*32;rgb=tuple(int(palette[k][i:i+2],16) for i in (0,2,4))
         def ink(d):return tuple(max(0,min(255,c+d)) for c in rgb)+(255,)
         draw.rectangle((x,y,x+31,y+31),fill=ink(0))
         for box,d in [((0,0,31,5),10),((0,6,8,18),5),((9,6,23,13),-7),((16,14,31,24),6),((3,19,14,28),-10),((15,25,31,31),-15)]:
             draw.rectangle(tuple(v+(x if i%2==0 else y) for i,v in enumerate(box)),fill=ink(d))
+    if species=='forest_dryad':
+        for tile in (9,13):
+            x=tile%4*32;y=tile//4*32;rgb=tuple(int(palette[tile][i:i+2],16) for i in (0,2,4))
+            for box,delta in [((3,4,8,9),-16),((10,6,17,13),8),((4,15,11,21),-9),((15,18,24,25),-13),((5,25,13,28),10)]:
+                color=tuple(max(0,min(255,c+delta)) for c in rgb)+(255,)
+                draw.rectangle(tuple(v+(x if i%2==0 else y) for i,v in enumerate(box)),fill=color)
     return image
 
 def main():
     parser=argparse.ArgumentParser();parser.add_argument('species',choices=BUILDERS);args=parser.parse_args()
     model,palette,roles,size=BUILDERS[args.species]()
-    pipeline.material_atlas=reference_atlas
+    pipeline.material_atlas=lambda p,r,t=False:reference_atlas(p,r,t,args.species)
     animations=baseline(ASSET/'geckolib/animations/entity'/f'{args.species}.animation.json')['animations']
+    if args.species=='forest_dryad':
+        from visual_v3_geometry import support_death
+        support_death(model,animations)
     write_creature(model,palette,roles,animations,*size,glow=(4,))
 
 if __name__=='__main__':main()
