@@ -1,0 +1,971 @@
+{
+  "researched_at": "2026-10-18",
+  "scope": "20 species, three individually inspected image references each; several are partial anatomy/material analogs, not exact species matches.",
+  "provenance": {
+    "repository_readme": "https://github.com/wesnoth/wesnoth/blob/master/README.md",
+    "project_credits": "https://github.com/wesnoth/wesnoth/blob/master/data/core/about.cfg",
+    "license_file": "https://github.com/wesnoth/wesnoth/blob/master/COPYING"
+  },
+  "creatures": [
+    {
+      "id": "goblin_scout",
+      "name": "Goblin Scout",
+      "palette": [
+        "#596347",
+        "#382b22",
+        "#a8986d"
+      ],
+      "silhouette": "Low hunch, long ears, narrow shoulders and an offset blade.",
+      "references": [
+        {
+          "image_url": "https://raw.githubusercontent.com/wesnoth/wesnoth/master/data/core/images/portraits/goblins/spearman.webp",
+          "source_url": "https://github.com/wesnoth/wesnoth/blob/master/data/core/images/portraits/goblins/spearman.webp",
+          "source": "The Battle for Wesnoth",
+          "artist": "Individual attribution not established; see project artwork credits",
+          "license": "Repository README: most art GPL-2.0-or-later; newer contributions CC-BY-SA-4.0. Exact per-image license not established. Study only; no redistribution or tracing authorized by this catalog.",
+          "inspected": true,
+          "inspection": "Downloaded successfully and viewed in labeled contact sheets sheet0\u2013sheet3, 2026-10-18",
+          "local_study_file": "/workspace/validation/overhaul/references/goblins_spearman.webp",
+          "analysis": "Large ear, long pointed nose, sloping shoulders and rough leather create a wiry scavenger.",
+          "original_minecraft_translation": "Use stepped ear cuboids and a forward head pivot; keep leather in broad dark patches."
+        },
+        {
+          "image_url": "https://raw.githubusercontent.com/wesnoth/wesnoth/master/data/core/images/portraits/goblins/rouser.webp",
+          "source_url": "https://github.com/wesnoth/wesnoth/blob/master/data/core/images/portraits/goblins/rouser.webp",
+          "source": "The Battle for Wesnoth",
+          "artist": "Individual attribution not established; see project artwork credits",
+          "license": "Repository README: most art GPL-2.0-or-later; newer contributions CC-BY-SA-4.0. Exact per-image license not established. Study only; no redistribution or tracing authorized by this catalog.",
+          "inspected": true,
+          "inspection": "Downloaded successfully and viewed in labeled contact sheets sheet0\u2013sheet3, 2026-10-18",
+          "local_study_file": "/workspace/validation/overhaul/references/goblins_rouser.webp",
+          "analysis": "Cloth headband, layered shoulder mail and dangling trinkets distinguish rank without bulk.",
+          "original_minecraft_translation": "One torn scarf tail and two large bone beads; omit tiny chain detail."
+        },
+        {
+          "image_url": "https://raw.githubusercontent.com/wesnoth/wesnoth/master/data/core/images/portraits/orcs/assassin.webp",
+          "source_url": "https://github.com/wesnoth/wesnoth/blob/master/data/core/images/portraits/orcs/assassin.webp",
+          "source": "The Battle for Wesnoth",
+          "artist": "Individual attribution not established; see project artwork credits",
+          "license": "Repository README: most art GPL-2.0-or-later; newer contributions CC-BY-SA-4.0. Exact per-image license not established. Study only; no redistribution or tracing authorized by this catalog.",
+          "inspected": true,
+          "inspection": "Downloaded successfully and viewed in labeled contact sheets sheet0\u2013sheet3, 2026-10-18",
+          "local_study_file": "/workspace/validation/overhaul/references/orcs_assassin.webp",
+          "analysis": "Masked face, wrapped forearms and separated knives make readiness legible.",
+          "original_minecraft_translation": "Asymmetric wrist wrap and short side blade; preserve the small goblin proportions."
+        }
+      ]
+    },
+    {
+      "id": "goblin_shaman",
+      "name": "Goblin Shaman",
+      "palette": [
+        "#506936",
+        "#322e27",
+        "#7fe85f"
+      ],
+      "silhouette": "Bent caster with a tall crystal staff and hanging charms.",
+      "references": [
+        {
+          "image_url": "https://raw.githubusercontent.com/wesnoth/wesnoth/master/data/core/images/portraits/goblins/rouser.webp",
+          "source_url": "https://github.com/wesnoth/wesnoth/blob/master/data/core/images/portraits/goblins/rouser.webp",
+          "source": "The Battle for Wesnoth",
+          "artist": "Individual attribution not established; see project artwork credits",
+          "license": "Repository README: most art GPL-2.0-or-later; newer contributions CC-BY-SA-4.0. Exact per-image license not established. Study only; no redistribution or tracing authorized by this catalog.",
+          "inspected": true,
+          "inspection": "Downloaded successfully and viewed in labeled contact sheets sheet0\u2013sheet3, 2026-10-18",
+          "local_study_file": "/workspace/validation/overhaul/references/goblins_rouser.webp",
+          "analysis": "Aged face, head ties and dangling ceremonial objects suggest a tribal elder.",
+          "original_minecraft_translation": "Extend one head tie and enlarge three pendant silhouettes rather than copying the outfit."
+        },
+        {
+          "image_url": "https://raw.githubusercontent.com/wesnoth/wesnoth/master/data/core/images/portraits/trolls/troll-shaman.webp",
+          "source_url": "https://github.com/wesnoth/wesnoth/blob/master/data/core/images/portraits/trolls/troll-shaman.webp",
+          "source": "The Battle for Wesnoth",
+          "artist": "Individual attribution not established; see project artwork credits",
+          "license": "Repository README: most art GPL-2.0-or-later; newer contributions CC-BY-SA-4.0. Exact per-image license not established. Study only; no redistribution or tracing authorized by this catalog.",
+          "inspected": true,
+          "inspection": "Downloaded successfully and viewed in labeled contact sheets sheet0\u2013sheet3, 2026-10-18",
+          "local_study_file": "/workspace/validation/overhaul/references/trolls_troll-shaman.webp",
+          "analysis": "Paint bands, rope, beads and a bright magical hand contrast a stony dark torso.",
+          "original_minecraft_translation": "Reinterpret as sparse green paint and a luminous staff head, keeping goblin skin organic."
+        },
+        {
+          "image_url": "https://raw.githubusercontent.com/wesnoth/wesnoth/master/data/core/images/portraits/humans/dark-adept+female.webp",
+          "source_url": "https://github.com/wesnoth/wesnoth/blob/master/data/core/images/portraits/humans/dark-adept+female.webp",
+          "source": "The Battle for Wesnoth",
+          "artist": "Individual attribution not established; see project artwork credits",
+          "license": "Repository README: most art GPL-2.0-or-later; newer contributions CC-BY-SA-4.0. Exact per-image license not established. Study only; no redistribution or tracing authorized by this catalog.",
+          "inspected": true,
+          "inspection": "Downloaded successfully and viewed in labeled contact sheets sheet0\u2013sheet3, 2026-10-18",
+          "local_study_file": "/workspace/validation/overhaul/references/humans_dark-adept+female.webp",
+          "analysis": "Raised open hand surrounds a small pale green magical orb beneath a dark hood.",
+          "original_minecraft_translation": "Animate fingers as a simple grouped hand and stage a green orb before release."
+        }
+      ]
+    },
+    {
+      "id": "orc_warrior",
+      "name": "Orc Warrior",
+      "palette": [
+        "#4f5739",
+        "#463c32",
+        "#b98142"
+      ],
+      "silhouette": "Broad trapezoid torso, projecting tusks and one oversized armored shoulder.",
+      "references": [
+        {
+          "image_url": "https://raw.githubusercontent.com/wesnoth/wesnoth/master/data/core/images/portraits/orcs/warrior.webp",
+          "source_url": "https://github.com/wesnoth/wesnoth/blob/master/data/core/images/portraits/orcs/warrior.webp",
+          "source": "The Battle for Wesnoth",
+          "artist": "Individual attribution not established; see project artwork credits",
+          "license": "Repository README: most art GPL-2.0-or-later; newer contributions CC-BY-SA-4.0. Exact per-image license not established. Study only; no redistribution or tracing authorized by this catalog.",
+          "inspected": true,
+          "inspection": "Downloaded successfully and viewed in labeled contact sheets sheet0\u2013sheet3, 2026-10-18",
+          "local_study_file": "/workspace/validation/overhaul/references/orcs_warrior.webp",
+          "analysis": "Open tusked mouth, broad neck, layered reddish armor and a lifted blade emphasize aggression.",
+          "original_minecraft_translation": "Separate jaw/tusk blocks and three large shoulder plates; retain a visible neck."
+        },
+        {
+          "image_url": "https://raw.githubusercontent.com/wesnoth/wesnoth/master/data/core/images/portraits/orcs/warlord.webp",
+          "source_url": "https://github.com/wesnoth/wesnoth/blob/master/data/core/images/portraits/orcs/warlord.webp",
+          "source": "The Battle for Wesnoth",
+          "artist": "Individual attribution not established; see project artwork credits",
+          "license": "Repository README: most art GPL-2.0-or-later; newer contributions CC-BY-SA-4.0. Exact per-image license not established. Study only; no redistribution or tracing authorized by this catalog.",
+          "inspected": true,
+          "inspection": "Downloaded successfully and viewed in labeled contact sheets sheet0\u2013sheet3, 2026-10-18",
+          "local_study_file": "/workspace/validation/overhaul/references/orcs_warlord.webp",
+          "analysis": "Heavy helmet, cloak, mail and warm metal edges convey command and mass.",
+          "original_minecraft_translation": "Offset helmet crest and one thick pauldron; reduce mail to grouped dark pixels."
+        },
+        {
+          "image_url": "https://raw.githubusercontent.com/wesnoth/wesnoth/master/data/core/images/portraits/humans/iron-mauler.webp",
+          "source_url": "https://github.com/wesnoth/wesnoth/blob/master/data/core/images/portraits/humans/iron-mauler.webp",
+          "source": "The Battle for Wesnoth",
+          "artist": "Individual attribution not established; see project artwork credits",
+          "license": "Repository README: most art GPL-2.0-or-later; newer contributions CC-BY-SA-4.0. Exact per-image license not established. Study only; no redistribution or tracing authorized by this catalog.",
+          "inspected": true,
+          "inspection": "Downloaded successfully and viewed in labeled contact sheets sheet0\u2013sheet3, 2026-10-18",
+          "local_study_file": "/workspace/validation/overhaul/references/humans_iron-mauler.webp",
+          "analysis": "Rounded riveted plate, hard specular edges and dark joints separate steel from straps.",
+          "original_minecraft_translation": "Use three metal tones and sparse rivets, with darker flexible gaps at elbows."
+        }
+      ]
+    },
+    {
+      "id": "minotaur",
+      "name": "Minotaur",
+      "palette": [
+        "#513c2c",
+        "#997343",
+        "#d1bb87"
+      ],
+      "silhouette": "Bull-headed giant, lateral horns, deep chest and split hooves.",
+      "references": [
+        {
+          "image_url": "https://raw.githubusercontent.com/wesnoth/wesnoth/master/data/core/images/portraits/trolls/troll-warrior.webp",
+          "source_url": "https://github.com/wesnoth/wesnoth/blob/master/data/core/images/portraits/trolls/troll-warrior.webp",
+          "source": "The Battle for Wesnoth",
+          "artist": "Individual attribution not established; see project artwork credits",
+          "license": "Repository README: most art GPL-2.0-or-later; newer contributions CC-BY-SA-4.0. Exact per-image license not established. Study only; no redistribution or tracing authorized by this catalog.",
+          "inspected": true,
+          "inspection": "Downloaded successfully and viewed in labeled contact sheets sheet0\u2013sheet3, 2026-10-18",
+          "local_study_file": "/workspace/validation/overhaul/references/trolls_troll-warrior.webp",
+          "analysis": "Massive neck and shoulders carrying a large weapon demonstrate weight; this is not a bovine reference.",
+          "original_minecraft_translation": "Use the shoulder-to-waist contrast only, with original bull muzzle and paired horns."
+        },
+        {
+          "image_url": "https://raw.githubusercontent.com/wesnoth/wesnoth/master/data/core/images/portraits/orcs/warlord.webp",
+          "source_url": "https://github.com/wesnoth/wesnoth/blob/master/data/core/images/portraits/orcs/warlord.webp",
+          "source": "The Battle for Wesnoth",
+          "artist": "Individual attribution not established; see project artwork credits",
+          "license": "Repository README: most art GPL-2.0-or-later; newer contributions CC-BY-SA-4.0. Exact per-image license not established. Study only; no redistribution or tracing authorized by this catalog.",
+          "inspected": true,
+          "inspection": "Downloaded successfully and viewed in labeled contact sheets sheet0\u2013sheet3, 2026-10-18",
+          "local_study_file": "/workspace/validation/overhaul/references/orcs_warlord.webp",
+          "analysis": "Helmet and wrapped torso show how warm metal and leather can frame a threatening face.",
+          "original_minecraft_translation": "Build original bronze brow guards around, rather than over, the horn silhouette."
+        },
+        {
+          "image_url": "https://raw.githubusercontent.com/wesnoth/wesnoth/master/data/core/images/portraits/monsters/great-horse.webp",
+          "source_url": "https://github.com/wesnoth/wesnoth/blob/master/data/core/images/portraits/monsters/great-horse.webp",
+          "source": "The Battle for Wesnoth",
+          "artist": "Individual attribution not established; see project artwork credits",
+          "license": "Repository README: most art GPL-2.0-or-later; newer contributions CC-BY-SA-4.0. Exact per-image license not established. Study only; no redistribution or tracing authorized by this catalog.",
+          "inspected": true,
+          "inspection": "Downloaded successfully and viewed in labeled contact sheets sheet0\u2013sheet3, 2026-10-18",
+          "local_study_file": "/workspace/validation/overhaul/references/monsters_great-horse.webp",
+          "analysis": "Heavy quadruped legs and long muzzle show large ungulate mass; horse feet are not cloven hooves.",
+          "original_minecraft_translation": "Borrow lower-leg taper only; create explicitly split original hooves and bovine head proportions."
+        }
+      ]
+    },
+    {
+      "id": "stone_troll",
+      "name": "Stone Troll",
+      "palette": [
+        "#555f58",
+        "#899286",
+        "#566b38"
+      ],
+      "silhouette": "Unequal huge arms, boulder shoulders and a low stone head.",
+      "references": [
+        {
+          "image_url": "https://raw.githubusercontent.com/wesnoth/wesnoth/master/data/core/images/portraits/trolls/troll-rocklobber.webp",
+          "source_url": "https://github.com/wesnoth/wesnoth/blob/master/data/core/images/portraits/trolls/troll-rocklobber.webp",
+          "source": "The Battle for Wesnoth",
+          "artist": "Individual attribution not established; see project artwork credits",
+          "license": "Repository README: most art GPL-2.0-or-later; newer contributions CC-BY-SA-4.0. Exact per-image license not established. Study only; no redistribution or tracing authorized by this catalog.",
+          "inspected": true,
+          "inspection": "Downloaded successfully and viewed in labeled contact sheets sheet0\u2013sheet3, 2026-10-18",
+          "local_study_file": "/workspace/validation/overhaul/references/trolls_troll-rocklobber.webp",
+          "analysis": "Faceted gray shoulders and enormous throwing arm are balanced by a narrow waist and rope.",
+          "original_minecraft_translation": "Build asymmetrical shoulder boulders and a distinct throwing arm with elbow articulation."
+        },
+        {
+          "image_url": "https://raw.githubusercontent.com/wesnoth/wesnoth/master/data/core/images/portraits/trolls/troll-warrior.webp",
+          "source_url": "https://github.com/wesnoth/wesnoth/blob/master/data/core/images/portraits/trolls/troll-warrior.webp",
+          "source": "The Battle for Wesnoth",
+          "artist": "Individual attribution not established; see project artwork credits",
+          "license": "Repository README: most art GPL-2.0-or-later; newer contributions CC-BY-SA-4.0. Exact per-image license not established. Study only; no redistribution or tracing authorized by this catalog.",
+          "inspected": true,
+          "inspection": "Downloaded successfully and viewed in labeled contact sheets sheet0\u2013sheet3, 2026-10-18",
+          "local_study_file": "/workspace/validation/overhaul/references/trolls_troll-warrior.webp",
+          "analysis": "Rock plates have clear light upper planes and dark fissures between chunky forms.",
+          "original_minecraft_translation": "Use broad stone planes with sparse cracks, reserving green pixels for damp seams."
+        },
+        {
+          "image_url": "https://raw.githubusercontent.com/wesnoth/wesnoth/master/data/core/images/portraits/trolls/troll-shaman.webp",
+          "source_url": "https://github.com/wesnoth/wesnoth/blob/master/data/core/images/portraits/trolls/troll-shaman.webp",
+          "source": "The Battle for Wesnoth",
+          "artist": "Individual attribution not established; see project artwork credits",
+          "license": "Repository README: most art GPL-2.0-or-later; newer contributions CC-BY-SA-4.0. Exact per-image license not established. Study only; no redistribution or tracing authorized by this catalog.",
+          "inspected": true,
+          "inspection": "Downloaded successfully and viewed in labeled contact sheets sheet0\u2013sheet3, 2026-10-18",
+          "local_study_file": "/workspace/validation/overhaul/references/trolls_troll-shaman.webp",
+          "analysis": "Warm magic against muted gray stone demonstrates a restrained emissive contrast.",
+          "original_minecraft_translation": "Translate to a few dim mineral seams; keep most rock opaque and unlit."
+        }
+      ]
+    },
+    {
+      "id": "ancient_treant",
+      "name": "Ancient Treant",
+      "palette": [
+        "#382b22",
+        "#606537",
+        "#bed081"
+      ],
+      "silhouette": "Wide branching crown, narrow trunk waist and splayed root feet.",
+      "references": [
+        {
+          "image_url": "https://raw.githubusercontent.com/wesnoth/wesnoth/master/data/core/images/portraits/woses/wose.webp",
+          "source_url": "https://github.com/wesnoth/wesnoth/blob/master/data/core/images/portraits/woses/wose.webp",
+          "source": "The Battle for Wesnoth",
+          "artist": "Individual attribution not established; see project artwork credits",
+          "license": "Repository README: most art GPL-2.0-or-later; newer contributions CC-BY-SA-4.0. Exact per-image license not established. Study only; no redistribution or tracing authorized by this catalog.",
+          "inspected": true,
+          "inspection": "Downloaded successfully and viewed in labeled contact sheets sheet0\u2013sheet3, 2026-10-18",
+          "local_study_file": "/workspace/validation/overhaul/references/woses_wose.webp",
+          "analysis": "A dark gnarled trunk face sits beneath a broad irregular green canopy and hanging moss.",
+          "original_minecraft_translation": "Use unequal crown branches, a recessed face and separated root toes; avoid a solid leaf cube."
+        },
+        {
+          "image_url": "https://raw.githubusercontent.com/wesnoth/wesnoth/master/data/core/images/portraits/elves/druid.webp",
+          "source_url": "https://github.com/wesnoth/wesnoth/blob/master/data/core/images/portraits/elves/druid.webp",
+          "source": "The Battle for Wesnoth",
+          "artist": "Individual attribution not established; see project artwork credits",
+          "license": "Repository README: most art GPL-2.0-or-later; newer contributions CC-BY-SA-4.0. Exact per-image license not established. Study only; no redistribution or tracing authorized by this catalog.",
+          "inspected": true,
+          "inspection": "Downloaded successfully and viewed in labeled contact sheets sheet0\u2013sheet3, 2026-10-18",
+          "local_study_file": "/workspace/validation/overhaul/references/elves_druid.webp",
+          "analysis": "Living vines and flowers curve around the arm and shoulders with localized green magic.",
+          "original_minecraft_translation": "Attach sparse vine strips and one fungus shelf, keeping bark the primary material."
+        },
+        {
+          "image_url": "https://raw.githubusercontent.com/wesnoth/wesnoth/master/data/core/images/portraits/trolls/troll-rocklobber.webp",
+          "source_url": "https://github.com/wesnoth/wesnoth/blob/master/data/core/images/portraits/trolls/troll-rocklobber.webp",
+          "source": "The Battle for Wesnoth",
+          "artist": "Individual attribution not established; see project artwork credits",
+          "license": "Repository README: most art GPL-2.0-or-later; newer contributions CC-BY-SA-4.0. Exact per-image license not established. Study only; no redistribution or tracing authorized by this catalog.",
+          "inspected": true,
+          "inspection": "Downloaded successfully and viewed in labeled contact sheets sheet0\u2013sheet3, 2026-10-18",
+          "local_study_file": "/workspace/validation/overhaul/references/trolls_troll-rocklobber.webp",
+          "analysis": "Oversized shoulder and hand provide a useful heavy guardian proportion analog, not wood anatomy.",
+          "original_minecraft_translation": "Turn the large hand into forked wooden fingers and make root recovery slow and deliberate."
+        }
+      ]
+    },
+    {
+      "id": "forest_dryad",
+      "name": "Forest Dryad",
+      "palette": [
+        "#47633d",
+        "#4d382a",
+        "#b5ce77"
+      ],
+      "silhouette": "Slender trunk limbs, leaf mantle and a branching crown.",
+      "references": [
+        {
+          "image_url": "https://raw.githubusercontent.com/wesnoth/wesnoth/master/data/core/images/portraits/elves/druid.webp",
+          "source_url": "https://github.com/wesnoth/wesnoth/blob/master/data/core/images/portraits/elves/druid.webp",
+          "source": "The Battle for Wesnoth",
+          "artist": "Individual attribution not established; see project artwork credits",
+          "license": "Repository README: most art GPL-2.0-or-later; newer contributions CC-BY-SA-4.0. Exact per-image license not established. Study only; no redistribution or tracing authorized by this catalog.",
+          "inspected": true,
+          "inspection": "Downloaded successfully and viewed in labeled contact sheets sheet0\u2013sheet3, 2026-10-18",
+          "local_study_file": "/workspace/validation/overhaul/references/elves_druid.webp",
+          "analysis": "Leaf clothing, a wooden circlet and a flowering vine link humanoid anatomy to vegetation.",
+          "original_minecraft_translation": "Create original bark hips and forearms, with a layered leaf skirt and blossom accent."
+        },
+        {
+          "image_url": "https://raw.githubusercontent.com/wesnoth/wesnoth/master/data/core/images/portraits/elves/shyde.webp",
+          "source_url": "https://github.com/wesnoth/wesnoth/blob/master/data/core/images/portraits/elves/shyde.webp",
+          "source": "The Battle for Wesnoth",
+          "artist": "Individual attribution not established; see project artwork credits",
+          "license": "Repository README: most art GPL-2.0-or-later; newer contributions CC-BY-SA-4.0. Exact per-image license not established. Study only; no redistribution or tracing authorized by this catalog.",
+          "inspected": true,
+          "inspection": "Downloaded successfully and viewed in labeled contact sheets sheet0\u2013sheet3, 2026-10-18",
+          "local_study_file": "/workspace/validation/overhaul/references/elves_shyde.webp",
+          "analysis": "A raised arm, trailing sleeve and floating motes establish a graceful outward casting pose.",
+          "original_minecraft_translation": "Use leaf and vine movement instead of copying fairy wings; hands lead the cast arc."
+        },
+        {
+          "image_url": "https://raw.githubusercontent.com/wesnoth/wesnoth/master/data/core/images/portraits/woses/wose.webp",
+          "source_url": "https://github.com/wesnoth/wesnoth/blob/master/data/core/images/portraits/woses/wose.webp",
+          "source": "The Battle for Wesnoth",
+          "artist": "Individual attribution not established; see project artwork credits",
+          "license": "Repository README: most art GPL-2.0-or-later; newer contributions CC-BY-SA-4.0. Exact per-image license not established. Study only; no redistribution or tracing authorized by this catalog.",
+          "inspected": true,
+          "inspection": "Downloaded successfully and viewed in labeled contact sheets sheet0\u2013sheet3, 2026-10-18",
+          "local_study_file": "/workspace/validation/overhaul/references/woses_wose.webp",
+          "analysis": "Gnarled branching and deep bark seams show the organic construction missing from a plain humanoid.",
+          "original_minecraft_translation": "Split crown branches at unequal heights and run broad bark grooves along limb direction."
+        }
+      ]
+    },
+    {
+      "id": "griffin",
+      "name": "Griffin",
+      "palette": [
+        "#594839",
+        "#e4d8b6",
+        "#b99b4e"
+      ],
+      "silhouette": "Hooked eagle head, layered wings, large chest and feline hindquarters.",
+      "references": [
+        {
+          "image_url": "https://raw.githubusercontent.com/wesnoth/wesnoth/master/data/core/images/portraits/monsters/gryphon.webp",
+          "source_url": "https://github.com/wesnoth/wesnoth/blob/master/data/core/images/portraits/monsters/gryphon.webp",
+          "source": "The Battle for Wesnoth",
+          "artist": "Individual attribution not established; see project artwork credits",
+          "license": "Repository README: most art GPL-2.0-or-later; newer contributions CC-BY-SA-4.0. Exact per-image license not established. Study only; no redistribution or tracing authorized by this catalog.",
+          "inspected": true,
+          "inspection": "Downloaded successfully and viewed in labeled contact sheets sheet0\u2013sheet3, 2026-10-18",
+          "local_study_file": "/workspace/validation/overhaul/references/monsters_gryphon.webp",
+          "analysis": "Hooked yellow beak, pale ruff and layered brown wings provide the direct hybrid design anchor; hindquarters are cropped.",
+          "original_minecraft_translation": "Build a pale stepped ruff, dark wing coverts and an original lion rear body."
+        },
+        {
+          "image_url": "https://raw.githubusercontent.com/wesnoth/wesnoth/master/data/core/images/portraits/monsters/falcon.webp",
+          "source_url": "https://github.com/wesnoth/wesnoth/blob/master/data/core/images/portraits/monsters/falcon.webp",
+          "source": "The Battle for Wesnoth",
+          "artist": "Individual attribution not established; see project artwork credits",
+          "license": "Repository README: most art GPL-2.0-or-later; newer contributions CC-BY-SA-4.0. Exact per-image license not established. Study only; no redistribution or tracing authorized by this catalog.",
+          "inspected": true,
+          "inspection": "Downloaded successfully and viewed in labeled contact sheets sheet0\u2013sheet3, 2026-10-18",
+          "local_study_file": "/workspace/validation/overhaul/references/monsters_falcon.webp",
+          "analysis": "Full airborne bird shows spread primary feathers, tucked legs and fanned tail.",
+          "original_minecraft_translation": "Use three articulated feather banks per wing; keep leg tucking separate from wingbeats."
+        },
+        {
+          "image_url": "https://raw.githubusercontent.com/wesnoth/wesnoth/master/data/core/images/portraits/monsters/roc.webp",
+          "source_url": "https://github.com/wesnoth/wesnoth/blob/master/data/core/images/portraits/monsters/roc.webp",
+          "source": "The Battle for Wesnoth",
+          "artist": "Individual attribution not established; see project artwork credits",
+          "license": "Repository README: most art GPL-2.0-or-later; newer contributions CC-BY-SA-4.0. Exact per-image license not established. Study only; no redistribution or tracing authorized by this catalog.",
+          "inspected": true,
+          "inspection": "Downloaded successfully and viewed in labeled contact sheets sheet0\u2013sheet3, 2026-10-18",
+          "local_study_file": "/workspace/validation/overhaul/references/monsters_roc.webp",
+          "analysis": "Huge lifted wing and heavy yellow talons emphasize lift and predatory reach.",
+          "original_minecraft_translation": "Give takeoff a strong upstroke silhouette and large visible talons; preserve saddle clearance."
+        }
+      ]
+    },
+    {
+      "id": "dire_wolf",
+      "name": "Dire Wolf",
+      "palette": [
+        "#494b49",
+        "#b4b5a5",
+        "#cfbd8a"
+      ],
+      "silhouette": "Deep ruff, long muzzle, raised shoulders and low sweeping tail.",
+      "references": [
+        {
+          "image_url": "https://raw.githubusercontent.com/wesnoth/wesnoth/master/data/core/images/portraits/goblins/direwolver.webp",
+          "source_url": "https://github.com/wesnoth/wesnoth/blob/master/data/core/images/portraits/goblins/direwolver.webp",
+          "source": "The Battle for Wesnoth",
+          "artist": "Individual attribution not established; see project artwork credits",
+          "license": "Repository README: most art GPL-2.0-or-later; newer contributions CC-BY-SA-4.0. Exact per-image license not established. Study only; no redistribution or tracing authorized by this catalog.",
+          "inspected": true,
+          "inspection": "Downloaded successfully and viewed in labeled contact sheets sheet0\u2013sheet3, 2026-10-18",
+          "local_study_file": "/workspace/validation/overhaul/references/goblins_direwolver.webp",
+          "analysis": "Gray wolf head, thick cheek fur and layered chest ruff frame the rider.",
+          "original_minecraft_translation": "Use stepped mane blocks around a long jaw and keep saddle above the shoulder line."
+        },
+        {
+          "image_url": "https://raw.githubusercontent.com/wesnoth/wesnoth/master/data/core/images/portraits/goblins/wolf-rider.webp",
+          "source_url": "https://github.com/wesnoth/wesnoth/blob/master/data/core/images/portraits/goblins/wolf-rider.webp",
+          "source": "The Battle for Wesnoth",
+          "artist": "Individual attribution not established; see project artwork credits",
+          "license": "Repository README: most art GPL-2.0-or-later; newer contributions CC-BY-SA-4.0. Exact per-image license not established. Study only; no redistribution or tracing authorized by this catalog.",
+          "inspected": true,
+          "inspection": "Downloaded successfully and viewed in labeled contact sheets sheet0\u2013sheet3, 2026-10-18",
+          "local_study_file": "/workspace/validation/overhaul/references/goblins_wolf-rider.webp",
+          "analysis": "Brown-gray wolf muzzle and shaggy cheek create an alert face beneath practical riding straps.",
+          "original_minecraft_translation": "Add broad cheek fur and a thin optional harness; avoid covering the ear silhouette."
+        },
+        {
+          "image_url": "https://raw.githubusercontent.com/wesnoth/wesnoth/master/data/core/images/portraits/monsters/great-horse.webp",
+          "source_url": "https://github.com/wesnoth/wesnoth/blob/master/data/core/images/portraits/monsters/great-horse.webp",
+          "source": "The Battle for Wesnoth",
+          "artist": "Individual attribution not established; see project artwork credits",
+          "license": "Repository README: most art GPL-2.0-or-later; newer contributions CC-BY-SA-4.0. Exact per-image license not established. Study only; no redistribution or tracing authorized by this catalog.",
+          "inspected": true,
+          "inspection": "Downloaded successfully and viewed in labeled contact sheets sheet0\u2013sheet3, 2026-10-18",
+          "local_study_file": "/workspace/validation/overhaul/references/monsters_great-horse.webp",
+          "analysis": "Full-body weight-bearing stance helps compare mounted quadruped mass; it does not supply canine gait anatomy.",
+          "original_minecraft_translation": "Borrow clear leg spacing and saddle-zone mass only; preserve digitigrade wolf hindlegs."
+        }
+      ]
+    },
+    {
+      "id": "wild_wyvern",
+      "name": "Wild Wyvern",
+      "palette": [
+        "#49633b",
+        "#9ba66a",
+        "#526788"
+      ],
+      "silhouette": "Two wing arms, two hindlegs, long counterbalancing tail and narrow head.",
+      "references": [
+        {
+          "image_url": "https://raw.githubusercontent.com/wesnoth/wesnoth/master/data/core/images/portraits/monsters/wyvern.webp",
+          "source_url": "https://github.com/wesnoth/wesnoth/blob/master/data/core/images/portraits/monsters/wyvern.webp",
+          "source": "The Battle for Wesnoth",
+          "artist": "Individual attribution not established; see project artwork credits",
+          "license": "Repository README: most art GPL-2.0-or-later; newer contributions CC-BY-SA-4.0. Exact per-image license not established. Study only; no redistribution or tracing authorized by this catalog.",
+          "inspected": true,
+          "inspection": "Downloaded successfully and viewed in labeled contact sheets sheet0\u2013sheet3, 2026-10-18",
+          "local_study_file": "/workspace/validation/overhaul/references/monsters_wyvern.webp",
+          "analysis": "A long neck curls below enormous green membranes carried by jointed wing arms.",
+          "original_minecraft_translation": "Retain two-leg anatomy, with elbow and wrist wing bones plus a segmented balancing tail."
+        },
+        {
+          "image_url": "https://raw.githubusercontent.com/wesnoth/wesnoth/master/data/core/images/portraits/monsters/fire-dragon.webp",
+          "source_url": "https://github.com/wesnoth/wesnoth/blob/master/data/core/images/portraits/monsters/fire-dragon.webp",
+          "source": "The Battle for Wesnoth",
+          "artist": "Individual attribution not established; see project artwork credits",
+          "license": "Repository README: most art GPL-2.0-or-later; newer contributions CC-BY-SA-4.0. Exact per-image license not established. Study only; no redistribution or tracing authorized by this catalog.",
+          "inspected": true,
+          "inspection": "Downloaded successfully and viewed in labeled contact sheets sheet0\u2013sheet3, 2026-10-18",
+          "local_study_file": "/workspace/validation/overhaul/references/monsters_fire-dragon.webp",
+          "analysis": "Broad belly plates, teeth and horn placement separate reptile surfaces from membrane.",
+          "original_minecraft_translation": "Use original scale blocks and a muted throat stripe; do not add dragon forelegs."
+        },
+        {
+          "image_url": "https://raw.githubusercontent.com/wesnoth/wesnoth/master/data/core/images/portraits/drakes/glider.webp",
+          "source_url": "https://github.com/wesnoth/wesnoth/blob/master/data/core/images/portraits/drakes/glider.webp",
+          "source": "The Battle for Wesnoth",
+          "artist": "Individual attribution not established; see project artwork credits",
+          "license": "Repository README: most art GPL-2.0-or-later; newer contributions CC-BY-SA-4.0. Exact per-image license not established. Study only; no redistribution or tracing authorized by this catalog.",
+          "inspected": true,
+          "inspection": "Downloaded successfully and viewed in labeled contact sheets sheet0\u2013sheet3, 2026-10-18",
+          "local_study_file": "/workspace/validation/overhaul/references/drakes_glider.webp",
+          "analysis": "Folded wings rise into a narrow tall silhouette; pale scales and blue cloth separate surfaces.",
+          "original_minecraft_translation": "Use folding wing pivots and desaturated blue rare-variant membranes, with no copied clothing."
+        }
+      ]
+    },
+    {
+      "id": "cave_basilisk",
+      "name": "Cave Basilisk",
+      "palette": [
+        "#3e4f3b",
+        "#7b8061",
+        "#cad26a"
+      ],
+      "silhouette": "Low reptilian body with armored back, crown crest and a clear gaze point.",
+      "references": [
+        {
+          "image_url": "https://raw.githubusercontent.com/wesnoth/wesnoth/master/data/core/images/portraits/monsters/crocodile.webp",
+          "source_url": "https://github.com/wesnoth/wesnoth/blob/master/data/core/images/portraits/monsters/crocodile.webp",
+          "source": "The Battle for Wesnoth",
+          "artist": "Individual attribution not established; see project artwork credits",
+          "license": "Repository README: most art GPL-2.0-or-later; newer contributions CC-BY-SA-4.0. Exact per-image license not established. Study only; no redistribution or tracing authorized by this catalog.",
+          "inspected": true,
+          "inspection": "Downloaded successfully and viewed in labeled contact sheets sheet0\u2013sheet3, 2026-10-18",
+          "local_study_file": "/workspace/validation/overhaul/references/monsters_crocodile.webp",
+          "analysis": "Low sprawling limbs, long toothed snout and raised dorsal scutes show convincing reptile mass.",
+          "original_minecraft_translation": "Build a low belly, elbowed legs and three broad back ridges; eyes must remain visible."
+        },
+        {
+          "image_url": "https://raw.githubusercontent.com/wesnoth/wesnoth/master/data/core/images/portraits/saurians/skirmisher.webp",
+          "source_url": "https://github.com/wesnoth/wesnoth/blob/master/data/core/images/portraits/saurians/skirmisher.webp",
+          "source": "The Battle for Wesnoth",
+          "artist": "Individual attribution not established; see project artwork credits",
+          "license": "Repository README: most art GPL-2.0-or-later; newer contributions CC-BY-SA-4.0. Exact per-image license not established. Study only; no redistribution or tracing authorized by this catalog.",
+          "inspected": true,
+          "inspection": "Downloaded successfully and viewed in labeled contact sheets sheet0\u2013sheet3, 2026-10-18",
+          "local_study_file": "/workspace/validation/overhaul/references/saurians_skirmisher.webp",
+          "analysis": "Crested reptile head and grouped bright scales give a readable brow and neck silhouette.",
+          "original_minecraft_translation": "Create an original stone crown above the eye line and larger scale groupings."
+        },
+        {
+          "image_url": "https://raw.githubusercontent.com/wesnoth/wesnoth/master/data/core/images/portraits/monsters/wyvern.webp",
+          "source_url": "https://github.com/wesnoth/wesnoth/blob/master/data/core/images/portraits/monsters/wyvern.webp",
+          "source": "The Battle for Wesnoth",
+          "artist": "Individual attribution not established; see project artwork credits",
+          "license": "Repository README: most art GPL-2.0-or-later; newer contributions CC-BY-SA-4.0. Exact per-image license not established. Study only; no redistribution or tracing authorized by this catalog.",
+          "inspected": true,
+          "inspection": "Downloaded successfully and viewed in labeled contact sheets sheet0\u2013sheet3, 2026-10-18",
+          "local_study_file": "/workspace/validation/overhaul/references/monsters_wyvern.webp",
+          "analysis": "Narrow aggressive head and horn clusters frame a focused eye beneath angular brows.",
+          "original_minecraft_translation": "Borrow head direction and horn rhythm only; keep basilisk wingless and ground-bound."
+        }
+      ]
+    },
+    {
+      "id": "crystal_spider",
+      "name": "Crystal Spider",
+      "palette": [
+        "#3d294f",
+        "#865bb2",
+        "#c9a5e2"
+      ],
+      "silhouette": "Eight clear leg spokes around a raised faceted abdomen.",
+      "references": [
+        {
+          "image_url": "https://raw.githubusercontent.com/wesnoth/wesnoth/master/data/core/images/portraits/monsters/giant-spider.webp",
+          "source_url": "https://github.com/wesnoth/wesnoth/blob/master/data/core/images/portraits/monsters/giant-spider.webp",
+          "source": "The Battle for Wesnoth",
+          "artist": "Individual attribution not established; see project artwork credits",
+          "license": "Repository README: most art GPL-2.0-or-later; newer contributions CC-BY-SA-4.0. Exact per-image license not established. Study only; no redistribution or tracing authorized by this catalog.",
+          "inspected": true,
+          "inspection": "Downloaded successfully and viewed in labeled contact sheets sheet0\u2013sheet3, 2026-10-18",
+          "local_study_file": "/workspace/validation/overhaul/references/monsters_giant-spider.webp",
+          "analysis": "Separated cephalothorax and round abdomen, with eight jointed legs, supply the anatomical anchor.",
+          "original_minecraft_translation": "Keep eight independent articulated legs and a clear narrow connection between body masses."
+        },
+        {
+          "image_url": "https://raw.githubusercontent.com/wesnoth/wesnoth/master/data/core/images/portraits/monsters/jumping-spider.webp",
+          "source_url": "https://github.com/wesnoth/wesnoth/blob/master/data/core/images/portraits/monsters/jumping-spider.webp",
+          "source": "The Battle for Wesnoth",
+          "artist": "Individual attribution not established; see project artwork credits",
+          "license": "Repository README: most art GPL-2.0-or-later; newer contributions CC-BY-SA-4.0. Exact per-image license not established. Study only; no redistribution or tracing authorized by this catalog.",
+          "inspected": true,
+          "inspection": "Downloaded successfully and viewed in labeled contact sheets sheet0\u2013sheet3, 2026-10-18",
+          "local_study_file": "/workspace/validation/overhaul/references/monsters_jumping-spider.webp",
+          "analysis": "Large forward eyes and blue-violet limb bands demonstrate focal face contrast and segmented color.",
+          "original_minecraft_translation": "Use two dominant bright eyes and a few amethyst joint accents rather than painting every segment."
+        },
+        {
+          "image_url": "https://raw.githubusercontent.com/wesnoth/wesnoth/master/data/core/images/portraits/monsters/scorpion-rock.webp",
+          "source_url": "https://github.com/wesnoth/wesnoth/blob/master/data/core/images/portraits/monsters/scorpion-rock.webp",
+          "source": "The Battle for Wesnoth",
+          "artist": "Individual attribution not established; see project artwork credits",
+          "license": "Repository README: most art GPL-2.0-or-later; newer contributions CC-BY-SA-4.0. Exact per-image license not established. Study only; no redistribution or tracing authorized by this catalog.",
+          "inspected": true,
+          "inspection": "Downloaded successfully and viewed in labeled contact sheets sheet0\u2013sheet3, 2026-10-18",
+          "local_study_file": "/workspace/validation/overhaul/references/monsters_scorpion-rock.webp",
+          "analysis": "Pale mineral nodules cover a dark arthropod shell; this is not a spider or crystal growth reference.",
+          "original_minecraft_translation": "Replace round nodules with original angular crystals on the abdomen only, leaving leg joints clear."
+        }
+      ]
+    },
+    {
+      "id": "shadow_wraith",
+      "name": "Shadow Wraith",
+      "palette": [
+        "#252731",
+        "#555167",
+        "#9b9dd1"
+      ],
+      "silhouette": "Floating hood and ragged hem with separated hanging forearms.",
+      "references": [
+        {
+          "image_url": "https://raw.githubusercontent.com/wesnoth/wesnoth/master/data/core/images/portraits/undead/wraith.webp",
+          "source_url": "https://github.com/wesnoth/wesnoth/blob/master/data/core/images/portraits/undead/wraith.webp",
+          "source": "The Battle for Wesnoth",
+          "artist": "Individual attribution not established; see project artwork credits",
+          "license": "Repository README: most art GPL-2.0-or-later; newer contributions CC-BY-SA-4.0. Exact per-image license not established. Study only; no redistribution or tracing authorized by this catalog.",
+          "inspected": true,
+          "inspection": "Downloaded successfully and viewed in labeled contact sheets sheet0\u2013sheet3, 2026-10-18",
+          "local_study_file": "/workspace/validation/overhaul/references/undead_wraith.webp",
+          "analysis": "Blue spectral blade and smoky shredded robe contrast with a dark skeletal face.",
+          "original_minecraft_translation": "Use a few pale eye pixels and an opaque dark robe core with restrained edge wisps."
+        },
+        {
+          "image_url": "https://raw.githubusercontent.com/wesnoth/wesnoth/master/data/core/images/portraits/undead/spectre.webp",
+          "source_url": "https://github.com/wesnoth/wesnoth/blob/master/data/core/images/portraits/undead/spectre.webp",
+          "source": "The Battle for Wesnoth",
+          "artist": "Individual attribution not established; see project artwork credits",
+          "license": "Repository README: most art GPL-2.0-or-later; newer contributions CC-BY-SA-4.0. Exact per-image license not established. Study only; no redistribution or tracing authorized by this catalog.",
+          "inspected": true,
+          "inspection": "Downloaded successfully and viewed in labeled contact sheets sheet0\u2013sheet3, 2026-10-18",
+          "local_study_file": "/workspace/validation/overhaul/references/undead_spectre.webp",
+          "analysis": "Muted green-gray armor fades into haze and thin shredded cloth beneath a raised weapon.",
+          "original_minecraft_translation": "Separate shoulder armor from the tapering lower body; keep strong opacity in the face."
+        },
+        {
+          "image_url": "https://raw.githubusercontent.com/wesnoth/wesnoth/master/data/core/images/portraits/undead/nightgaunt.webp",
+          "source_url": "https://github.com/wesnoth/wesnoth/blob/master/data/core/images/portraits/undead/nightgaunt.webp",
+          "source": "The Battle for Wesnoth",
+          "artist": "Individual attribution not established; see project artwork credits",
+          "license": "Repository README: most art GPL-2.0-or-later; newer contributions CC-BY-SA-4.0. Exact per-image license not established. Study only; no redistribution or tracing authorized by this catalog.",
+          "inspected": true,
+          "inspection": "Downloaded successfully and viewed in labeled contact sheets sheet0\u2013sheet3, 2026-10-18",
+          "local_study_file": "/workspace/validation/overhaul/references/undead_nightgaunt.webp",
+          "analysis": "Faceless polished helmet and torn diagonal mantle produce an ominous silhouette without facial detail.",
+          "original_minecraft_translation": "Use a recessed hollow face and asymmetric cloth strips; avoid copying the helmet outline."
+        }
+      ]
+    },
+    {
+      "id": "grave_knight",
+      "name": "Grave Knight",
+      "palette": [
+        "#35373c",
+        "#79624e",
+        "#a0babc"
+      ],
+      "silhouette": "Heavy helmet, unequal plate shoulders, long sword and a broken cape edge.",
+      "references": [
+        {
+          "image_url": "https://raw.githubusercontent.com/wesnoth/wesnoth/master/data/core/images/portraits/undead/death-knight.webp",
+          "source_url": "https://github.com/wesnoth/wesnoth/blob/master/data/core/images/portraits/undead/death-knight.webp",
+          "source": "The Battle for Wesnoth",
+          "artist": "Individual attribution not established; see project artwork credits",
+          "license": "Repository README: most art GPL-2.0-or-later; newer contributions CC-BY-SA-4.0. Exact per-image license not established. Study only; no redistribution or tracing authorized by this catalog.",
+          "inspected": true,
+          "inspection": "Downloaded successfully and viewed in labeled contact sheets sheet0\u2013sheet3, 2026-10-18",
+          "local_study_file": "/workspace/validation/overhaul/references/undead_death-knight.webp",
+          "analysis": "Exposed ribs, worn shoulder plates and a tattered cloak make age and undeath legible.",
+          "original_minecraft_translation": "Keep armor coverage heavier, revealing only a narrow cursed eye slit and broken heraldry."
+        },
+        {
+          "image_url": "https://raw.githubusercontent.com/wesnoth/wesnoth/master/data/core/images/portraits/undead/draug.webp",
+          "source_url": "https://github.com/wesnoth/wesnoth/blob/master/data/core/images/portraits/undead/draug.webp",
+          "source": "The Battle for Wesnoth",
+          "artist": "Individual attribution not established; see project artwork credits",
+          "license": "Repository README: most art GPL-2.0-or-later; newer contributions CC-BY-SA-4.0. Exact per-image license not established. Study only; no redistribution or tracing authorized by this catalog.",
+          "inspected": true,
+          "inspection": "Downloaded successfully and viewed in labeled contact sheets sheet0\u2013sheet3, 2026-10-18",
+          "local_study_file": "/workspace/validation/overhaul/references/undead_draug.webp",
+          "analysis": "Dark spikes, a damaged shield and isolated pale highlights make a powerful ruined soldier.",
+          "original_minecraft_translation": "Use one broken pauldron silhouette and three large chips rather than uniform noise."
+        },
+        {
+          "image_url": "https://raw.githubusercontent.com/wesnoth/wesnoth/master/data/core/images/portraits/humans/iron-mauler.webp",
+          "source_url": "https://github.com/wesnoth/wesnoth/blob/master/data/core/images/portraits/humans/iron-mauler.webp",
+          "source": "The Battle for Wesnoth",
+          "artist": "Individual attribution not established; see project artwork credits",
+          "license": "Repository README: most art GPL-2.0-or-later; newer contributions CC-BY-SA-4.0. Exact per-image license not established. Study only; no redistribution or tracing authorized by this catalog.",
+          "inspected": true,
+          "inspection": "Downloaded successfully and viewed in labeled contact sheets sheet0\u2013sheet3, 2026-10-18",
+          "local_study_file": "/workspace/validation/overhaul/references/humans_iron-mauler.webp",
+          "analysis": "Strong plate highlights and deep joint shadows explain readable heavy armor construction.",
+          "original_minecraft_translation": "Reserve brightest pixels for upper plate edges; darken cloth and articulation gaps."
+        }
+      ]
+    },
+    {
+      "id": "flame_imp",
+      "name": "Flame Imp",
+      "palette": [
+        "#512b27",
+        "#b54c29",
+        "#ffce6a"
+      ],
+      "silhouette": "Small horned head, broad bat wings and a hooked tail.",
+      "references": [
+        {
+          "image_url": "https://raw.githubusercontent.com/wesnoth/wesnoth/master/data/core/images/portraits/monsters/bat-red.webp",
+          "source_url": "https://github.com/wesnoth/wesnoth/blob/master/data/core/images/portraits/monsters/bat-red.webp",
+          "source": "The Battle for Wesnoth",
+          "artist": "Individual attribution not established; see project artwork credits",
+          "license": "Repository README: most art GPL-2.0-or-later; newer contributions CC-BY-SA-4.0. Exact per-image license not established. Study only; no redistribution or tracing authorized by this catalog.",
+          "inspected": true,
+          "inspection": "Downloaded successfully and viewed in labeled contact sheets sheet0\u2013sheet3, 2026-10-18",
+          "local_study_file": "/workspace/validation/overhaul/references/monsters_bat-red.webp",
+          "analysis": "Red fur, broad wing membranes and finger-supported silhouettes provide the airborne anatomy analog.",
+          "original_minecraft_translation": "Use two wing folds per side and a small heavy head, leaving hands visually separate."
+        },
+        {
+          "image_url": "https://raw.githubusercontent.com/wesnoth/wesnoth/master/data/core/images/portraits/monsters/fire_guardian.webp",
+          "source_url": "https://github.com/wesnoth/wesnoth/blob/master/data/core/images/portraits/monsters/fire_guardian.webp",
+          "source": "The Battle for Wesnoth",
+          "artist": "Individual attribution not established; see project artwork credits",
+          "license": "Repository README: most art GPL-2.0-or-later; newer contributions CC-BY-SA-4.0. Exact per-image license not established. Study only; no redistribution or tracing authorized by this catalog.",
+          "inspected": true,
+          "inspection": "Downloaded successfully and viewed in labeled contact sheets sheet0\u2013sheet3, 2026-10-18",
+          "local_study_file": "/workspace/validation/overhaul/references/monsters_fire_guardian.webp",
+          "analysis": "Bright branching flame edges against a dark center suggest a readable contained heat source.",
+          "original_minecraft_translation": "Place warm emissive pixels at eyes and chest cracks; use short ember trails."
+        },
+        {
+          "image_url": "https://raw.githubusercontent.com/wesnoth/wesnoth/master/data/core/images/portraits/monsters/fire_wraith_A.webp",
+          "source_url": "https://github.com/wesnoth/wesnoth/blob/master/data/core/images/portraits/monsters/fire_wraith_A.webp",
+          "source": "The Battle for Wesnoth",
+          "artist": "Individual attribution not established; see project artwork credits",
+          "license": "Repository README: most art GPL-2.0-or-later; newer contributions CC-BY-SA-4.0. Exact per-image license not established. Study only; no redistribution or tracing authorized by this catalog.",
+          "inspected": true,
+          "inspection": "Downloaded successfully and viewed in labeled contact sheets sheet0\u2013sheet3, 2026-10-18",
+          "local_study_file": "/workspace/validation/overhaul/references/monsters_fire_wraith_A.webp",
+          "analysis": "Dark armor embedded in orange flames demonstrates material separation in an infernal palette.",
+          "original_minecraft_translation": "Keep skin charcoal and set bright seams around horn roots and wrists, avoiding full-body glow."
+        }
+      ]
+    },
+    {
+      "id": "frost_elemental",
+      "name": "Frost Elemental",
+      "palette": [
+        "#344e66",
+        "#79b2ce",
+        "#d9f1eb"
+      ],
+      "silhouette": "Jagged broad shoulders around a narrow bright core and separated shard limbs.",
+      "references": [
+        {
+          "image_url": "https://raw.githubusercontent.com/wesnoth/wesnoth/master/data/core/images/portraits/monsters/big-icemonax.webp",
+          "source_url": "https://github.com/wesnoth/wesnoth/blob/master/data/core/images/portraits/monsters/big-icemonax.webp",
+          "source": "The Battle for Wesnoth",
+          "artist": "Individual attribution not established; see project artwork credits",
+          "license": "Repository README: most art GPL-2.0-or-later; newer contributions CC-BY-SA-4.0. Exact per-image license not established. Study only; no redistribution or tracing authorized by this catalog.",
+          "inspected": true,
+          "inspection": "Downloaded successfully and viewed in labeled contact sheets sheet0\u2013sheet3, 2026-10-18",
+          "local_study_file": "/workspace/validation/overhaul/references/monsters_big-icemonax.webp",
+          "analysis": "Lavender-white shell nodules and bright edge facets provide cold mineral contrast, not an ice golem.",
+          "original_minecraft_translation": "Replace rounded nodules with angular original shoulder shards and reserve white for upper edges."
+        },
+        {
+          "image_url": "https://raw.githubusercontent.com/wesnoth/wesnoth/master/data/core/images/portraits/monsters/yeti.webp",
+          "source_url": "https://github.com/wesnoth/wesnoth/blob/master/data/core/images/portraits/monsters/yeti.webp",
+          "source": "The Battle for Wesnoth",
+          "artist": "Individual attribution not established; see project artwork credits",
+          "license": "Repository README: most art GPL-2.0-or-later; newer contributions CC-BY-SA-4.0. Exact per-image license not established. Study only; no redistribution or tracing authorized by this catalog.",
+          "inspected": true,
+          "inspection": "Downloaded successfully and viewed in labeled contact sheets sheet0\u2013sheet3, 2026-10-18",
+          "local_study_file": "/workspace/validation/overhaul/references/monsters_yeti.webp",
+          "analysis": "Broad pale shoulders, dark face and raised heavy arms demonstrate cold-creature mass and focal contrast.",
+          "original_minecraft_translation": "Borrow upper-body weight distribution only, replacing fur with chunky ice planes."
+        },
+        {
+          "image_url": "https://raw.githubusercontent.com/wesnoth/wesnoth/master/data/core/images/portraits/undead/wraith.webp",
+          "source_url": "https://github.com/wesnoth/wesnoth/blob/master/data/core/images/portraits/undead/wraith.webp",
+          "source": "The Battle for Wesnoth",
+          "artist": "Individual attribution not established; see project artwork credits",
+          "license": "Repository README: most art GPL-2.0-or-later; newer contributions CC-BY-SA-4.0. Exact per-image license not established. Study only; no redistribution or tracing authorized by this catalog.",
+          "inspected": true,
+          "inspection": "Downloaded successfully and viewed in labeled contact sheets sheet0\u2013sheet3, 2026-10-18",
+          "local_study_file": "/workspace/validation/overhaul/references/undead_wraith.webp",
+          "analysis": "Cyan glow concentrated on a weapon and surrounding haze shows cold emissive staging.",
+          "original_minecraft_translation": "Concentrate cyan in a chest core and sparse fissures; add a low-budget cold mist effect."
+        }
+      ]
+    },
+    {
+      "id": "moon_stag",
+      "name": "Moon Stag",
+      "palette": [
+        "#abbac1",
+        "#d8e4dd",
+        "#8caacc"
+      ],
+      "silhouette": "Slim quadruped, long neck and a huge open branching antler crown.",
+      "references": [
+        {
+          "image_url": "https://raw.githubusercontent.com/wesnoth/wesnoth/master/data/core/images/portraits/monsters/white-horse.webp",
+          "source_url": "https://github.com/wesnoth/wesnoth/blob/master/data/core/images/portraits/monsters/white-horse.webp",
+          "source": "The Battle for Wesnoth",
+          "artist": "Individual attribution not established; see project artwork credits",
+          "license": "Repository README: most art GPL-2.0-or-later; newer contributions CC-BY-SA-4.0. Exact per-image license not established. Study only; no redistribution or tracing authorized by this catalog.",
+          "inspected": true,
+          "inspection": "Downloaded successfully and viewed in labeled contact sheets sheet0\u2013sheet3, 2026-10-18",
+          "local_study_file": "/workspace/validation/overhaul/references/monsters_white-horse.webp",
+          "analysis": "Pale blue-white coat and darker cool mane show restrained moonlit quadruped shading; not deer anatomy.",
+          "original_minecraft_translation": "Use cool light coat bands with dark lower-leg accents; keep original slender deer proportions."
+        },
+        {
+          "image_url": "https://raw.githubusercontent.com/wesnoth/wesnoth/master/data/core/images/portraits/monsters/great-horse.webp",
+          "source_url": "https://github.com/wesnoth/wesnoth/blob/master/data/core/images/portraits/monsters/great-horse.webp",
+          "source": "The Battle for Wesnoth",
+          "artist": "Individual attribution not established; see project artwork credits",
+          "license": "Repository README: most art GPL-2.0-or-later; newer contributions CC-BY-SA-4.0. Exact per-image license not established. Study only; no redistribution or tracing authorized by this catalog.",
+          "inspected": true,
+          "inspection": "Downloaded successfully and viewed in labeled contact sheets sheet0\u2013sheet3, 2026-10-18",
+          "local_study_file": "/workspace/validation/overhaul/references/monsters_great-horse.webp",
+          "analysis": "Clearly separated four-leg standing pose and rounded chest help check mounted quadruped balance.",
+          "original_minecraft_translation": "Borrow grounded hoof spacing only; narrow the muzzle and make the legs more gracile."
+        },
+        {
+          "image_url": "https://raw.githubusercontent.com/wesnoth/wesnoth/master/data/core/images/portraits/woses/wose.webp",
+          "source_url": "https://github.com/wesnoth/wesnoth/blob/master/data/core/images/portraits/woses/wose.webp",
+          "source": "The Battle for Wesnoth",
+          "artist": "Individual attribution not established; see project artwork credits",
+          "license": "Repository README: most art GPL-2.0-or-later; newer contributions CC-BY-SA-4.0. Exact per-image license not established. Study only; no redistribution or tracing authorized by this catalog.",
+          "inspected": true,
+          "inspection": "Downloaded successfully and viewed in labeled contact sheets sheet0\u2013sheet3, 2026-10-18",
+          "local_study_file": "/workspace/validation/overhaul/references/woses_wose.webp",
+          "analysis": "Open asymmetrical branching against the dark canopy provides a natural crown rhythm.",
+          "original_minecraft_translation": "Create paired but nonidentical luminous antlers with empty space between tines; omit foliage."
+        }
+      ]
+    },
+    {
+      "id": "slime_maiden",
+      "name": "Slime Maiden",
+      "palette": [
+        "#2b7d79",
+        "#69c4b1",
+        "#c4f1d7"
+      ],
+      "silhouette": "Soft pear-shaped body, looping liquid hair and rounded arm ends.",
+      "references": [
+        {
+          "image_url": "https://raw.githubusercontent.com/wesnoth/wesnoth/master/data/core/images/portraits/monsters/mudcrawler.webp",
+          "source_url": "https://github.com/wesnoth/wesnoth/blob/master/data/core/images/portraits/monsters/mudcrawler.webp",
+          "source": "The Battle for Wesnoth",
+          "artist": "Individual attribution not established; see project artwork credits",
+          "license": "Repository README: most art GPL-2.0-or-later; newer contributions CC-BY-SA-4.0. Exact per-image license not established. Study only; no redistribution or tracing authorized by this catalog.",
+          "inspected": true,
+          "inspection": "Downloaded successfully and viewed in labeled contact sheets sheet0\u2013sheet3, 2026-10-18",
+          "local_study_file": "/workspace/validation/overhaul/references/monsters_mudcrawler.webp",
+          "analysis": "Rounded sagging lobes and smooth drips show deformable substance; its brown rocky surface is not translucent gel.",
+          "original_minecraft_translation": "Translate lobe overlap and dripping edge rhythm into aqua rounded cuboids with coherent highlight bands."
+        },
+        {
+          "image_url": "https://raw.githubusercontent.com/wesnoth/wesnoth/master/data/core/images/portraits/monsters/cuttlefish.webp",
+          "source_url": "https://github.com/wesnoth/wesnoth/blob/master/data/core/images/portraits/monsters/cuttlefish.webp",
+          "source": "The Battle for Wesnoth",
+          "artist": "Individual attribution not established; see project artwork credits",
+          "license": "Repository README: most art GPL-2.0-or-later; newer contributions CC-BY-SA-4.0. Exact per-image license not established. Study only; no redistribution or tracing authorized by this catalog.",
+          "inspected": true,
+          "inspection": "Downloaded successfully and viewed in labeled contact sheets sheet0\u2013sheet3, 2026-10-18",
+          "local_study_file": "/workspace/validation/overhaul/references/monsters_cuttlefish.webp",
+          "analysis": "Cool teal mantle, smooth wet highlight and curling tentacles show liquid-like contour flow.",
+          "original_minecraft_translation": "Create two broad hair curls and curved arm poses, using sparse pale highlights instead of copied anatomy."
+        },
+        {
+          "image_url": "https://raw.githubusercontent.com/wesnoth/wesnoth/master/data/core/images/portraits/humans/dark-adept+female.webp",
+          "source_url": "https://github.com/wesnoth/wesnoth/blob/master/data/core/images/portraits/humans/dark-adept+female.webp",
+          "source": "The Battle for Wesnoth",
+          "artist": "Individual attribution not established; see project artwork credits",
+          "license": "Repository README: most art GPL-2.0-or-later; newer contributions CC-BY-SA-4.0. Exact per-image license not established. Study only; no redistribution or tracing authorized by this catalog.",
+          "inspected": true,
+          "inspection": "Downloaded successfully and viewed in labeled contact sheets sheet0\u2013sheet3, 2026-10-18",
+          "local_study_file": "/workspace/validation/overhaul/references/humans_dark-adept+female.webp",
+          "analysis": "Readable feminine face and open-hand orb pose supply a humanoid casting gesture, not slime anatomy.",
+          "original_minecraft_translation": "Use an original friendly face with larger expressive eyes and a grouped liquid casting hand."
+        }
+      ]
+    },
+    {
+      "id": "harpy",
+      "name": "Harpy",
+      "palette": [
+        "#4b414f",
+        "#907e81",
+        "#c4b6a2"
+      ],
+      "silhouette": "Humanoid head and torso merging into large feather wings and taloned legs.",
+      "references": [
+        {
+          "image_url": "https://raw.githubusercontent.com/wesnoth/wesnoth/master/data/core/images/portraits/monsters/falcon.webp",
+          "source_url": "https://github.com/wesnoth/wesnoth/blob/master/data/core/images/portraits/monsters/falcon.webp",
+          "source": "The Battle for Wesnoth",
+          "artist": "Individual attribution not established; see project artwork credits",
+          "license": "Repository README: most art GPL-2.0-or-later; newer contributions CC-BY-SA-4.0. Exact per-image license not established. Study only; no redistribution or tracing authorized by this catalog.",
+          "inspected": true,
+          "inspection": "Downloaded successfully and viewed in labeled contact sheets sheet0\u2013sheet3, 2026-10-18",
+          "local_study_file": "/workspace/validation/overhaul/references/monsters_falcon.webp",
+          "analysis": "Full spread wings, extended talons and fanned tail establish predatory avian movement.",
+          "original_minecraft_translation": "Build stepped primary feather banks and downward-facing talons; articulate wing wrists."
+        },
+        {
+          "image_url": "https://raw.githubusercontent.com/wesnoth/wesnoth/master/data/core/images/portraits/monsters/roc.webp",
+          "source_url": "https://github.com/wesnoth/wesnoth/blob/master/data/core/images/portraits/monsters/roc.webp",
+          "source": "The Battle for Wesnoth",
+          "artist": "Individual attribution not established; see project artwork credits",
+          "license": "Repository README: most art GPL-2.0-or-later; newer contributions CC-BY-SA-4.0. Exact per-image license not established. Study only; no redistribution or tracing authorized by this catalog.",
+          "inspected": true,
+          "inspection": "Downloaded successfully and viewed in labeled contact sheets sheet0\u2013sheet3, 2026-10-18",
+          "local_study_file": "/workspace/validation/overhaul/references/monsters_roc.webp",
+          "analysis": "Raised layered wing presents a powerful dark feather silhouette and striking yellow claws.",
+          "original_minecraft_translation": "Use overlapping dark feather bands and a clear light claw tip at gameplay distance."
+        },
+        {
+          "image_url": "https://raw.githubusercontent.com/wesnoth/wesnoth/master/data/core/images/portraits/elves/shyde.webp",
+          "source_url": "https://github.com/wesnoth/wesnoth/blob/master/data/core/images/portraits/elves/shyde.webp",
+          "source": "The Battle for Wesnoth",
+          "artist": "Individual attribution not established; see project artwork credits",
+          "license": "Repository README: most art GPL-2.0-or-later; newer contributions CC-BY-SA-4.0. Exact per-image license not established. Study only; no redistribution or tracing authorized by this catalog.",
+          "inspected": true,
+          "inspection": "Downloaded successfully and viewed in labeled contact sheets sheet0\u2013sheet3, 2026-10-18",
+          "local_study_file": "/workspace/validation/overhaul/references/elves_shyde.webp",
+          "analysis": "Humanoid raised arm integrated with wide wings provides a pose composition analog; these are insect wings.",
+          "original_minecraft_translation": "Borrow torso balance only; use original feathered arm-wings and no transparent insect membranes."
+        }
+      ]
+    },
+    {
+      "id": "demon_sorceress",
+      "name": "Demon Sorceress",
+      "palette": [
+        "#322a3d",
+        "#79517b",
+        "#cf7168"
+      ],
+      "silhouette": "Tall horned crown, flowing robe tiers and open floating casting hands.",
+      "references": [
+        {
+          "image_url": "https://raw.githubusercontent.com/wesnoth/wesnoth/master/data/core/images/portraits/humans/necromancer+female.webp",
+          "source_url": "https://github.com/wesnoth/wesnoth/blob/master/data/core/images/portraits/humans/necromancer+female.webp",
+          "source": "The Battle for Wesnoth",
+          "artist": "Individual attribution not established; see project artwork credits",
+          "license": "Repository README: most art GPL-2.0-or-later; newer contributions CC-BY-SA-4.0. Exact per-image license not established. Study only; no redistribution or tracing authorized by this catalog.",
+          "inspected": true,
+          "inspection": "Downloaded successfully and viewed in labeled contact sheets sheet0\u2013sheet3, 2026-10-18",
+          "local_study_file": "/workspace/validation/overhaul/references/humans_necromancer+female.webp",
+          "analysis": "Dark fitted robe, pale face, curved skull-staff horns and violet smoke establish a strong caster focal hierarchy.",
+          "original_minecraft_translation": "Create original swept head horns and a hovering rune focus, keeping face and hands distinct."
+        },
+        {
+          "image_url": "https://raw.githubusercontent.com/wesnoth/wesnoth/master/data/core/images/portraits/elves/sorceress.webp",
+          "source_url": "https://github.com/wesnoth/wesnoth/blob/master/data/core/images/portraits/elves/sorceress.webp",
+          "source": "The Battle for Wesnoth",
+          "artist": "Individual attribution not established; see project artwork credits",
+          "license": "Repository README: most art GPL-2.0-or-later; newer contributions CC-BY-SA-4.0. Exact per-image license not established. Study only; no redistribution or tracing authorized by this catalog.",
+          "inspected": true,
+          "inspection": "Downloaded successfully and viewed in labeled contact sheets sheet0\u2013sheet3, 2026-10-18",
+          "local_study_file": "/workspace/validation/overhaul/references/elves_sorceress.webp",
+          "analysis": "An extended palm and loose hair lead the eye toward fine rising magic beside a wooden staff.",
+          "original_minecraft_translation": "Animate an open-palm anticipation and layered robe panels with dark infernal materials."
+        },
+        {
+          "image_url": "https://raw.githubusercontent.com/wesnoth/wesnoth/master/data/core/images/portraits/undead/nightgaunt.webp",
+          "source_url": "https://github.com/wesnoth/wesnoth/blob/master/data/core/images/portraits/undead/nightgaunt.webp",
+          "source": "The Battle for Wesnoth",
+          "artist": "Individual attribution not established; see project artwork credits",
+          "license": "Repository README: most art GPL-2.0-or-later; newer contributions CC-BY-SA-4.0. Exact per-image license not established. Study only; no redistribution or tracing authorized by this catalog.",
+          "inspected": true,
+          "inspection": "Downloaded successfully and viewed in labeled contact sheets sheet0\u2013sheet3, 2026-10-18",
+          "local_study_file": "/workspace/validation/overhaul/references/undead_nightgaunt.webp",
+          "analysis": "High dark collar, pointed shoulder shapes and shredded trailing cloth offer threatening negative space.",
+          "original_minecraft_translation": "Use two unequal robe tails and a sharp shoulder silhouette without copying the armored face."
+        }
+      ]
+    }
+  ]
+}
