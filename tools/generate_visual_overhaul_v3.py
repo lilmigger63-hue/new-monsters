@@ -465,6 +465,19 @@ def vampire():
         X('head',[2.4+side*.95-.85,28.75,-1.3],[1.7,.85,2.1],7,[0,0,-side*18])
     X('head',[-2.4,26.6,-3.45],[2.7,1.3,.8],8,[0,0,-13])
     X('head',[.25,27.1,-3.4],[2.2,1.1,.7],5,[0,0,12])
+    for side,n in [(-1,'right'),(1,'left')]:
+        ear='ear_'+n;m.by_name[ear]['cubes']=[]
+        for x,y,w,h,mat in [(2.4,28.4,2.6,2,9),(2.8,30.1,1.9,2,9),(3.15,31.6,.9,1.2,12)]:
+            X(ear,[side*x-w/2,y,-.6],[w,h,1.6],mat,[0,0,-side*12])
+        X(ear,[side*2.4-.7,28.9,-.85],[1.4,1.5,.4],1,[0,0,-side*12])
+        tunic='tunic_'+n;m.by_name[tunic]['cubes']=[]
+        X(tunic,[side*1.45-1.6,9.4,-2.1],[3.2,3.3,4.2],10,[0,0,-side*6])
+        X(tunic,[side*1.45-1.65,12.3,-2.15],[3.3,1.1,4.3],2)
+    for c in m.by_name['body']['cubes']:
+        if material_of(c)==3:repaint_cube(c,10)
+    m.by_name['body']['cubes']=[c for c in m.by_name['body']['cubes'] if not(material_of(c)==7 and c.get('rotation')==[0,0,45])]
+    X('chest',[-3.2,20.9,-2.1],[6.4,.7,4.2],10)
+    X('head',[-3,28.6,-2.7],[1.8,.55,1.2],7)
     return m,palette,roles,(.7,1.85)
 
 def valkyrie():
@@ -697,7 +710,66 @@ def centaur():
     for j in range(3):X('tail_tip',[-.9+j*.6,4+j*.4,19],[.6,3-j*.3,2.1],9,[-8,0,(j-1)*9])
     return m,palette,roles,(1.25,2.15)
 
-BUILDERS={'harpy':harpy,'forest_dryad':dryad,'slime_maiden':slime,'minotaur':minotaur,'vampire':vampire,'valkyrie':valkyrie,'succubus':succubus,'ender_dragon_girl':ender_dragon_girl,'centaur':centaur}
+def material_of(cube):
+    uv=cube['uv']['north']['uv'];return int(uv[0]//32+4*(uv[1]//32))
+
+def repaint_cube(cube,index):
+    old=material_of(cube);dx=(index%4-old%4)*32;dy=(index//4-old//4)*32
+    for face in cube['uv'].values():face['uv']=[face['uv'][0]+dx,face['uv'][1]+dy]
+
+def fox_spirit_girl():
+    m=old_model('fox_spirit_girl');X=m.box
+    for b in m.bones:
+        n=b['name']
+        if n=='head' or n.startswith(('hair_','ear_')):
+            def p(v):return [v[0]*1.29,23.495+(v[1]-23.495)*1.08,v[2]*1.2]
+            b['pivot']=p(b['pivot'])
+            for c in b.get('cubes',[]):
+                c['origin']=p(c['origin']);c['size']=[c['size'][0]*1.29,c['size'][1]*1.08,c['size'][2]*1.2]
+                if 'pivot' in c:c['pivot']=p(c['pivot'])
+                if n.startswith('ear_') and material_of(c)==6:repaint_cube(c,12)
+        if n.startswith(('tail_','tailtip_')):
+            if 'rotation' in b:b['rotation'][0]*=-1
+            for c in b.get('cubes',[]):
+                if 'rotation' in c:c['rotation'][0]*=-1
+                if material_of(c)==6:repaint_cube(c,12)
+                center=c['origin'][0]+c['size'][0]/2;c['size'][0]*=1.1;c['origin'][0]=center-c['size'][0]/2
+        if n.startswith('leg_'):
+            for c in b.get('cubes',[]):repaint_cube(c,6)
+        if n.startswith('hand_'):
+            for c in b.get('cubes',[]):repaint_cube(c,10)
+    for side,n in [(-1,'right'),(1,'left')]:
+        x=side*3.4
+        X('arm_'+n,[x-1.4,16.7,-1.4],[2.8,4.4,2.9],6,[0,0,-side*6])
+        X('forearm_'+n,[x-1.25,12.9,-1.3],[2.5,4.1,2.7],6)
+        X('forearm_'+n,[x-1.35,12.8,-1.4],[2.7,1.2,2.9],7)
+        X('hand_'+n,[x-1.1,11.6,-1.3],[2.2,1.7,2.5],10)
+        # Red charm patches on white stockings, black shoes remain distinct.
+        x=side*1.25
+        X('shin_'+n,[x-.5,5.3,-1.1],[1,1.2,.3],7)
+        X('foot_'+n,[x-1.2,.1,-2.4],[2.4,1.6,3.8],10)
+        X('head',[side*2.7-.7,25.6,-2.5],[1.4,3.2,1],9,[0,0,-side*10])
+    X('body',[-2.2,13.2,-2.1],[4.4,1.1,4.2],10)
+    X('chest',[-2.1,19,-2.85],[4.2,.7,.6],6,[0,0,-13])
+    X('chest',[-2.1,18.3,-2.9],[4.2,.7,.6],6,[0,0,13])
+    palette=['e0c4a8','967740','a43237','c0a14d','57a657','2d3026','e6e5da','ba353c','ead7bf','bca14f','26272b','9bc781','d3bb67','5b3032','999b96','f5efda']
+    roles=['skin','fur','cloth','gold','eyes','skin','cloth','cloth','skin','hair','leather','eyes','fur','cloth','metal','skin']
+    for side,n in [(-1,'right'),(1,'left')]:
+        ear='ear_'+n;m.by_name[ear]['cubes']=[]
+        for x,y,w,h,mat in [(2.4,28.4,2.6,2,9),(2.8,30.1,1.9,2,9),(3.15,31.6,.9,1.2,12)]:
+            X(ear,[side*x-w/2,y,-.6],[w,h,1.6],mat,[0,0,-side*12])
+        X(ear,[side*2.4-.7,28.9,-.85],[1.4,1.5,.4],1,[0,0,-side*12])
+        tunic='tunic_'+n;m.by_name[tunic]['cubes']=[]
+        X(tunic,[side*1.45-1.6,9.4,-2.1],[3.2,3.3,4.2],10,[0,0,-side*6])
+        X(tunic,[side*1.45-1.65,12.3,-2.15],[3.3,1.1,4.3],2)
+    for c in m.by_name['body']['cubes']:
+        if material_of(c)==3:repaint_cube(c,10)
+    m.by_name['body']['cubes']=[c for c in m.by_name['body']['cubes'] if not(material_of(c)==7 and c.get('rotation')==[0,0,45])]
+    X('chest',[-3.2,20.9,-2.1],[6.4,.7,4.2],10)
+    X('head',[-3,28.6,-2.7],[1.8,.55,1.2],7)
+    return m,palette,roles,(.7,1.85)
+
+BUILDERS={'harpy':harpy,'forest_dryad':dryad,'slime_maiden':slime,'minotaur':minotaur,'vampire':vampire,'valkyrie':valkyrie,'succubus':succubus,'ender_dragon_girl':ender_dragon_girl,'centaur':centaur,'fox_spirit_girl':fox_spirit_girl}
 
 BASE_ATLAS=pipeline.material_atlas
 
@@ -718,6 +790,12 @@ def reference_atlas(palette,roles,translucent=False,species=None):
             draw.rectangle((x,y,x+31,y+31),fill=gel(0))
             for box,delta in [((0,0,31,2),12),((4,4,10,8),21),((11,5,15,10),13),((3,15,9,23),-9),((14,18,25,25),7),((22,27,31,31),-13)]:
                 draw.rectangle(tuple(v+(x if i%2==0 else y) for i,v in enumerate(box)),fill=gel(delta))
+    if species=='fox_spirit_girl':
+        for k in (9,12):
+            x=k%4*32;y=k//4*32;rgb=tuple(int(palette[k][i:i+2],16) for i in (0,2,4))
+            draw.rectangle((x,y,x+31,y+31),fill=rgb+(255,))
+            for box,delta in [((0,0,31,4),9),((4,7,14,14),-9),((17,8,28,20),7),((4,23,20,30),-12)]:
+                draw.rectangle(tuple(v+(x if i%2==0 else y) for i,v in enumerate(box)),fill=tuple(max(0,min(255,c+delta)) for c in rgb)+(255,))
     if species=='centaur':
         for k in (0,2):
             x=k%4*32;y=k//4*32;rgb=tuple(int(palette[k][i:i+2],16) for i in (0,2,4))
@@ -761,7 +839,11 @@ def main():
         for side,n in [(-1,'right'),(1,'left')]:
             animations['death']['bones']['wing_'+n]={'rotation':{'0':[0,side*90,0]}}
             animations['death']['bones']['wingtip_'+n]={'rotation':{'0':[0,0,0]}}
-    if args.species in ('forest_dryad','succubus','ender_dragon_girl'):
+    if args.species=='fox_spirit_girl':
+        for i in range(9):
+            name='tail_'+str(i);delta=(i-4)*1.5-model.by_name[name]['rotation'][1]
+            animations['death']['bones'][name]={'rotation':{'0':[0,0,0],'.3':[0,delta*.45,0],'.65':[0,delta,0]}}
+    if args.species in ('forest_dryad','succubus','ender_dragon_girl','fox_spirit_girl'):
         from visual_v3_geometry import support_death
         support_death(model,animations)
     write_creature(model,palette,roles,animations,*size,glow=() if args.species in ('minotaur','centaur') else (13,) if args.species=='vampire' else (11,) if args.species=='slime_maiden' else (4,),translucent=args.species=='slime_maiden')

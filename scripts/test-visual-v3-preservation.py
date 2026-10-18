@@ -32,6 +32,15 @@ class Preservation(unittest.TestCase):
         bodybones=[{**bone,'cubes':[] if bone['name'].startswith(('wing_','wingtip_')) else bone.get('cubes',[])} for bone in bones]
         bodyfloor=minimum_y(bodybones,final(death['root']['rotation']),pose)+final(death['root']['position'])[1]
         self.assertLess(bodyfloor,1.5,'Folded wings must allow the torso/arms to reach the ground')
+    def test_fox_corpse_is_not_suspended_by_spread_tails(self):
+        asset=ROOT/'src/main/resources/assets/mythic_realms_creatures/geckolib'
+        bones=json.loads((asset/'models/entity/fox_spirit_girl.geo.json').read_text())['minecraft:geometry'][0]['bones']
+        death=json.loads((asset/'animations/entity/fox_spirit_girl.animation.json').read_text())['animations']['death']['bones']
+        final=lambda frames:max(frames.items(),key=lambda item:float(item[0]))[1]
+        pose={name:final(channels['rotation']) for name,channels in death.items() if name!='root' and 'rotation' in channels}
+        body=[{**bone,'cubes':[] if bone['name'].startswith(('tail_','tailtip_')) else bone.get('cubes',[])} for bone in bones]
+        floor=minimum_y(body,final(death['root']['rotation']),pose)+final(death['root']['position'])[1]
+        self.assertLess(floor,1.5,'Collapse the tail fan so the torso/arms reach the ground')
     def test_dryad_death_does_not_bury_attached_limbs(self):
         asset=ROOT/'src/main/resources/assets/mythic_realms_creatures/geckolib'
         bones=json.loads((asset/'models/entity/forest_dryad.geo.json').read_text())['minecraft:geometry'][0]['bones']

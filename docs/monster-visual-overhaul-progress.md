@@ -1,6 +1,6 @@
 # Sequential monster visual overhaul V3
 
-Baseline: `50dfab973a053e6c6761f45771e72c898f3963d4`. Completed in order: **harpy, forest_dryad, slime_maiden, minotaur, vampire, valkyrie, succubus, ender_dragon_girl, centaur**. Last completed: **Centaur**. Continue the next requested creature only after committing this stage.
+Baseline: `50dfab973a053e6c6761f45771e72c898f3963d4`. Completed in order: **harpy, forest_dryad, slime_maiden, minotaur, vampire, valkyrie, succubus, ender_dragon_girl, centaur, fox_spirit_girl**. Last completed: **Fox Spirit Girl**. Continue the next requested creature only after committing this stage.
 
 Reference labels below follow the requested order, not physical attachment filenames: inline images have no supplied filenames. Cyclops uses the earlier conversation image (blue armor, one eye, polearm); that image was not repeated in the latest message. Fox reference is Nine Tails; Ashen Wing Girl is Werecat (confirmed wingless), preserving IDs `fox_spirit_girl` and `werecat`.
 
@@ -15,7 +15,7 @@ Reference labels below follow the requested order, not physical attachment filen
 | 7 | succubus | conversation image 7 (no local filename) | Complete | 136 cubes/37 bones | Original blonde/black/red membrane | Cosmetic death folded; 12 clips unchanged | Four passes +flight/impact inspected | Client/build +21 asset tests pass | fbeff26 | Original membrane/back and still-frame limits |
 | 8 | ender_dragon_girl | conversation image 8 (no local filename) | Complete | 131 cubes/35 bones | Original black/gray/pale/violet | Death-only cosmetic adaptation | Two passes +flight/impact inspected | Client/build +21 asset tests pass | 4ff1c9f | Original membrane/back and still-frame limits |
 | 9 | centaur | conversation image 9 (no local filename) | Complete | 131 cubes/30 bones | Original V3 atlas | Eight clips unchanged | 2 passes inspected | Client/build +21 asset tests pass | Visual overhaul: Centaur reference accuracy | Original hidden-back/lighting and still-frame limits |
-| 10 | fox_spirit_girl | conversation image 10 (no local filename) | Not started | pending | pending | pending | pending | pending | — | pending |
+| 10 | fox_spirit_girl | conversation image 10 (no local filename) | Complete | 150 cubes/46 bones | Original V3 atlas | Seven clips unchanged; cosmetic death collection/support | 3 passes inspected | Client/build +22 asset tests pass | Visual overhaul: Fox Spirit Girl reference accuracy | Original hidden-back/lighting and still-frame limits |
 | 11 | anubis | conversation image 11 (no local filename) | Not started | pending | pending | pending | pending | pending | — | pending |
 | 12 | kobold | conversation image 12 (no local filename) | Not started | pending | pending | pending | pending | pending | — | pending |
 | 13 | cyclops | conversation image 13 (no local filename) | Not started | pending | pending | pending | pending | pending | — | pending |
