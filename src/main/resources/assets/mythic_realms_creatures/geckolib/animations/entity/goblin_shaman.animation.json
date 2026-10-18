@@ -144,49 +144,63 @@
         },
         "ear_left": {
           "rotation": [
-            "math.sin(query.anim_time * 570) * 8",
+            "math.sin(query.anim_time * 570 - 30) * 7",
             0,
-            0
+            "math.sin(query.anim_time * 570 - 65) * 2"
           ]
         },
         "ear_right": {
           "rotation": [
-            "math.sin(query.anim_time * 570) * 8",
+            "math.sin(query.anim_time * 570 - 47) * 7",
             0,
-            0
+            "math.sin(query.anim_time * 570 - 65) * 2"
           ]
         },
         "pouch": {
           "rotation": [
-            "math.sin(query.anim_time * 570) * 8",
+            "math.sin(query.anim_time * 570 - 64) * 7",
             0,
-            0
+            "math.sin(query.anim_time * 570 - 65) * 2"
           ]
         },
         "robe_left": {
           "rotation": [
-            "math.sin(query.anim_time * 570) * 8",
+            "math.sin(query.anim_time * 570 - 81) * 7",
             0,
-            0
+            "math.sin(query.anim_time * 570 - 65) * 2"
           ]
         },
         "robe_right": {
           "rotation": [
-            "math.sin(query.anim_time * 570) * 8",
+            "math.sin(query.anim_time * 570 - 98) * 7",
             0,
-            0
+            "math.sin(query.anim_time * 570 - 65) * 2"
           ]
         },
         "talisman": {
           "rotation": [
-            "math.sin(query.anim_time * 570) * 8",
+            "math.sin(query.anim_time * 570 - 115) * 7",
             0,
-            0
+            "math.sin(query.anim_time * 570 - 65) * 2"
           ]
         },
         "rune": {
           "rotation": [
-            "math.sin(query.anim_time * 570) * 8",
+            "math.sin(query.anim_time * 570 - 132) * 7",
+            0,
+            "math.sin(query.anim_time * 570 - 65) * 2"
+          ]
+        },
+        "foot_left": {
+          "rotation": [
+            "math.sin(query.anim_time * 570 - 25) * 7",
+            0,
+            0
+          ]
+        },
+        "foot_right": {
+          "rotation": [
+            "math.sin(query.anim_time * 570 - 25) * -7",
             0,
             0
           ]
@@ -255,49 +269,63 @@
         },
         "ear_left": {
           "rotation": [
-            "math.sin(query.anim_time * 855.0) * 8",
+            "math.sin(query.anim_time * 855.0 - 30) * 7",
             0,
-            0
+            "math.sin(query.anim_time * 855.0 - 65) * 2"
           ]
         },
         "ear_right": {
           "rotation": [
-            "math.sin(query.anim_time * 855.0) * 8",
+            "math.sin(query.anim_time * 855.0 - 47) * 7",
             0,
-            0
+            "math.sin(query.anim_time * 855.0 - 65) * 2"
           ]
         },
         "pouch": {
           "rotation": [
-            "math.sin(query.anim_time * 855.0) * 8",
+            "math.sin(query.anim_time * 855.0 - 64) * 7",
             0,
-            0
+            "math.sin(query.anim_time * 855.0 - 65) * 2"
           ]
         },
         "robe_left": {
           "rotation": [
-            "math.sin(query.anim_time * 855.0) * 8",
+            "math.sin(query.anim_time * 855.0 - 81) * 7",
             0,
-            0
+            "math.sin(query.anim_time * 855.0 - 65) * 2"
           ]
         },
         "robe_right": {
           "rotation": [
-            "math.sin(query.anim_time * 855.0) * 8",
+            "math.sin(query.anim_time * 855.0 - 98) * 7",
             0,
-            0
+            "math.sin(query.anim_time * 855.0 - 65) * 2"
           ]
         },
         "talisman": {
           "rotation": [
-            "math.sin(query.anim_time * 855.0) * 8",
+            "math.sin(query.anim_time * 855.0 - 115) * 7",
             0,
-            0
+            "math.sin(query.anim_time * 855.0 - 65) * 2"
           ]
         },
         "rune": {
           "rotation": [
-            "math.sin(query.anim_time * 855.0) * 8",
+            "math.sin(query.anim_time * 855.0 - 132) * 7",
+            0,
+            "math.sin(query.anim_time * 855.0 - 65) * 2"
+          ]
+        },
+        "foot_left": {
+          "rotation": [
+            "math.sin(query.anim_time * 855.0 - 25) * 7",
+            0,
+            0
+          ]
+        },
+        "foot_right": {
+          "rotation": [
+            "math.sin(query.anim_time * 855.0 - 25) * -7",
             0,
             0
           ]
@@ -516,6 +544,151 @@
               28,
               0,
               0
+            ],
+            "1.2": [
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        "ear_left": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              0
+            ],
+            "0.68": [
+              -4,
+              0,
+              -2
+            ],
+            "0.8": [
+              6,
+              0,
+              3
+            ],
+            "0.93": [
+              -8,
+              0,
+              -3
+            ],
+            "1.2": [
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        "ear_right": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              0
+            ],
+            "0.68": [
+              -4,
+              0,
+              -2
+            ],
+            "0.8": [
+              6,
+              0,
+              3
+            ],
+            "0.93": [
+              -8,
+              0,
+              -3
+            ],
+            "1.2": [
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        "pouch": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              0
+            ],
+            "0.68": [
+              -4,
+              0,
+              -2
+            ],
+            "0.8": [
+              6,
+              0,
+              3
+            ],
+            "0.93": [
+              -8,
+              0,
+              -3
+            ],
+            "1.2": [
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        "robe_left": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              0
+            ],
+            "0.68": [
+              -4,
+              0,
+              -2
+            ],
+            "0.8": [
+              6,
+              0,
+              3
+            ],
+            "0.93": [
+              -8,
+              0,
+              -3
+            ],
+            "1.2": [
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        "robe_right": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              0
+            ],
+            "0.68": [
+              -4,
+              0,
+              -2
+            ],
+            "0.8": [
+              6,
+              0,
+              3
+            ],
+            "0.93": [
+              -8,
+              0,
+              -3
             ],
             "1.2": [
               0,
@@ -745,6 +918,151 @@
               0
             ]
           }
+        },
+        "ear_left": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              0
+            ],
+            "0.68": [
+              -4,
+              0,
+              -2
+            ],
+            "0.8": [
+              6,
+              0,
+              3
+            ],
+            "0.93": [
+              -8,
+              0,
+              -3
+            ],
+            "1.2": [
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        "ear_right": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              0
+            ],
+            "0.68": [
+              -4,
+              0,
+              -2
+            ],
+            "0.8": [
+              6,
+              0,
+              3
+            ],
+            "0.93": [
+              -8,
+              0,
+              -3
+            ],
+            "1.2": [
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        "pouch": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              0
+            ],
+            "0.68": [
+              -4,
+              0,
+              -2
+            ],
+            "0.8": [
+              6,
+              0,
+              3
+            ],
+            "0.93": [
+              -8,
+              0,
+              -3
+            ],
+            "1.2": [
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        "robe_left": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              0
+            ],
+            "0.68": [
+              -4,
+              0,
+              -2
+            ],
+            "0.8": [
+              6,
+              0,
+              3
+            ],
+            "0.93": [
+              -8,
+              0,
+              -3
+            ],
+            "1.2": [
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        "robe_right": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              0
+            ],
+            "0.68": [
+              -4,
+              0,
+              -2
+            ],
+            "0.8": [
+              6,
+              0,
+              3
+            ],
+            "0.93": [
+              -8,
+              0,
+              -3
+            ],
+            "1.2": [
+              0,
+              0,
+              0
+            ]
+          }
         }
       }
     },
@@ -967,6 +1285,151 @@
               0
             ]
           }
+        },
+        "ear_left": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              0
+            ],
+            "0.68": [
+              -4,
+              0,
+              -2
+            ],
+            "0.8": [
+              6,
+              0,
+              3
+            ],
+            "0.93": [
+              -8,
+              0,
+              -3
+            ],
+            "1.2": [
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        "ear_right": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              0
+            ],
+            "0.68": [
+              -4,
+              0,
+              -2
+            ],
+            "0.8": [
+              6,
+              0,
+              3
+            ],
+            "0.93": [
+              -8,
+              0,
+              -3
+            ],
+            "1.2": [
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        "pouch": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              0
+            ],
+            "0.68": [
+              -4,
+              0,
+              -2
+            ],
+            "0.8": [
+              6,
+              0,
+              3
+            ],
+            "0.93": [
+              -8,
+              0,
+              -3
+            ],
+            "1.2": [
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        "robe_left": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              0
+            ],
+            "0.68": [
+              -4,
+              0,
+              -2
+            ],
+            "0.8": [
+              6,
+              0,
+              3
+            ],
+            "0.93": [
+              -8,
+              0,
+              -3
+            ],
+            "1.2": [
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        "robe_right": {
+          "rotation": {
+            "0.0": [
+              0,
+              0,
+              0
+            ],
+            "0.68": [
+              -4,
+              0,
+              -2
+            ],
+            "0.8": [
+              6,
+              0,
+              3
+            ],
+            "0.93": [
+              -8,
+              0,
+              -3
+            ],
+            "1.2": [
+              0,
+              0,
+              0
+            ]
+          }
         }
       }
     },
@@ -1035,17 +1498,17 @@
               0,
               0
             ],
-            "0.139286": [
+            ".14": [
               0,
               0,
               12
             ],
-            "0.510714": [
+            ".51": [
               0,
               0,
               86
             ],
-            "0.65": [
+            ".65": [
               0,
               0,
               90
@@ -1059,12 +1522,12 @@
               0,
               0
             ],
-            "0.185714": [
+            ".18": [
               -20,
               0,
               -22
             ],
-            "0.65": [
+            ".65": [
               15,
               0,
               -35
@@ -1078,7 +1541,7 @@
               0,
               0
             ],
-            "0.65": [
+            ".65": [
               20,
               0,
               0
