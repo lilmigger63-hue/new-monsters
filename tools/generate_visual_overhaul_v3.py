@@ -769,7 +769,58 @@ def fox_spirit_girl():
     X('head',[-3,28.6,-2.7],[1.8,.55,1.2],7)
     return m,palette,roles,(.7,1.85)
 
-BUILDERS={'harpy':harpy,'forest_dryad':dryad,'slime_maiden':slime,'minotaur':minotaur,'vampire':vampire,'valkyrie':valkyrie,'succubus':succubus,'ender_dragon_girl':ender_dragon_girl,'centaur':centaur,'fox_spirit_girl':fox_spirit_girl}
+def anubis():
+    m=old_model('anubis');X=m.box
+    m.by_name['head']['cubes']=[c for c in m.by_name['head']['cubes'] if material_of(c)!=4]
+    for b in m.bones:
+        n=b['name']
+        if n=='head' or n.startswith(('hair_','ear_')):
+            def p(v):return [v[0]*1.47,21.458+(v[1]-21.458)*1.04,v[2]*1.28]
+            b['pivot']=p(b['pivot'])
+            for c in b.get('cubes',[]):
+                c['origin']=p(c['origin']);c['size']=[c['size'][0]*1.47,c['size'][1]*1.04,c['size'][2]*1.28]
+                if 'pivot' in c:c['pivot']=p(c['pivot'])
+        if n in ('body','chest'):
+            for c in b.get('cubes',[]):
+                if material_of(c)==3:repaint_cube(c,0)
+        if n.startswith('forearm_'):
+            for c in b.get('cubes',[]):
+                if material_of(c)==3:repaint_cube(c,2)
+                if material_of(c)==12:repaint_cube(c,4)
+        if n.startswith(('hand_','grip_')):
+            for c in b.get('cubes',[]):
+                if material_of(c) in (0,1):repaint_cube(c,2)
+    for side,n in [(-1,'right'),(1,'left')]:
+        linen='linen_'+n;m.by_name[linen]['cubes']=[]
+        X(linen,[side*1.55-1.65,1.7,-1.9],[3.3,8.4,3.9],3)
+        X(linen,[side*1.55-1.6,1.7,-2],[3.2,.8,4.1],6)
+        X(linen,[side*1.55-1.5,8.9,-2.1],[3,1.2,.55],4)
+        X('arm_'+n,[side*3.6-1.45,18.8,-1.5],[2.9,1.1,3.1],4)
+        X('forearm_'+n,[side*3.6-1.25,12.7,-1.3],[2.5,.8,2.7],4)
+        X('head',[side*3-.35,23.5,-2.15],[.7,3.1,.5],4)
+    X('head',[-3.25,25.6,-2.9],[6.5,.65,.6],4)
+    m.by_name['head']['cubes']=[c for c in m.by_name['head']['cubes'] if not(material_of(c)==7 and c.get('rotation')==[0,0,45])]
+    # Closed grip and hooked blade rotate together forward/down from the palm.
+    m.by_name['grip_right']['rotation']=[115,0,0]
+    for c in m.by_name['khopesh']['cubes']:
+        if material_of(c)==9 or c['origin'][1]>17:repaint_cube(c,14)
+    palette=['dfcbb0','eedcc0','22252b','dedbc7','bea04a','15191f','efeddd','559cbb','24292d','9aa3a1','2b3034','f4ead3','a4853e','80b0b4','41474b','171c20']
+    roles=['skin','skin','cloth','cloth','gold','hair','cloth','eyes','hair','metal','cloth','skin','gold','eyes','metal','cloth']
+    for b in m.bones:
+        if b['name'].startswith('ear_'):
+            def y(v):return 25.55+(v-25.55)*.74
+            b['pivot'][1]=y(b['pivot'][1])
+            for c in b.get('cubes',[]):
+                c['origin'][1]=y(c['origin'][1]);c['size'][1]*=.74
+                if 'pivot' in c:c['pivot'][1]=y(c['pivot'][1])
+        if b['name'].startswith('foot_'):
+            for c in b.get('cubes',[]):repaint_cube(c,2)
+        if b['name']=='chest':
+            for c in b.get('cubes',[]):
+                if material_of(c)==7:repaint_cube(c,4)
+    return m,palette,roles,(.7,1.95)
+
+BUILDERS={'harpy':harpy,'forest_dryad':dryad,'slime_maiden':slime,'minotaur':minotaur,'vampire':vampire,'valkyrie':valkyrie,'succubus':succubus,'ender_dragon_girl':ender_dragon_girl,'centaur':centaur,'fox_spirit_girl':fox_spirit_girl,'anubis':anubis}
 
 BASE_ATLAS=pipeline.material_atlas
 
@@ -790,6 +841,11 @@ def reference_atlas(palette,roles,translucent=False,species=None):
             draw.rectangle((x,y,x+31,y+31),fill=gel(0))
             for box,delta in [((0,0,31,2),12),((4,4,10,8),21),((11,5,15,10),13),((3,15,9,23),-9),((14,18,25,25),7),((22,27,31,31),-13)]:
                 draw.rectangle(tuple(v+(x if i%2==0 else y) for i,v in enumerate(box)),fill=gel(delta))
+    if species=='anubis':
+        k=3;x=k%4*32;y=k//4*32;rgb=tuple(int(palette[k][i:i+2],16) for i in (0,2,4))
+        draw.rectangle((x,y,x+31,y+31),fill=rgb+(255,))
+        for box,delta in [((0,0,31,4),9),((3,7,12,14),-11),((15,4,23,11),5),((20,17,30,26),-9),((5,23,17,29),-14)]:
+            draw.rectangle(tuple(v+(x if i%2==0 else y) for i,v in enumerate(box)),fill=tuple(max(0,min(255,c+delta)) for c in rgb)+(255,))
     if species=='fox_spirit_girl':
         for k in (9,12):
             x=k%4*32;y=k//4*32;rgb=tuple(int(palette[k][i:i+2],16) for i in (0,2,4))
@@ -846,6 +902,6 @@ def main():
     if args.species in ('forest_dryad','succubus','ender_dragon_girl','fox_spirit_girl'):
         from visual_v3_geometry import support_death
         support_death(model,animations)
-    write_creature(model,palette,roles,animations,*size,glow=() if args.species in ('minotaur','centaur') else (13,) if args.species=='vampire' else (11,) if args.species=='slime_maiden' else (4,),translucent=args.species=='slime_maiden')
+    write_creature(model,palette,roles,animations,*size,glow=() if args.species in ('minotaur','centaur') else (7,) if args.species=='anubis' else (13,) if args.species=='vampire' else (11,) if args.species=='slime_maiden' else (4,),translucent=args.species=='slime_maiden')
 
 if __name__=='__main__':main()

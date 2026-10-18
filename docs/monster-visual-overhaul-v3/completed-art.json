@@ -88,13 +88,23 @@
     }
   },
   "fox_spirit_girl": {
-    "commit": "Visual overhaul: Fox Spirit Girl reference accuracy",
+    "commit": "c8c1441",
     "files": {
       "src/main/resources/assets/mythic_realms_creatures/geckolib/models/entity/fox_spirit_girl.geo.json": "237258903907162a1987422f3bf125c5a5828c0a522e8de276522061329fc292",
       "src/main/resources/assets/mythic_realms_creatures/geckolib/animations/entity/fox_spirit_girl.animation.json": "470bf7e8105defa07be62b47399812feb69c0b35863030dc53922ac66c3f5814",
       "src/main/resources/assets/mythic_realms_creatures/textures/entity/fox_spirit_girl.png": "4cabdf20b2c7fe41abadd405dc1643d9e2dbbff547b946233c2ef7f92212e1ba",
       "tools/blockbench/fox_spirit_girl.bbmodel": "a1898305374a348bb36a4adf9a213bbdcc0057a14faa61a4cb964ffd11d81e48",
       "src/main/resources/assets/mythic_realms_creatures/textures/entity/fox_spirit_girl_glowmask.png": "5242ddfc8ffaca006840e9895fd76bdb72ff318402fc6008e2d6b9a09e5c0ae5"
+    }
+  },
+  "anubis": {
+    "commit": "Visual overhaul: Anubis reference accuracy",
+    "files": {
+      "src/main/resources/assets/mythic_realms_creatures/geckolib/models/entity/anubis.geo.json": "4588020998267b0e4e3803eb9b7971c8357cdf705b07dd6095e63254d9b95060",
+      "src/main/resources/assets/mythic_realms_creatures/geckolib/animations/entity/anubis.animation.json": "fde568a6d1d5099f7f0d8ee61294aa01f3c64813200761f378599fa7522a0425",
+      "src/main/resources/assets/mythic_realms_creatures/textures/entity/anubis.png": "fa7e757906422d3c87182b6bfbf9b0ea135fa73b8e3792fea7cba1dc0e79e322",
+      "tools/blockbench/anubis.bbmodel": "3c79e0ca2b0ad87f45afe6ade8454fdf9e272de2c1e6d5a1d9eb692c0cb2e315",
+      "src/main/resources/assets/mythic_realms_creatures/textures/entity/anubis_glowmask.png": "11939f206341227f70b6c7717e2c3e73cf48cde437d09f402887d0b37a3bdbab"
     }
   }
 }
