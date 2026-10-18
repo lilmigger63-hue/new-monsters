@@ -38,6 +38,18 @@ class ExporterTests(unittest.TestCase):
         with self.assertRaises(ValueError):m.box('body',[0,0,0],[1,0,1])
 
 class EditableAssetsTests(unittest.TestCase):
+    def test_scout_dagger_and_curled_grip_share_rigid_attachment(self):
+        root=REPO/'src/main/resources/assets/mythic_realms_creatures/geckolib'
+        geometry=json.loads((root/'models/entity/goblin_scout.geo.json').read_text())['minecraft:geometry'][0]
+        bones={b['name']:b for b in geometry['bones']}
+        self.assertEqual(bones['grip_right']['parent'],'hand_right')
+        self.assertEqual(bones['dagger']['parent'],'grip_right')
+        self.assertEqual(len(bones['grip_right']['cubes']),7) # three bent fingers and thumb
+        clips=json.loads((root/'animations/entity/goblin_scout.animation.json').read_text())['animations']
+        for name,animation in clips.items():
+            for rigid in ('grip_right','dagger'):
+                self.assertNotIn(rigid,animation['bones'],f'{name} must move the wrist, not detach the grip')
+
     def test_crystal_spider_transformed_soles_and_alternating_stance(self):
         root=REPO/'src/main/resources/assets/mythic_realms_creatures/geckolib'
         geometry=json.loads((root/'models/entity/crystal_spider.geo.json').read_text())['minecraft:geometry'][0]

@@ -1,0 +1,43 @@
+[14:55:05] [Render thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_ANIMATIONS goblin_scout [idle, walk, run, attack, heavy, cast, hurt, death, sneak, dodge, guard]
+[14:55:05] [Render thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_ANIMATIONS goblin_shaman [idle, walk, run, attack, heavy, cast, hurt, death, ritual, guard]
+[14:55:05] [Render thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_ANIMATIONS orc_warrior [idle, walk, run, attack, heavy, cast, hurt, death, guard]
+[14:55:05] [Render thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_ANIMATIONS minotaur [idle, walk, run, attack, heavy, cast, hurt, death, charge, guard]
+[14:55:05] [Render thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_ANIMATIONS stone_troll [idle, walk, run, attack, heavy, cast, hurt, death, throw, guard]
+[14:55:05] [Render thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_ANIMATIONS ancient_treant [idle, walk, run, attack, heavy, cast, hurt, death]
+[14:55:05] [Render thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_ANIMATIONS forest_dryad [idle, walk, run, attack, heavy, cast, hurt, death]
+[14:55:05] [Render thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_ANIMATIONS griffin [idle, walk, run, attack, heavy, cast, hurt, death, sit, rest, ride, tame, fly, hover, takeoff, landing]
+[14:55:05] [Render thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_ANIMATIONS dire_wolf [idle, walk, run, attack, heavy, cast, hurt, death, sit, rest, ride, tame, jump]
+[14:55:05] [Render thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_ANIMATIONS wild_wyvern [idle, walk, run, attack, heavy, cast, hurt, death, sit, rest, ride, tame, fly, hover, takeoff, landing]
+[14:55:05] [Render thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_ANIMATIONS cave_basilisk [idle, walk, run, attack, heavy, cast, hurt, death]
+[14:55:05] [Render thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_ANIMATIONS crystal_spider [idle, walk, run, attack, heavy, cast, hurt, death]
+[14:55:05] [Render thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_ANIMATIONS shadow_wraith [idle, walk, run, attack, heavy, cast, hurt, death, fly, hover]
+[14:55:05] [Render thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_ANIMATIONS grave_knight [idle, walk, run, attack, heavy, cast, hurt, death, attack_two, guard]
+[14:55:05] [Render thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_ANIMATIONS flame_imp [idle, walk, run, attack, heavy, cast, hurt, death, hover, fly]
+[14:55:05] [Render thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_ANIMATIONS frost_elemental [idle, walk, run, attack, heavy, cast, hurt, death]
+[14:55:05] [Render thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_ANIMATIONS moon_stag [idle, walk, run, attack, heavy, cast, hurt, death, sit, tame, ride, jump]
+[14:55:05] [Render thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_ANIMATIONS slime_maiden [idle, walk, run, attack, heavy, cast, hurt, death]
+[14:55:05] [Render thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_ANIMATIONS harpy [idle, walk, run, attack, heavy, cast, hurt, death, fly, hover, swoop]
+[14:55:05] [Render thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_ANIMATIONS demon_sorceress [idle, walk, run, attack, heavy, cast, hurt, death, levitate, teleport]
+[14:55:28] [Test thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_ENTITY_PASS goblin_scout geometry, animation bake, texture, renderer, entity sync, four views, server attack, six animation probes
+[14:55:35] [Test thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_ENTITY_PASS goblin_shaman geometry, animation bake, texture, renderer, entity sync, four views, server attack, six animation probes
+[14:55:42] [Test thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_ENTITY_PASS orc_warrior geometry, animation bake, texture, renderer, entity sync, four views, server attack, six animation probes
+[14:55:48] [Test thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_ENTITY_PASS minotaur geometry, animation bake, texture, renderer, entity sync, four views, server attack, six animation probes
+[14:55:55] [Test thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_ENTITY_PASS stone_troll geometry, animation bake, texture, renderer, entity sync, four views, server attack, six animation probes
+[14:56:02] [Test thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_ENTITY_PASS ancient_treant geometry, animation bake, texture, renderer, entity sync, four views, server attack, six animation probes
+[14:56:09] [Test thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_ENTITY_PASS forest_dryad geometry, animation bake, texture, renderer, entity sync, four views, server attack, six animation probes
+[14:56:16] [Test thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_ENTITY_PASS griffin geometry, animation bake, texture, renderer, entity sync, four views, server attack, six animation probes
+[14:56:22] [Test thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_ENTITY_PASS dire_wolf geometry, animation bake, texture, renderer, entity sync, four views, server attack, six animation probes
+[14:56:29] [Test thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_ENTITY_PASS wild_wyvern geometry, animation bake, texture, renderer, entity sync, four views, server attack, six animation probes
+[14:56:35] [Test thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_ENTITY_PASS cave_basilisk geometry, animation bake, texture, renderer, entity sync, four views, server attack, six animation probes
+[14:56:42] [Test thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_ENTITY_PASS crystal_spider geometry, animation bake, texture, renderer, entity sync, four views, server attack, six animation probes
+[14:56:48] [Test thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_ENTITY_PASS shadow_wraith geometry, animation bake, texture, renderer, entity sync, four views, server attack, six animation probes
+[14:56:54] [Test thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_ENTITY_PASS grave_knight geometry, animation bake, texture, renderer, entity sync, four views, server attack, six animation probes
+[14:57:00] [Test thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_ENTITY_PASS flame_imp geometry, animation bake, texture, renderer, entity sync, four views, server attack, six animation probes
+[14:57:07] [Test thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_ENTITY_PASS frost_elemental geometry, animation bake, texture, renderer, entity sync, four views, server attack, six animation probes
+[14:57:13] [Test thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_ENTITY_PASS moon_stag geometry, animation bake, texture, renderer, entity sync, four views, server attack, six animation probes
+[14:57:19] [Test thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_ENTITY_PASS slime_maiden geometry, animation bake, texture, renderer, entity sync, four views, server attack, six animation probes
+[14:57:25] [Test thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_ENTITY_PASS harpy geometry, animation bake, texture, renderer, entity sync, four views, server attack, six animation probes
+[14:57:31] [Test thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_ENTITY_PASS demon_sorceress geometry, animation bake, texture, renderer, entity sync, four views, server attack, six animation probes
+[14:57:35] [Test thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_MOUNT_PASS real integrated player keyboard packets moved authoritative griffin (16.5, -60.0, 16.5) -> (16.5, -50.89999999999996, 1.7999999999999916)
+[14:57:35] [Test thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_PASS 20 creature types in a real singleplayer world
+BUILD SUCCESSFUL in 3m 29s

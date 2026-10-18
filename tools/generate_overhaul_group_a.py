@@ -212,7 +212,37 @@ def polish(a,name):
         X('head',(-3.65,hy+4.85,-6.5),(7.3,.45,.45),9)
         X('jaw',(-2.75,hy-1.35,-6.2),(5.5,.45,.45),1)
         for x,y in [(-5,sh-3),(-1,sh-5)]:X('chest',(x+.2,y+.5,-4.38),(.7,.8,.25),15)
+    if name=='goblin_scout': scout_grip(a)
     return a
+
+
+def scout_grip(a):
+    """One rigid palm socket: hilt and curled fingers share every arm transform."""
+    B=a.bone; X=a.box; scale=a.s
+    B('grip_right','hand_right',(-4,.8,-1.65))
+    a.m.by_name['dagger']['parent']='grip_right'
+    # Replace the old straight fingers with a deliberately enclosed grip.
+    hand=a.m.by_name['hand_right']
+    palm=hand['cubes'][0]
+    hand['cubes']=[palm]
+    for i in range(3):
+        y=.05+i*.58
+        X('grip_right',(-5.1,y,-2.8),(1.7,.45,.65),0)
+        X('grip_right',(-3.65,y,-2.7),(.55,.45,1.5),8)
+    X('grip_right',(-5.2,1.35,-2.7),(.7,.7,1.55),8)
+    # Short handle lies wholly in the enclosed palm, below the blade guard.
+    dagger=a.m.by_name['dagger']
+    dagger['cubes']=dagger['cubes'][:2]
+    X('dagger',(-4.44,-.4,-2.04),(.88,1.65,.82),1)
+    X('dagger',(-4.65,-.65,-2.2),(1.3,.45,1.1),2)
+    # Stepped cranial cap and inset temples soften the original rectangular head.
+    head=a.m.by_name['head']
+    skull=head['cubes'][0]
+    skull['size']=[5.4*scale,4.4*scale,4.6*scale]
+    skull['origin']=[-2.7*scale,14*scale,-4.8*scale]
+    X('head',(-2.3,18.25,-4.4),(4.6,.7,3.8),0)
+    for sign in (-1,1):
+        X('head',(sign*2.35-.4,14.8,-4.6),(.8,2.6,3.8),8,rot=(0,0,sign*9))
 
 
 def hip_for(name):
