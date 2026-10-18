@@ -24,6 +24,6 @@ Reference labels below follow the requested order, not physical attachment filen
 | 16 | holstaurus | conversation image 16 (no local filename) | Complete | 116 cubes/21 bones | Original V3 atlas | Nine clips unchanged | 3 passes inspected | Client/build +22 asset tests pass | 8aeb01f | Original hidden-back/lighting and still-frame limits |
 | 17 | werecat | conversation image 17 (no local filename) | Complete | 127 cubes/24 bones | Original V3 atlas | Eight clips unchanged; no wings | 2 passes inspected | Client/build +22 asset tests pass | 9137bb1 | Original hidden-back/lighting and still-frame limits |
 
-Next step: commit this validated stage, then inspect the next creature in the requested order. No later creature has been edited.
+All 17 validated stages are committed. The shared renderer optimization is committed; full server/asset suites pass. Final graphical validation and release artifacts are documented in [the final report](monster-visual-overhaul-v3/README.md).
 
 Cloud resume: run Gradle/client commands with `--offline --init-script /workspace/toolchains/retained-minecraft-metadata.gradle`; `/workspace/toolchains/prepare-retained-minecraft.py` verifies the retained original metadata and artifacts. Run only one Gradle process at a time.

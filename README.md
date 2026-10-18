@@ -41,7 +41,7 @@ Integration uses Better Combat 3.0.0's supported `data/<namespace>/weapon_attrib
 
 ## Creature reference
 
-Values are base attributes at difficulty multipliers of 1. Health and damage use Minecraft points; two health points equal one heart. Speed is the movement attribute, and armor is armor points. Individual attacks can apply additional effects or damage multipliers. The original-species habitat column records their historical habitats. In 1.2.0, only Forest Dryad and Slime Maiden from this table spawn naturally; the other 18 require eggs, commands or existing saved entities. New species habitats are listed in the expansion documentation.
+Values are base attributes at difficulty multipliers of 1. Health and damage use Minecraft points; two health points equal one heart. Speed is the movement attribute, and armor is armor points. Individual attacks can apply additional effects or damage multipliers. The original-species habitat column records their historical habitats. Since 1.2.0, only Forest Dryad and Slime Maiden from this table spawn naturally; the other 18 require eggs, commands or existing saved entities. New species habitats are listed in the expansion documentation.
 
 | Creature / registry ID | Health | Damage | Speed | Armor | Behavior | Habitat | Drops |
 | --- | ---: | ---: | ---: | ---: | --- | --- | --- |

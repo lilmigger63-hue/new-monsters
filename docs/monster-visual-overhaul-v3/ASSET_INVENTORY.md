@@ -17,3 +17,14 @@ The following requested foundations were attempted during the preceding expansio
 - https://kenney.nl/assets/particle-pack
 
 See the [preceding asset audit](../monster-girl-expansion/ASSET_INVENTORY.md) for download attempts and existing dependency licensing. Fabric API and GeckoLib are separate runtime dependencies; optional Better Combat is not bundled. No FBX animation is assumed to work directly in GeckoLib.
+
+## Runtime dependencies in the optional installation bundle
+
+The existing dependency JARs were inspected through `fabric.mod.json` and their embedded license files; the packaging script verifies their SHA512 against the recorded dependency manifest before copying them unchanged.
+
+| Dependency | Source declared in JAR | License | Embedded license |
+| --- | --- | --- | --- |
+| Fabric API0.138.4+1.21.10 | https://github.com/FabricMC/fabric | Apache-2.0 | `LICENSE-fabric-api` |
+| GeckoLib5.3-alpha-3 Fabric1.21.10 | https://github.com/bernie-g/geckolib | MIT | `LICENSE_GeckoLib 5` |
+
+These libraries provide runtime APIs and animation/rendering support; their character artwork is not used. Their original JAR contents and notices remain intact. Minecraft and Fabric Loader are not bundled.

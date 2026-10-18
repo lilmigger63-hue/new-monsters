@@ -1,0 +1,86 @@
+{
+  "base": {
+    "passed": 51,
+    "failed": 0,
+    "skipped": 0,
+    "result": "test-results/base.xml",
+    "sha256": "6acb49f476fbb501d66643de493334a0fb7ec75774ec97efdb598e60f13bf4f1"
+  },
+  "better-combat": {
+    "passed": 51,
+    "failed": 0,
+    "skipped": 0,
+    "result": "test-results/better-combat.xml",
+    "sha256": "9ec57637abaa578081b8e1551b7bd77c2a633d8cf73a3efa37a50aaeafe448ec"
+  },
+  "client": {
+    "passed": true,
+    "minecraft": "1.21.10",
+    "mod_version": "1.3.0-rc.1",
+    "better_combat": true,
+    "species_presented": [
+      "goblin_scout",
+      "goblin_shaman",
+      "orc_warrior",
+      "minotaur",
+      "stone_troll",
+      "ancient_treant",
+      "forest_dryad",
+      "griffin",
+      "dire_wolf",
+      "wild_wyvern",
+      "cave_basilisk",
+      "crystal_spider",
+      "shadow_wraith",
+      "grave_knight",
+      "flame_imp",
+      "frost_elemental",
+      "moon_stag",
+      "slime_maiden",
+      "harpy",
+      "demon_sorceress",
+      "ender_dragon_girl",
+      "vampire",
+      "holstaurus",
+      "centaur",
+      "sahuagin",
+      "valkyrie",
+      "fox_spirit_girl",
+      "anubis",
+      "kobold",
+      "cyclops",
+      "dhampir",
+      "succubus",
+      "werecat"
+    ],
+    "resource_sets_baked": 33,
+    "renderer": "llvmpipe/Xvfb",
+    "evidence_directory": "/workspace/validation/monster-visual-overhaul-v3/final-all33-better-combat",
+    "log_sha256": "3a025f45b81d081d085b3eac56abffc8567b01d5a5ffd2762348e32e30a8c7f7",
+    "screenshots": 502
+  },
+  "python": {
+    "passed": 27,
+    "failed": 0,
+    "suites": {
+      "test-assets": 2,
+      "test-overhaul-assets": 5,
+      "test-v2-assets": 5,
+      "test-expansion-assets": 4,
+      "test-visual-v3-preservation": 6,
+      "test-render-budget": 3,
+      "test-visual-v3-source": 2
+    }
+  },
+  "attack_timeline": {
+    "passed": 14,
+    "failed": 0
+  },
+  "limitations": [
+    "Software-rendered client; no physical GPU FPS benchmark",
+    "No audio device; sound playback not validated",
+    "Offline authentication-key requests fail; online authentication not validated",
+    "Still images sample real animation playback; not every interpolated frame certified",
+    "Requested external packs not incorporated because downloads/licenses could not be inspected"
+  ]
+}
