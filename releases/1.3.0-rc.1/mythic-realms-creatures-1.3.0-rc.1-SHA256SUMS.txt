@@ -1,0 +1,4 @@
+af0d196f9b53cff07dde8d3728eb7ce3e7814b242f19dcc6447e250eae926c85  mythic-realms-creatures-1.3.0-rc.1.jar
+96b94dbd06cf4162d1afdaadc4a2d835aabf8ad0a7cbab8d928be69b6f1ae025  mythic-realms-creatures-1.3.0-rc.1-sources.jar
+a667ae4fcce70a2cf57d219ed47971df61264d3ced7cda370da26af53fe67cf2  mythic-realms-creatures-1.3.0-rc.1-source.zip
+ef5b5e0c8f13f215364d60efb9f5e5d835b917e718999b246404b915ec577a01  mythic-realms-creatures-1.3.0-rc.1-with-dependencies.zip
