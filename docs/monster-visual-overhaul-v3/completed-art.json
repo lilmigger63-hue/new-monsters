@@ -59,13 +59,23 @@
     }
   },
   "succubus": {
-    "commit": "Visual overhaul: Succubus reference accuracy",
+    "commit": "fbeff26",
     "files": {
       "src/main/resources/assets/mythic_realms_creatures/geckolib/models/entity/succubus.geo.json": "e489e2eb11ad97c19de99ffd8e808fa0b03b0b5c7fa8ae1c955b6d41191c1df2",
       "src/main/resources/assets/mythic_realms_creatures/geckolib/animations/entity/succubus.animation.json": "4f83a0b41ce860df0ba7d29a0441e7b7afd39986527a38831183140d125d12dd",
       "src/main/resources/assets/mythic_realms_creatures/textures/entity/succubus.png": "e9f87c3f72d1d4e493ba15a201f3fe8b34b3ccdba953190bbc33e19b6f7b1c8e",
       "src/main/resources/assets/mythic_realms_creatures/textures/entity/succubus_glowmask.png": "550370841395b3d765a37a8ad027c8e289fbecb9007eb97671ec351c964016c8",
       "tools/blockbench/succubus.bbmodel": "d1c956aedaa43f86955854fdad23b31257151836a4ec1d8f46c66b6f27759445"
+    }
+  },
+  "ender_dragon_girl": {
+    "commit": "Visual overhaul: Ender Dragon Girl reference accuracy",
+    "files": {
+      "src/main/resources/assets/mythic_realms_creatures/geckolib/models/entity/ender_dragon_girl.geo.json": "475d39af434c418d5147d2d1425af7692e59aa99ecafcf67158a3839236bbd14",
+      "src/main/resources/assets/mythic_realms_creatures/geckolib/animations/entity/ender_dragon_girl.animation.json": "2a2cfc0fe1f89148bbba606f13c52b5086045785f0662bc7eb58f6cad72432f5",
+      "src/main/resources/assets/mythic_realms_creatures/textures/entity/ender_dragon_girl.png": "26439dc2ee498bba683eff3920f39798c443000b7081f69558f884b179d17a49",
+      "src/main/resources/assets/mythic_realms_creatures/textures/entity/ender_dragon_girl_glowmask.png": "085791fdf9c977e5c70f8728ebaa60d9d5f4b166de8b09ff6e82379586b40f6d",
+      "tools/blockbench/ender_dragon_girl.bbmodel": "d1b5826da1b6bd903c151333d597d5e39c4f18cd1ded05c08e4f9df963a3d33a"
     }
   }
 }

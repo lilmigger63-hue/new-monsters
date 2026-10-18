@@ -588,7 +588,65 @@ def succubus():
         X(wing,[side*8.9-.35,15.2,2],[.7,1.9,.75],1,[0,0,-side*18])
     return m,palette,roles,(.7,1.9)
 
-BUILDERS={'harpy':harpy,'forest_dryad':dryad,'slime_maiden':slime,'minotaur':minotaur,'vampire':vampire,'valkyrie':valkyrie,'succubus':succubus}
+def ender_dragon_girl():
+    m=old_model('ender_dragon_girl');X=m.box
+    for b in m.bones:
+        if b['name']=='head' or b['name'].startswith(('hair_','horn_')):
+            def p(v):return [v[0]*1.26,26.035+(v[1]-26.035)*1.05,v[2]*1.2]
+            b['pivot']=p(b['pivot'])
+            for c in b.get('cubes',[]):
+                c['origin']=p(c['origin']);c['size']=[c['size'][0]*1.26,c['size'][1]*1.05,c['size'][2]*1.2]
+                if 'pivot' in c:c['pivot']=p(c['pivot'])
+        if b['name'].startswith(('wing_','wingtip_')):
+            center=[-2.3575 if b['name'].endswith('right') else 2.3575,22.55,1.5375]
+            def p(v):return [center[i]+(v[i]-center[i])*.73 for i in range(3)]
+            b['pivot']=p(b['pivot'])
+            for c in b.get('cubes',[]):
+                c['origin']=p(c['origin']);c['size']=[v*.73 for v in c['size']]
+                if 'pivot' in c:c['pivot']=p(c['pivot'])
+    m.by_name['body']['cubes']=[]
+    X('body',[-2.8,12.2,-1.9],[5.6,3.4,3.8],2)
+    X('body',[-2,15.6,-1.6],[4,4.5,3.2],8)
+    X('body',[-2.7,15,-2],[5.4,.9,4],10)
+    X('body',[-2.3,18.9,-1.8],[4.6,.8,3.6],2)
+    # Pale chest opening is framed by the existing dark dragon bodice.
+    X('chest',[-1.85,21,-3.05],[3.7,2.8,.6],8)
+    for side,n in [(-1,'right'),(1,'left')]:
+        m.by_name['horn_'+n]['cubes']=[]
+        for j,(y,z,w,h) in enumerate([(31,.1,1.9,2.8),(33.1,1.2,1.6,2.5),(34.8,2.3,1.1,1.4)]):
+            X('horn_'+n,[side*(2.4+j*.1)-w/2,y,z],[w,h,1.9-j*.25],6,[-22,0,-side*5])
+        # Scale-covered arm/hand volumes and black connected finger claws.
+        x=side*3.85
+        X('forearm_'+n,[x-1.15,14.1,-1.25],[2.3,4.6,2.6],1)
+        m.by_name['hand_'+n]['cubes']=[]
+        X('hand_'+n,[x-1.1,12.9,-1.3],[2.2,2.1,2.6],10)
+        for j in range(3):
+            X('hand_'+n,[x-.9+j*.65,12.1,-1.4],[.55,1.3,1.5],1)
+            X('hand_'+n,[x-.85+j*.65,11.7,-1.7],[.4,.9,.65],5,[-20,0,0])
+        x=side*1.4
+        X('shin_'+n,[x-1.2,1.5,-1.15],[2.4,5.8,2.6],2)
+        X('foot_'+n,[x-1.45,.15,-2.6],[2.9,1.8,4.1],10)
+        for j in range(3):X('foot_'+n,[x-1.1+j*.8,.15,-3.25],[.65,.8,1.5],5)
+        # Dark ribs enclose broad overlapping black membrane surfaces.
+        wing='wingtip_'+n;m.by_name[wing]['cubes']=[]
+        for j,(x,top,h) in enumerate([(5,23.6,5.3),(7,22.8,6),(9,21.2,5.2)]):
+            X(wing,[side*x-1.25,top-h,2.2],[2.5,h,.5],7)
+            X(wing,[side*x-.8,top-h-.8,2.21],[1.6,1.2,.45],7)
+            X(wing,[side*x-.22,top-h,1.9],[.44,h+.3,.9],1)
+        X('chest',[side*2.1-.4,21.8,-3.1],[.8,2.1,.65],2,[0,0,-side*20])
+    palette=['dec9b8','27262b','1c1e23','36383c','ac70d2','111217','929795','222329','e8d8c6','191b21','24262c','9c5bbc','34363c','272930','5a5e63','f3e8df']
+    roles=['skin','scale','cloth','metal','eyes','scale','horn','membrane','skin','hair','leather','eyes','scale','cloth','metal','skin']
+    m.by_name['chest']['cubes']=[c for c in m.by_name['chest']['cubes'] if int(c['uv']['north']['uv'][0]//32+4*(c['uv']['north']['uv'][1]//32))!=11]
+    for b in m.bones:
+        if b['name'].startswith('hair_'):
+            for c in b.get('cubes',[]):
+                low=c['origin'][1];top=low+c['size'][1];c['origin'][1]=max(low,21.7);c['size'][1]=max(.35,top-c['origin'][1])
+    for side in (-1,1):
+        X('chest',[side*1.1-.35,21.2,-3.75],[.7,2.3,.4],2,[0,0,-side*24])
+        X('head',[side*2.8-.55,26.6,-2.5],[1.1,3.5,.85],9,[0,0,-side*8])
+    return m,palette,roles,(.8,2.05)
+
+BUILDERS={'harpy':harpy,'forest_dryad':dryad,'slime_maiden':slime,'minotaur':minotaur,'vampire':vampire,'valkyrie':valkyrie,'succubus':succubus,'ender_dragon_girl':ender_dragon_girl}
 
 BASE_ATLAS=pipeline.material_atlas
 
@@ -609,6 +667,12 @@ def reference_atlas(palette,roles,translucent=False,species=None):
             draw.rectangle((x,y,x+31,y+31),fill=gel(0))
             for box,delta in [((0,0,31,2),12),((4,4,10,8),21),((11,5,15,10),13),((3,15,9,23),-9),((14,18,25,25),7),((22,27,31,31),-13)]:
                 draw.rectangle(tuple(v+(x if i%2==0 else y) for i,v in enumerate(box)),fill=gel(delta))
+    if species=='ender_dragon_girl':
+        for k in (7,9):
+            x=k%4*32;y=k//4*32;rgb=tuple(int(palette[k][i:i+2],16) for i in (0,2,4))
+            draw.rectangle((x,y,x+31,y+31),fill=rgb+(255,))
+            for box,delta in [((0,0,31,3),4),((3,6,13,15),-3),((16,5,28,18),3),((6,22,21,29),-4)]:
+                draw.rectangle(tuple(v+(x if i%2==0 else y) for i,v in enumerate(box)),fill=tuple(max(0,min(255,c+delta)) for c in rgb)+(255,))
     if species=='vampire':
         for k in (5,8):
             x=k%4*32;y=k//4*32;rgb=tuple(int(palette[k][i:i+2],16) for i in (0,2,4))
@@ -636,11 +700,11 @@ def main():
     pipeline.material_atlas=lambda p,r,t=False:reference_atlas(p,r,t,args.species)
     animations=baseline(ASSET/'geckolib/animations/entity'/f'{args.species}.animation.json')['animations']
     if args.species=='slime_maiden':animations=slime_motion(model,animations)
-    if args.species=='succubus':
+    if args.species in ('succubus','ender_dragon_girl'):
         for side,n in [(-1,'right'),(1,'left')]:
             animations['death']['bones']['wing_'+n]={'rotation':{'0':[0,side*90,0]}}
             animations['death']['bones']['wingtip_'+n]={'rotation':{'0':[0,0,0]}}
-    if args.species in ('forest_dryad','succubus'):
+    if args.species in ('forest_dryad','succubus','ender_dragon_girl'):
         from visual_v3_geometry import support_death
         support_death(model,animations)
     write_creature(model,palette,roles,animations,*size,glow=() if args.species=='minotaur' else (13,) if args.species=='vampire' else (11,) if args.species=='slime_maiden' else (4,),translucent=args.species=='slime_maiden')
