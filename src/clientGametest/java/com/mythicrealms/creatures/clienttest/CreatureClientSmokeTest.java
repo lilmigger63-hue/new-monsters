@@ -99,6 +99,15 @@ public final class CreatureClientSmokeTest implements FabricClientGameTest {
                         && kind!=CreatureKind.WILD_WYVERN && kind!=CreatureKind.HARPY
                         && kind!=CreatureKind.GRIFFIN && kind!=CreatureKind.MOON_STAG)continue;
                 presented++;
+                if(Boolean.getBoolean("mythic.clientSmoke.groundedReference"))context.runOnClient(client -> {
+                    for(Entity entity:client.level.entitiesForRendering()) {
+                        if(!BuiltInRegistries.ENTITY_TYPE.getKey(entity.getType()).equals(ModEntities.id(kind.id)))continue;
+                        GeoEntity geo=(GeoEntity)entity;
+                        var controller=geo.getAnimatableInstanceCache().getManagerForId(entity.getId()).getAnimationControllers().get("locomotion");
+                        controller.triggerableAnim("reference_idle",RawAnimation.begin().thenLoop("idle"));
+                        controller.tryTriggerAnimation("reference_idle");
+                    }
+                });
                 double distance = Math.max(kind==CreatureKind.WILD_WYVERN || kind==CreatureKind.CENTAUR
                         || kind==CreatureKind.MOON_STAG && Boolean.getBoolean("mythic.clientSmoke.referenceOnly")
                         ? 6 : 4, kind.height * 1.8);
@@ -131,17 +140,22 @@ public final class CreatureClientSmokeTest implements FabricClientGameTest {
                 }
                 if(Boolean.getBoolean("mythic.clientSmoke.performanceOnly"))continue;
                 for (String view : kind==CreatureKind.FOX_SPIRIT_GIRL
-                        ? new String[]{"side", "back", "rear-quarter", "distant"}
-                        : new String[]{"side", "back", "distant"}) {
+                        ? new String[]{"side", "three-quarter", "back", "rear-quarter", "distant"}
+                        : new String[]{"side", "three-quarter", "back", "distant"}) {
                     double d = view.equals("distant") ? Math.max(12, kind.height * 4) : distance;
-                    double cameraX = x + (view.equals("side") ? d : view.equals("rear-quarter") ? d*.707 : 0);
-                    double cameraZ = z + (view.equals("side") ? 0 : view.equals("back") ? -d : view.equals("rear-quarter") ? -d*.707 : d);
-                    int yaw = view.equals("side") ? 90 : view.equals("back") ? 0 : view.equals("rear-quarter") ? 45 : 180;
-                    server.runCommand("tp @a " + cameraX + " " + cameraFeetY + " " + cameraZ + " " + yaw + " 0");
+                    double cameraX = x + (view.equals("side") ? d : (view.equals("rear-quarter") || view.equals("three-quarter")) ? d*.707 : 0);
+                    double cameraZ = z + (view.equals("side") ? 0 : view.equals("back") ? -d : view.equals("rear-quarter") ? -d*.707 : view.equals("three-quarter") ? d*.707 : d);
+                    int yaw = view.equals("side") ? 90 : view.equals("back") ? 0 : view.equals("rear-quarter") ? 45 : view.equals("three-quarter") ? 135 : 180;
+                    server.runCommand("tp @a " + cameraX + " " + (cameraFeetY+(view.equals("three-quarter")?kind.height*.18:0)) + " " + cameraZ + " " + yaw + (view.equals("three-quarter")?" 8":" 0"));
                     context.waitTicks(4);
                     world.getClientWorld().waitForChunksRender();
                     context.takeScreenshot("creature-" + kind.id + "-" + view);
                 }
+                if(Boolean.getBoolean("mythic.clientSmoke.groundedReference"))context.runOnClient(client -> {
+                    for(Entity entity:client.level.entitiesForRendering())
+                        if(BuiltInRegistries.ENTITY_TYPE.getKey(entity.getType()).equals(ModEntities.id(kind.id)))
+                            ((GeoEntity)entity).stopTriggeredAnim("locomotion","reference_idle");
+                });
                 server.runCommand("tp @a " + x + " " + cameraFeetY + " " + (z + distance) + " 180 0");
                 context.waitTicks(4);
                 server.runOnServer(mcServer -> {

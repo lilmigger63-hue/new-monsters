@@ -18,6 +18,7 @@ loom {
             vmArg '-XX:ActiveProcessorCount=4'
             vmArg '-Dfabric.client.gametest'
             vmArg '-Dfabric.client.gametest.modid=mythic_realms_client_smoke'
+            if (project.hasProperty('clientSmokeGroundedReference')) vmArg '-Dmythic.clientSmoke.groundedReference=true'
             if (project.hasProperty('clientSmokeExpansionOnly')) vmArg '-Dmythic.clientSmoke.expansionOnly=true'
             if (project.hasProperty('clientSmokeSpecies')) vmArg '-Dmythic.clientSmoke.species=' + project.property('clientSmokeSpecies')
             if (project.hasProperty('clientSmokePerformanceSamples')) vmArg '-Dmythic.clientSmoke.performanceSamples=' + project.property('clientSmokePerformanceSamples')
