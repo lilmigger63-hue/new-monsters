@@ -234,6 +234,11 @@ public final class CreatureClientSmokeTest implements FabricClientGameTest {
                     });
                 }
                 if(kind==CreatureKind.SAHUAGIN) {
+                    int[] previousFov={70};
+                    context.runOnClient(client -> {
+                        previousFov[0]=client.options.fov().get();
+                        client.options.fov().set(90);
+                    });
                     server.runCommand("fill 76 -62 76 84 -54 84 glass");
                     server.runCommand("fill 77 -61 77 83 -55 83 water");
                     server.runCommand("tp @e[type=mythic_realms_creatures:sahuagin] 80 -59 80");
@@ -265,6 +270,7 @@ public final class CreatureClientSmokeTest implements FabricClientGameTest {
                                 ((GeoEntity)entity).stopTriggeredAnim("action","swim_probe");
                         });
                     }
+                    context.runOnClient(client -> client.options.fov().set(previousFov[0]));
                     server.runCommand("effect clear @a minecraft:night_vision");
                     LOG.info("CLIENT_SMOKE_SWIM_PASS sahuagin submerged idle/swim playback");
                 }

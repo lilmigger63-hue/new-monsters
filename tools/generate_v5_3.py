@@ -227,7 +227,51 @@ def centaur():
     support_death(m,animations)
     return m,palette,roles,size,animations
 
-BUILDERS={'ender_dragon_girl':ender_dragon_girl,'vampire':vampire,'holstaurus':holstaurus,'centaur':centaur}
+def sahuagin():
+    m,palette,roles,size,animations=load('sahuagin');X=m.box
+    # Short teal locks and overlapping gill-fan membranes keep the marine silhouette distinct.
+    for b in m.bones:
+        if b['name'].startswith('hair_'):
+            for c in b.get('cubes',[]):
+                top=c['origin'][1]+c['size'][1];c['origin'][1]=max(19.55,c['origin'][1]);c['size'][1]=max(.3,top-c['origin'][1])
+                if 'pivot' in c:c['pivot'][1]=c['origin'][1]+c['size'][1]/2
+    for side,n in [(-1,'right'),(1,'left')]:
+        fin='fin_head_'+str(side);m.by_name[fin]['cubes']=[]
+        for x,y,z,w,h,depth in [(4.2,21.6,.2,.6,4,2.9),(4.65,22.2,2,.5,3,1.9),(4.9,22.6,3.1,.44,1.9,1.4)]:
+            X(fin,[side*x-w/2,y,z],[w,h,depth],12)
+        X(fin,[side*4.3-.13,22,.15],[.26,3.2,2.9],2)
+        fore='fore_'+n;m.by_name[fore]['cubes']=[];x=side*3.2
+        X(fore,[x-1.1,10.8,-1.25],[2.2,4.15,2.65],3)
+        X(fore,[x-1.25,14,-1.38],[2.5,1,2.9],2)
+        X(fore,[side*4.5-.3,11.8,.3],[.6,3,2.2],12)
+        X(fore,[side*4.85-.28,12.5,1.8],[.56,2.1,1.7],12)
+        X(fore,[side*4.55-.12,12,.25],[.24,2.7,.35],2)
+        X('hand_'+n,[x-.9,10.2,-1.42],[1.8,.8,.3],12)
+        lower='leg_'+n+'_lower';m.by_name[lower]['cubes']=m.by_name[lower]['cubes'][:2]
+        X(lower,[side*2.4-.25,2.4,.2],[.5,3,2.6],12)
+        X(lower,[side*2.65-.22,3,1.7],[.44,1.8,1.7],12)
+        foot='leg_'+n+'_foot';m.by_name[foot]['cubes']=[];x=side*1.45
+        X(foot,[x-1,.1,-.7],[2,1.5,1.8],3)
+        X(foot,[x-1.4,.1,-3.1],[2.8,.75,2.7],12)
+        for j in range(3):X(foot,[x-1.1+j*.75,.12,-3.45],[.7,.85,1.5],2)
+    head=m.by_name['head'];head['cubes']=[c for c in head['cubes'] if not(v3.material_of(c)==9 and c['origin'][2]<-2.5 and c['size'][2]<1.6 and c['size'][1]>.5)]
+    for x,y,w,h,ang in [(-3,24.2,1.7,2,-12),(-1.55,24.55,1.7,1.7,-4),(0,24.1,1.8,2.2,9),(1.6,24.65,1.4,1.5,17)]:
+        X('head',[x,y,-3.05],[w,h,.8],9,[0,0,ang])
+    X('chest',[-.55,18.45,-2.75],[1.1,1.1,.4],6,[0,0,45])
+    for j in range(3):X('body',[-2.25+j*1.55,10.8+(j%2)*.2,-2.1],[1.4,1.8,.4],13,[0,0,(j-1)*7])
+    for side,n in [(-1,'right'),(1,'left')]:
+        X('fore_'+n,[side*5.05-.25,13,1],[.5,1.5,1.4],12,[0,0,-side*15])
+    for c in m.by_name['weapon']['cubes']:
+        if v3.material_of(c)==12:v3.repaint_cube(c,14)
+    # A delayed caudal wave replaces rigid in-phase tail motion; root swim/body pose is retained.
+    for name,speed,amp in [('swim',300,11),('idle_swim',160,3)]:
+        animations[name]['bones']['tail']={'rotation':[f'math.sin(query.anim_time * {speed}) * {amp*.4}',f'math.sin(query.anim_time * {speed}) * {amp}',0]}
+        animations[name]['bones']['tail_tip']={'rotation':[f'math.sin(query.anim_time * {speed} - 50) * {amp*.65}',f'math.sin(query.anim_time * {speed} - 55) * {amp*1.25}',0]}
+    palette[9]='30584f';palette[8]='dacbb8';roles[3]='scale'
+    support_death(m,animations)
+    return m,palette,roles,size,animations
+
+BUILDERS={'ender_dragon_girl':ender_dragon_girl,'vampire':vampire,'holstaurus':holstaurus,'centaur':centaur,'sahuagin':sahuagin}
 
 def atlas(palette,roles,translucent,species):
     image=v3.reference_atlas(palette,roles,translucent,species)
@@ -249,6 +293,11 @@ def atlas(palette,roles,translucent,species):
         d.rectangle((0,0,31,31),fill=(121,81,60,255))
         d.polygon([(2,3),(15,2),(28,7),(26,12),(12,10),(3,13)],fill=(135,92,67,255))
         d.polygon([(3,17),(14,14),(27,19),(29,28),(9,29),(2,25)],fill=(108,71,54,255))
+    if species=='sahuagin':
+        d=ImageDraw.Draw(image);d.rectangle((0,96,31,127),fill=(53,86,124,255))
+        d.rectangle((32,64,63,95),fill=(44,81,72,255))
+        for points,color in [([(34,66),(38,66),(41,70),(39,75),(35,73)],(56,96,83,255)), ([(44,69),(53,67),(60,73),(56,80),(46,78)],(36,70,63,255)), ([(34,82),(43,80),(47,88),(39,93),(34,91)],(49,88,77,255))]:d.polygon(points,fill=color)
+        for points,color in [([(2,99),(12,106),(28,123)],(66,103,142,255)), ([(3,120),(14,112),(28,115)],(40,71,108,255))]:d.line(points,fill=color,width=1)
     return image
 
 def main():
