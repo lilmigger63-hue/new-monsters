@@ -159,7 +159,7 @@
       }
     },
     "werecat": {
-      "commit": "V5.3: refine werecat",
+      "commit": "30c4d32",
       "passes": 1,
       "evidence": "/workspace/validation/monster-girl-v5-3/13-werecat/pass-1",
       "files": {

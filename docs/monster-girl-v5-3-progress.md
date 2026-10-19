@@ -1,6 +1,6 @@
 # V5.3 sequential progress
 
-Baseline `1704f67`; branch `feat/monster-girl-v5-3`. Active: werecat. No sound/gameplay/original-creature changes permitted.
+Baseline `1704f67`; branch `feat/monster-girl-v5-3`. Active: none; all thirteen visual stages complete. No sound/gameplay/original-creature changes permitted.
 
 | Creature / registry ID | Reference | Model/texture/animation | Visual comparison | Validation | Remaining differences | Commit | Next action |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -16,4 +16,6 @@ Baseline `1704f67`; branch `feat/monster-girl-v5-3`. Active: werecat. No sound/g
 | cyclops | Inline 8 | Complete | 1 corrective runs inspected | Focused client +35 asset/source/preservation checks pass | See per-species report | caa270a | Complete; frozen |
 | dhampir | Inline 7 | Complete | 1 corrective runs inspected | Focused client +35 asset/source/preservation checks pass | See per-species report | e46f851 | Complete; frozen |
 | succubus | Inline 6 | Complete | 1 corrective runs inspected | Focused client +35 asset/source/preservation checks pass | See per-species report | 1d5957f | Complete; frozen |
-| werecat | Inline 5 | Complete | 1 corrective runs inspected | Focused client +35 asset/source/preservation checks pass | See per-species report | V5.3: refine werecat | Commit this stage; then next creature |
+| werecat | Inline 5 | Complete | 1 corrective runs inspected | Focused client +35 asset/source/preservation checks pass | See per-species report | 30c4d32 | Complete; frozen |
+
+Final integration:1.4.0-rc.1 build; five JUnit cases;51/51 base and51/51 Better Combat server GameTests; all33 Better Combat client;35 asset/source/preservation tests;14 timeline checks;76 identical production classes and392 identical protected packaged resources. All passed. See [the final report](monster-girl-v5-3/README.md) for evidence and limits.

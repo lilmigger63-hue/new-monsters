@@ -1,0 +1,12 @@
+{
+  "resource_sets": 33,
+  "species_presented": 33,
+  "better_combat": true,
+  "passed": true,
+  "screenshots": 506,
+  "raw_log_sha256": "86dd49343b734af637e7a3cb2c6da35ca0ee803a590d48905a118c4dd1267f3c",
+  "evidence": "/workspace/validation/monster-girl-v5-3/final-all33-better-combat",
+  "marker": [
+    "[18:07:32] [Test thread/INFO] (mythic-client-smoke) CLIENT_SMOKE_PASS 33 resource sets and synced entities; 33 species presented in a real singleplayer world"
+  ]
+}

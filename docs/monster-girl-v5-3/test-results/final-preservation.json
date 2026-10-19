@@ -1,0 +1,8 @@
+{
+  "completed_species": 13,
+  "unchanged_production_classes": 76,
+  "no_added_production_files": true,
+  "unchanged_packaged_resources": 392,
+  "all_thirteen_packaged_assets_match_live": true,
+  "jar_sha256": "47eeb8f1811f32a05bf4127fa995028585bf2617873a0da78154185876697fe3"
+}

@@ -1,0 +1,175 @@
+{
+  "species": 33,
+  "total_bones": 879,
+  "total_cubes": 3821,
+  "max_cubes_per_model": 177,
+  "textures": "128x128 per species; existing emissive eligibility unchanged",
+  "hardware_fps_measured": false,
+  "models": [
+    {
+      "id": "ancient_treant",
+      "bones": 17,
+      "cubes": 95
+    },
+    {
+      "id": "anubis",
+      "bones": 29,
+      "cubes": 164
+    },
+    {
+      "id": "cave_basilisk",
+      "bones": 16,
+      "cubes": 82
+    },
+    {
+      "id": "centaur",
+      "bones": 30,
+      "cubes": 135
+    },
+    {
+      "id": "crystal_spider",
+      "bones": 29,
+      "cubes": 48
+    },
+    {
+      "id": "cyclops",
+      "bones": 30,
+      "cubes": 156
+    },
+    {
+      "id": "demon_sorceress",
+      "bones": 42,
+      "cubes": 111
+    },
+    {
+      "id": "dhampir",
+      "bones": 29,
+      "cubes": 170
+    },
+    {
+      "id": "dire_wolf",
+      "bones": 20,
+      "cubes": 95
+    },
+    {
+      "id": "ender_dragon_girl",
+      "bones": 35,
+      "cubes": 120
+    },
+    {
+      "id": "flame_imp",
+      "bones": 15,
+      "cubes": 39
+    },
+    {
+      "id": "forest_dryad",
+      "bones": 29,
+      "cubes": 124
+    },
+    {
+      "id": "fox_spirit_girl",
+      "bones": 46,
+      "cubes": 167
+    },
+    {
+      "id": "frost_elemental",
+      "bones": 36,
+      "cubes": 66
+    },
+    {
+      "id": "goblin_scout",
+      "bones": 20,
+      "cubes": 95
+    },
+    {
+      "id": "goblin_shaman",
+      "bones": 24,
+      "cubes": 102
+    },
+    {
+      "id": "grave_knight",
+      "bones": 22,
+      "cubes": 100
+    },
+    {
+      "id": "griffin",
+      "bones": 22,
+      "cubes": 129
+    },
+    {
+      "id": "harpy",
+      "bones": 30,
+      "cubes": 162
+    },
+    {
+      "id": "holstaurus",
+      "bones": 22,
+      "cubes": 112
+    },
+    {
+      "id": "kobold",
+      "bones": 31,
+      "cubes": 177
+    },
+    {
+      "id": "minotaur",
+      "bones": 22,
+      "cubes": 115
+    },
+    {
+      "id": "moon_stag",
+      "bones": 21,
+      "cubes": 107
+    },
+    {
+      "id": "orc_warrior",
+      "bones": 19,
+      "cubes": 102
+    },
+    {
+      "id": "sahuagin",
+      "bones": 25,
+      "cubes": 122
+    },
+    {
+      "id": "shadow_wraith",
+      "bones": 27,
+      "cubes": 57
+    },
+    {
+      "id": "slime_maiden",
+      "bones": 33,
+      "cubes": 80
+    },
+    {
+      "id": "stone_troll",
+      "bones": 17,
+      "cubes": 96
+    },
+    {
+      "id": "succubus",
+      "bones": 37,
+      "cubes": 134
+    },
+    {
+      "id": "valkyrie",
+      "bones": 32,
+      "cubes": 167
+    },
+    {
+      "id": "vampire",
+      "bones": 30,
+      "cubes": 131
+    },
+    {
+      "id": "werecat",
+      "bones": 24,
+      "cubes": 134
+    },
+    {
+      "id": "wild_wyvern",
+      "bones": 18,
+      "cubes": 127
+    }
+  ]
+}
