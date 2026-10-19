@@ -75,7 +75,7 @@
       }
     },
     "valkyrie": {
-      "commit": "V5.3: refine valkyrie",
+      "commit": "20bfe80",
       "passes": 2,
       "evidence": "/workspace/validation/monster-girl-v5-3/06-valkyrie/pass-2",
       "files": {
@@ -84,6 +84,18 @@
         "src/main/resources/assets/mythic_realms_creatures/textures/entity/valkyrie.png": "7a8900f6ee91365ac5642e5865fed6f57b996d96b8a0cc303f4a1cd11cc3fe52",
         "tools/blockbench/valkyrie.bbmodel": "c3916a8b414505e4e9e6eccdaf6a5a56ac3168f1851bd4ff03a9638b7b6aa616",
         "src/main/resources/assets/mythic_realms_creatures/textures/entity/valkyrie_glowmask.png": "f6bb4b34670e0da1966b0e29cb3004e84c25fc2a2ab4b72177132b1bf1dde47e"
+      }
+    },
+    "fox_spirit_girl": {
+      "commit": "V5.3: refine fox_spirit_girl",
+      "passes": 3,
+      "evidence": "/workspace/validation/monster-girl-v5-3/07-fox_spirit_girl/pass-3",
+      "files": {
+        "src/main/resources/assets/mythic_realms_creatures/geckolib/models/entity/fox_spirit_girl.geo.json": "6de0bf9eecfa543b56b7bb8694e64321230f2c55b92c284a071a4d3c0bf466c0",
+        "src/main/resources/assets/mythic_realms_creatures/geckolib/animations/entity/fox_spirit_girl.animation.json": "d6e028c28712cf8bd979dbcd7b20b51cc0130cf68fef41df9bc58952c8bd5ce4",
+        "src/main/resources/assets/mythic_realms_creatures/textures/entity/fox_spirit_girl.png": "9a20f01a0652964dfb7c8eb949a8c6afecf92657386c5cbefe7276211ff5abfb",
+        "tools/blockbench/fox_spirit_girl.bbmodel": "2323e9ce2f5b013aee3d65a0b05c2b0f1d84e18d58f581af633dc7d786db8af3",
+        "src/main/resources/assets/mythic_realms_creatures/textures/entity/fox_spirit_girl_glowmask.png": "5242ddfc8ffaca006840e9895fd76bdb72ff318402fc6008e2d6b9a09e5c0ae5"
       }
     }
   },

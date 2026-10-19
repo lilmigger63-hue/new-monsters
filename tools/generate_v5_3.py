@@ -326,7 +326,52 @@ def valkyrie():
     support_death(m,animations)
     return m,palette,roles,size,animations
 
-BUILDERS={'ender_dragon_girl':ender_dragon_girl,'vampire':vampire,'holstaurus':holstaurus,'centaur':centaur,'sahuagin':sahuagin,'valkyrie':valkyrie}
+def fox_spirit_girl():
+    m,palette,roles,size,animations=load('fox_spirit_girl');X=m.box
+    # Wide stepped triangular ears and a shoulder-length bob replace the tall spires/curtains.
+    for side,n in [(-1,'right'),(1,'left')]:
+        ear='ear_'+n;m.by_name[ear]['cubes']=[]
+        for x,y,w,h,mat in [(2.55,28,2.8,1.8,9),(2.8,29.35,2,1.55,9),(3,30.45,.95,1,12)]:
+            X(ear,[side*x-w/2,y,-.6],[w,h,1.6],mat,[0,0,-side*10])
+        X(ear,[side*2.55-.65,28.55,-.85],[1.3,1.25,.36],1,[0,0,-side*10])
+        X(ear,[side*3.1-.23,31.1,-.5],[.46,.55,1.3],12,[0,0,-side*10])
+        fore='forearm_'+n;m.by_name[fore]['cubes']=[];x=side*3.4
+        X(fore,[x-1.15,13.4,-1.3],[2.3,3.6,2.7],6)
+        X(fore,[x-1.6,12.8,-1.5],[3.2,1.8,3.1],6,[0,0,-side*4])
+        X(fore,[x-1.65,12.6,-1.55],[3.3,.8,3.2],7,[0,0,-side*4])
+        X(fore,[side*4.8-.18,13.6,-1.55],[.36,1.05,3.15],6,[0,0,-side*8])
+    for b in m.bones:
+        if b['name'].startswith('hair_'):
+            for c in b.get('cubes',[]):
+                top=c['origin'][1]+c['size'][1];c['origin'][1]=max(21.8,c['origin'][1]);c['size'][1]=max(.3,top-c['origin'][1])
+                if 'pivot' in c:c['pivot'][1]=c['origin'][1]+c['size'][1]/2
+    head=m.by_name['head'];head['cubes']=[c for c in head['cubes'] if not(v3.material_of(c)==5 and c['size'][0]>1 and c['size'][2]<.3)]
+    m.by_name['chest']['cubes']=[c for c in m.by_name['chest']['cubes'] if not(v3.material_of(c)==6 and c['size'][1]<1 and c['origin'][2]<-2.5)]
+    X('chest',[-2.3,17.9,-2.7],[.55,3.2,.4],6,[0,0,-11])
+    X('chest',[-.35,20.1,-2.9],[.7,.6,.4],7)
+    X('chest',[-.2,18.9,-3.1],[.4,.7,.3],3)
+    # Retain all nine independent two-joint tails and their four-stage tapered tips.
+    for i in range(9):
+        name='tail_'+str(i);tip='tailtip_'+str(i);base=m.by_name[name]['cubes'][0]
+        cx=base['origin'][0]+base['size'][0]/2
+        X(name,[cx-1,base['origin'][1]-.2,base['origin'][2]+1.3],[2,2.1,2.2],9)
+        for j,c in enumerate(m.by_name[tip]['cubes']):
+            factor=(1.04,1.12+(i%3)*.02,1.06,.98)[j]
+            for axis in (0,1):
+                center=c['origin'][axis]+c['size'][axis]/2;c['size'][axis]*=factor;c['origin'][axis]=center-c['size'][axis]/2
+        last=m.by_name[tip]['cubes'][-1];cx=last['origin'][0]+last['size'][0]/2;cy=last['origin'][1]+last['size'][1]/2
+        X(tip,[cx-.48,cy-.3,last['origin'][2]+last['size'][2]-.45],[.96,.9,.65],12)
+        for clipname,mult in [('idle',1),('walk',1.3),('run',1.6)]:
+            clip=animations[clipname];length=clip['animation_length'];phase=i*.35
+            def wave(amp,delay):
+                return {str(min(length,round(length*j/12,5))):[amp*.6*math.sin(2*math.pi*j/12-phase-delay),amp*math.sin(2*math.pi*j/12-phase-delay+.2),amp*.3*math.cos(2*math.pi*j/12-phase-delay)] for j in range(13)}
+            clip['bones'][name]={'rotation':wave(3*mult,0)}
+            clip['bones'][tip]={'rotation':wave(4.2*mult,.5)}
+    palette[12]='cdb462'
+    support_death(m,animations)
+    return m,palette,roles,size,animations
+
+BUILDERS={'ender_dragon_girl':ender_dragon_girl,'vampire':vampire,'holstaurus':holstaurus,'centaur':centaur,'sahuagin':sahuagin,'valkyrie':valkyrie,'fox_spirit_girl':fox_spirit_girl}
 
 def atlas(palette,roles,translucent,species):
     image=v3.reference_atlas(palette,roles,translucent,species)
@@ -353,6 +398,9 @@ def atlas(palette,roles,translucent,species):
         d.rectangle((32,64,63,95),fill=(44,81,72,255))
         for points,color in [([(34,66),(38,66),(41,70),(39,75),(35,73)],(56,96,83,255)), ([(44,69),(53,67),(60,73),(56,80),(46,78)],(36,70,63,255)), ([(34,82),(43,80),(47,88),(39,93),(34,91)],(49,88,77,255))]:d.polygon(points,fill=color)
         for points,color in [([(2,99),(12,106),(28,123)],(66,103,142,255)), ([(3,120),(14,112),(28,115)],(40,71,108,255))]:d.line(points,fill=color,width=1)
+    if species=='fox_spirit_girl':
+        d=ImageDraw.Draw(image)
+        for points,color in [([(2,98),(7,98),(10,103),(8,109),(4,107)],(211,187,103,255)), ([(12,103),(19,101),(25,107),(22,115),(14,113)],(184,155,76,255)), ([(3,116),(11,113),(16,120),(9,125),(3,123)],(203,176,91,255))]:d.polygon(points,fill=color)
     return image
 
 def main():
