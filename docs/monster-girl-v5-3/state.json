@@ -135,7 +135,7 @@
       }
     },
     "dhampir": {
-      "commit": "V5.3: refine dhampir",
+      "commit": "e46f851",
       "passes": 1,
       "evidence": "/workspace/validation/monster-girl-v5-3/11-dhampir/pass-1",
       "files": {
@@ -144,6 +144,18 @@
         "src/main/resources/assets/mythic_realms_creatures/textures/entity/dhampir.png": "d376c1bb498bb9457d58283f81c77c6f298e8fdbce80f1c74cb42a8d9cf3a036",
         "tools/blockbench/dhampir.bbmodel": "61675be7a7c87818b4e9bf90e8cb8e65960ec57fffa3b2f07afc49595a96177c",
         "src/main/resources/assets/mythic_realms_creatures/textures/entity/dhampir_glowmask.png": "5a739ce1611492cd89125aba0429bb67fb5eed7a6ab544317928f294196e7f25"
+      }
+    },
+    "succubus": {
+      "commit": "V5.3: refine succubus",
+      "passes": 1,
+      "evidence": "/workspace/validation/monster-girl-v5-3/12-succubus/pass-1",
+      "files": {
+        "src/main/resources/assets/mythic_realms_creatures/geckolib/models/entity/succubus.geo.json": "e425cad158e907be14fd38ff5834983ba0f66ed80e17bc65dffd06d1e014bf1a",
+        "src/main/resources/assets/mythic_realms_creatures/geckolib/animations/entity/succubus.animation.json": "599ef20b6bfbcec827ca32b993c6b14f93f966d82f9e6dceff1ef8e86cf8834c",
+        "src/main/resources/assets/mythic_realms_creatures/textures/entity/succubus.png": "c32428bc5dea21aeefc651fc04cee44c103cbe468bc7712bf36b59edc5e98281",
+        "tools/blockbench/succubus.bbmodel": "2e5befbc5d97e113580564cabacc1a4023c3f6a825d116f71e0251638e2922ef",
+        "src/main/resources/assets/mythic_realms_creatures/textures/entity/succubus_glowmask.png": "550370841395b3d765a37a8ad027c8e289fbecb9007eb97671ec351c964016c8"
       }
     }
   },

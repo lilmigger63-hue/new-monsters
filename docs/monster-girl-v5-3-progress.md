@@ -1,6 +1,6 @@
 # V5.3 sequential progress
 
-Baseline `1704f67`; branch `feat/monster-girl-v5-3`. Active: dhampir. No sound/gameplay/original-creature changes permitted.
+Baseline `1704f67`; branch `feat/monster-girl-v5-3`. Active: succubus. No sound/gameplay/original-creature changes permitted.
 
 | Creature / registry ID | Reference | Model/texture/animation | Visual comparison | Validation | Remaining differences | Commit | Next action |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -14,6 +14,6 @@ Baseline `1704f67`; branch `feat/monster-girl-v5-3`. Active: dhampir. No sound/g
 | anubis | Inline 11 | Complete | 2 corrective runs inspected | Focused client +35 asset/source/preservation checks pass | See per-species report | 5b09b03 | Complete; frozen |
 | kobold | Inline 10 | Complete | 2 corrective runs inspected | Focused client +35 asset/source/preservation checks pass | See per-species report | 6d8e20d | Complete; frozen |
 | cyclops | Inline 8 | Complete | 1 corrective runs inspected | Focused client +35 asset/source/preservation checks pass | See per-species report | caa270a | Complete; frozen |
-| dhampir | Inline 7 | Complete | 1 corrective runs inspected | Focused client +35 asset/source/preservation checks pass | See per-species report | V5.3: refine dhampir | Commit this stage; then next creature |
-| succubus | Inline 6 | Pending | Pending | Pending | Focused review pending | — | Wait for previous stage |
+| dhampir | Inline 7 | Complete | 1 corrective runs inspected | Focused client +35 asset/source/preservation checks pass | See per-species report | e46f851 | Complete; frozen |
+| succubus | Inline 6 | Complete | 1 corrective runs inspected | Focused client +35 asset/source/preservation checks pass | See per-species report | V5.3: refine succubus | Commit this stage; then next creature |
 | werecat | Inline 5 | Pending | Pending | Pending | Focused review pending | — | Wait for previous stage |

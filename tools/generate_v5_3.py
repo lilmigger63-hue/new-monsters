@@ -514,7 +514,44 @@ def dhampir():
     support_death(m,animations)
     return m,palette,roles,size,animations
 
-BUILDERS={'ender_dragon_girl':ender_dragon_girl,'vampire':vampire,'holstaurus':holstaurus,'centaur':centaur,'sahuagin':sahuagin,'valkyrie':valkyrie,'fox_spirit_girl':fox_spirit_girl,'anubis':anubis,'kobold':kobold,'cyclops':cyclops,'dhampir':dhampir}
+def succubus():
+    m,palette,roles,size,animations=load('succubus');X=m.box
+    # Organic eye edges replace rectangular dark frames; pupils stay intact.
+    head=m.by_name['head'];head['cubes']=[c for c in head['cubes'] if not(v3.material_of(c)==5 and c['size'][0]>1 and c['origin'][2]<-2.6)]
+    for b in m.bones:
+        if b['name'].startswith('hair_'):
+            for c in b.get('cubes',[]):
+                top=c['origin'][1]+c['size'][1];c['origin'][1]=max(c['origin'][1],24.2);c['size'][1]=max(.35,top-c['origin'][1])
+    for side,n in [(-1,'right'),(1,'left')]:
+        # Five interlocking tapered sections describe a compact ram-like curl.
+        horn='horn_'+n;m.by_name[horn]['cubes']=[]
+        for x,y,z,w,h,d,ang in [(2.3,29,-.6,1.8,2,1.8,-20),(3.2,29.8,-.9,1.7,1.7,1.7,20),(3.6,28.8,-1.3,1.5,1.6,1.5,55),(3,28.1,-1.8,1.3,1.4,1.3,80),(2.45,28.5,-2,.8,1,.9,20)]:X(horn,[side*x-w/2,y,z],[w,h,d],1,[0,0,side*ang])
+        wing='wingtip_'+n;m.by_name[wing]['cubes']=[]
+        for x,top,bottom,w in [(4.9,22.3,17.1,2.6),(6.7,21.8,16.2,2.5),(8.2,20.1,16.1,1.8)]:
+            X(wing,[side*x-w/2,bottom,2.05],[w,top-bottom,.46],7)
+            X(wing,[side*x-.15,bottom+.4,1.94],[.3,top-bottom-.2,.6],1,[0,0,-side*7])
+        X(wing,[side*7.9-.5,15.3,2.05],[1,1.2,.43],7)
+        X('arm_'+n,[side*3.7-1.3,19.5,-1.7],[2.6,.65,3.4],2)
+        X('shin_'+n,[side*1.4-1.25,5.5,-1.5],[2.5,.5,.5],10)
+    palette[1]='4b3026';palette[7]='873b32';palette[9]='bca362';palette[12]='cdb577';palette[10]='303237'
+    # Small delayed membrane and tail waves on the existing flight rig.
+    for clip in ('fly','hover'):
+        length=animations[clip]['animation_length']
+        for name,channels in animations[clip]['bones'].items():
+            if name.startswith('wingtip_'):
+                frames=channels.get('rotation',{})
+                if isinstance(frames,dict):
+                    values=list(frames.values())
+                    for j,key in enumerate(frames):
+                        value=values[max(0,j-1)]
+                        if isinstance(value,list):frames[key]=[v*.9 for v in value]
+    for clip in ('idle','walk','run'):
+        length=animations[clip]['animation_length']
+        for i in range(5):animations[clip]['bones'].setdefault('hair_back_'+str(i),{})['rotation']={str(min(length,round(length*j/12,5))):[1.7*math.sin(2*math.pi*j/12-i*.3),0,.7*math.cos(2*math.pi*j/12-i*.3)]for j in range(13)}
+    support_death(m,animations)
+    return m,palette,roles,size,animations
+
+BUILDERS={'ender_dragon_girl':ender_dragon_girl,'vampire':vampire,'holstaurus':holstaurus,'centaur':centaur,'sahuagin':sahuagin,'valkyrie':valkyrie,'fox_spirit_girl':fox_spirit_girl,'anubis':anubis,'kobold':kobold,'cyclops':cyclops,'dhampir':dhampir,'succubus':succubus}
 
 def atlas(palette,roles,translucent,species):
     image=v3.reference_atlas(palette,roles,translucent,species)
