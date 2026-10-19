@@ -4,7 +4,7 @@ Baseline `1704f67`; branch `feat/monster-girl-v5-3`. Active: Ender Dragon Girl. 
 
 | Creature / registry ID | Reference | Model/texture/animation | Visual comparison | Validation | Remaining differences | Commit | Next action |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| ender_dragon_girl | Inline 3 | Active | Pending | Pending | Focused review pending | — | Inspect five main differences |
+| ender_dragon_girl | Inline 3 | Complete | 3 corrective runs inspected | Focused client +34 asset/source/preservation checks pass | See per-species report | V5.3: refine ender_dragon_girl | Commit this stage; then next creature |
 | vampire | Inline 17 | Pending | Pending | Pending | Focused review pending | — | Wait for previous stage |
 | holstaurus | Inline 16 | Pending | Pending | Pending | Focused review pending | — | Wait for previous stage |
 | centaur | Inline 15 | Pending | Pending | Pending | Focused review pending | — | Wait for previous stage |

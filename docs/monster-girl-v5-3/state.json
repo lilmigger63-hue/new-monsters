@@ -15,8 +15,21 @@
     "succubus",
     "werecat"
   ],
-  "active": "ender_dragon_girl",
-  "completed": {},
+  "active": null,
+  "completed": {
+    "ender_dragon_girl": {
+      "commit": "V5.3: refine ender_dragon_girl",
+      "passes": 3,
+      "evidence": "/workspace/validation/monster-girl-v5-3/01-ender_dragon_girl/pass-3",
+      "files": {
+        "src/main/resources/assets/mythic_realms_creatures/geckolib/models/entity/ender_dragon_girl.geo.json": "c999b7e0d786fc648f118015fb30c876c50bc2787fecbc9c678185c246307503",
+        "src/main/resources/assets/mythic_realms_creatures/geckolib/animations/entity/ender_dragon_girl.animation.json": "2ace9a6f0fd2a80f038173e07cb0a6a6d555c157e37c23f09bb61f7149d5ca96",
+        "src/main/resources/assets/mythic_realms_creatures/textures/entity/ender_dragon_girl.png": "d5bbfaa958fcae1c7909fd5e2cc9684d05345af3e9ccf995dd2eb47c199c1103",
+        "tools/blockbench/ender_dragon_girl.bbmodel": "0daeba77a4169fd7f60db05463b01bf2b51541fa7eac335b984608cce064de7c",
+        "src/main/resources/assets/mythic_realms_creatures/textures/entity/ender_dragon_girl_glowmask.png": "82e65491bbf60feae5245e49229e1847b74abed6617a09cd3cf4746996e31d33"
+      }
+    }
+  },
   "paths": {
     "ender_dragon_girl": [
       "src/main/resources/assets/mythic_realms_creatures/geckolib/models/entity/ender_dragon_girl.geo.json",

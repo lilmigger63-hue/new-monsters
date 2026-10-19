@@ -3,6 +3,9 @@
 from pathlib import Path
 import hashlib,json,unittest,sys
 ROOT=Path(__file__).resolve().parents[1];DOC=ROOT/'docs/monster-girl-v5-3'
+sys.path.insert(0,str(ROOT/'tools'))
+from visual_v3_geometry import minimum_y
+
 class V53Preservation(unittest.TestCase):
     def test_gameplay_audio_renderer_and_original_twenty_unchanged(self):
         for path,digest in json.loads((DOC/'protected-baseline.json').read_text()).items():
@@ -22,6 +25,30 @@ class V53Preservation(unittest.TestCase):
             for name,clip in before.items():
                 for key in ('animation_length','loop'):self.assertEqual(clip.get(key),after[name].get(key),(species,name,key))
                 if name in ('attack','heavy','cast','hurt','teleport'):self.assertEqual(clip,after[name],(species,name))
+    def test_archived_baselines_match_initial_hashes(self):
+        state=json.loads((DOC/'state.json').read_text())
+        for path,digest in state['baseline_hashes'].items():
+            cached=DOC/'baselines'/path
+            if cached.exists():self.assertEqual(hashlib.sha256(cached.read_bytes()).hexdigest(),digest,path)
+    def test_reviewed_authoring_source_reconstructs_live_geometry_and_pixels(self):
+        import generate_v5_3 as source
+        from PIL import Image
+        state=json.loads((DOC/'state.json').read_text())
+        for species in list(state['completed'])+([state['active']] if state['active'] else []):
+            if species not in source.BUILDERS:continue
+            m,palette,roles,_,_=source.BUILDERS[species]()
+            expected=json.loads((ROOT/state['paths'][species][0]).read_text())['minecraft:geometry'][0]['bones']
+            self.assertEqual(m.bones,expected,species)
+            self.assertEqual(source.atlas(palette,roles,False,species).convert('RGBA').tobytes(),Image.open(ROOT/state['paths'][species][2]).convert('RGBA').tobytes(),species)
+    def test_active_and_reviewed_corpses_rest_above_ground(self):
+        state=json.loads((DOC/'state.json').read_text())
+        for species in list(state['completed'])+([state['active']] if state['active'] else []):
+            geo,anim=state['paths'][species][:2]
+            bones=json.loads((ROOT/geo).read_text())['minecraft:geometry'][0]['bones'];death=json.loads((ROOT/anim).read_text())['animations']['death']['bones']
+            final=lambda frames:max(frames.items(),key=lambda item:float(item[0]))[1]
+            pose={name:final(channels['rotation']) for name,channels in death.items() if name!='root' and 'rotation' in channels}
+            floor=minimum_y(bones,final(death['root']['rotation']),pose)+final(death['root']['position'])[1]
+            self.assertAlmostEqual(floor,.1,delta=.25,msg=species+' corpse must reach the floor without burial')
     def test_ender_face_has_no_metallic_eye_frames(self):
         path=ROOT/'src/main/resources/assets/mythic_realms_creatures/geckolib/models/entity/ender_dragon_girl.geo.json'
         bones=json.loads(path.read_text())['minecraft:geometry'][0]['bones'];head=next(b for b in bones if b['name']=='head')
