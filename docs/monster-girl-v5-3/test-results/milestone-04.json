@@ -1,0 +1,14 @@
+{
+  "completed_visual_stages": 4,
+  "full_build": "passed",
+  "dedicated_server_gametests": {
+    "passed": 51,
+    "failed": 0,
+    "skipped": 0
+  },
+  "raw_build_log_sha256": "5293709b9ee6f921d96d55d59ff87e36ae83ba7b1e89058c07b5a8d760a4df13",
+  "server_xml_sha256": "9d16bc874be583797965ebdeca66941f927fcb6c67b839240e3b688dc35afaf2",
+  "client": "Centaur three focused corrective runs, final run with side-biased multi-phase gait views",
+  "asset_tests": 35,
+  "version_note": "Development remains1.3.0-rc.1 until final release packaging; gameplay classes unchanged"
+}

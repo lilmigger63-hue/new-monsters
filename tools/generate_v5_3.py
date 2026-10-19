@@ -173,7 +173,61 @@ def holstaurus():
     support_death(m,animations)
     return m,palette,roles,size,animations
 
-BUILDERS={'ender_dragon_girl':ender_dragon_girl,'vampire':vampire,'holstaurus':holstaurus}
+def centaur():
+    m,palette,roles,size,animations=load('centaur');X=m.box
+    # Faceted shoulder, barrel, tucked belly and rounded croup replace the bench-like trunk.
+    m.by_name['horse_body']['cubes']=[]
+    for origin,scale,mat in [([-4.4,11.3,1],[8.8,5.7,13.5],0),([-3.8,10.8,-1.1],[7.6,6.2,5.3],0),([-4.2,12,13],[8.4,5.2,5.7],2),([-3.4,10.25,3.3],[6.8,2.1,10.2],0),([-3.5,15.4,-.9],[7,3,6.4],0)]:X('horse_body',origin,scale,mat)
+    for side,n in [(-1,'right'),(1,'left')]:
+        X('horse_body',[side*3.75-1.1,11.4,12.4],[2.2,4.6,5.7],2,[0,side*8,-side*4])
+        X('horse_body',[side*3.3-1,11.4,-.6],[2,4.8,5.2],0,[0,side*7,side*4])
+        X('horse_body',[side*4.35-.25,12.3,3.5],[.5,4.7,1],10)
+        X('horse_body',[side*4.45-.35,13.5,3.3],[.7,1,1.3],4)
+        # Broad haunch, distinct hock and sloping cannon on each original three-joint chain.
+        upper='hind_'+n;lower=upper+'_lower';foot=upper+'_foot'
+        m.by_name[upper]['cubes']=[];m.by_name[lower]['cubes']=[]
+        m.by_name[lower]['pivot']=[side*3.3,8,16.2]
+        X(upper,[side*3.3-1.45,8.1,13.25],[2.9,6.1,3.9],2,[-7,0,0],[side*3.3,13,15])
+        X(upper,[side*3.3-1.15,7.4,14.5],[2.3,2.7,2.8],0)
+        X(lower,[side*3.3-.8,1.5,15.35],[1.6,6.5,1.7],0,[-10,0,0],[side*3.3,8,16.2])
+        X(lower,[side*3.3-1.05,6.7,15.2],[2.1,2.1,2.4],2)
+        # Retain forelegs/cuffs and all four individual hooves.
+        arm='arm_'+n;m.by_name[arm]['cubes']=[c for c in m.by_name[arm]['cubes'] if v3.material_of(c) not in (3,12,14)]
+        X(arm,[side*3.2-1.5,22.7,-1.55],[3,1.65,3.2],3,[0,0,-side*8])
+        X(arm,[side*3.2-1.3,23.65,-1.45],[2.6,.55,3],14,[0,0,-side*8])
+    # Allocate a previously unused corner of the gold tile to muted green irises.
+    for c in m.by_name['head']['cubes']:
+        if v3.material_of(c)==4:
+            for face in c['uv'].values():face['uv']=[26,56];face['uv_size']=[4,5]
+    # Four-beat walk: hind-left, front-left, hind-right, front-right; no server velocity changes.
+    phases={'hind_left':0,'front_left':90,'hind_right':180,'front_right':270}
+    walk=animations['walk']
+    for name,phase in phases.items():
+        swing=f'math.sin(query.anim_time * 300 + {phase}) * 17'
+        knee=f'math.max(0, math.sin(query.anim_time * 300 + {phase} - 30)) * 20'
+        walk['bones'][name]={'rotation':[swing,0,0],'position':[0,f'math.max(0, math.sin(query.anim_time * 300 + {phase})) * 0.5',0]}
+        walk['bones'][name+'_lower']={'rotation':[knee,0,0]}
+        walk['bones'][name+'_foot']={'rotation':[f'-({swing}) - ({knee})',0,0]}
+    # Corrective comparison: compact the horse silhouette coherently, including hock pivots and tail.
+    for bone in m.bones:
+        if bone['name']=='horse_body' or bone['name'].startswith(('hind_','tail')):
+            bone['pivot'][2]*=.78
+            for c in bone.get('cubes',[]):
+                c['origin'][2]*=.78;c['size'][2]*=.78
+                if 'pivot' in c:c['pivot'][2]*=.78
+    head=m.by_name['head'];head['cubes']=[c for c in head['cubes'] if not(v3.material_of(c)==9 and c['origin'][2]<-2.5 and c['size'][2]<1.5 and c['size'][1]>.5)]
+    for x,y,w,h,ang in [(-3,28.65,1.7,1.9,-11),(-1.6,28.9,1.8,1.7,-5),(-.05,28.5,1.8,2,9),(1.5,28.95,1.6,1.6,17)]:
+        X('head',[x,y,-3.2],[w,h,.8],9,[0,0,ang])
+    for side in (-1,1):X('head',[side*3.5-.22,29.15,-.8],[.44,.65,3.2],10)
+    palette[3]='858b89'
+    # Keep the existing fast diagonal trot and all combat clips, soften idle tail tip lag.
+    idle=animations['idle'];length=idle['animation_length']
+    idle['bones']['tail_tip']={'rotation':{str(min(length,round(length*i/12,5))):[2.2*math.sin(2*math.pi*i/12-.35),3*math.sin(2*math.pi*i/12-.5),0] for i in range(13)}}
+    for j in range(2):X('tail_tip',[-.95+j*.9,4.1+j*.2,15.015],[1,3.2,1.56],9,[-10,0,(j-.5)*10])
+    support_death(m,animations)
+    return m,palette,roles,size,animations
+
+BUILDERS={'ender_dragon_girl':ender_dragon_girl,'vampire':vampire,'holstaurus':holstaurus,'centaur':centaur}
 
 def atlas(palette,roles,translucent,species):
     image=v3.reference_atlas(palette,roles,translucent,species)
@@ -190,6 +244,11 @@ def atlas(palette,roles,translucent,species):
         d.rectangle((0,64,31,95),fill=(223,201,179,255))
         d.rectangle((3,67,8,72),fill=(226,204,182,255));d.rectangle((7,80,11,85),fill=(220,198,176,255))
         for points,color in [([(3,3),(7,2),(10,5),(8,10),(4,9)],(143,149,164,255)), ([(13,12),(19,10),(23,14),(21,20),(15,22),(12,18)],(126,137,154,255)), ([(2,18),(6,17),(9,22),(7,27),(2,28)],(175,179,188,255))]:d.polygon(points,fill=color)
+    if species=='centaur':
+        d=ImageDraw.Draw(image);d.rectangle((26,56,30,61),fill=(75,105,80,255));d.rectangle((26,56,30,57),fill=(108,133,98,255))
+        d.rectangle((0,0,31,31),fill=(121,81,60,255))
+        d.polygon([(2,3),(15,2),(28,7),(26,12),(12,10),(3,13)],fill=(135,92,67,255))
+        d.polygon([(3,17),(14,14),(27,19),(29,28),(9,29),(2,25)],fill=(108,71,54,255))
     return image
 
 def main():

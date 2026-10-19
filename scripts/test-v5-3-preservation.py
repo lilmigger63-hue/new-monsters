@@ -8,7 +8,11 @@ from visual_v3_geometry import minimum_y
 
 class V53Preservation(unittest.TestCase):
     def test_gameplay_audio_renderer_and_original_twenty_unchanged(self):
+        overrides=json.loads((DOC/'state.json').read_text()).get('test_only_overrides',{})
+        for path,record in overrides.items():
+            self.assertEqual(path,'src/clientGametest/java/com/mythicrealms/creatures/clienttest/CreatureClientSmokeTest.java')
         for path,digest in json.loads((DOC/'protected-baseline.json').read_text()).items():
+            if path in overrides:digest=overrides[path]['sha256']
             self.assertEqual(hashlib.sha256((ROOT/path).read_bytes()).hexdigest(),digest,path)
     def test_only_one_active_species_and_completed_art_frozen(self):
         state=json.loads((DOC/'state.json').read_text());done=state['completed']

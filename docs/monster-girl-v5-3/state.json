@@ -42,7 +42,7 @@
       }
     },
     "holstaurus": {
-      "commit": "V5.3: refine holstaurus",
+      "commit": "080dc2c",
       "passes": 2,
       "evidence": "/workspace/validation/monster-girl-v5-3/03-holstaurus/pass-2",
       "files": {
@@ -50,6 +50,17 @@
         "src/main/resources/assets/mythic_realms_creatures/geckolib/animations/entity/holstaurus.animation.json": "0d4932f5b9d71ce5650eda8034ac96b97a053734e1851286ab22825bc0daeb4d",
         "src/main/resources/assets/mythic_realms_creatures/textures/entity/holstaurus.png": "2bab25a71eb8b63aabb9ab81284d92489bcffae7ea23e025172103f878e59068",
         "tools/blockbench/holstaurus.bbmodel": "33298f2fa45eadbf24a3b2f0a9005b5078fcd9ede846bcdf11b4a395f58e69ce"
+      }
+    },
+    "centaur": {
+      "commit": "V5.3: refine centaur",
+      "passes": 3,
+      "evidence": "/workspace/validation/monster-girl-v5-3/04-centaur/pass-3-side-motion",
+      "files": {
+        "src/main/resources/assets/mythic_realms_creatures/geckolib/models/entity/centaur.geo.json": "8f6f38dd2c8a3c5fd5a12e5fc2267182c4421f40b5dfc1e1043be0f0133853f3",
+        "src/main/resources/assets/mythic_realms_creatures/geckolib/animations/entity/centaur.animation.json": "452d9ce0c68e4cc84610309b86615156e0538c68827a1a7ab417c29fcf7e76f4",
+        "src/main/resources/assets/mythic_realms_creatures/textures/entity/centaur.png": "6afc3beca8fbf32fb0df40ccd280c09652afd21a0a85305a73715be2220770a0",
+        "tools/blockbench/centaur.bbmodel": "7e7b72a32f5d2f20d014d83c9cb713dc0a6e06cbc8bcae87f7f608fb8f391046"
       }
     }
   },
@@ -205,5 +216,11 @@
     "src/main/resources/assets/mythic_realms_creatures/textures/entity/werecat.png": "8900466c0915a4fe0dd63ffc46c7bef5ca10ea3d6935a4cd259f249822f0a807",
     "tools/blockbench/werecat.bbmodel": "9e309a3ff654739ef2fc7730e2b6a93f5921f551f2f75ba67bb2b471f8aef9e5"
   },
-  "shared_unchanged_baseline_evidence": "/workspace/validation/monster-visual-overhaul-v3/final-all33-better-combat"
+  "shared_unchanged_baseline_evidence": "/workspace/validation/monster-visual-overhaul-v3/final-all33-better-combat",
+  "test_only_overrides": {
+    "src/clientGametest/java/com/mythicrealms/creatures/clienttest/CreatureClientSmokeTest.java": {
+      "sha256": "12b2f6f9ca081b5a5abb23d819df03b4db992326b7089a0176d71bd02ae50a66",
+      "reason": "Side-biased Centaur motion camera and two extra walk/run phase captures; isolated client test mod, excluded from playable JAR"
+    }
+  }
 }

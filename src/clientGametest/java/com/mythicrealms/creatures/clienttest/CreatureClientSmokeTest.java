@@ -182,6 +182,11 @@ public final class CreatureClientSmokeTest implements FabricClientGameTest {
                         ? new String[]{"walk", "run", "heavy", "cast", "hurt", "death", "fly", "hover"}
                         : kind==CreatureKind.HOLSTAURUS ? new String[]{"walk", "run", "heavy", "cast", "hurt", "death", "hop"}
                         : new String[]{"walk", "run", "heavy", "cast", "hurt", "death"};
+                // A side-biased view exposes all four centaur chains during motion playback.
+                if(kind==CreatureKind.CENTAUR) {
+                    server.runCommand("tp @a "+(x+distance*.8660254)+" "+cameraFeetY+" "+(z+distance*.5)+" 120 0");
+                    context.waitTicks(4);
+                }
                 for (String clip : probes) {
                     context.runOnClient(client -> {
                         for (Entity entity : client.level.entitiesForRendering()) {
@@ -200,6 +205,12 @@ public final class CreatureClientSmokeTest implements FabricClientGameTest {
                     });
                     context.waitTicks(clip.equals("cast") ? Math.max(8, kind.windup) : clip.equals("death") ? 22 : 8);
                     context.takeScreenshot("creature-" + kind.id + "-probe-" + clip);
+                    if(kind==CreatureKind.CENTAUR && (clip.equals("walk") || clip.equals("run"))) {
+                        for(int phase=2;phase<=3;phase++) {
+                            context.waitTicks(clip.equals("walk")?4:3);
+                            context.takeScreenshot("creature-"+kind.id+"-probe-"+clip+"-phase-"+phase);
+                        }
+                    }
                     if(clip.equals("heavy")) {
                         context.waitTicks(Math.max(1, kind.windup - 8));
                         context.takeScreenshot("creature-" + kind.id + "-probe-heavy-impact");
