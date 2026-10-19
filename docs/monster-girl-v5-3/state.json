@@ -147,7 +147,7 @@
       }
     },
     "succubus": {
-      "commit": "V5.3: refine succubus",
+      "commit": "1d5957f",
       "passes": 1,
       "evidence": "/workspace/validation/monster-girl-v5-3/12-succubus/pass-1",
       "files": {
@@ -156,6 +156,17 @@
         "src/main/resources/assets/mythic_realms_creatures/textures/entity/succubus.png": "c32428bc5dea21aeefc651fc04cee44c103cbe468bc7712bf36b59edc5e98281",
         "tools/blockbench/succubus.bbmodel": "2e5befbc5d97e113580564cabacc1a4023c3f6a825d116f71e0251638e2922ef",
         "src/main/resources/assets/mythic_realms_creatures/textures/entity/succubus_glowmask.png": "550370841395b3d765a37a8ad027c8e289fbecb9007eb97671ec351c964016c8"
+      }
+    },
+    "werecat": {
+      "commit": "V5.3: refine werecat",
+      "passes": 1,
+      "evidence": "/workspace/validation/monster-girl-v5-3/13-werecat/pass-1",
+      "files": {
+        "src/main/resources/assets/mythic_realms_creatures/geckolib/models/entity/werecat.geo.json": "e43e0af2230cece82da4170c64713a6587b4e460a5e74790d60087790f24aec8",
+        "src/main/resources/assets/mythic_realms_creatures/geckolib/animations/entity/werecat.animation.json": "90768cdf07145b5900f4a6bca6681a21f7efaefe984f6e121bb6b6df80d8539d",
+        "src/main/resources/assets/mythic_realms_creatures/textures/entity/werecat.png": "97a1a7d5987e875c4c11f66bf1f9189484149e591c86d373d338b028c83e9946",
+        "tools/blockbench/werecat.bbmodel": "9767bad458c7edcf85ef31bab0f2d7b516037267f42de9971a7c0fe3546fd5b4"
       }
     }
   },

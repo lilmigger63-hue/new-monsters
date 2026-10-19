@@ -551,7 +551,40 @@ def succubus():
     support_death(m,animations)
     return m,palette,roles,size,animations
 
-BUILDERS={'ender_dragon_girl':ender_dragon_girl,'vampire':vampire,'holstaurus':holstaurus,'centaur':centaur,'sahuagin':sahuagin,'valkyrie':valkyrie,'fox_spirit_girl':fox_spirit_girl,'anubis':anubis,'kobold':kobold,'cyclops':cyclops,'dhampir':dhampir,'succubus':succubus}
+def werecat():
+    m,palette,roles,size,animations=load('werecat');X=m.box
+    # Retain the wingless feline rig, red eyes, triangular ears and connected tail.
+    for b in m.bones:
+        if b['name'].startswith('hair_'):
+            for c in b.get('cubes',[]):
+                top=c['origin'][1]+c['size'][1];c['origin'][1]=max(c['origin'][1],22.1);c['size'][1]=max(.35,top-c['origin'][1])
+    for c in m.by_name['head']['cubes']:
+        if v3.material_of(c)==9 and c['origin'][2]<-2.9 and c['size'][1]>1:
+            c['rotation']=[0,0,10 if c['origin'][0]<0 else -12]
+            c['pivot']=[c['origin'][0]+c['size'][0]/2,c['origin'][1]+c['size'][1],c['origin'][2]+c['size'][2]/2]
+    chest=m.by_name['chest'];chest['cubes']=[c for c in chest['cubes'] if not(c['origin'][2]<-2.5 and v3.material_of(c) in (3,14))]
+    X('chest',[-2,17.4,-2.72],[4,2.5,.48],8)
+    for side,n in [(-1,'right'),(1,'left')]:
+        X('chest',[side*1.65-.5,17.2,-3.03],[1,3,.5],14,[0,0,-side*12])
+        X('fore_'+n,[side*3.2-1.12,10.95,-1.82],[2.24,3.6,.42],13)
+        X('fore_'+n,[side*3.2-.65,11.2,-2.09],[1.3,2.8,.25],4)
+        X('leg_'+n+'_lower',[side*1.45-1.05,5.8,-1.85],[2.1,1.3,.5],3)
+        # Short tapered ear interiors read clearly against silver hair.
+        for c in m.by_name['ear_'+str(side)]['cubes']:
+            if v3.material_of(c)==7:v3.repaint_cube(c,10)
+    m.by_name['tail_tip']['cubes']=[]
+    X('tail_tip',[-.72,6.25,2],[1.44,1.5,4.4],9)
+    X('tail_tip',[-.52,6.45,6],[1.04,1.1,1.45],0)
+    palette[9]='a6acb7';palette[13]='414959';palette[14]='8b95a5';palette[3]='626c7e';palette[10]='4a505e';palette[4]='b53e4c'
+    for clip in ('idle','walk','run'):
+        length=animations[clip]['animation_length']
+        for i,name in enumerate(('hair_-1','hair_1','hair_back','tail_tip')):
+            amp=5 if name=='tail_tip' else 1.7
+            animations[clip]['bones'].setdefault(name,{})['rotation']={str(min(length,round(length*j/12,5))):[amp*.3*math.sin(2*math.pi*j/12-i*.4),amp*math.sin(2*math.pi*j/12-i*.4),.5*math.cos(2*math.pi*j/12-i*.4)]for j in range(13)}
+    support_death(m,animations)
+    return m,palette,roles,size,animations
+
+BUILDERS={'ender_dragon_girl':ender_dragon_girl,'vampire':vampire,'holstaurus':holstaurus,'centaur':centaur,'sahuagin':sahuagin,'valkyrie':valkyrie,'fox_spirit_girl':fox_spirit_girl,'anubis':anubis,'kobold':kobold,'cyclops':cyclops,'dhampir':dhampir,'succubus':succubus,'werecat':werecat}
 
 def atlas(palette,roles,translucent,species):
     image=v3.reference_atlas(palette,roles,translucent,species)
