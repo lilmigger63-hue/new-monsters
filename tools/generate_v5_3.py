@@ -452,7 +452,39 @@ def kobold():
     support_death(m,animations)
     return m,palette,roles,size,animations
 
-BUILDERS={'ender_dragon_girl':ender_dragon_girl,'vampire':vampire,'holstaurus':holstaurus,'centaur':centaur,'sahuagin':sahuagin,'valkyrie':valkyrie,'fox_spirit_girl':fox_spirit_girl,'anubis':anubis,'kobold':kobold}
+def cyclops():
+    m,palette,roles,size,animations=load('cyclops');X=m.box
+    # Replace the blue helmet shell with the reference's swept black hairline.
+    head=m.by_name['head']
+    head['cubes']=[c for c in head['cubes'] if not(v3.material_of(c)==2)]
+    for c in head['cubes']:
+        if v3.material_of(c)==5 and c['size'][0]>7 and c['size'][1]<.7:
+            c['size'][0]*=.91;c['origin'][0]=-c['size'][0]/2
+        if v3.material_of(c)==4:v3.repaint_cube(c,5)
+    # One eye, already anatomically centered; retain its continuous white sclera.
+    for side,n in [(-1,'right'),(1,'left')]:
+        X('head',[side*2.45-.7,28.5,-3.46],[1.4,1.5,.5],5,[0,0,-side*14])
+        for bone in ('hair_'+n,'hair_tip_'+n):
+            for c in m.by_name[bone]['cubes']:
+                top=c['origin'][1]+c['size'][1];c['origin'][1]=max(c['origin'][1],22.8 if bone.startswith('hair_tip') else 24.2);c['size'][1]=max(.35,top-c['origin'][1])
+        # Layered navy pauldrons, gold diagonal edging and articulated knee caps.
+        X('arm_'+n,[side*4-.95,21.4,-2.03],[1.9,1.8,.55],3,[0,0,-side*12])
+        X('arm_'+n,[side*4-1,22.5,-2.15],[2,.45,.5],4,[0,0,-side*12])
+        X('shin_'+n,[side*1.33-1,5.15,-1.95],[2,1.5,.65],10)
+        X('tasset_'+n,[side*1.33-.8,7.8,-2.4],[1.6,2.2,.45],3,[0,0,side*7])
+    # Broader stepped crest replaces the narrow parallel rods.
+    m.by_name['plume']['cubes']=[]
+    for x,y,z,w,h in [(-1.3,30,-.8,2.6,3.9),(-1.1,31,.6,2.2,3.2),(-.8,31.5,1.6,1.6,2.1)]:X('plume',[x,y,z],[w,h,1.1],10,[-15,0,0])
+    palette[2]='394b83';palette[3]='25314f';palette[4]='b7a45f';palette[5]='171b21';palette[8]='222730';palette[10]='697fbe'
+    # Free costume tips lag the rigid two-handed chest/weapon carry.
+    for clip in ('idle','walk','run'):
+        length=animations[clip]['animation_length']
+        for i,name in enumerate(('hair_tip_left','hair_tip_right','plume','tasset_left','tasset_right')):
+            animations[clip]['bones'].setdefault(name,{})['rotation']={str(min(length,round(length*j/12,5))):[2*math.sin(2*math.pi*j/12-i*.35),0,1.2*math.sin(2*math.pi*j/12-i*.35-.4)]for j in range(13)}
+    support_death(m,animations)
+    return m,palette,roles,size,animations
+
+BUILDERS={'ender_dragon_girl':ender_dragon_girl,'vampire':vampire,'holstaurus':holstaurus,'centaur':centaur,'sahuagin':sahuagin,'valkyrie':valkyrie,'fox_spirit_girl':fox_spirit_girl,'anubis':anubis,'kobold':kobold,'cyclops':cyclops}
 
 def atlas(palette,roles,translucent,species):
     image=v3.reference_atlas(palette,roles,translucent,species)

@@ -111,7 +111,7 @@
       }
     },
     "kobold": {
-      "commit": "V5.3: refine kobold",
+      "commit": "6d8e20d",
       "passes": 2,
       "evidence": "/workspace/validation/monster-girl-v5-3/09-kobold/pass-2",
       "files": {
@@ -120,6 +120,18 @@
         "src/main/resources/assets/mythic_realms_creatures/textures/entity/kobold.png": "f1022f9ed4278aa1e6ccae9752e1e096f80ec1356505ec4c2a82cc53631276ff",
         "tools/blockbench/kobold.bbmodel": "86ad7234552e630a8c19d2788687568501991aad325a0bea1a370e1f6e8942a9",
         "src/main/resources/assets/mythic_realms_creatures/textures/entity/kobold_glowmask.png": "2ee48ae110d5a6b86c242383356345dbd00e6b44668ee22fe3cea2ace4327dd9"
+      }
+    },
+    "cyclops": {
+      "commit": "V5.3: refine cyclops",
+      "passes": 1,
+      "evidence": "/workspace/validation/monster-girl-v5-3/10-cyclops/pass-1",
+      "files": {
+        "src/main/resources/assets/mythic_realms_creatures/geckolib/models/entity/cyclops.geo.json": "0337cfd69b953aea307223366f149ba9a7bc6f166a20196486433eaf430ce435",
+        "src/main/resources/assets/mythic_realms_creatures/geckolib/animations/entity/cyclops.animation.json": "cbb365d696204065d4bd80eb0ae4bed16823d5507d1a4aefed8938eb7237f7e5",
+        "src/main/resources/assets/mythic_realms_creatures/textures/entity/cyclops.png": "805edcabcf81049cc256ffc5d1a4cd2544da774b81e0a544b754cee573e792e4",
+        "tools/blockbench/cyclops.bbmodel": "0e1a258692d700722930d14c48c337f3230cf2c8afb6931318a50fe3f3239b26",
+        "src/main/resources/assets/mythic_realms_creatures/textures/entity/cyclops_glowmask.png": "5ec116af3486076fd39662293a4a60906b2d3cf492a52302f75fcd4d4a7fe365"
       }
     }
   },
