@@ -1,0 +1,12 @@
+{
+  "completed_visual_stages": 8,
+  "full_build": "passed",
+  "dedicated_server_gametests": {
+    "passed": 51,
+    "failed": 0,
+    "skipped": 0
+  },
+  "raw_build_log_sha256": "748cf554694c7b328c6129fbd0a43d36fdd6e027325525a0f9edc18cab061eeb",
+  "server_xml_sha256": "10ac25ec188eac55d3436afa052595e334286ad3fc2a61004d75c06414d0207b",
+  "asset_tests": 35
+}

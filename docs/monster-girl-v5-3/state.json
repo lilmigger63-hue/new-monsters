@@ -87,7 +87,7 @@
       }
     },
     "fox_spirit_girl": {
-      "commit": "V5.3: refine fox_spirit_girl",
+      "commit": "9f9799a",
       "passes": 3,
       "evidence": "/workspace/validation/monster-girl-v5-3/07-fox_spirit_girl/pass-3",
       "files": {
@@ -96,6 +96,18 @@
         "src/main/resources/assets/mythic_realms_creatures/textures/entity/fox_spirit_girl.png": "9a20f01a0652964dfb7c8eb949a8c6afecf92657386c5cbefe7276211ff5abfb",
         "tools/blockbench/fox_spirit_girl.bbmodel": "2323e9ce2f5b013aee3d65a0b05c2b0f1d84e18d58f581af633dc7d786db8af3",
         "src/main/resources/assets/mythic_realms_creatures/textures/entity/fox_spirit_girl_glowmask.png": "5242ddfc8ffaca006840e9895fd76bdb72ff318402fc6008e2d6b9a09e5c0ae5"
+      }
+    },
+    "anubis": {
+      "commit": "V5.3: refine anubis",
+      "passes": 2,
+      "evidence": "/workspace/validation/monster-girl-v5-3/08-anubis/pass-2",
+      "files": {
+        "src/main/resources/assets/mythic_realms_creatures/geckolib/models/entity/anubis.geo.json": "5a3fb3b16cadd496d113ad03b373b25429258ea893eee992f4ae5c618926eb9f",
+        "src/main/resources/assets/mythic_realms_creatures/geckolib/animations/entity/anubis.animation.json": "078ad73da2b9fc6f73bfbe78fdc128a08cf81b32773f1c5321fe8d2db8518b1d",
+        "src/main/resources/assets/mythic_realms_creatures/textures/entity/anubis.png": "70fb4d839c5be2b0f9f50954c91fc3013b53f577bd35e1585377e13b3d19646c",
+        "tools/blockbench/anubis.bbmodel": "48fc4ad7fe0e0519c048e85f9004b5d236f80bdaa04f311c3b30cbe4377205cb",
+        "src/main/resources/assets/mythic_realms_creatures/textures/entity/anubis_glowmask.png": "11939f206341227f70b6c7717e2c3e73cf48cde437d09f402887d0b37a3bdbab"
       }
     }
   },

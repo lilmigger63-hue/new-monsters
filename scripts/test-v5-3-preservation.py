@@ -28,7 +28,7 @@ class V53Preservation(unittest.TestCase):
             self.assertEqual(set(before),set(after),species)
             for name,clip in before.items():
                 for key in ('animation_length','loop'):self.assertEqual(clip.get(key),after[name].get(key),(species,name,key))
-                if name in ('attack','heavy','cast','hurt','teleport'):self.assertEqual(clip,after[name],(species,name))
+                if name in ('attack','heavy','cast','hurt','teleport','guard','hop'):self.assertEqual(clip,after[name],(species,name))
     def test_archived_baselines_match_initial_hashes(self):
         state=json.loads((DOC/'state.json').read_text())
         for path,digest in state['baseline_hashes'].items():

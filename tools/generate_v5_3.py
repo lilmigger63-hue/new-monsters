@@ -371,7 +371,54 @@ def fox_spirit_girl():
     support_death(m,animations)
     return m,palette,roles,size,animations
 
-BUILDERS={'ender_dragon_girl':ender_dragon_girl,'vampire':vampire,'holstaurus':holstaurus,'centaur':centaur,'sahuagin':sahuagin,'valkyrie':valkyrie,'fox_spirit_girl':fox_spirit_girl}
+def anubis():
+    m,palette,roles,size,animations=load('anubis');X=m.box
+    # Pointed jackal ears retain the original attachment bones and black/gold identity.
+    for side,n in [(-1,'right'),(1,'left')]:
+        ear='ear_'+n;m.by_name[ear]['cubes']=[]
+        for x,y,w,h in [(2.5,25.5,1.9,2.6),(2.65,27.6,1.35,1.9),(2.8,29,.65,1.15)]:
+            X(ear,[side*x-w/2,y,-.65],[w,h,1.35],5,[0,0,-side*5])
+        X(ear,[side*2.5-.35,26,-.88],[.7,2.3,.28],12,[0,0,-side*5])
+        tip='hair_tip_'+n;m.by_name[tip]['cubes']=[]
+        X(tip,[side*3.55-.75,16.5,-1],[1.5,3.1,3.4],2,[0,0,-side*6])
+        X(tip,[side*3.55-.78,16.3,-1.05],[1.56,.6,3.5],4,[0,0,-side*6])
+    # A restrained segmented broad collar replaces the dense tooth-like gold layers.
+    chest=m.by_name['chest'];chest['cubes']=[c for c in chest['cubes'] if v3.material_of(c) not in (4,12)]
+    X('chest',[-2.35,19.6,-2.5],[4.7,.45,.65],4)
+    for j in range(5):
+        x=-2.4+j*1.05;y=18.15+abs(j-2)*.25
+        X('chest',[x,y,-2.75],[.95,1.15,.45],4,[0,0,(j-2)*9])
+    X('chest',[-.4,17.2,-2.8],[.8,1,.4],12,[0,0,45])
+    X('chest',[-2.3,20,-1.9],[4.6,.6,3.9],6)
+    # Original gold apron plates stand distinctly over individually mapped linen folds.
+    for j in range(5):
+        h=2.7+(2-abs(j-2))*.5
+        X('pelvis',[-2.15+j*.87,11.6-h,-2.2],[.75,h,.5],4)
+        X('pelvis',[-1.98+j*.87,11.4-h,-2.4],[.22,h-.3,.25],12)
+    for n in ('right','left'):
+        for c in m.by_name['linen_'+n]['cubes']:
+            if v3.material_of(c)==3:
+                for face,data in c['uv'].items():
+                    dims=(c['size'][0],c['size'][1]) if face in ('north','south') else (c['size'][2],c['size'][1]) if face in ('west','east') else (c['size'][0],c['size'][2])
+                    data['uv_size']=[min(27,max(1,round(x*3.1)))for x in dims]
+                    if n=='left':data['uv'][0]+=15
+    # Beveled hooked edge on the same khopesh hilt and forward/down attachment.
+    m.by_name['khopesh']['cubes']=m.by_name['khopesh']['cubes'][:2]
+    X('khopesh',[-3.98,13.65,-1.22],[.85,3.8,.72],14)
+    X('khopesh',[-3.65,16.7,-1.22],[1.2,2.4,.72],14,[0,0,25])
+    X('khopesh',[-2.5,18.55,-1.22],[1.85,.85,.72],14,[0,0,-10])
+    X('khopesh',[-1.15,17.75,-1.22],[.65,1.5,.72],14,[0,0,15])
+    X('khopesh',[-1.02,17.2,-1.2],[.4,.8,.68],14,[0,0,15])
+    X('khopesh',[-3.35,13.7,-1.25],[.14,3.55,.75],9)
+    X('khopesh',[-2.4,19.17,-1.25],[1.7,.14,.75],9,[0,0,-10])
+    for name,amplitude in [('idle',1.3),('walk',1.8),('run',2.3)]:
+        clip=animations[name];length=clip['animation_length']
+        for side,n in [(-1,'right'),(1,'left')]:
+            clip['bones']['hair_tip_'+n]={'rotation':{str(min(length,round(length*j/12,5))):[amplitude*math.sin(2*math.pi*j/12-side*.2),0,side*.6*math.sin(2*math.pi*j/12)]for j in range(13)}}
+    support_death(m,animations)
+    return m,palette,roles,size,animations
+
+BUILDERS={'ender_dragon_girl':ender_dragon_girl,'vampire':vampire,'holstaurus':holstaurus,'centaur':centaur,'sahuagin':sahuagin,'valkyrie':valkyrie,'fox_spirit_girl':fox_spirit_girl,'anubis':anubis}
 
 def atlas(palette,roles,translucent,species):
     image=v3.reference_atlas(palette,roles,translucent,species)
@@ -401,6 +448,14 @@ def atlas(palette,roles,translucent,species):
     if species=='fox_spirit_girl':
         d=ImageDraw.Draw(image)
         for points,color in [([(2,98),(7,98),(10,103),(8,109),(4,107)],(211,187,103,255)), ([(12,103),(19,101),(25,107),(22,115),(14,113)],(184,155,76,255)), ([(3,116),(11,113),(16,120),(9,125),(3,123)],(203,176,91,255))]:d.polygon(points,fill=color)
+    if species=='anubis':
+        d=ImageDraw.Draw(image);d.rectangle((96,0,127,31),fill=(224,222,206,255))
+        d.polygon([(100,2),(102,2),(101,27),(99,29)],fill=(207,207,194,255))
+        d.polygon([(106,2),(108,4),(110,26),(107,29),(105,20)],fill=(236,233,217,255))
+        d.polygon([(98,17),(102,15),(107,24),(105,28),(98,27)],fill=(215,213,199,255))
+        for y in (8,19):d.line((98,y,124,y+1),fill=(218,216,202,255),width=1)
+        d.polygon([(115,3),(119,4),(117,15),(120,26),(116,29),(114,17)],fill=(208,207,195,255))
+        d.polygon([(122,5),(125,4),(125,26),(122,28),(120,17)],fill=(234,232,217,255))
     return image
 
 def main():
