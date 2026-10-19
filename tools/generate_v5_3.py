@@ -271,7 +271,62 @@ def sahuagin():
     support_death(m,animations)
     return m,palette,roles,size,animations
 
-BUILDERS={'ender_dragon_girl':ender_dragon_girl,'vampire':vampire,'holstaurus':holstaurus,'centaur':centaur,'sahuagin':sahuagin}
+def valkyrie():
+    m,palette,roles,size,animations=load('valkyrie');X=m.box
+    head=m.by_name['head'];eyes=[c for c in head['cubes'] if v3.material_of(c)==4]
+    head['cubes']=[c for c in head['cubes'] if v3.material_of(c) not in (2,3,6,12,14) and not(c['origin'][2]<-2.7 and c['size'][2]<.3)]
+    # A fitted dome, single brow and swept thin crests replace the stacked helmet bands.
+    X('head',[-3.65,30.2,-3.15],[7.3,1.1,6.4],2)
+    X('head',[-2.85,31.4,-2.45],[5.7,.6,5.2],14)
+    X('head',[-2,31.6,-1.8],[4,.5,3.8],3)
+    X('head',[-3.6,29.9,-3.5],[7.2,.75,.65],12)
+    X('head',[-3.2,29.65,-3.65],[6.4,.25,.35],14)
+    for side,n in [(-1,'right'),(1,'left')]:
+        X('head',[side*3.2-.5,26.3,-2.75],[1,3.7,2.7],2)
+        X('head',[side*3.25-.26,26.1,-2.9],[.52,1.2,1.9],12)
+        X('head',[side*3.3-.38,30.1,-.8],[.76,3.4,1.2],12,[0,0,-side*45])
+        X('head',[side*4.1-.3,31,-.7],[.6,2.5,1.1],12,[0,0,-side*60])
+        X('head',[side*4.15-.2,32.2,-.73],[.4,.9,.8],6,[0,0,-side*60])
+        shin='shin_'+n;m.by_name[shin]['cubes']=[c for c in m.by_name[shin]['cubes'] if v3.material_of(c)!=12]
+        for y,h in ((2.25,.7),(6.6,.8)):X(shin,[side*1.35-1.4,y,-1.65],[2.8,h,.5],12)
+        X(shin,[side*1.35-1.4,7.2,-1.55],[2.8,1.1,3.2],14,[0,0,-side*5])
+        # More compact overlapping faulds show the articulated underlayer at the knee.
+        for c in m.by_name['fauld_'+n]['cubes']:
+            top=c['origin'][1]+c['size'][1];c['origin'][1]=max(11.7,c['origin'][1]);c['size'][1]=max(.45,top-c['origin'][1])
+            if 'pivot' in c:c['pivot'][1]=c['origin'][1]+c['size'][1]/2
+        for c in m.by_name['leg_'+n]['cubes']:v3.repaint_cube(c,10)
+        # Fold the retained detailed feathers along the back during the death pose.
+        animations['death']['bones']['wing_'+n]={'rotation':{'0':[0,side*90,side*15]}}
+        animations['death']['bones']['wingtip_'+n]={'rotation':{'0':[0,0,side*10]}}
+    # Slim red eyes framed by the skin plane rather than dark rectangular rims.
+    for c in eyes:
+        x=c['origin'][0]+c['size'][0]/2;y=c['origin'][1];z=c['origin'][2]
+        X('head',[x-.78,y,z+.2],[1.56,1.02,.14],8)
+        X('head',[x-.4,y+.05,z+.03],[.8,.92,.12],4)
+        X('head',[x-.1,y+.08,z-.1],[.2,.82,.1],5)
+        X('head',[x-.3,y+.72,z-.21],[.17,.18,.08],15)
+    for b in m.bones:
+        if b['name'].startswith('hair_'):
+            for c in b.get('cubes',[]):
+                top=c['origin'][1]+c['size'][1];c['origin'][1]=max(23,c['origin'][1]);c['size'][1]=max(.3,top-c['origin'][1])
+                if 'pivot' in c:c['pivot'][1]=c['origin'][1]+c['size'][1]/2
+    m.by_name['sword']['rotation']=[25,0,0]
+    shield=m.by_name['shield'];pivot=shield['pivot']
+    for c in shield['cubes']:
+        c['origin']=[pivot[i]+(c['origin'][i]-pivot[i])*.88 for i in range(3)];c['size']=[x*.88 for x in c['size']]
+        if 'pivot' in c:c['pivot']=[pivot[i]+(c['pivot'][i]-pivot[i])*.88 for i in range(3)]
+    # Feather tips trail the main flap by one existing sample, with the loop seam kept closed.
+    for name in ('fly','hover'):
+        for bone,channels in animations[name]['bones'].items():
+            if bone.startswith('wingtip_') and isinstance(channels.get('rotation'),dict):
+                frames=channels['rotation'];keys=sorted(frames,key=float);values=[copy.deepcopy(frames[k]) for k in keys[:-1]]
+                for j,key in enumerate(keys[:-1]):frames[key]=values[(j-1)%len(values)]
+                frames[keys[-1]]=copy.deepcopy(frames[keys[0]])
+    palette[9]='c9b271';palette[2]='9ba2a1';palette[6]='cdd3cf'
+    support_death(m,animations)
+    return m,palette,roles,size,animations
+
+BUILDERS={'ender_dragon_girl':ender_dragon_girl,'vampire':vampire,'holstaurus':holstaurus,'centaur':centaur,'sahuagin':sahuagin,'valkyrie':valkyrie}
 
 def atlas(palette,roles,translucent,species):
     image=v3.reference_atlas(palette,roles,translucent,species)

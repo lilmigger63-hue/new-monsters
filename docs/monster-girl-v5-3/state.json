@@ -64,7 +64,7 @@
       }
     },
     "sahuagin": {
-      "commit": "V5.3: refine sahuagin",
+      "commit": "c999a4a",
       "passes": 2,
       "evidence": "/workspace/validation/monster-girl-v5-3/05-sahuagin/pass-2",
       "files": {
@@ -72,6 +72,18 @@
         "src/main/resources/assets/mythic_realms_creatures/geckolib/animations/entity/sahuagin.animation.json": "3cc4ed60c8fdf0dc16e52ca72bc802250f3d8377cdb96a573bf32e976f185c31",
         "src/main/resources/assets/mythic_realms_creatures/textures/entity/sahuagin.png": "c2bf18c9e93e4cd16d4af902484cc00d1332465d4ac23bab20168898d2c06388",
         "tools/blockbench/sahuagin.bbmodel": "619b9049c9bd8a6c29ca6fc33a92fcab5d2b18eab0a5ebd048eedf580906f2ec"
+      }
+    },
+    "valkyrie": {
+      "commit": "V5.3: refine valkyrie",
+      "passes": 2,
+      "evidence": "/workspace/validation/monster-girl-v5-3/06-valkyrie/pass-2",
+      "files": {
+        "src/main/resources/assets/mythic_realms_creatures/geckolib/models/entity/valkyrie.geo.json": "81082882d9a08c8708c7584223938cf15d95503175e57ee6dd960994031a6e9b",
+        "src/main/resources/assets/mythic_realms_creatures/geckolib/animations/entity/valkyrie.animation.json": "2d5589106a2044dcbaf90cf16b953eac7d75ca6c70df243b97b8becbba9b06e2",
+        "src/main/resources/assets/mythic_realms_creatures/textures/entity/valkyrie.png": "7a8900f6ee91365ac5642e5865fed6f57b996d96b8a0cc303f4a1cd11cc3fe52",
+        "tools/blockbench/valkyrie.bbmodel": "c3916a8b414505e4e9e6eccdaf6a5a56ac3168f1851bd4ff03a9638b7b6aa616",
+        "src/main/resources/assets/mythic_realms_creatures/textures/entity/valkyrie_glowmask.png": "f6bb4b34670e0da1966b0e29cb3004e84c25fc2a2ab4b72177132b1bf1dde47e"
       }
     }
   },
