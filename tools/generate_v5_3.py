@@ -484,7 +484,37 @@ def cyclops():
     support_death(m,animations)
     return m,palette,roles,size,animations
 
-BUILDERS={'ender_dragon_girl':ender_dragon_girl,'vampire':vampire,'holstaurus':holstaurus,'centaur':centaur,'sahuagin':sahuagin,'valkyrie':valkyrie,'fox_spirit_girl':fox_spirit_girl,'anubis':anubis,'kobold':kobold,'cyclops':cyclops}
+def dhampir():
+    m,palette,roles,size,animations=load('dhampir');X=m.box
+    # A short blonde bob leaves the coat collar visible below the hat.
+    for b in m.bones:
+        if b['name'].startswith('hair_'):
+            for c in b.get('cubes',[]):
+                top=c['origin'][1]+c['size'][1];c['origin'][1]=max(c['origin'][1],22.3);c['size'][1]=max(.3,top-c['origin'][1])
+        if b['name']=='body':
+            for c in b.get('cubes',[]):
+                if v3.material_of(c)==0:v3.repaint_cube(c,3)
+    head=m.by_name['head'];head['cubes']=[c for c in head['cubes'] if not(v3.material_of(c) in (12,13) and c['origin'][1]>26)]
+    # Five overlapping petals and a darker center, rather than a large bow block.
+    for x,y,w,h,r in [(-1.8,27.1,1.9,1.3,-20),(-.7,28,1.6,1.3,8),(.5,27.5,1.6,1.4,24),(-.9,26.8,1.8,1.2,-8)]:X('head',[x,y,-3.75],[w,h,.5],13,[0,0,r])
+    X('head',[-.7,27.3,-4.15],[1.4,1.3,.45],12)
+    # Fitted cream shirt and dark lapels; the belt and leg panels stay articulated.
+    X('chest',[-1.3,16.1,-3.02],[2.6,3.25,.4],3)
+    X('chest',[-.3,16.7,-3.46],[.6,2.4,.25],12)
+    for side,n in [(-1,'right'),(1,'left')]:
+        X('chest',[side*2.05-.65,17.2,-3.04],[1.3,2.2,.5],15,[0,0,side*15])
+        X('forearm_'+n,[side*4.1-1,12.3,-1.65],[2,.65,3],12)
+        for c in m.by_name['coat_'+n]['cubes']:
+            if v3.material_of(c)==15 and c['size'][1]>5:c['size'][0]*=1.06
+    palette[3]='d6ccba';palette[5]='b9a464';palette[8]='c8b576';palette[12]='97253c';palette[13]='bc324a'
+    for clip in ('idle','walk','run'):
+        length=animations[clip]['animation_length']
+        for i,name in enumerate(('coat_left','coat_right','scarf','hair_tip_left','hair_tip_right')):
+            animations[clip]['bones'].setdefault(name,{})['rotation']={str(min(length,round(length*j/12,5))):[2.5*math.sin(2*math.pi*j/12-i*.4),.8*math.cos(2*math.pi*j/12-i*.4),0]for j in range(13)}
+    support_death(m,animations)
+    return m,palette,roles,size,animations
+
+BUILDERS={'ender_dragon_girl':ender_dragon_girl,'vampire':vampire,'holstaurus':holstaurus,'centaur':centaur,'sahuagin':sahuagin,'valkyrie':valkyrie,'fox_spirit_girl':fox_spirit_girl,'anubis':anubis,'kobold':kobold,'cyclops':cyclops,'dhampir':dhampir}
 
 def atlas(palette,roles,translucent,species):
     image=v3.reference_atlas(palette,roles,translucent,species)
