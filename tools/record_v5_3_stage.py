@@ -11,7 +11,7 @@ subprocess.run(['python3','scripts/visual-v5-3-report.py',a.species,str(a.eviden
 files=state['paths'][a.species];geo=json.loads((ROOT/files[0]).read_text())['minecraft:geometry'][0]
 record={'commit':'V5.3: refine '+a.species,'passes':a.passes,'evidence':str(a.evidence),'files':{path:hashlib.sha256((ROOT/path).read_bytes()).hexdigest() for path in files}}
 state['completed'][a.species]=record;state['active']=None;(DOC/'state.json').write_text(json.dumps(state,indent=2)+'\n')
-(DOC/(a.species+'.md')).write_text(a.notes.read_text().strip()+'\n\n'+f"Final model: {len(geo['bones'])} bones / {sum(len(b.get('cubes',[])) for b in geo['bones'])} cubes. Actual baseline and {a.passes} corrective client runs; all33 resource sets baked/synced, one selected species presented per run.\n\n[Actual final states](previews/{a.species}-states.jpg) · [Actual baseline/final comparison](previews/{a.species}-comparison.jpg).\n")
+(DOC/(a.species+'.md')).write_text(a.notes.read_text().strip()+'\n\n'+f"Final model: {len(geo['bones'])} bones / {sum(len(b.get('cubes',[])) for b in geo['bones'])} cubes. Actual reviewed baseline plus {a.passes} corrective client runs; each corrective run bakes/syncs all33 resource sets and presents one selected species.\n\n[Actual final states](previews/{a.species}-states.jpg) · [Actual baseline/final comparison](previews/{a.species}-comparison.jpg).\n")
 f=ROOT/'docs/monster-girl-v5-3-progress.md';lines=f.read_text().splitlines()
 for i,line in enumerate(lines):
  if line.startswith('| '+a.species+' |'):

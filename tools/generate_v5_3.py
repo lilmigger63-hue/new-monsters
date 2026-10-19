@@ -127,7 +127,53 @@ def vampire():
     support_death(m,animations)
     return m,palette,roles,size,animations
 
-BUILDERS={'ender_dragon_girl':ender_dragon_girl,'vampire':vampire}
+def holstaurus():
+    m,palette,roles,size,animations=load('holstaurus');X=m.box
+    head=m.by_name['head'];head['cubes']=[c for c in head['cubes'] if not((v3.material_of(c)==6 and c['origin'][1]>25.8 and c['size'][2]>1) or (v3.material_of(c)==9 and c['origin'][2]<-2.5 and c['size'][2]<1.7))]
+    for side,n in [(-1,'right'),(1,'left')]:
+        # Short ivory horns and broad cow ears, rather than a tall helmet crest.
+        X('head',[side*3.05-.85,25.8,-.45],[1.7,1.65,1.65],6,[0,0,-side*18])
+        X('head',[side*3.4-.6,27.05,-.25],[1.2,.85,1.25],6,[0,0,-side*10])
+        X('head',[side*4.6-1.05,23.8,-.3],[2.1,.55,1.2],7,[0,0,-side*9])
+        # Rebuild bare arms as connected tapered volumes, removing the old plate/cuff geometry.
+        arm='arm_'+n;fore='fore_'+n;m.by_name[arm]['cubes']=[];m.by_name[fore]['cubes']=[]
+        x=side*3.2
+        X(arm,[x-1,14.8,-1],[2,4.5,2.3],8)
+        X(arm,[x-.82,18.8,-.85],[1.64,.85,1.95],8)
+        X(fore,[x-.85,11.4,-1],[1.7,3.7,2.1],8)
+        X(fore,[x-.7,14.6,-.82],[1.4,.65,1.8],8)
+        X('chest',[side*1.4-.75,19.8,-2.4],[1.5,1.6,.65],11,[0,0,side*22])
+        X('chest',[side*2-.2,18.1,-2.6],[.4,2.1,.5],11,[0,0,-side*9])
+    for i,(x,y,w,h,ang) in enumerate([(-3.4,24.4,1.8,2,-12),(-2,24.7,1.7,1.8,-5),(-.55,24.25,1.8,2.3,5),(1,24.6,1.7,1.9,11),(2.4,24.9,1.3,1.5,17)]):
+        X('head',[x,y,-3.18],[w,h,.85],9,[0,0,ang])
+    for c in head['cubes']:
+        if v3.material_of(c)==4:v3.repaint_cube(c,10)
+    # A shoulder-length layered bob keeps the cow ears visible.
+    for b in m.bones:
+        if b['name'].startswith('hair_'):
+            for c in b.get('cubes',[]):
+                top=c['origin'][1]+c['size'][1];c['origin'][1]=max(20.7,c['origin'][1]);c['size'][1]=max(.35,top-c['origin'][1])
+                if 'pivot' in c:c['pivot'][1]=c['origin'][1]+c['size'][1]/2
+        if b['name'].startswith('leg_') and not b['name'].endswith('_foot'):
+            for c in b.get('cubes',[]):
+                if v3.material_of(c)==0:
+                    # More texels are allocated to irregular cow markings, without enlarging the atlas.
+                    for face,data in c['uv'].items():
+                        dims=(c['size'][0],c['size'][1]) if face in ('north','south') else (c['size'][2],c['size'][1]) if face in ('west','east') else (c['size'][0],c['size'][2])
+                        data['uv_size']=[min(27,max(1,round(x*4.4))) for x in dims]
+        if b['name'].startswith('leg_') and b['name'].endswith('_foot'):
+            for c in b.get('cubes',[]):
+                if v3.material_of(c)==14 and c['size'][1]>.7:v3.repaint_cube(c,0)
+    # The existing cow tail gains a small articulated tuft; hopping physics and its clip remain untouched.
+    tail=m.by_name['tail'];m.bone('tail_tuft','tail',[0,5.3,3.5]);m.by_name['tail_tuft']['cubes']=tail['cubes'][1:];tail['cubes']=tail['cubes'][:1]
+    for name,amplitude in [('idle',2),('walk',3.2),('run',4.5)]:
+        clip=animations[name];length=clip['animation_length']
+        clip['bones']['tail_tuft']={'rotation':{str(min(length,round(length*i/12,5))):[amplitude*math.sin(2*math.pi*i/12),0,amplitude*.4*math.cos(2*math.pi*i/12)] for i in range(13)}}
+    palette[9]='b6b9c9';palette[3]='657995';palette[7]='b7a7ad';palette[0]='e7e7e2'
+    support_death(m,animations)
+    return m,palette,roles,size,animations
+
+BUILDERS={'ender_dragon_girl':ender_dragon_girl,'vampire':vampire,'holstaurus':holstaurus}
 
 def atlas(palette,roles,translucent,species):
     image=v3.reference_atlas(palette,roles,translucent,species)
@@ -139,6 +185,11 @@ def atlas(palette,roles,translucent,species):
     if species=='vampire':
         d=ImageDraw.Draw(image)
         for rect,color in [((99,101,110,109),(31,32,39,255)),((114,107,123,120),(21,23,29,255)),((101,116,112,125),(28,30,36,255))]:d.rectangle(rect,fill=color)
+    if species=='holstaurus':
+        d=ImageDraw.Draw(image);d.rectangle((0,0,31,31),fill=(232,232,226,255))
+        d.rectangle((0,64,31,95),fill=(223,201,179,255))
+        d.rectangle((3,67,8,72),fill=(226,204,182,255));d.rectangle((7,80,11,85),fill=(220,198,176,255))
+        for points,color in [([(3,3),(7,2),(10,5),(8,10),(4,9)],(143,149,164,255)), ([(13,12),(19,10),(23,14),(21,20),(15,22),(12,18)],(126,137,154,255)), ([(2,18),(6,17),(9,22),(7,27),(2,28)],(175,179,188,255))]:d.polygon(points,fill=color)
     return image
 
 def main():

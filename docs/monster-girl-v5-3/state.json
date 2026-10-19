@@ -30,7 +30,7 @@
       }
     },
     "vampire": {
-      "commit": "V5.3: refine vampire",
+      "commit": "d81356a",
       "passes": 3,
       "evidence": "/workspace/validation/monster-girl-v5-3/02-vampire/pass-3",
       "files": {
@@ -39,6 +39,17 @@
         "src/main/resources/assets/mythic_realms_creatures/textures/entity/vampire.png": "b0e6bd6cdcd3cce02dee421e237205b9a5a7ec0df883ccd20b0af43e3a304059",
         "tools/blockbench/vampire.bbmodel": "13da39b976a086690490991f2d136b42e9acacc6b25502a0d53d8fbff47716a9",
         "src/main/resources/assets/mythic_realms_creatures/textures/entity/vampire_glowmask.png": "c0aa61bb2054675952ceb993260ae07e3566066b2681e155fbafcf0e3d52a634"
+      }
+    },
+    "holstaurus": {
+      "commit": "V5.3: refine holstaurus",
+      "passes": 2,
+      "evidence": "/workspace/validation/monster-girl-v5-3/03-holstaurus/pass-2",
+      "files": {
+        "src/main/resources/assets/mythic_realms_creatures/geckolib/models/entity/holstaurus.geo.json": "551a316991231b94e1af54268c1a9be415d338fe2a8bd036d1b0145d48e13c08",
+        "src/main/resources/assets/mythic_realms_creatures/geckolib/animations/entity/holstaurus.animation.json": "0d4932f5b9d71ce5650eda8034ac96b97a053734e1851286ab22825bc0daeb4d",
+        "src/main/resources/assets/mythic_realms_creatures/textures/entity/holstaurus.png": "2bab25a71eb8b63aabb9ab81284d92489bcffae7ea23e025172103f878e59068",
+        "tools/blockbench/holstaurus.bbmodel": "33298f2fa45eadbf24a3b2f0a9005b5078fcd9ede846bcdf11b4a395f58e69ce"
       }
     }
   },
@@ -193,5 +204,6 @@
     "src/main/resources/assets/mythic_realms_creatures/geckolib/animations/entity/werecat.animation.json": "5fef0af398e71757d57e237ad7fc95b2606518d37fa2e2f08aa42111ad111b87",
     "src/main/resources/assets/mythic_realms_creatures/textures/entity/werecat.png": "8900466c0915a4fe0dd63ffc46c7bef5ca10ea3d6935a4cd259f249822f0a807",
     "tools/blockbench/werecat.bbmodel": "9e309a3ff654739ef2fc7730e2b6a93f5921f551f2f75ba67bb2b471f8aef9e5"
-  }
+  },
+  "shared_unchanged_baseline_evidence": "/workspace/validation/monster-visual-overhaul-v3/final-all33-better-combat"
 }
