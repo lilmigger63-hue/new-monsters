@@ -99,7 +99,7 @@
       }
     },
     "anubis": {
-      "commit": "V5.3: refine anubis",
+      "commit": "5b09b03",
       "passes": 2,
       "evidence": "/workspace/validation/monster-girl-v5-3/08-anubis/pass-2",
       "files": {
@@ -108,6 +108,18 @@
         "src/main/resources/assets/mythic_realms_creatures/textures/entity/anubis.png": "70fb4d839c5be2b0f9f50954c91fc3013b53f577bd35e1585377e13b3d19646c",
         "tools/blockbench/anubis.bbmodel": "48fc4ad7fe0e0519c048e85f9004b5d236f80bdaa04f311c3b30cbe4377205cb",
         "src/main/resources/assets/mythic_realms_creatures/textures/entity/anubis_glowmask.png": "11939f206341227f70b6c7717e2c3e73cf48cde437d09f402887d0b37a3bdbab"
+      }
+    },
+    "kobold": {
+      "commit": "V5.3: refine kobold",
+      "passes": 2,
+      "evidence": "/workspace/validation/monster-girl-v5-3/09-kobold/pass-2",
+      "files": {
+        "src/main/resources/assets/mythic_realms_creatures/geckolib/models/entity/kobold.geo.json": "c04668546f0a79b4ea16205929f2cde5fdcd4a77b1ec5d6a6e12cb73e4fb37f9",
+        "src/main/resources/assets/mythic_realms_creatures/geckolib/animations/entity/kobold.animation.json": "7aa898fb672bb069b17d04a36362c5a82c4eda6c888eabdf1eb92c7acb87aa09",
+        "src/main/resources/assets/mythic_realms_creatures/textures/entity/kobold.png": "f1022f9ed4278aa1e6ccae9752e1e096f80ec1356505ec4c2a82cc53631276ff",
+        "tools/blockbench/kobold.bbmodel": "86ad7234552e630a8c19d2788687568501991aad325a0bea1a370e1f6e8942a9",
+        "src/main/resources/assets/mythic_realms_creatures/textures/entity/kobold_glowmask.png": "2ee48ae110d5a6b86c242383356345dbd00e6b44668ee22fe3cea2ace4327dd9"
       }
     }
   },

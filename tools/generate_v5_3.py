@@ -418,7 +418,41 @@ def anubis():
     support_death(m,animations)
     return m,palette,roles,size,animations
 
-BUILDERS={'ender_dragon_girl':ender_dragon_girl,'vampire':vampire,'holstaurus':holstaurus,'centaur':centaur,'sahuagin':sahuagin,'valkyrie':valkyrie,'fox_spirit_girl':fox_spirit_girl,'anubis':anubis}
+def kobold():
+    m,palette,roles,size,animations=load('kobold');X=m.box
+    # Keep the reptilian muzzle, nostrils, claws and small body; shape the crest/ear fins.
+    head=m.by_name['head'];head['cubes']=[c for c in head['cubes'] if not(v3.material_of(c) in (5,8) and ((c['origin'][2]<-2.4 and c['size'][1]>1 and c['size'][2]<.8) or (c['origin'][1]>=20.7 and c['origin'][2]>=0 and c['size'][0]<2)))]
+    for x,y,w,h,ang in [(-2.7,19.35,1.55,1.7,-13),(-1.4,19.65,1.5,1.5,-5),(-.1,19.25,1.6,1.9,8),(1.25,19.55,1.5,1.6,15),(2.3,19.9,.9,1.2,20)]:
+        X('head',[x,y,-2.6],[w,h,.65],8 if x<0 else 5,[0,0,ang])
+    for origin,size_,mat,angle in [([-.65,20.75,.25],[1.3,1.5,1.5],8,-20),([-.45,21.8,.7],[.9,1,1.2],5,-30),([-.3,22.55,1.1],[.6,.65,.9],8,-35)]:X('head',origin,size_,mat,[angle,0,0])
+    for side,n in [(-1,'right'),(1,'left')]:
+        ear='ear_'+n;m.by_name[ear]['cubes']=[]
+        X(ear,[side*3.15-.5,18.45,-.4],[1,1.65,1.15],14,[0,0,-side*20])
+        X(ear,[side*3.7-.32,19.65,-.32],[.64,1.1,.95],14,[0,0,-side*20])
+        X(ear,[side*3.25-.25,18.9,-.55],[.5,.9,.22],15,[0,0,-side*20])
+        for c in m.by_name['hip_plate_'+n]['cubes']:
+            if v3.material_of(c)==4:v3.repaint_cube(c,9)
+    for bone in m.bones:
+        if bone['name'].startswith('hair_'):
+            for c in bone.get('cubes',[]):
+                top=c['origin'][1]+c['size'][1];c['origin'][1]=max(14.8,c['origin'][1]);c['size'][1]=max(.3,top-c['origin'][1])
+                if 'pivot' in c:c['pivot'][1]=c['origin'][1]+c['size'][1]/2
+    # Two overlapping scarf folds sit visibly over the existing fitted armor.
+    m.by_name['chest']['cubes']=[c for c in m.by_name['chest']['cubes'] if v3.material_of(c)!=12]
+    X('chest',[-1.3,14.1,-2.5],[2.6,.9,.6],6,[0,0,-8])
+    X('chest',[-.7,12.9,-2.65],[1.4,1.9,.55],12,[0,0,13])
+    tip=m.by_name['tail_tip'];last=tip['cubes'][1];end=last['origin'][2]+last['size'][2]
+    X('tail_tip',[-.3,6.35,end-.25],[.6,.55,1.4],14)
+    X('tail_tip',[-.15,6.48,end+.85],[.3,.3,.75],14)
+    for name,amp in [('idle',2.5),('walk',3),('run',4)]:
+        clip=animations[name];length=clip['animation_length']
+        for bone,mult,lag in [('tail',1,0),('tail_tip',1.3,.45)]:
+            clip['bones'][bone]={'rotation':{str(min(length,round(length*j/12,5))):[amp*.35*math.sin(2*math.pi*j/12-lag),amp*mult*math.sin(2*math.pi*j/12-lag),0]for j in range(13)}}
+    palette[8]='999baa'
+    support_death(m,animations)
+    return m,palette,roles,size,animations
+
+BUILDERS={'ender_dragon_girl':ender_dragon_girl,'vampire':vampire,'holstaurus':holstaurus,'centaur':centaur,'sahuagin':sahuagin,'valkyrie':valkyrie,'fox_spirit_girl':fox_spirit_girl,'anubis':anubis,'kobold':kobold}
 
 def atlas(palette,roles,translucent,species):
     image=v3.reference_atlas(palette,roles,translucent,species)
@@ -456,6 +490,12 @@ def atlas(palette,roles,translucent,species):
         for y in (8,19):d.line((98,y,124,y+1),fill=(218,216,202,255),width=1)
         d.polygon([(115,3),(119,4),(117,15),(120,26),(116,29),(114,17)],fill=(208,207,195,255))
         d.polygon([(122,5),(125,4),(125,26),(122,28),(120,17)],fill=(234,232,217,255))
+    if species=='kobold':
+        d=ImageDraw.Draw(image)
+        for tile in (5,8):
+            x,y=tile%4*32,tile//4*32;rgb=tuple(int(palette[tile][i:i+2],16)for i in (0,2,4))
+            d.rectangle((x,y,x+31,y+31),fill=rgb+(255,))
+            for points,delta in [([(2,2),(8,2),(11,6),(8,11),(3,9)],8), ([(12,5),(22,3),(28,10),(24,18),(15,16)],-10), ([(3,19),(11,16),(18,24),(11,29),(4,27)],4)]:d.polygon([(x+a,y+b)for a,b in points],fill=tuple(max(0,min(255,c+delta))for c in rgb)+(255,))
     return image
 
 def main():
