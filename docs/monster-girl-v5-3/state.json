@@ -18,7 +18,7 @@
   "active": null,
   "completed": {
     "ender_dragon_girl": {
-      "commit": "V5.3: refine ender_dragon_girl",
+      "commit": "41d32f9",
       "passes": 3,
       "evidence": "/workspace/validation/monster-girl-v5-3/01-ender_dragon_girl/pass-3",
       "files": {
@@ -27,6 +27,18 @@
         "src/main/resources/assets/mythic_realms_creatures/textures/entity/ender_dragon_girl.png": "d5bbfaa958fcae1c7909fd5e2cc9684d05345af3e9ccf995dd2eb47c199c1103",
         "tools/blockbench/ender_dragon_girl.bbmodel": "0daeba77a4169fd7f60db05463b01bf2b51541fa7eac335b984608cce064de7c",
         "src/main/resources/assets/mythic_realms_creatures/textures/entity/ender_dragon_girl_glowmask.png": "82e65491bbf60feae5245e49229e1847b74abed6617a09cd3cf4746996e31d33"
+      }
+    },
+    "vampire": {
+      "commit": "V5.3: refine vampire",
+      "passes": 3,
+      "evidence": "/workspace/validation/monster-girl-v5-3/02-vampire/pass-3",
+      "files": {
+        "src/main/resources/assets/mythic_realms_creatures/geckolib/models/entity/vampire.geo.json": "b21ffb61ea8129b1ef381856714feffcdfcf62dc2541bf3534f4675071dbf9ae",
+        "src/main/resources/assets/mythic_realms_creatures/geckolib/animations/entity/vampire.animation.json": "31d7effb636dcdfc22e420793e38284b3200097291a65a9effadc1e4993d4723",
+        "src/main/resources/assets/mythic_realms_creatures/textures/entity/vampire.png": "b0e6bd6cdcd3cce02dee421e237205b9a5a7ec0df883ccd20b0af43e3a304059",
+        "tools/blockbench/vampire.bbmodel": "13da39b976a086690490991f2d136b42e9acacc6b25502a0d53d8fbff47716a9",
+        "src/main/resources/assets/mythic_realms_creatures/textures/entity/vampire_glowmask.png": "c0aa61bb2054675952ceb993260ae07e3566066b2681e155fbafcf0e3d52a634"
       }
     }
   },

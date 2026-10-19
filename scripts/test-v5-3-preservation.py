@@ -49,6 +49,15 @@ class V53Preservation(unittest.TestCase):
             pose={name:final(channels['rotation']) for name,channels in death.items() if name!='root' and 'rotation' in channels}
             floor=minimum_y(bones,final(death['root']['rotation']),pose)+final(death['root']['position'])[1]
             self.assertAlmostEqual(floor,.1,delta=.25,msg=species+' corpse must reach the floor without burial')
+    def test_authored_keyframes_stay_inside_exact_existing_duration(self):
+        import generate_v5_3 as source
+        for species,builder in source.BUILDERS.items():
+            *_,animations=builder()
+            for name,clip in animations.items():
+                for bone,channels in clip.get('bones',{}).items():
+                    for frames in channels.values():
+                        if isinstance(frames,dict):
+                            self.assertTrue(all(0<=float(t)<=clip['animation_length'] for t in frames),(species,name,bone))
     def test_ender_face_has_no_metallic_eye_frames(self):
         path=ROOT/'src/main/resources/assets/mythic_realms_creatures/geckolib/models/entity/ender_dragon_girl.geo.json'
         bones=json.loads(path.read_text())['minecraft:geometry'][0]['bones'];head=next(b for b in bones if b['name']=='head')

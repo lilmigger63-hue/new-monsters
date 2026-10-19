@@ -73,7 +73,61 @@ def ender_dragon_girl():
     support_death(m,animations)
     return m,palette,roles,size,animations
 
-BUILDERS={'ender_dragon_girl':ender_dragon_girl}
+def vampire():
+    m,palette,roles,size,animations=load('vampire');X=m.box
+    # Short layered blonde bob instead of shoulder-length solid side slabs.
+    for n,side in [('right',-1),('left',1)]:
+        m.by_name['hair_'+n]['cubes']=[];m.by_name['hair_tip_'+n]['cubes']=[]
+        X('hair_'+n,[side*3.25-.8,23.1,-1.7],[1.6,5.6,3.7],5,[0,0,-side*5])
+        X('hair_'+n,[side*3.5-.55,23.2,-2.35],[1.1,4.6,1.5],8,[0,0,-side*8])
+        X('hair_tip_'+n,[side*3.35-.65,22.2,-1.2],[1.3,2.1,3],8,[0,0,side*12])
+    for c in m.by_name['hair_back']['cubes']:
+        top=c['origin'][1]+c['size'][1];c['origin'][1]=22.1;c['size'][1]=top-22.1
+    # Remove repeated metallic waistcoat bars; one small clasp remains.
+    m.by_name['body']['cubes']=[c for c in m.by_name['body']['cubes'] if v3.material_of(c) not in (4,9)]
+    X('body',[-.45,15.5,-2.65],[.9,.8,.35],9)
+    for side in (-1,1):
+        X('body',[side*1.7-.25,13.4,-2.35],[.5,4.1,.35],15)
+        X('chest',[side*1.1-.5,19.7,-2.95],[1,1.1,.5],11,[0,0,side*24])
+    # A voluminous dark mantle with visible burgundy lining, on the existing cape rig.
+    m.by_name['cape']['cubes']=[]
+    X('cape',[-4.2,10.8,3.05],[8.4,11.8,1],15)
+    X('cape',[-4.45,21,2.75],[8.9,2.2,1.8],15)
+    for n,side in [('right',-1),('left',1)]:
+        for x,y,w,h,angle in [(4.1,15.7,2.5,6.8,9),(5,10.3,2.8,7.1,15),(5.4,6.6,3,5.2,20)]:
+            X('cape',[side*x-w/2,y,2.75],[w,h,1.65],15,[0,0,-side*angle])
+            X('cape',[side*x-w/2+.2,y+.15,2.54],[w-.4,h-.45,.32],3,[0,0,-side*angle])
+        bone='cape_lower_'+n;m.bone(bone,'cape',[side*3.2,12.5,3.5])
+        X(bone,[side*3.15-2.4,1.15,3.4],[4.8,12.3,1.1],15,[0,0,-side*6])
+        X(bone,[side*4.4-1.1,1.2,3.12],[2.2,7.6,.4],10,[0,0,-side*8])
+        X(bone,[side*3.2-2.45,1.1,3.15],[4.9,1,.7],10,[0,0,-side*6])
+        # Pleated skirt panels replace ladder-like horizontal rectangular borders.
+        coat='coat_'+n;m.by_name[coat]['cubes']=[]
+        X(coat,[side*1.65-1.7,1.7,-2.15],[3.4,9.5,4.3],15,[0,0,-side*4])
+        for j in range(3):
+            X(coat,[side*1.65-1.4+j*.94,2.7,-2.45],[.82,7.9,.5],3 if j%2 else 10,[0,0,-side*4])
+        X(coat,[side*1.65-1.75,1.55,-2.22],[3.5,1.15,4.45],15,[0,0,-side*4])
+        X(coat,[side*1.65-1.65,10.3,-2.3],[3.3,.7,.45],11)
+        for name,amplitude in [('idle',1.2),('walk',2.4),('run',3.6)]:
+            clip=animations[name];length=clip['animation_length']
+            clip['bones'][bone]={'rotation':{str(min(length,round(length*i/12,5))):[amplitude*math.sin(2*math.pi*i/12),side*.7*math.cos(2*math.pi*i/12),side*amplitude*.35*math.sin(2*math.pi*i/12)] for i in range(13)}}
+    # Corrective pass: swept overlapping locks, a dimensional rosette and layered jabot.
+    head=m.by_name['head'];head['cubes']=[c for c in head['cubes'] if not(v3.material_of(c) in (5,8) and c['origin'][2]<-2.5 and .6<c['size'][1]<3 and c['size'][2]<2.6)]
+    for i,(x,y,w,h,ang) in enumerate([(-3,26.5,1.6,2.1,-12),(-1.8,26.8,1.6,2,-8),(-.5,26.4,1.7,2.2,8),(.9,26.8,1.5,1.9,14),(2.1,27.1,1.2,1.6,19)]):
+        X('head',[x,y,-3.3],[w,h,.9],8 if i%2 else 5,[0,0,ang])
+    for x,y,w,h,ang in [(2.1,28.5,1.1,.7,-24),(2.7,28.2,.9,.8,18),(2.8,28.9,.8,.65,35)]:
+        X('head',[x,y,-2.2],[w,h,.65],7,[0,0,ang])
+    X('head',[2.75,28.55,-2.45],[.65,.65,.4],10)
+    for side in (-1,1):
+        X('chest',[side*.8-.55,19.3,-3.1],[1.1,1.1,.45],11,[0,0,side*18])
+        X('chest',[side*.45-.4,18.8,-3.15],[.8,.8,.4],11,[0,0,side*9])
+    # Turn the dagger forward/down from its grip instead of back into the forearm.
+    m.by_name['dagger']['rotation']=[112,0,0]
+    palette[5]='c9ad68';palette[8]='b49a59';palette[3]='632333';palette[10]='922b42'
+    support_death(m,animations)
+    return m,palette,roles,size,animations
+
+BUILDERS={'ender_dragon_girl':ender_dragon_girl,'vampire':vampire}
 
 def atlas(palette,roles,translucent,species):
     image=v3.reference_atlas(palette,roles,translucent,species)
@@ -82,6 +136,9 @@ def atlas(palette,roles,translucent,species):
         d=ImageDraw.Draw(image);x,y=96,32
         d.rectangle((x,y,x+31,y+31),fill=(26,27,34,255))
         for points,color in [([(2,3),(12,13),(28,28)],(35,36,44,255)), ([(4,25),(13,18),(28,22)],(20,21,28,255))]:d.line([(x+a,y+b) for a,b in points],fill=color,width=1)
+    if species=='vampire':
+        d=ImageDraw.Draw(image)
+        for rect,color in [((99,101,110,109),(31,32,39,255)),((114,107,123,120),(21,23,29,255)),((101,116,112,125),(28,30,36,255))]:d.rectangle(rect,fill=color)
     return image
 
 def main():
@@ -89,5 +146,5 @@ def main():
     state=json.loads((DOC/'state.json').read_text());assert state['active']==a.species,'Export only the single active creature'
     m,palette,roles,size,animations=BUILDERS[a.species]()
     pipeline.material_atlas=lambda p,r,t=False:atlas(p,r,t,a.species)
-    pipeline.write_creature(m,palette,roles,animations,*size,glow=(4,))
+    pipeline.write_creature(m,palette,roles,animations,*size,glow={'vampire':(13,),'holstaurus':(),'centaur':(),'sahuagin':(),'anubis':(7,),'kobold':(13,),'cyclops':(7,),'dhampir':(7,),'werecat':()}.get(a.species,(4,)))
 if __name__=='__main__':main()

@@ -15,5 +15,5 @@ state['completed'][a.species]=record;state['active']=None;(DOC/'state.json').wri
 f=ROOT/'docs/monster-girl-v5-3-progress.md';lines=f.read_text().splitlines()
 for i,line in enumerate(lines):
  if line.startswith('| '+a.species+' |'):
-  cells=[v.strip() for v in line.strip('|').split('|')];cells[2:]=['Complete',str(a.passes)+' corrective runs inspected','Focused client +34 asset/source/preservation checks pass','See per-species report',record['commit'],'Commit this stage; then next creature'];lines[i]='| '+' | '.join(cells)+' |'
+  cells=[v.strip() for v in line.strip('|').split('|')];cells[2:]=['Complete',str(a.passes)+' corrective runs inspected','Focused client +35 asset/source/preservation checks pass','See per-species report',record['commit'],'Commit this stage; then next creature'];lines[i]='| '+' | '.join(cells)+' |'
 f.write_text('\n'.join(lines)+'\n');print('Frozen one reviewed species; commit before advancing:',a.species)
